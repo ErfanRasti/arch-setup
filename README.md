@@ -22,4 +22,22 @@ sudo pacman -S linux-firmware
 sudo pacman -S linux linux-headers linux-lts linux-lts-headers
 ```
 The point of `linux-lts` is that every time the `linux` kernel has been crashed we use `linux-lts` to recover it.
+# Intel drivers
+```shell
+sudo pacman -S intel-ucode intel-media-driver mesa clinfo intel-gpu-tools libva stow util-linux
+paru -S cpupower-gui
+```
+`lscpu` and `vainfo` shouldn't return any error.
 
+`vdpauinfo` is for nvidia:
+```shell
+sudo pacman -S vdpauinfo
+vdpauinfo
+```
+
+For more info:
+* Tutorial: https://www.youtube.com/watch?v=gIVIHJmW1P0
+* https://wiki.archlinux.org/title/Microcode
+* https://wiki.archlinux.org/title/Hardware_video_acceleration
+* https://wiki.archlinux.org/title/Intel_graphics
+* https://wiki.archlinux.org/title/GPGPU
