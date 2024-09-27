@@ -41,3 +41,13 @@ For more info:
 * https://wiki.archlinux.org/title/Hardware_video_acceleration
 * https://wiki.archlinux.org/title/Intel_graphics
 * https://wiki.archlinux.org/title/GPGPU
+
+## NVIDIA
+`nvidia-dkms` is used for managing multiple kernels. Since we installed both `linux-lts` and `linux` kernels this is a better option
+```shell
+sudo pacman -S nvidia-dkms
+```
+
+References:
+* https://www.reddit.com/r/archlinux/comments/16iz9co/nvidia_or_nvidiadkms/
+* https://wiki.archlinux.org/title/NVIDIA
