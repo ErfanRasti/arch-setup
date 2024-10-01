@@ -186,54 +186,136 @@ sudo echo 'deep' > /sys/power/mem_sleep
 
      Finally You can check the `gnome-system-monitor` for the `swapfile`.
 
-    - **New Method(recommended):**
+   - **New Method(recommended):**
 
-        Since `btrfs` version 6.1 it's possible to create the swapfile much easier:
-        ```bash
-        sudo btrfs subvolume create /swap
-        sudo btrfs filesystem mkswapfile --size 32g --uuid clear /swap/swapfile
-        sudo swapon /swap/swapfile
-        sudo bash -c "echo /swap/swapfile none swap defaults 0 0 >> /etc/fstab"
-        ```
-        First line creates the swap sub-volume for `btrfs`. Second line crets `swapfile` under the `/swap` subvolume with the determined size. Third line makes the `swapfile` on and the last line adds the `swapfile` to fstab to make it available at startup.
+     Since `btrfs` version 6.1 it's possible to create the swapfile much easier:
 
-      To see the activated `swapfile` and the percent of usage run:
-      ```bash
-      swapon --show
-      ```
-      or
-      ```bash
-      cat /proc/swaps
-      ```
-      .
+     ```bash
+     sudo btrfs subvolume create /swap
+     sudo btrfs filesystem mkswapfile --size 32g --uuid clear /swap/swapfile
+     sudo swapon /swap/swapfile
+     sudo bash -c "echo /swap/swapfile none swap defaults 0 0 >> /etc/fstab"
+     ```
 
-      The `swappiness` sysctl parameter represents the kernel's preference for writing to swap instead of files. It can have a value between 0 and 200 (max 100 if Linux < 5.8); the default value is 60. A low value causes the kernel to prefer freeing up open files, a high value causes the kernel to try to use swap space, and a value of 100 means IO cost is assumed to be equal. To check the `swappiness` value:
-      ```bash
-      cat /proc/sys/vm/swappiness
-      ```
-      or
-      ```bash
-      sysctl vm.swappiness
-      ```
-      .
+     First line creates the swap sub-volume for `btrfs`. Second line crets `swapfile` under the `/swap` subvolume with the determined size. Third line makes the `swapfile` on and the last line adds the `swapfile` to fstab to make it available at startup.
 
-      To change the `swappiness` value temporarily:
-      ```bash
-      sudo sysctl -w vm.swappiness=35
-      ```
-      To set the swappiness value permanently:
-      ```bash
-      sudo echo "vm.swappiness = 10" >> /etc/sysctl.d/99-swappiness.conf
-      ```
-      Which adds `vm.swappiness = 35` to `/etc/sysctl.d/99-swappiness.conf`.
+     To see the activated `swapfile` and the percent of usage run:
 
-   **References:**
+     ```bash
+     swapon --show
+     ```
 
-   * https://btrfs.readthedocs.io/en/latest/Swapfile.html
-   * https://man.archlinux.org/man/btrfs.5#SWAPFILE_SUPPORT
-   * https://wiki.archlinux.org/title/Btrfs#Swap_file
-   * https://www.youtube.com/watch?v=3DnLrxrnl2I
-   * https://wiki.archlinux.org/title/Swap#Swappiness
-   * https://www.howtogeek.com/449691/what-is-swapiness-on-linux-and-how-to-change-it/#swappiness
-   * https://github.com/torvalds/linux/blob/v5.0/Documentation/sysctl/vm.txt#L809
-   * https://askubuntu.com/questions/103915/how-do-i-configure-swappiness
+     or
+
+     ```bash
+     cat /proc/swaps
+     ```
+
+     .
+
+     The `swappiness` sysctl parameter represents the kernel's preference for writing to swap instead of files. It can have a value between 0 and 200 (max 100 if Linux < 5.8); the default value is 60. A low value causes the kernel to prefer freeing up open files, a high value causes the kernel to try to use swap space, and a value of 100 means IO cost is assumed to be equal. To check the `swappiness` value:
+
+     ```bash
+     cat /proc/sys/vm/swappiness
+     ```
+
+     or
+
+     ```bash
+     sysctl vm.swappiness
+     ```
+
+     .
+
+     To change the `swappiness` value temporarily:
+
+     ```bash
+     sudo sysctl -w vm.swappiness=35
+     ```
+
+     To set the swappiness value permanently:
+
+     ```bash
+     sudo echo "vm.swappiness = 10" >> /etc/sysctl.d/99-swappiness.conf
+     ```
+
+     Which adds `vm.swappiness = 35` to `/etc/sysctl.d/99-swappiness.conf`.
+
+**References:**
+
+- https://btrfs.readthedocs.io/en/latest/Swapfile.html
+- https://man.archlinux.org/man/btrfs.5#SWAPFILE_SUPPORT
+- https://wiki.archlinux.org/title/Btrfs#Swap_file
+- https://www.youtube.com/watch?v=3DnLrxrnl2I
+- https://wiki.archlinux.org/title/Swap#Swappiness
+- https://www.howtogeek.com/449691/what-is-swapiness-on-linux-and-how-to-change-it/#swappiness
+- https://github.com/torvalds/linux/blob/v5.0/Documentation/sysctl/vm.txt#L809
+- https://askubuntu.com/questions/103915/how-do-i-configure-swappiness
+
+## Hibernation
+
+**Warrning:** I used the _New Method_ for `btrfs` swapfile. There are some differences for the _Old Method_.
+
+1. first make the hibernated image as small as possible. Edit the following file:
+   ```bash
+   sudo nano /etc/tmpfiles.d/hibernation_image_size.conf
+   ```
+   Then add this:
+   ```conf
+   #    Path                   Mode UID  GID  Age Argument
+   w    /sys/power/image_size  -    -    -    -   0
+   ```
+2. Add `resume` hook:
+   ```bash
+   sudo nano /etc/mkinitcpio.conf
+   ```
+   The `HOOKS` be like this( resume should be added after `udev`, `encrypt`, `lvm2`, and `filesystem` and before `fsck`):
+   ```bash
+   HOOKS=(base udev autodetect microcode modconf kms keyboard keymap consolefont block filesystems resume fsck)
+   ```
+   Remember to regenerate the `initramfs` for these changes to take effect:
+   ```bash
+   sudo mkinitcpio -P
+   ```
+3. Find the starting point of the swap file:
+   ```bash
+   sudo btrfs inspect-internal map-swapfile -r /swap/swapfile
+   ```
+4. Pass the starting point of swap file to the `resume_offset`(`resume_offset` is not editable so we should make it editable using `chmod`. After all I return it to the default state):
+   ```bash
+   sudo chmod 666 /sys/power/resume_offset
+   sudo echo <NUMBER> > /sys/power/resume_offset
+   sudo chmod 644 /sys/power/resume_offset
+   ```
+   Check the value:
+   ```bash
+   cat /sys/power/resume_offset
+   ```
+5. After all reboot is required:
+   ```bash
+   sudo reboot
+   ```
+   You're done bro!
+
+Special Thanks to legendary archwiki!
+
+**References:**
+
+- https://wiki.archlinux.org/title/Power_management/Suspend_and_hibernate#Hibernation
+- https://btrfs.readthedocs.io/en/latest/ch-swapfile.html
+
+### Hibernation button
+To add hibernation button to GNOME use [hibernate-status-button extension](https://extensions.gnome.org/extension/755/hibernate-status-button/).
+
+If your GNOME version is higher than the supported version you can disable extension version validation using `dconf`:
+```shell
+gsettings set org.gnome.shell disable-extension-version-validation true
+```
+*But there is a chance to break the GNOME.*
+
+For installation I downloaded the zip file and ran:
+```shell
+gnome-extensions install hibernate-statusdromi.v40.shell-extension.zip
+```
+Then reload the gnome-shell by logging out.
+
