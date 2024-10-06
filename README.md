@@ -49,7 +49,7 @@ vdpauinfo
 - https://wiki.archlinux.org/title/Intel_graphics
 - https://wiki.archlinux.org/title/GPGPU
 
-## NVIDIA
+# NVIDIA
 
 `nvidia-dkms` is used for managing multiple kernels. Since we installed both `linux-lts` and `linux` kernels this is a better option. `nvidia-dkms` also manages kernel upgrades automatically.
 
@@ -63,15 +63,6 @@ sudo pacman -S nvidia-dkms
 - https://wiki.archlinux.org/title/NVIDIA
 
 # Swap partition
-
-## Disk Usage/Free Utility
-
-To show local and special mounted devices we can use `duf`.
-
-```shell
-sudo pacman -S duf
-duf
-```
 
 ## zram
 
@@ -95,19 +86,6 @@ I usually don't prefer this method because I have good amount of RAM. I use manu
 **References:**
 
 - https://wiki.archlinux.org/title/Zram
-
-## Suspend to RAM
-
-Write `deep` into `/sys/power/mem_sleep` and “mem” into `/sys/power/state`:
-
-```bash
-sudo echo 'mem' > /sys/power/state
-sudo echo 'deep' > /sys/power/mem_sleep
-```
-
-**References:**
-
-- https://docs.kernel.org/admin-guide/pm/sleep-states.html
 
 ## Swap partition
 
@@ -252,7 +230,119 @@ sudo echo 'deep' > /sys/power/mem_sleep
 - https://github.com/torvalds/linux/blob/v5.0/Documentation/sysctl/vm.txt#L809
 - https://askubuntu.com/questions/103915/how-do-i-configure-swappiness
 
-## Hibernation
+## Utilities
+
+### Disk Usage/Free Utility
+
+To show local and special mounted devices we can use `duf`.
+
+```shell
+sudo pacman -S duf
+duf
+```
+
+# Suspend
+
+## Power States
+
+The `/sys/power/state` file in Linux is an interface that allows you to manage the system's power states. It is part of the `sysfs` virtual filesystem and provides options for putting the system into various power-saving modes such as suspend or hibernate.
+
+The available power states can vary depending on your hardware and system configuration, but generally include:
+
+1.  `freeze`: The system's processes are frozen, and the CPU goes into a low-power state, but no state is lost. This is similar to a very low-power idle state.
+2.  `standby`: The system enters a low-power state, similar to freeze, but with deeper power savings. This mode usually affects more hardware components, and waking up from it is faster than suspend.
+3.  `mem`: This state corresponds to suspend-to-RAM. In this state, the system's state is saved in RAM, and most hardware components are powered down, but the system can wake up quickly. This is commonly known as "sleep" or "suspend."
+4.  `disk`: This is suspend-to-disk (hibernate). The system's state is saved to the disk, and the machine can be powered off. When the system is powered back on, the state is restored from the disk.
+5.  `on` (if supported): A fully operational state where the system is not in any power-saving mode.
+
+You can view the available power states by reading the contents of `/sys/power/state`:
+
+```bash
+cat /sys/power/state
+```
+
+Mine is:
+
+```bash
+freeze mem disk
+```
+
+To set one of the power states you can write to `/sys/power/state`:
+
+```bash
+echo mem | sudo tee /sys/power/state
+```
+
+But some of them don't work as expected and it is better to run them through `systemd`.
+
+## Suspend to RAM
+
+To check the supported sleep states run:
+
+```bash
+cat /sys/power/mem_sleep
+```
+
+In this case, `s2idle` corresponds to S0ix, while `deep` refers to S3 (the traditional standby state).
+The output shows the selection. You should get something like `s2idle [deep]` which shows `deep` is selected.
+`deep` is more energy efficient rather than `s2idle` and the only active component is RAM.
+
+To activate `deep` run:
+
+```bash
+echo deep | sudo tee /sys/power/mem_sleep
+```
+
+`deep` represents suspend-to-RAM.
+
+you can make the change permanent through the `MemorySleepMode`:
+
+```bash
+sudo mkdir /etc/systemd/sleep.conf.d/
+sudo nano /etc/systemd/sleep.conf.d/mem-deep.conf
+```
+
+Add:
+
+```conf
+[Sleep]
+MemorySleepMode=deep
+```
+
+If you want to set `s2idle` just for test, there is a chance that replacing `deep` with `s2idle` doesn't work for you (like me). In this case you should try _kernel parameter_ `mem_sleep_default`. To set a kernel parameter in `systemd-boot`:
+
+```bash
+sudo nano /boot/loader/entries/<YOUR-KERNEL>.conf
+```
+
+Find the options line and add `mem_sleep_default=s2idle` at the end of the line separating it with a space:
+
+```bash
+options ... mem_sleep_default=s2idle
+```
+
+Finally:
+
+```bash
+sudo reboot
+```
+
+And check the parameter:
+
+```bash
+cat /sys/power/mem_sleep
+```
+
+My default suspend mode is `deep` and there is no need to do any of this for me!
+
+**References:**
+
+- https://wiki.archlinux.org/title/Power_management/Suspend_and_hibernate
+- https://docs.kernel.org/admin-guide/pm/sleep-states.html#basic-sysfs-interfaces-for-system-suspend-and-hibernation
+- https://wiki.archlinux.org/title/Kernel_parameters
+- https://web.archive.org/web/20230614200816/https://01.org/blogs/qwang59/2018/how-achieve-s0ix-states-linux
+
+# Hibernation
 
 **Warrning:** I used the _New Method_ for `btrfs` swapfile. There are some differences for the _Old Method_.
 
@@ -281,11 +371,9 @@ sudo echo 'deep' > /sys/power/mem_sleep
    ```bash
    sudo btrfs inspect-internal map-swapfile -r /swap/swapfile
    ```
-4. Pass the starting point of swap file to the `resume_offset`(`resume_offset` is not editable so we should make it editable using `chmod`. After all I return it to the default state):
+4. Pass the starting point of swap file to the `resume_offset`(`resume_offset` is not editable so we should make it editable using `chmod` or use `tee`.):
    ```bash
-   sudo chmod 666 /sys/power/resume_offset
-   sudo echo <NUMBER> > /sys/power/resume_offset
-   sudo chmod 644 /sys/power/resume_offset
+   echo <NUMBER> | sudo tee /sys/power/resume_offset
    ```
    Check the value:
    ```bash
@@ -304,18 +392,24 @@ Special Thanks to legendary archwiki!
 - https://wiki.archlinux.org/title/Power_management/Suspend_and_hibernate#Hibernation
 - https://btrfs.readthedocs.io/en/latest/ch-swapfile.html
 
-### Hibernation button
+## Hibernation button
+
 To add hibernation button to GNOME use [hibernate-status-button extension](https://extensions.gnome.org/extension/755/hibernate-status-button/).
 
 If your GNOME version is higher than the supported version you can disable extension version validation using `dconf`:
+
 ```shell
 gsettings set org.gnome.shell disable-extension-version-validation true
 ```
-*But there is a chance to break the GNOME.*
+
+_But there is a chance to break the GNOME._
 
 For installation I downloaded the zip file and ran:
+
 ```shell
 gnome-extensions install hibernate-statusdromi.v40.shell-extension.zip
 ```
+
 Then reload the gnome-shell by logging out.
 
+# Wayland and X11 setup
