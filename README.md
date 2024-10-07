@@ -68,6 +68,25 @@ sudo systemctl enable nvidia-hibernate.service nvidia-suspend.service nvidia-res
 - https://www.reddit.com/r/archlinux/comments/16iz9co/nvidia_or_nvidiadkms/
 - https://wiki.archlinux.org/title/NVIDIA
 
+# DKMS and KMS
+
+Remove `kms` from `HOOKS` in `/etc/mkinitcpio.conf` and regenerate the `initramfs`. This will prevent the `initramfs` from containing the `nouveau` module making sure the kernel cannot load it during early boot. The `nvidia-utils` package contains a file which blacklists the `nouveau` module once you reboot.
+
+After changing `/etc/mkinitcpio.conf` you need to regenerate the `initramfs`:
+
+```bash
+sudo mkinitcpio -P linux
+sudo mkinitcpio -P linux-lts
+```
+
+I installed `nvidia-dkms` which automatically regenerate the `initramfs` after updates, but if the drivers break, check [this](https://wiki.archlinux.org/title/NVIDIA#pacman_hook) to make a pacman hook for Nvidia.
+
+**References:**
+
+- https://wiki.archlinux.org/title/NVIDIA#Installation
+- https://wiki.archlinux.org/title/Dynamic_Kernel_Module_Support#Installation
+- https://wiki.archlinux.org/title/NVIDIA#pacman_hook
+
 # Swap partition
 
 ## zram
