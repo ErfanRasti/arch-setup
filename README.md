@@ -2,7 +2,12 @@
 
 This Repository includes the configuration I use to setup my Arch Linux.
 
-# Installation config
+- It includes lots of customizations to make pure `arch` being fully functional for a daily desktop or laptop user.
+- This documentation is mainly developed for Arch Linux but lots of these configurations can also be widely utilized for any Linux distro.
+- All of these setup commands has been tested and used by my main system; So they are reasonably safe to use.
+- You can jump into your desired topic using navigation menu.
+
+# Installation config (before we start)
 
 The installation configuration can be described as follows:
 
@@ -29,7 +34,6 @@ The point of `linux-lts` is that every time the `linux` kernel has been crashed 
 
 ```shell
 sudo pacman -S intel-ucode intel-media-driver mesa clinfo intel-gpu-tools libva stow util-linux
-paru -S cpupower-gui
 ```
 
 `lscpu` and `vainfo` shouldn't return any error.
@@ -86,6 +90,7 @@ I installed `nvidia-dkms` which automatically regenerate the `initramfs` after u
 - https://wiki.archlinux.org/title/NVIDIA#Installation
 - https://wiki.archlinux.org/title/Dynamic_Kernel_Module_Support#Installation
 - https://wiki.archlinux.org/title/NVIDIA#pacman_hook
+- https://wiki.archlinux.org/title/Mkinitcpio#Manual_generation
 
 # Swap partition
 
@@ -507,5 +512,183 @@ sudo tee /etc/modprobe.d/nvidia-modeset.conf <<< 'options nvidia_drm modeset=1 f
 
 - https://wiki.archlinux.org/title/NVIDIA#DRM_kernel_mode_setting
 - https://forum.manjaro.org/t/how-to-add-nvidia-drm-modeset-1-kernel-parameter/152447
-- https://wiki.archlinux.org/title/Mkinitcpio#MODULES
+- https://wiki.archlinux.org/title/Mkinitcpio#HOOKS
 - https://www.reddit.com/r/archlinux/comments/1bdf8eo/black_screen_after_installing_nvidia/
+
+# Application and package managers
+
+## `Flatpak` and `Flathub`
+
+One of the best GUI apps manager is `Flatpak`. To install it:
+
+```bash
+sudo pacman -S flatpak
+```
+
+If you installed gnome, `flatpak` is installed by default. I personally prefer to per-user installation but the default behavior is system-wide installation. To adjust it:
+
+```bash
+flatpak --system remote-delete flathub
+flatpak --user remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+```
+
+**References:**
+
+- https://flatpak.org/setup/Arch
+- https://docs.flathub.org/docs/for-users/user-vs-system-install
+- https://docs.flatpak.org/en/latest/using-flatpak.html
+
+## Yay AUR Helper
+
+One of the most common AUR helpers is yay. You can find anything in this package manager. To install it:
+
+```bash
+mkdir -p ~/Programs
+cd ~/Programs
+
+sudo pacman -S --needed git base-devel
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+```
+
+You can remove the `yay` folder after installation but I prefer to keep it in `~/Programs` folder.
+
+To clean unneeded dependencies:
+
+```bash
+yay -Yc
+```
+
+**References:**
+
+- https://github.com/Jguer/yay
+- https://wiki.archlinux.org/title/AUR_helpers
+
+## Paru AUR Helper
+
+One of my favorite AUR helpers is `paru`. I usually use `paru` to utilize AUR. In this document I use `paru` a lot. It is very secure way to use `AUR` because it always shows you the build information. To install it:
+
+```bash
+mkdir -p ~/Programs
+cd ~/Programs
+
+sudo pacman -S --needed base-devel
+git clone https://aur.archlinux.org/paru.git
+cd paru
+makepkg -si
+```
+
+During the installation select rust.
+
+One of the annoying things in `paru` is that the package installation order is not reversed. To set it:
+
+```bash
+sudo nano /etc/paru.conf
+```
+
+Then uncomment `BottomUp`.
+
+Sometimes in the first days of new `pacman` update, the `paru` is not compatible with the new version of `pacman`. To fix it you can use `paru-git`:
+
+```bash
+mkdir -p ~/Programs
+cd ~/Programs
+
+sudo pacman -S --needed base-devel
+git clone https://aur.archlinux.org/paru-git.git
+cd paru-git
+makepkg -si
+```
+
+You can also use `yay` to install `paru`:
+
+```bash
+yay -S paru
+```
+
+But I don't recommend that.
+
+To remove unwanted dependencies:
+
+```bash
+paru -c
+```
+
+Take a look at [this](https://www.youtube.com/watch?v=URCDBY3LaXc) for more info.
+
+**References:**
+
+- https://github.com/Morganamilo/paru
+- https://github.com/Morganamilo/paru/issues/1239
+- https://www.youtube.com/watch?v=URCDBY3LaXc
+
+## Uninstalling a package
+
+To uninstall a package I personally use `-Rsucn` flag:
+
+```bash
+sudo pacman -Rsucn <PACKAGE_NAME>
+paru -Rsucn <PACKAGE_NAME>
+yay -Rsucn <PACKAGE_NAME>
+```
+
+To understand the flags you can run
+
+```bash
+man pacman
+```
+
+or take a look at [this](https://wiki.archlinux.org/title/Pacman#Removing_packages).
+
+**References:**
+
+- https://wiki.archlinux.org/title/Pacman#Removing_packages
+
+## Upgrading packages
+
+In pacman to upgrade all of the packages:
+
+```bash
+sudo pacman -Syu
+```
+
+- `S`: Synchronize packages
+- `y`: Download fresh package databases
+- `u`: Upgrade all out-of-date packages
+
+This processure has been automated in `yay` and `paru`. You can simply run `yay` or `paru` to do all of that for AUR packages and official repositories together(They made simple aliases to `-Syu` flag).
+
+In `flatpak` it is more user-friendly:
+
+```bash
+flatpak update
+```
+
+**References:**
+
+- https://wiki.archlinux.org/title/Pacman#Upgrading_packages
+- https://github.com/Morganamilo/paru
+- https://github.com/Jguer/yay
+
+## Cleaning the package cache
+
+```bash
+sudo pacman -Sc
+paru -Sc
+yay -Sc
+```
+
+For flatpak:
+
+```bash
+flatpak uninstall --unused
+flatpak repair
+```
+
+**References:**
+
+- https://wiki.archlinux.org/title/Pacman#Cleaning_the_package_cache
+- https://linuxcommandlibrary.com/man/paru
+- https://linuxcommandlibrary.com/man/yay
+- https://www.reddit.com/r/linuxquestions/comments/t3ztym/do_flatpaks_have_a_cache_folder_i_have_to_clean/
