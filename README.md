@@ -744,3 +744,100 @@ flatpak repair
 - https://linuxcommandlibrary.com/man/paru
 - https://linuxcommandlibrary.com/man/yay
 - https://www.reddit.com/r/linuxquestions/comments/t3ztym/do_flatpaks_have_a_cache_folder_i_have_to_clean/
+
+# Applications and Packages
+
+I usually use AUR helper(`paru`) to install packages and applications, but sometimes I use `flatpak` to install GUI applications.
+
+## Flatpak applications
+
+Some of my common highly used `flatpak` applications can be installed as bellow:
+
+```bash
+flatpak install flathub io.missioncenter.MissionCenter
+flatpak install flathub io.github.mrvladus.List
+flatpak install flathub com.vixalien.sticky
+flatpak install flathub org.gnome.Decibels
+flatpak install flathub com.github.tchx84.Flatseal
+flatpak install flathub org.gimp.GIMP
+```
+
+I completely removed the per-system installation and replaced it with user-system installation as I mentioned [here](#flatpak-and-flathub). So all of the flatpak applications are installed per-user and there is no need to explicitly write `--user`.
+
+## Spotify
+
+I personally prefer AUR helper installation to update applications using AUR helper; But `spotify-launcher` is another option.
+
+```bash
+paru -S spotify
+```
+
+**References:**
+
+- https://wiki.archlinux.org/title/Spotify
+
+## Essential `pacman` applications
+
+```bash
+sudo pacman -S fuse less bat dconf-editor telegram-desktop neofetch vlc kvantum gparted ntfs-3g uget wget wireplumber rsync glxinfo unrar
+```
+
+## Manuals and Documentations
+
+```bash
+sudo pacman -S man arch-wiki-lite
+```
+
+## Office
+
+```bash
+sudo pacman -S libreoffice-fresh
+```
+
+## Photo and Video
+
+```bash
+sudo pacman -S krita vlc
+```
+
+### PhotoGIMP
+
+PhotoGIMP is like a UI for GIMP.
+
+This instruction is prepared for `flatpak` installation of GIMP.
+
+```bash
+mkdir -p ~/Downloads
+cd ~/Downloads
+wget https://github.com/Diolinux/PhotoGIMP/releases/download/1.1/PhotoGIMP.zip
+unzip PhotoGIMP.zip -d PhotoGIMP/
+cd PhotoGIMP/PhotoGIMP-master/
+rsync -r .var/ ~/.var/
+rsync -r .local/ ~/.local/
+cd ~
+```
+
+Always check for new versions of PhotoGIMP at [this](https://github.com/Diolinux/PhotoGIMP/releases/).
+
+**References:**
+
+- https://github.com/Diolinux/PhotoGIMP
+- https://unix.stackexchange.com/questions/149965/how-to-copy-merge-two-directories
+
+## Terminals
+
+```bash
+sudo pacman -S kitty gnome-terminal
+```
+
+## Visual Studio Code
+
+```bash
+paru -S visual-studio-code-bin
+```
+
+## Microsoft Todo equivalent
+
+```bash
+paru -S kuro-appimaged
+```
