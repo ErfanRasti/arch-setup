@@ -58,7 +58,16 @@ vdpauinfo
 `nvidia-dkms` is used for managing multiple kernels. Since we installed both `linux-lts` and `linux` kernels this is a better option. `nvidia-dkms` also manages kernel upgrades automatically.
 
 ```shell
-sudo pacman -S nvidia-dkms
+sudo pacman -S nvidia-dkms nvidia-utils nvidia-settings
+```
+
+- `nvidia-utils` is NVIDIA drivers utilities.
+- `nvidia-settings` is a GUI app for Nvidia settings.
+
+To Watch Nvidia running apps:
+
+```bash
+watch -n 1 nvidia-smi
 ```
 
 **Optional:** We can activate nvidia service modes using `systemctl`:
@@ -67,10 +76,41 @@ sudo pacman -S nvidia-dkms
 sudo systemctl enable nvidia-hibernate.service nvidia-suspend.service nvidia-resume.service
 ```
 
+## Nvidia controllers
+
+One of the best options I found for managing Nvidia graphic cards is `envycontrol`. I use `paru` AUR helper to install it(For more information about `paru` take a look at [this](#paru-aur-helper)):
+
+```bash
+paru -S envycontrol
+```
+
+To get the current graphics mode:
+
+```bash
+envycontrol -q
+```
+
+To switch the graphics mode:
+
+```bash
+envycontrol -s <MODE>
+```
+
+Available choices: integrated, hybrid, nvidia
+
+To run an application using Nvidia in hybrid mode add `__NV_PRIME_RENDER_OFFLOAD=1` to variables of the application using `flatseal`.
+
+`envycontrol` sets the status of Nvidia graphic card to hybrid on battery to save energy. Check status of the graphic card using this command:
+
+```bash
+cat /sys/bus/pci/devices/0000\:01\:00.0/power/runtime_status
+```
+
 **References:**
 
 - https://www.reddit.com/r/archlinux/comments/16iz9co/nvidia_or_nvidiadkms/
 - https://wiki.archlinux.org/title/NVIDIA
+- https://www.youtube.com/watch?v=cTNkb-qG0Dc
 
 # DKMS and KMS
 
@@ -640,6 +680,18 @@ man pacman
 ```
 
 or take a look at [this](https://wiki.archlinux.org/title/Pacman#Removing_packages).
+
+To uninstall `flatpak` applications:
+
+```bash
+flatpak uninstall <APPLICATION_NAME>
+```
+
+After this you should manually remove the application files from the following folder:
+
+```bash
+cd ~/.var/app
+```
 
 **References:**
 
