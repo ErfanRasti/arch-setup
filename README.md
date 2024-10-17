@@ -16,7 +16,7 @@ The installation configuration can be described as follows:
 - Bootloader: `systemd-boot`
 - Swap: `zram`
 - Desktop environment: GNOME
-- Windowing system: Wayland
+- Windowing system: Wayland, X11
 
 I also use 11th Gen Intel® Core™ i7 processor alongside NVIDIA GeForce RTX 3060. So the drivers installation instruction would be based on these hardware components.
 
@@ -100,7 +100,7 @@ Available choices: integrated, hybrid, nvidia
 
 To run an application using Nvidia in hybrid mode add `__NV_PRIME_RENDER_OFFLOAD=1` to variables of the application using `flatseal`.
 
-`envycontrol` sets the status of Nvidia graphic card to hybrid on battery to save energy. Check status of the graphic card using this command:
+If the Nvidia graphic card is not in use `envycontrol` sets its status to `suspended` to save energy. Check status of the graphic card using this command:
 
 ```bash
 cat /sys/bus/pci/devices/0000\:01\:00.0/power/runtime_status
@@ -110,6 +110,7 @@ cat /sys/bus/pci/devices/0000\:01\:00.0/power/runtime_status
 
 - https://www.reddit.com/r/archlinux/comments/16iz9co/nvidia_or_nvidiadkms/
 - https://wiki.archlinux.org/title/NVIDIA
+- https://github.com/bayasdev/envycontrol
 - https://www.youtube.com/watch?v=cTNkb-qG0Dc
 
 # DKMS and KMS
@@ -745,6 +746,32 @@ flatpak repair
 - https://linuxcommandlibrary.com/man/yay
 - https://www.reddit.com/r/linuxquestions/comments/t3ztym/do_flatpaks_have_a_cache_folder_i_have_to_clean/
 
+# Touchpad
+
+Touchpad doesn't need anything on `wayland` but on `x11` you should install `touchegg` to make it work:
+
+```bash
+sudo pacman -S touchegg
+sudo systemctl enable touchegg
+sudo systemctl start touchegg
+```
+
+After installing touchegg you should install [`X11 Gestures`](https://github.com/JoseExposito/gnome-shell-extension-x11gestures) GNOME extension.
+
+To customize the touchpad gestures you can install `touche` using `flathub`:
+
+```bash
+flatpak install flathub com.github.joseexposito.touche
+```
+
+**References:**
+
+- https://github.com/JoseExposito/touchegg
+- https://github.com/JoseExposito/touche
+- https://github.com/JoseExposito/gnome-shell-extension-x11gestures?tab=readme-ov-file
+- https://flathub.org/apps/com.github.joseexposito.touche
+- https://wiki.archlinux.org/title/Touchegg
+
 # Applications and Packages
 
 I usually use AUR helper(`paru`) to install packages and applications, but sometimes I use `flatpak` to install GUI applications.
@@ -755,11 +782,16 @@ Some of my common highly used `flatpak` applications can be installed as bellow:
 
 ```bash
 flatpak install flathub io.missioncenter.MissionCenter
+flatpak install flathub org.gnome.SoundRecorder
 flatpak install flathub io.github.mrvladus.List
 flatpak install flathub com.vixalien.sticky
 flatpak install flathub org.gnome.Decibels
 flatpak install flathub com.github.tchx84.Flatseal
 flatpak install flathub org.gimp.GIMP
+flatpak install flathub io.gitlab.adhami3310.Converter
+flatpak install flathub io.gitlab.adhami3310.Footage
+flatpak install flathub io.gitlab.adhami3310.Impression
+flatpak install flathub app.fotema.Fotema
 ```
 
 I completely removed the per-system installation and replaced it with user-system installation as I mentioned [here](#flatpak-and-flathub). So all of the flatpak applications are installed per-user and there is no need to explicitly write `--user`.
@@ -834,6 +866,14 @@ sudo pacman -S kitty gnome-terminal
 
 ```bash
 paru -S visual-studio-code-bin
+```
+
+## Browsers
+
+One of the favourite browsers for linux users is `firefox` due to opensource properties:
+
+```bash
+sudo pacman -S firefox
 ```
 
 ## Microsoft Todo equivalent
