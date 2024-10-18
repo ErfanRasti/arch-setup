@@ -76,6 +76,10 @@ watch -n 1 nvidia-smi
 sudo systemctl enable nvidia-hibernate.service nvidia-suspend.service nvidia-resume.service
 ```
 
+**References:**
+
+- https://download.nvidia.com/XFree86/Linux-x86_64/435.17/README/powermanagement.html
+
 ## Nvidia controllers
 
 One of the best options I found for managing Nvidia graphic cards is `envycontrol`. I use `paru` AUR helper to install it(For more information about `paru` take a look at [this](#paru-aur-helper)):
@@ -746,6 +750,46 @@ flatpak repair
 - https://linuxcommandlibrary.com/man/yay
 - https://www.reddit.com/r/linuxquestions/comments/t3ztym/do_flatpaks_have_a_cache_folder_i_have_to_clean/
 
+## Query the package database
+
+```bash
+pacman -Q
+paru -Q
+yay -Q
+```
+
+To find an specific package:
+
+```bash
+pacman -Q | grep gnome
+paru -Q | grep gnome
+yay -Q | grep gnome
+```
+
+**References:**
+
+- https://wiki.archlinux.org/title/Pacman#Querying_package_databases
+
+# GTK
+
+## GTK 4 applications are slow
+
+```bash
+nano ~/.config/environment.d/envvars.conf
+```
+
+Add these lines:
+
+```conf
+GSK_RENDERER=gl
+GDK_DEBUG=gl-no-fractional
+```
+
+**References:**
+
+- https://wiki.archlinux.org/title/GTK#Configuration
+- https://wiki.archlinux.org/title/Environment_variables#Per_Wayland_session
+
 # Touchpad
 
 Touchpad doesn't need anything on `wayland` but on `x11` you should install `touchegg` to make it work:
@@ -762,6 +806,13 @@ To customize the touchpad gestures you can install `touche` using `flathub`:
 
 ```bash
 flatpak install flathub com.github.joseexposito.touche
+```
+
+To prevent conflicts disable `touchegg` on `wayland`:
+
+```bash
+sudo systemctl disable touchegg
+sudo systemctl stop touchegg
 ```
 
 **References:**
@@ -792,6 +843,7 @@ flatpak install flathub io.gitlab.adhami3310.Converter
 flatpak install flathub io.gitlab.adhami3310.Footage
 flatpak install flathub io.gitlab.adhami3310.Impression
 flatpak install flathub app.fotema.Fotema
+flatpak install flathub org.gnome.gitlab.somas.Apostrophe
 ```
 
 I completely removed the per-system installation and replaced it with user-system installation as I mentioned [here](#flatpak-and-flathub). So all of the flatpak applications are installed per-user and there is no need to explicitly write `--user`.
@@ -870,10 +922,22 @@ paru -S visual-studio-code-bin
 
 ## Browsers
 
+### Firefox
+
 One of the favourite browsers for linux users is `firefox` due to opensource properties:
 
 ```bash
 sudo pacman -S firefox
+```
+
+It supports touchpad gestures natively on `wayland`.
+
+### Microsoft Edge
+
+I love the features `microsoft-edge` provide. I install it using `paru`:
+
+```bash
+paru -S microsoft-edge-stable-bin
 ```
 
 ## Microsoft Todo equivalent
