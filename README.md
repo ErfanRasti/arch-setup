@@ -652,25 +652,34 @@ For me it wasn't activated.
    If everthing is ok you can go to `firmware-setup` and activate secure boot. Now arch can boot properly with activated secure boot.
 10. To double check everything make sure secure boot is enabled:
 
-```bash
-sbctl status
-```
+    ```bash
+    sbctl status
+    ```
 
-And also reinstall the kernel to make sure `sbctl` automatically resign it:
+    And also reinstall the kernel to make sure `sbctl` automatically resign it:
 
-```bash
-sudo pacman -S linux
-```
+    ```bash
+    sudo pacman -S linux
+    ```
 
-That's it!
+    It should regenrate unified kernel image and sign it.
+
+    That's it!
 
 **References:**
 
+- https://github.com/Foxboron/sbctl
 - https://wiki.archlinux.org/title/Unified_Extensible_Firmware_Interface/Secure_Boot#Assisted_process_with_sbctl
 - https://man.archlinux.org/man/bootctl.1
 - https://www.youtube.com/watch?v=yU-SE7QX6WQ
 
 # Application and package managers
+
+**Warning:** Always read package build (PKGBUILD) before installing a package from AUR. There is a small chance to get malicious software. But by checking package build you can detect it. Also you should read package build during updates. `paru` always show you the package build anway so I recommand using `paru` instead of `yay`.
+
+**References:**
+
+- https://www.youtube.com/watch?v=anCaH8nzoeI
 
 ## `Flatpak` and `Flathub`
 
@@ -770,6 +779,12 @@ To remove unwanted dependencies:
 paru -c
 ```
 
+You can also use `pacman` to list all packages no longer required as dependencies:
+
+```bash
+pacman -Qdt
+```
+
 Take a look at [this](https://www.youtube.com/watch?v=URCDBY3LaXc) for more info.
 
 **References:**
@@ -777,6 +792,7 @@ Take a look at [this](https://www.youtube.com/watch?v=URCDBY3LaXc) for more info
 - https://github.com/Morganamilo/paru
 - https://github.com/Morganamilo/paru/issues/1239
 - https://www.youtube.com/watch?v=URCDBY3LaXc
+- https://wiki.archlinux.org/title/Pacman#Querying_package_databases
 
 ## Uninstalling a package
 
@@ -894,6 +910,8 @@ Add these lines:
 GSK_RENDERER=gl
 GDK_DEBUG=gl-no-fractional
 ```
+
+Make sure to delete them when using `X11`.
 
 **References:**
 
@@ -1021,7 +1039,7 @@ Always check for new versions of PhotoGIMP at [this](https://github.com/Diolinux
 ## Terminals
 
 ```bash
-sudo pacman -S kitty gnome-terminal
+sudo pacman -S kitty gnome-terminal tilix
 ```
 
 ## Visual Studio Code
@@ -1055,3 +1073,13 @@ paru -S microsoft-edge-stable-bin
 ```bash
 paru -S kuro-appimaged
 ```
+
+# Troubleshooting
+
+## Possibly missing hardware
+
+These warnings at `pacman` update are not that serious. You can ignoore it or you can remove them by installing `linux-firmware-qlogic`; but I recommend to don't install it.
+
+**References:**
+
+- https://www.reddit.com/r/archlinux/comments/seqdzk/possibly_missing_hardware/
