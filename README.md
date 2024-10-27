@@ -901,6 +901,7 @@ yay -Q | grep gnome
 ## GTK 4 applications are slow
 
 ```bash
+mkdir -p ~/.config/environment.d
 nano ~/.config/environment.d/envvars.conf
 ```
 
@@ -917,6 +918,8 @@ Make sure to delete them when using `X11`.
 
 - https://wiki.archlinux.org/title/GTK#Configuration
 - https://wiki.archlinux.org/title/Environment_variables#Per_Wayland_session
+
+# Bluetooth
 
 # Touchpad
 
@@ -950,6 +953,18 @@ sudo systemctl stop touchegg
 - https://github.com/JoseExposito/gnome-shell-extension-x11gestures?tab=readme-ov-file
 - https://flathub.org/apps/com.github.joseexposito.touche
 - https://wiki.archlinux.org/title/Touchegg
+
+# Conservation mode
+
+To activate conservation mode on Lenovo latops (To disable it pass `0` to it.):
+
+```bash
+sudo echo 1 > /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode
+```
+
+**References:**
+
+- https://wiki.archlinux.org/title/Laptop/Lenovo#Battery_conservation_mode
 
 # Applications and Packages
 
