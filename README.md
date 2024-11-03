@@ -941,6 +941,33 @@ systemctl --user start wireplumber.service
 
 - https://wiki.archlinux.org/title/WirePlumber#Delete_corrupt_settings
 
+# Bluetooth
+
+I use bluez to manage my bluetooth devices:
+
+```bash
+sudo pacman -S bluez bluez-utils
+```
+
+## Auto-connect
+
+To auto-connect bluetooth devices after `suspend` mode or after turning on the bluetooth again I use this `AUR` package:
+
+```bash
+paru -S bluetooth-autoconnect
+```
+
+After installation to enable it:
+
+```bash
+sudo systemctl enable bluetooth-autoconnect
+sudo systemctl start bluetooth-autoconnect
+```
+
+**References:**
+
+- https://github.com/jrouleau/bluetooth-autoconnect
+
 # Touchpad
 
 Touchpad doesn't need anything on `wayland` but on `x11` you should install `touchegg` to make it work:
