@@ -75,7 +75,7 @@ watch -n 1 nvidia-smi
 We can activate nvidia service modes using `systemctl`:
 
 ```bash
-sudo systemctl enable nvidia-hibernate.service nvidia-suspend.service nvidia-resume.service nvidia-powerd.service
+sudo systemctl enable nvidia-hibernate.service nvidia-suspend.service nvidia-resume.service nvidia-powerd.service nvidia-persistenced.service
 sudo systemctl start nvidia-powerd.service
 ```
 
@@ -114,6 +114,7 @@ To run an application using Nvidia in hybrid mode add `__NV_PRIME_RENDER_OFFLOAD
 If the Nvidia graphic card is not in use `envycontrol` sets its status to `suspended` to save energy. Check status of the graphic card using this command:
 
 You can also use RTD3 to allow the dGPU to be dynamically turned off when not in use:
+
 ```bash
 sudo envycontrol -s hybrid --rtd3
 ```
@@ -955,6 +956,7 @@ In the date of adding this instruction, `wayland` still hasn't released the frac
 2. Go to `gnome settings > Display > Scale` and select your desire value. Under refresh rate you can also select variable refresh rate.
 
 **References:**
+
 - https://wiki.archlinux.org/title/HiDPI#Fractional_scaling
 - https://www.youtube.com/watch?v=dZIfjbZN0H8
 
@@ -1213,15 +1215,25 @@ linux_disaply_server x11
 ```bash
 paru -S visual-studio-code-bin
 ```
+
 To activate touchpad gestures and wayland support on VS Code, you should copy the default application icon and add some flags to it:
+
 ```bash
 cp /usr/share/applications/code.desktop ~/.local/share/applications/
 nano ~/.local/share/applications/code.desktop
 ```
-Add some flags to Exec lines:
-```.desktop
-Exec=/usr/share/code/code --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform-hint=auto --enable-features=TouchpadOverscrollHistoryNavigation --unity-launch %F
+
+Add some flags to `Exec` lines:
+
+```conf
+Exec=/usr/bin/code ---ozone-platform-hint=auto --enable-features=TouchpadOverscrollHistoryNavigation %F
 ```
+
+**References:**
+
+- https://www.reddit.com/r/swaywm/comments/n8dymo/vs_code_finally_works_natively_in_wayland/
+- https://wiki.archlinux.org/title/Visual_Studio_Code#Running_natively_under_Wayland
+
 ## Browsers
 
 ### Firefox
@@ -1241,6 +1253,57 @@ I love the features `microsoft-edge` provide. I install it using `paru`:
 ```bash
 paru -S microsoft-edge-stable-bin
 ```
+
+To activate touchpad gestures and wayland support similar to VS Code:
+
+```bash
+cp /usr/share/applications/microsoft-edge.desktop ~/.local/share/applications/
+nano ~/.local/share/applications/microsoft-edge.desktop
+```
+
+The add following flags to `Exec` lines:
+
+```conf
+--ozone-platform-hint=auto --enable-features=TouchpadOverscrollHistoryNavigation
+```
+
+**References:**
+
+- https://wiki.archlinux.org/title/Chromium#Touchpad_Gestures_for_Navigation
+
+## Google Chrome
+
+Chrome should be installed. it feels like home:
+
+```bash
+paru -S google-chrome
+```
+
+To activate touchpad gestures and wayland support similar to Microsoft Edge:
+
+```bash
+cp /usr/share/applications/google-chrome.desktop ~/.local/share/applications/
+nano ~/.local/share/applications/google-chrome.desktop
+```
+
+The add following flags to `Exec` lines:
+
+```conf
+--ozone-platform-hint=auto --enable-features=TouchpadOverscrollHistoryNavigation
+```
+
+Remember adding these flags before `%U` or `%F`.
+**References:**
+
+- https://wiki.archlinux.org/title/Chromium#Touchpad_Gestures_for_Navigation
+
+## Epiphany
+
+Epiphany is very neat and simple. It is the default browser for GNOME and it will be installed during installation of `gnome` package.
+
+**References:**
+
+- https://wiki.archlinux.org/title/GNOME/Web
 
 ## Microsoft Todo equivalent
 
