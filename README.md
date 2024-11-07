@@ -1163,7 +1163,7 @@ env | grep -i proxy
 
 You can also use VPN instead.
 
-### Kitty window
+### Kitty display server
 If you don't like the ugly titlebar on `wayland`, you should change display server back to `x11`:
 Add the following to the `kitty.conf`:
 ```conf
@@ -1203,6 +1203,21 @@ paru -S microsoft-edge-stable-bin
 ```bash
 paru -S kuro-appimaged
 ```
+
+## Download from YouTube
+Install this:
+```bash
+sudo pacman -S yt-dlp
+```
+To check the related downloadable files run:
+```bash
+yt-dlp -F <LINK>
+```
+Finally find your desired key and run:
+```bash
+yt-dlp -f <CODE> <LINK>
+```
+
 
 # Troubleshooting
 
