@@ -914,6 +914,12 @@ GDK_DEBUG=gl-no-fractional
 
 Make sure to delete them when using `X11`.
 
+_UPDATE:_ The recent updates of `GNOME` fixed it for me and I don't have any problem with it; so you can remove it anytime you want:
+
+```bash
+rm -rf ~/.config/environment.d
+```
+
 **References:**
 
 - https://wiki.archlinux.org/title/GTK#Configuration
@@ -1034,6 +1040,17 @@ flatpak install flathub io.gitlab.adhami3310.Footage
 flatpak install flathub io.gitlab.adhami3310.Impression
 flatpak install flathub app.fotema.Fotema
 flatpak install flathub org.gnome.gitlab.somas.Apostrophe
+flatpak install flathub re.sonny.Workbench
+flatpak install flathub io.github.seadve.Delineate
+flatpak install flathub se.sjoerd.Graphs
+flatpak install flathub io.github.ronniedroid.concessio
+flatpak install flathub com.gitlab.guillermop.MasterKey
+flatpak install flathub org.gnome.gitlab.YaLTeR.VideoTrimmer
+flatpak install flathub org.gnome.gitlab.YaLTeR.Identity
+flatpak install flathub re.sonny.Junction
+flatpak install flathub io.github.realmazharhussain.GdmSettings
+flatpak install flathub io.github.tfuxu.Halftone
+flatpak install flathub org.gnome.design.Emblem
 ```
 
 I completely removed the per-system installation and replaced it with user-system installation as I mentioned [here](#flatpak-and-flathub). So all of the flatpak applications are installed per-user and there is no need to explicitly write `--user`.
@@ -1104,7 +1121,56 @@ Always check for new versions of PhotoGIMP at [this](https://github.com/Diolinux
 sudo pacman -S kitty gnome-terminal tilix
 ```
 
+## Kitty
+
 `kitty` makes itself the default for DING (Desktop Icons NG). So after installing kitty right click on a folder icon on the desktop and choose `Open with` and set the nautilus as the default.
+
+To open `kitty.conf` press `ctrl+shift+f2`.
+To save and exit first press `esc` to exit insert mode, then press `:x`. Also if you want to just exit without saving press `:q`.
+
+### Search in Kitty
+
+`kitty` has a `vim` like utility for doing tasks. To search in `kitty`:
+
+1. Press `ctrl+shift+h`.
+2. Type `?` and then type the expression you want to search.
+
+### Proxy in Kitty
+
+`kitty` by default doesn't inherit user environment variables; So the system proxy doesn't apply on it. To activate system proxy you should add proxy env variables manually to `kitty.conf`:
+
+1. Open `kitty.conf` (press `ctrl+shift+f2`).
+2. Press `i` to enter insert mode.
+3. set your environment variables:
+```conf
+env HTTP_PROXY="${DESIRED_VALUE}"
+env HTTPS_PROXY="${DESIRED_VALUE}"
+env https_proxy="${DESIRED_VALUE}"
+env ALL_PROXY="${DESIRED_VALUE}"
+env all_proxy="${DESIRED_VALUE}"
+env NO_PROXY="${DESIRED_VALUE}"
+env no_proxy="${DESIRED_VALUE}"
+env http_proxy="${DESIRED_VALUE}"
+env ftp_proxy="${DESIRED_VALUE}"
+env FTP_PROXY="${DESIRED_VALUE}"
+
+```
+4. To check proxy environment variables:
+
+```bash
+env | grep -i proxy
+```
+
+You can also use VPN instead.
+
+### Kitty window
+If you don't like the ugly titlebar on `wayland`, you should change display server back to `x11`:
+Add the following to the `kitty.conf`:
+```conf
+linux_disaply_server x11
+```
+
+
 
 ## Visual Studio Code
 
