@@ -70,11 +70,17 @@ To Watch Nvidia running apps:
 watch -n 1 nvidia-smi
 ```
 
-**Optional:** We can activate nvidia service modes using `systemctl`:
+## Nvidia state management
+
+We can activate nvidia service modes using `systemctl`:
 
 ```bash
 sudo systemctl enable nvidia-hibernate.service nvidia-suspend.service nvidia-resume.service
 ```
+
+These services help the `system` to manage Nvidia drivers during suspension and hibernation. If you don't enable them, you cannot suspend properly, which leads to high power usage.
+
+One Important problem caused by these services is _screen blanking_ which is produced by running these services after suspend or hibernation modes. This is caused by switching the Nvidia driver to `suspend` mode leading to changing `gnome-shell` subsystems.
 
 **References:**
 
@@ -552,8 +558,13 @@ sudo tee /etc/modprobe.d/nvidia-modeset.conf <<< 'options nvidia_drm modeset=1 f
    ```
 
    Mine didn't need that.
+   To disable `wayland` completely go to `/etc/gdm/custom.conf` and write this:
 
-**References:**
+   ```conf
+   WaylandEnable=false
+   ```
+
+   **References:**
 
 - https://wiki.archlinux.org/title/NVIDIA#DRM_kernel_mode_setting
 - https://forum.manjaro.org/t/how-to-add-nvidia-drm-modeset-1-kernel-parameter/152447
@@ -912,9 +923,9 @@ GSK_RENDERER=gl
 GDK_DEBUG=gl-no-fractional
 ```
 
-Make sure to delete them when using `X11`.
+Make sure to delete them when using `x11` because it conflicts with some subsystems and can lead to some miss behaviors in opening some applications like `nautilus.` You can also set `GSK_RENDERER=xlib` for `x11`, but it's not necessary because if you don't define `GSK_RENDERER`, it will automatically select `xlib` in the `x11` windowing system.
 
-_UPDATE:_ The recent updates of `GNOME` fixed it for me and I don't have any problem with it; so you can remove it anytime you want:
+_UPDATE:_ The recent updates of `GNOME` fixed it, but there is also a high power usage due to `Nvidia` GPU usage of `ngl`; you can remove it anytime you want, but I prefer to keep it:
 
 ```bash
 rm -rf ~/.config/environment.d
@@ -923,7 +934,10 @@ rm -rf ~/.config/environment.d
 **References:**
 
 - https://wiki.archlinux.org/title/GTK#Configuration
+- https://wiki.archlinux.org/title/GTK#GTK_4_applications_are_slow
 - https://wiki.archlinux.org/title/Environment_variables#Per_Wayland_session
+
+# Screen
 
 # Sound
 
@@ -1142,6 +1156,7 @@ To save and exit first press `esc` to exit insert mode, then press `:x`. Also if
 1. Open `kitty.conf` (press `ctrl+shift+f2`).
 2. Press `i` to enter insert mode.
 3. set your environment variables:
+
 ```conf
 env HTTP_PROXY="${DESIRED_VALUE}"
 env HTTPS_PROXY="${DESIRED_VALUE}"
@@ -1155,6 +1170,7 @@ env ftp_proxy="${DESIRED_VALUE}"
 env FTP_PROXY="${DESIRED_VALUE}"
 
 ```
+
 4. To check proxy environment variables:
 
 ```bash
@@ -1164,13 +1180,13 @@ env | grep -i proxy
 You can also use VPN instead.
 
 ### Kitty display server
+
 If you don't like the ugly titlebar on `wayland`, you should change display server back to `x11`:
 Add the following to the `kitty.conf`:
+
 ```conf
 linux_disaply_server x11
 ```
-
-
 
 ## Visual Studio Code
 
@@ -1205,19 +1221,24 @@ paru -S kuro-appimaged
 ```
 
 ## Download from YouTube
+
 Install this:
+
 ```bash
 sudo pacman -S yt-dlp
 ```
+
 To check the related downloadable files run:
+
 ```bash
 yt-dlp -F <LINK>
 ```
+
 Finally find your desired key and run:
+
 ```bash
 yt-dlp -f <CODE> <LINK>
 ```
-
 
 # Troubleshooting
 
