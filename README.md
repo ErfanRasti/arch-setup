@@ -75,7 +75,8 @@ watch -n 1 nvidia-smi
 We can activate nvidia service modes using `systemctl`:
 
 ```bash
-sudo systemctl enable nvidia-hibernate.service nvidia-suspend.service nvidia-resume.service
+sudo systemctl enable nvidia-hibernate.service nvidia-suspend.service nvidia-resume.service nvidia-powerd.service
+sudo systemctl start nvidia-powerd.service
 ```
 
 These services help the `system` to manage Nvidia drivers during suspension and hibernation. If you don't enable them, you cannot suspend properly, which leads to high power usage.
@@ -939,6 +940,16 @@ rm -rf ~/.config/environment.d
 
 # Screen
 
+In the date of adding this instruction, `wayland` still hasn't released the fractional scaling, officially in main release and it is presented as experimental features. I prefer activating it anyway.
+
+1. To activate it use `dconf`. I use `dconf-editor`. Go to `/org/gnome/mutter/experimental-features` and dsiable `Use default value`. then select these custom values:
+   `scale-monitor-framebuffer`, `kms-modifier`, `variable-refresh-rate`, `xwayland-native-scaling`.
+2. Go to `gnome settings > Display > Scale` and select your desire value. Under refresh rate you can also select variable refresh rate.
+
+**References:**
+- https://wiki.archlinux.org/title/HiDPI#Fractional_scaling
+- https://www.youtube.com/watch?v=dZIfjbZN0H8
+
 # Sound
 
 ## WirePlumber
@@ -1042,6 +1053,7 @@ I usually use AUR helper(`paru`) to install packages and applications, but somet
 Some of my common highly used `flatpak` applications can be installed as bellow:
 
 ```bash
+flatpak install flathub ca.desrt.dconf-editor
 flatpak install flathub io.missioncenter.MissionCenter
 flatpak install flathub org.gnome.SoundRecorder
 flatpak install flathub io.github.mrvladus.List
@@ -1193,7 +1205,15 @@ linux_disaply_server x11
 ```bash
 paru -S visual-studio-code-bin
 ```
-
+To activate touchpad gestures and wayland support on VS Code, you should copy the default application icon and add some flags to it:
+```bash
+cp /usr/share/applications/code.desktop ~/.local/share/applications/
+nano ~/.local/share/applications/code.desktop
+```
+Add some flags to Exec lines:
+```.desktop
+Exec=/usr/share/code/code --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform-hint=auto --enable-features=TouchpadOverscrollHistoryNavigation --unity-launch %F
+```
 ## Browsers
 
 ### Firefox
