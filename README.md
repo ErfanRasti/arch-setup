@@ -113,6 +113,11 @@ To run an application using Nvidia in hybrid mode add `__NV_PRIME_RENDER_OFFLOAD
 
 If the Nvidia graphic card is not in use `envycontrol` sets its status to `suspended` to save energy. Check status of the graphic card using this command:
 
+You can also use RTD3 to allow the dGPU to be dynamically turned off when not in use:
+```bash
+sudo envycontrol -s hybrid --rtd3
+```
+
 ```bash
 cat /sys/bus/pci/devices/0000\:01\:00.0/power/runtime_status
 ```
@@ -926,6 +931,8 @@ GDK_DEBUG=gl-no-fractional
 
 Make sure to delete them when using `x11` because it conflicts with some subsystems and can lead to some miss behaviors in opening some applications like `nautilus.` You can also set `GSK_RENDERER=xlib` for `x11`, but it's not necessary because if you don't define `GSK_RENDERER`, it will automatically select `xlib` in the `x11` windowing system.
 
+**Note:** You may encounter some bluriness on fractional scaling. In this situation you can set `GSK_RENDERER=cairo`.
+
 _UPDATE:_ The recent updates of `GNOME` fixed it, but there is also a high power usage due to `Nvidia` GPU usage of `ngl`; you can remove it anytime you want, but I prefer to keep it:
 
 ```bash
@@ -937,6 +944,7 @@ rm -rf ~/.config/environment.d
 - https://wiki.archlinux.org/title/GTK#Configuration
 - https://wiki.archlinux.org/title/GTK#GTK_4_applications_are_slow
 - https://wiki.archlinux.org/title/Environment_variables#Per_Wayland_session
+- https://github.com/dreemurrs-embedded/Pine64-Arch/issues/175
 
 # Screen
 
