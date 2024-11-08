@@ -45,6 +45,24 @@ sudo pacman -S vdpauinfo
 vdpauinfo
 ```
 
+After all to prevent slow down problem of applications which use intel integrated graphics consider adding `i915` to `MODULES` on `modprobe`:
+
+```bash
+sudo nano /etc/mkinitcpio.conf
+```
+
+`mkinitcpio.conf` should be like this:
+
+```conf
+MODULES=(btrfs i915)
+```
+
+After adding `i915`, regenerate the `initramfs`:
+
+```bash
+sudo mkinitcpio -P
+```
+
 **For more info:**
 
 - Tutorial: https://www.youtube.com/watch?v=gIVIHJmW1P0
@@ -86,8 +104,9 @@ One Important problem caused by these services is _screen blanking_ which is pro
 **References:**
 
 - https://download.nvidia.com/XFree86/Linux-x86_64/435.17/README/powermanagement.html
+- https://askubuntu.com/questions/1405262/how-to-solve-black-screen-after-suspension-with-ubuntu-22-04-lts
 
-## Nvidia controllers
+## Nvidia controllers (`envycontrol`)
 
 One of the best options I found for managing Nvidia graphic cards is `envycontrol`. I use `paru` AUR helper to install it(For more information about `paru` take a look at [this](#paru-aur-helper)):
 
@@ -129,6 +148,25 @@ cat /sys/bus/pci/devices/0000\:01\:00.0/power/runtime_status
 - https://wiki.archlinux.org/title/NVIDIA
 - https://github.com/bayasdev/envycontrol
 - https://www.youtube.com/watch?v=cTNkb-qG0Dc
+
+## PRIME
+
+One of the necessary tools to manage Nvidia access of applications is `prime`.
+Install it like this:
+
+```bash
+sudo pacman -S nvidia-prime
+```
+
+To run an application on `nvidia` put `prime-run` before it in terminal:
+
+```bash
+prime-run nautilus
+```
+
+**References:**
+
+- https://wiki.archlinux.org/title/PRIME
 
 # DKMS and KMS
 
@@ -940,6 +978,13 @@ _UPDATE:_ The recent updates of `GNOME` fixed it, but there is also a high power
 rm -rf ~/.config/environment.d
 ```
 
+If the problematic application uses Ozone platform you can fix it using `MESA_LOADER_DRIVER_OVERRIDE` environment variable:
+
+```bash
+MESA_LOADER_DRIVER_OVERRIDE=i915 google-chrome-stable --ozone-platform-hint=auto
+
+```
+
 **References:**
 
 - https://wiki.archlinux.org/title/GTK#Configuration
@@ -1233,6 +1278,7 @@ Exec=/usr/bin/code ---ozone-platform-hint=auto --enable-features=TouchpadOverscr
 
 - https://www.reddit.com/r/swaywm/comments/n8dymo/vs_code_finally_works_natively_in_wayland/
 - https://wiki.archlinux.org/title/Visual_Studio_Code#Running_natively_under_Wayland
+- https://www.reddit.com/r/Fedora/comments/1afkoge/how_to_make_vscode_run_in_wayland_mode/
 
 ## Browsers
 
@@ -1310,6 +1356,8 @@ Epiphany is very neat and simple. It is the default browser for GNOME and it wil
 ```bash
 paru -S kuro-appimaged
 ```
+
+## PDF Editors
 
 ## Download from YouTube
 
