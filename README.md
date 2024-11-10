@@ -956,6 +956,31 @@ yay -Q | grep gnome
 
 - https://wiki.archlinux.org/title/Pacman#Querying_package_databases
 
+## Troubleshooting
+
+### Possibly missing hardware
+
+These warnings at `pacman` update are not that serious. You can ignoore it or you can remove them by installing `linux-firmware-qlogic`; but I recommend to don't install it.
+
+**References:**
+
+- https://www.reddit.com/r/archlinux/comments/seqdzk/possibly_missing_hardware/
+
+### failed to synchronize all databases (invalid or corrupted database (PGP signature))
+
+You should remove `sync` folder related to `pacman` and then everything works fine:
+
+```bash
+sudo rm -R /var/lib/pacman/sync
+sudo pacman -Syu
+paru
+```
+
+**References:**
+
+- https://bbs.archlinux.org/viewtopic.php?id=142798
+- https://www.reddit.com/r/archlinux/comments/v2zyad/pacman_invalid_or_corrupted_database_pgp_signature/
+
 # GTK
 
 ## GTK 4 applications are slow
