@@ -128,7 +128,11 @@ envycontrol -s <MODE>
 
 Available choices: integrated, hybrid, nvidia
 
-To run an application using Nvidia in hybrid mode add `__NV_PRIME_RENDER_OFFLOAD=1` to variables of the application using `flatseal`.
+To run an application using Nvidia in hybrid mode add `__NV_PRIME_RENDER_OFFLOAD=1` to variables of the application using `flatseal` or:
+
+```bash
+__NV_PRIME_RENDER_OFFLOAD=1 nautilus
+```
 
 If the Nvidia graphic card is not in use `envycontrol` sets its status to `suspended` to save energy. Check status of the graphic card using this command:
 
@@ -1098,6 +1102,7 @@ echo 0 | sudo tee /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation
 **References:**
 
 - https://wiki.archlinux.org/title/Laptop/Lenovo#Battery_conservation_mode
+- https://askubuntu.com/questions/900306/how-to-turn-off-lenovo-conservative-mode-using-ubuntu
 
 # Applications and Packages
 
@@ -1167,9 +1172,9 @@ sudo pacman -S man arch-wiki-lite
 ```bash
 sudo pacman -S libreoffice-fresh
 ```
+
 To make `libreoffice` more functional I highly recommend you to watch the following YouTube video:
 https://www.youtube.com/watch?v=x44bda1dz84
-
 
 ## Photo and Video
 
@@ -1297,6 +1302,31 @@ sudo pacman -S firefox
 
 It supports touchpad gestures natively on `wayland`.
 
+To change the color of `firefox` and tabs based on the open tab you can install [this](https://addons.mozilla.org/en-US/firefox/addon/adaptive-tab-bar-colour/) extension.
+
+To change the firefox icon color after downloading the icon you should copy the `firefox` icon to the user applications directory and change the path of the iocn. My prefered icons are [this](https://icon-icons.com/icon/firefox-reality-browser-logo/152988) and [this](https://www.flaticon.com/free-icons/firefox).
+
+```bash
+mkdir -p ~/.icons/firefox/
+cp ~/Downloads/<ICON> ~/.icons/firefox/
+```
+
+```bash
+cp /usr/share/applications/firefox.desktop ~/.local/share/applications/
+nano ~/.local/share/applications/firefox.desktop
+```
+
+Change `Icon` path:
+
+```conf
+Icon=/home/<USER>/.icons/firefox/<ICON>
+```
+
+Also I highly recommand you take a look at [this](https://mozilla.design/firefox/#logos-usage). It has lots of cool icons.
+**References:**
+
+- https://www.reddit.com/r/firefox/comments/1ecmxys/cool_firefox_icons_i_stumbled_upon_links_below/
+
 ### Microsoft Edge
 
 I love the features `microsoft-edge` provide. I install it using `paru`:
@@ -1384,12 +1414,45 @@ Finally find your desired key and run:
 yt-dlp -f <CODE> <LINK>
 ```
 
-# Troubleshooting
+# Themes
 
-## Possibly missing hardware
+GNOME by default provides a simple and beautiful theme but we can adjust it in the way we want in this section I provide some popular themes which I like the most.
 
-These warnings at `pacman` update are not that serious. You can ignoore it or you can remove them by installing `linux-firmware-qlogic`; but I recommend to don't install it.
+## WhitsSur
+
+This is a complete MacOS like themes including lots of customizablity. It has some prerequrements:
+
+```bash
+sudo pacman -S dialog sassc ostree appstream-glib
+```
+
+To download it:
+
+```bash
+mkdir -p ~/Programs
+cd ~/Programs
+git clone https://github.com/vinceliuice/WhiteSur-gtk-theme.git --depth=1
+cd WhiteSur-gtk-theme/
+```
+
+I use a custom installation using this command:
+
+```bash
+./install.sh -t purple --roundedmaxwindow -o normal --monterey -l -a alt --darker
+```
+
+To customize some applications like firefox we can use `tweaks.sh`:
+
+```bash
+./tweaks.sh --firefox adaptive
+```
+
+Please go to [Firefox menu] > [Customize...], and customize your Firefox to make it work. Move your 'new tab' button to the titlebar instead of tab-switcher.
+
+You need install adaptive-tab-bar-colour plugin first for `adaptive` mode: https://addons.mozilla.org/firefox/addon/adaptive-tab-bar-colour/
+
+After all reboot or relogin to get the theme availiable on all apps.
 
 **References:**
 
-- https://www.reddit.com/r/archlinux/comments/seqdzk/possibly_missing_hardware/
+- https://github.com/vinceliuice/WhiteSur-gtk-theme
