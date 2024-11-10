@@ -1198,8 +1198,10 @@ sudo pacman -S man arch-wiki-lite
 sudo pacman -S libreoffice-fresh
 ```
 
-To make `libreoffice` more functional I highly recommend you to watch the following YouTube video:
-https://www.youtube.com/watch?v=x44bda1dz84
+To make `libreoffice` more functional I highly recommend you to watch the following YouTube videos:
+
+- https://www.youtube.com/watch?v=x44bda1dz84
+- https://www.youtube.com/watch?v=G0che2Az9hw
 
 ## Photo and Video
 
@@ -1377,7 +1379,7 @@ The add following flags to `Exec` lines:
 
 - https://wiki.archlinux.org/title/Chromium#Touchpad_Gestures_for_Navigation
 
-## Google Chrome
+### Google Chrome
 
 Chrome should be installed. it feels like home:
 
@@ -1403,13 +1405,29 @@ Remember adding these flags before `%U` or `%F`.
 
 - https://wiki.archlinux.org/title/Chromium#Touchpad_Gestures_for_Navigation
 
-## Epiphany
+### Epiphany
 
 Epiphany is very neat and simple. It is the default browser for GNOME and it will be installed during installation of `gnome` package.
 
 **References:**
 
 - https://wiki.archlinux.org/title/GNOME/Web
+
+## Mail
+
+### Thunderbird
+
+```bash
+sudo pacman -S thunderbird
+```
+
+If you gnome-control-center accounts don't pop up in Thunderbird, you better know this feature hasn't been implemented yet based on [this](https://askubuntu.com/questions/863462/gnome-controll-center-online-accounts-and-thunderbird).
+
+### Geary
+
+```bash
+sudo pacman -S geary
+```
 
 ## Microsoft Todo equivalent
 
@@ -1478,6 +1496,16 @@ You need install adaptive-tab-bar-colour plugin first for `adaptive` mode: https
 
 After all reboot or relogin to get the theme availiable on all apps.
 
+If you don't get themes on flatpak applications, run this:
+
+```bash
+sudo flatpak override --filesystem=$HOME/.themes
+sudo flatpak override --filesystem=$HOME/.icons
+```
+
+I didn't need that.
+
 **References:**
 
 - https://github.com/vinceliuice/WhiteSur-gtk-theme
+- https://itsfoss.com/flatpak-app-apply-theme/
