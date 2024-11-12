@@ -1164,6 +1164,8 @@ flatpak install flathub io.github.tfuxu.Halftone
 flatpak install flathub org.gnome.design.Emblem
 flatpak install flathub io.github.lo2dev.Echo
 flatpak install flathub io.github.idevecore.Valuta
+flatpak install flathub com.belmoussaoui.Authenticator
+flatpak install flathub com.github.flxzt.rnote
 ```
 
 I completely removed the per-system installation and replaced it with user-system installation as I mentioned [here](#flatpak-and-flathub). So all of the flatpak applications are installed per-user and there is no need to explicitly write `--user`.
@@ -1202,6 +1204,16 @@ To make `libreoffice` more functional I highly recommend you to watch the follow
 
 - https://www.youtube.com/watch?v=x44bda1dz84
 - https://www.youtube.com/watch?v=G0che2Az9hw
+
+## PDF Editors
+
+## Xournal++
+
+One of the best tools for editing and writing on pdfs:
+
+```bash
+sudo pacman -S xournalpp
+```
 
 ## Photo and Video
 
@@ -1494,18 +1506,18 @@ Please go to [Firefox menu] > [Customize...], and customize your Firefox to make
 
 You need install adaptive-tab-bar-colour plugin first for `adaptive` mode: https://addons.mozilla.org/firefox/addon/adaptive-tab-bar-colour/
 
-After all reboot or relogin to get the theme availiable on all apps.
-
 If you don't get themes on flatpak applications, run this:
 
 ```bash
-sudo flatpak override --filesystem=$HOME/.themes
-sudo flatpak override --filesystem=$HOME/.icons
+flatpak --user override --filesystem=xdg-config/gtk-3.0 && flatpak --user override --filesystem=xdg-config/gtk-4.0
 ```
 
-I didn't need that.
+Since I installed `flatpak` applications on user, I user `--user` option and I don't need `sudo`.
+
+After all relogin to get the theme availiable on all apps.
 
 **References:**
 
 - https://github.com/vinceliuice/WhiteSur-gtk-theme
+- https://github.com/vinceliuice/WhiteSur-gtk-theme?tab=readme-ov-file#--fix-for-flatpak--
 - https://itsfoss.com/flatpak-app-apply-theme/
