@@ -1220,6 +1220,10 @@ sudo pacman -S man arch-wiki-lite
 sudo pacman -S libreoffice-fresh
 ```
 
+One of the useful extensions for LibreOffice to quickly resolve the most common formatting mistakes of old scans, PDF imports and every digital text file, is Pepito Cleaner. You can download and install it via the following link:
+
+- https://pepitoweb.altervista.org/pepito_cleaner/index.php
+
 To make `libreoffice` more functional I highly recommend you to watch the following YouTube videos:
 
 - https://www.youtube.com/watch?v=x44bda1dz84
@@ -1227,7 +1231,7 @@ To make `libreoffice` more functional I highly recommend you to watch the follow
 
 ### OnlyOffice
 
-Another proper option (but not open source) is onlyoffice:
+Another proper option (and also open source) is onlyoffice:
 
 ```bash
 paru -S onlyoffice-bin
@@ -1235,7 +1239,15 @@ paru -S onlyoffice-bin
 
 ## PDF Editors
 
-## Xournal++
+### LibreOffice Draw
+
+One of the advanced tools for PDF editing is LibreOffice Draw which will be automatically installed in installing LibreOffice itself.
+
+**References:**
+
+- https://www.youtube.com/watch?v=ie7Jb1KiIBM
+
+### Xournal++
 
 One of the best tools for editing and writing on pdfs:
 
