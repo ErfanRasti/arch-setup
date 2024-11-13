@@ -1034,6 +1034,24 @@ In the date of adding this instruction, `wayland` still hasn't released the frac
 - https://wiki.archlinux.org/title/HiDPI#Fractional_scaling
 - https://www.youtube.com/watch?v=dZIfjbZN0H8
 
+## Is it Wayland or XWayland?
+
+To check that is an app using `xwayland` or `wayland` you can use `xeyes`. Move your mouse on the app you want to check. If the eyes re moving toward your pointer movements, it's `xwayland`. If they don't, it's native `wayland`.
+To install `xeyes` and run it:
+
+```bash
+sudo pacman -S xorg-xeyes
+xeyes
+```
+
+There are lots of other methods. Your can check references for this.
+
+**References:**
+
+- https://www.reddit.com/r/wayland/comments/1ake7mw/how_do_i_know_my_app_uses_wayland_or_x11/#:~:text=Run%20xeyes%20and%20move%20mouse,%27t%2C%20it%27s%20native%20Wayland.
+- https://askubuntu.com/questions/1393618/how-can-i-tell-if-an-application-is-using-xwayland
+- https://medium.com/@bugaevc/how-to-easily-determine-if-an-app-runs-on-xwayland-or-on-wayland-natively-8191b506ab9a
+
 # Sound
 
 ## WirePlumber
@@ -1623,20 +1641,7 @@ This should play an except from Handel's "Hallelujah Chorus."
 
 ### Wayland Check
 
-To check if you are using `MATLAB` over `wayland` or not open `MATLAB` and run this script:
-
-```matlab
-waylandDisplay = getenv('WAYLAND_DISPLAY');
-xDisplay = getenv('DISPLAY');
-
-if ~isempty(waylandDisplay)
-    disp('MATLAB is running on Wayland.');
-elseif ~isempty(xDisplay)
-    disp('MATLAB is running on XWayland.');
-else
-    disp('Unable to detect the display server.');
-end
-```
+To check if you are using `MATLAB` over `wayland` or not open `MATLAB` check [this](#is-it-wayland-or-xwayland).
 
 If you're not using wayland by default run this:
 
@@ -1644,7 +1649,7 @@ If you're not using wayland by default run this:
 QT_QPA_PLATFORM=xcb matlab
 ```
 
-Mine was by default on `wayland`.
+Mine was by default on `XWayland`.
 
 **References:**
 
