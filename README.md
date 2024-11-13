@@ -1676,9 +1676,18 @@ Icon=matlab
 Categories=Development;Math;Science
 Comment=Scientific computing environment
 StartupNotify=true
+StartupWMClass=MATLAB R<version>
 ```
 
-Some icon packs doesn't support `matlab` icon by default. to add it you can manually download matlab icon from [this webpage](https://iconduck.com/icons/63437/matlab) and then move it to the icons folder:
+**Note:** To prevent separate `matlab` icons and windows out of this desktop entry make sure to add `StartupWMClass` according to your specific version.
+
+Some icon packs doesn't support `matlab` icon by default. You can use the native `matlab` icon by changing `Exec`:
+
+```conf
+Icon=/home/<user>/matlab/R<version>/bin/glnxa64/cef_resources/matlab_icon.png
+```
+
+To custom the `Icon` you can manually download matlab icon from [this webpage](https://iconduck.com/icons/63437/matlab) and then move it to the icons folder:
 
 ```bash
 sudo mkdir -p matlab/
@@ -1700,6 +1709,7 @@ update-desktop-database ~/.local/share/applications
 **References:**
 
 - https://wiki.archlinux.org/title/MATLAB#Desktop_entry
+- https://ch.mathworks.com/matlabcentral/answers/526460-matlab-with-2-icons-on-the-dock-in-linux
 - https://iconduck.com/icons/63437/matlab
 
 # Themes
