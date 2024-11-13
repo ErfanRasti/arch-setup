@@ -1196,6 +1196,8 @@ sudo pacman -S man arch-wiki-lite
 
 ## Office
 
+### LibreOffice
+
 ```bash
 sudo pacman -S libreoffice-fresh
 ```
@@ -1204,6 +1206,14 @@ To make `libreoffice` more functional I highly recommend you to watch the follow
 
 - https://www.youtube.com/watch?v=x44bda1dz84
 - https://www.youtube.com/watch?v=G0che2Az9hw
+
+### OnlyOffice
+
+Another proper option (but not open source) is onlyoffice:
+
+```bash
+paru -S onlyoffice-bin
+```
 
 ## PDF Editors
 
@@ -1449,6 +1459,14 @@ paru -S kuro-appimaged
 
 ## PDF Editors
 
+## OCR
+
+To extract text from an image or a pdf you can use `gimagereader`:
+
+```bash
+sudo pacman -S gimagereader-gtk
+```
+
 ## Download from YouTube
 
 Install this:
@@ -1468,6 +1486,28 @@ Finally find your desired key and run:
 ```bash
 yt-dlp -f <CODE> <LINK>
 ```
+
+To download from an specific website, which needs credentials or login you can use cookies:
+
+```bash
+yt-dlp --cookies-from-browser edge <LINK>
+```
+
+You can also extract the cookies from an specific website to a `.text` file using [this](https://chromewebstore.google.com/detail/get-cookiestxt-locally/cclelndahbckbenkjhflpdbgdldlbecc?hl=en) extension. After that you can use that specific cookies instead of whole cookies in the broswer:
+
+```bash
+yt-dlp --cookies <cookies.txt> <LINK>
+```
+
+Some websites embed their video in the website in a way that cannot be detected by the yt-dlp. In this way you can go to inspect mode (press f12) > network tab > search for m3u8 or mpd to find the video actual link.
+
+**References:**
+
+- https://wiki.archlinux.org/title/Yt-dlp#Cookies
+- https://github.com/yt-dlp/yt-dlp
+- https://www.reddit.com/r/youtubedl/wiki/cookies/
+- https://www.reddit.com/r/youtubedl/comments/iexk4j/comment/g3002y8/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+- https://www.reddit.com/r/youtubedl/comments/1beiy6w/comment/lgxfhkm/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
 
 # Themes
 
