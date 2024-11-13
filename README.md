@@ -1509,6 +1509,97 @@ Some websites embed their video in the website in a way that cannot be detected 
 - https://www.reddit.com/r/youtubedl/comments/iexk4j/comment/g3002y8/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
 - https://www.reddit.com/r/youtubedl/comments/1beiy6w/comment/lgxfhkm/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
 
+## MATLAB
+
+### Installation Problems
+
+I install `matlab` in `~/matlab` folder and I use `sudo ./install` installation command to prevent any issues caused by symlink creation procedure.
+
+During the `MATLAB` installation from the official `.iso` file you may face some issues:
+
+1. If the `./install` file raise some errors first check this command in the `.iso` installation folder:
+
+```bash
+./bin/glnxa64/MATLABWindow
+```
+
+Then check this [this](https://wiki.archlinux.org/title/MATLAB#Unable_to_launch_the_MATLABWindow_application)
+. 2. If you need to change or remove a file or folder from the mounted `.iso` file copy all of its contents into a folder and then:
+
+```bash
+chmod +x ./install
+```
+
+Your probably get some other errors related to permission denial. Mine has been solved by these:
+
+```bash
+chmod +x ./bin/glnxa64/MATLABWindow
+chmod +x ~/bin/glnxa64/MathWorksProductInstaller
+```
+
+After all you should be able to run the installer and follow the installation guide. Make sure to tick symlink creation option in installation process. If you didn't do that don't worry. According to [this](https://wiki.archlinux.org/title/MATLAB#Installing_from_the_MATLAB_installation_software):
+
+```bash
+ln -s /{MATLAB}/bin/matlab /usr/local/bin
+```
+
+**References:**
+
+- https://wiki.archlinux.org/title/MATLAB#Unable_to_launch_the_MATLABWindow_application
+- https://wiki.archlinux.org/title/MATLAB#Installing_from_the_MATLAB_installation_software
+
+### Usage Issues
+
+After installation you may encounter with some problems and error in loading `matalb`. One of them can be related to `OpenGL acceleration` and `NullPointerException`. According to [this](https://wiki.archlinux.org/title/MATLAB#OpenGL_acceleration) page of Arch Wiki first run:
+
+```bash
+matlab -nodesktop -nosplash -r "opengl info; exit" | grep Software
+```
+
+If `software rendering` is not `false`, then there is a problem with your hardware acceleration. If this is the case make sure OpenGL is configured correctly on the system. This can be done with the glxinfo program from the mesa-utils package:
+
+```bash
+glxinfo | grep "direct rendering"
+```
+
+If "direct rendering" is not "yes", then there is likely a problem with your system configuration.
+
+If glxinfo works but not matlab, you can try to run:
+
+```bash
+ export LD_PRELOAD=/usr/lib/libstdc++.so; export LD_LIBRARY_PATH=/usr/lib/xorg/modules/dri/; matlab -nodesktop -nosplash -r "opengl info; exit" | grep Software
+```
+
+If it works, you can edit Matlab launcher script to add:
+
+```bash
+sudo nano ~/matlab/R2024a/bin/matlab
+```
+
+Add these lines to the first of the file:
+
+```bash
+export LD_PRELOAD=/usr/lib/libstdc++.so
+export LD_LIBRARY_PATH=/usr/lib/dri/
+```
+
+After these changes, you may see low-level graphics errors in the MATLAB console such as `GLException` and `NullPointerException`. In that case, create a file with the name `java.opts` in the directory where MATLAB is executed (for example /usr/local/MATLAB/R2020a/bin/glnxa64):
+
+```bash
+sudo nano ~/matlab/R2024a/bin/glnxa64/java.opts
+```
+
+with the following line:
+
+```opts
+-Djogl.disable.openglarbcontext=1
+```
+
+**References:**
+
+- https://wiki.archlinux.org/title/MATLAB
+- https://wiki.archlinux.org/title/MATLAB#OpenGL_acceleration
+
 # Themes
 
 GNOME by default provides a simple and beautiful theme but we can adjust it in the way we want in this section I provide some popular themes which I like the most.
