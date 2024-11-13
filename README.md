@@ -1712,6 +1712,27 @@ update-desktop-database ~/.local/share/applications
 - https://ch.mathworks.com/matlabcentral/answers/526460-matlab-with-2-icons-on-the-dock-in-linux
 - https://iconduck.com/icons/63437/matlab
 
+### HiDPI scaling
+
+If everything is so small run the followin command in `matlab` to scale everything:
+
+```matlab
+>> s = settings;s.matlab.desktop.DisplayScaleFactor
+>> s.matlab.desktop.DisplayScaleFactor.PersonalValue = 2
+```
+
+You can change `2` to any number you desire. The settings take effect after MATLAB is restarted.
+
+Also activate antialiasing to smooth desktop fonts in the below path:
+
+```
+Open Home Tab > Preferences (Gear Icon) > MATLAB > Fonts > Use antiliasing to smooth desktop fonts (require MATLAB restart)
+```
+
+**References:**
+
+- https://wiki.archlinux.org/title/HiDPI#MATLAB
+
 # Themes
 
 GNOME by default provides a simple and beautiful theme but we can adjust it in the way we want in this section I provide some popular themes which I like the most.
