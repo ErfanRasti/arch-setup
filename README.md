@@ -1655,6 +1655,53 @@ Mine was by default on `XWayland`.
 
 - https://wiki.archlinux.org/title/MATLAB#Running_on_Wayland
 
+### MATLAB desktop entry
+
+By default `matlab` doesn't provide a shortcut but you can easily add one for yourself. To do this first create a `.desktop` file in the following directory:
+
+```bash
+nano ~/.local/share/applications/matlab.desktop
+```
+
+Add these lines to it:
+
+```desktop
+[Desktop Entry]
+Type=Application
+Terminal=false
+MimeType=text/x-matlab
+Exec=/usr/local/MATLAB/R20xyz/bin/matlab -desktop -useStartupFolderPref
+Name=MATLAB
+Icon=matlab
+Categories=Development;Math;Science
+Comment=Scientific computing environment
+StartupNotify=true
+```
+
+Some icon packs doesn't support `matlab` icon by default. to add it you can manually download matlab icon from [this webpage](https://iconduck.com/icons/63437/matlab) and then move it to the icons folder:
+
+```bash
+sudo mkdir -p matlab/
+sudo mv ./matlab.svg /usr/share/icons/matlab
+```
+
+The change `Icon`:
+
+```conf
+Icon=/usr/share/icons/matlab/matlab.svg
+```
+
+After all update desktop database:
+
+```bash
+update-desktop-database ~/.local/share/applications
+```
+
+**References:**
+
+- https://wiki.archlinux.org/title/MATLAB#Desktop_entry
+- https://iconduck.com/icons/63437/matlab
+
 # Themes
 
 GNOME by default provides a simple and beautiful theme but we can adjust it in the way we want in this section I provide some popular themes which I like the most.
