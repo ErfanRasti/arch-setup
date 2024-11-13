@@ -1016,6 +1016,7 @@ MESA_LOADER_DRIVER_OVERRIDE=i915 google-chrome-stable --ozone-platform-hint=auto
 
 **References:**
 
+- https://bbs.archlinux.org/viewtopic.php?id=298254
 - https://wiki.archlinux.org/title/GTK#Configuration
 - https://wiki.archlinux.org/title/GTK#GTK_4_applications_are_slow
 - https://wiki.archlinux.org/title/Environment_variables#Per_Wayland_session
@@ -1028,10 +1029,13 @@ In the date of adding this instruction, `wayland` still hasn't released the frac
 1. To activate it use `dconf`. I use `dconf-editor`. Go to `/org/gnome/mutter/experimental-features` and dsiable `Use default value`. then select these custom values:
    `scale-monitor-framebuffer`, `kms-modifier`, `variable-refresh-rate`, `xwayland-native-scaling`.
 2. Go to `gnome settings > Display > Scale` and select your desire value. Under refresh rate you can also select variable refresh rate.
+3. Scale your XWayland applications using `gnome-tweask` in `Fonts` tab.
+   Also, Activate Antialiasing equal to `Subpixel (for LCD screens)` if you have LCD monitor. I also prefer Hinting equal with `Full`.
 
 **References:**
 
 - https://wiki.archlinux.org/title/HiDPI#Fractional_scaling
+- https://www.reddit.com/r/gnome/comments/xvc5oe/gnome_scaling/
 - https://www.youtube.com/watch?v=dZIfjbZN0H8
 
 ## Is it Wayland or XWayland?
