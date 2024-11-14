@@ -71,6 +71,23 @@ sudo mkinitcpio -P
 - https://wiki.archlinux.org/title/Intel_graphics
 - https://wiki.archlinux.org/title/GPGPU
 
+## Monitor CPU Utilization
+
+```bash
+sudo pacman -S lm_sensors
+```
+
+This package will monitor the CPU usage. You can also check the usage using this command:
+
+```bash
+sensors
+```
+
+**References:**
+
+- https://wiki.archlinux.org/title/Lm_sensors
+- https://www.reddit.com/r/Ubuntu/comments/an53ft/overheat_while_watching_videos/
+
 # NVIDIA
 
 `nvidia-dkms` is used for managing multiple kernels. Since we installed both `linux-lts` and `linux` kernels this is a better option. `nvidia-dkms` also manages kernel upgrades automatically.
@@ -541,6 +558,10 @@ gnome-extensions install hibernate-statusdromi.v40.shell-extension.zip
 ```
 
 Then reload the gnome-shell by logging out.
+
+**References:**
+
+- https://www.reddit.com/r/Fedora/comments/10h6kop/unite_gnome_shell_extension_cant_be_enabled_due/
 
 # Wayland and X11 setup
 
