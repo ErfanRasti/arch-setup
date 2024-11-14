@@ -1554,7 +1554,7 @@ You can also extract the cookies from an specific website to a `.text` file usin
 yt-dlp --cookies <cookies.txt> <LINK>
 ```
 
-Some websites embed their video in the website in a way that cannot be detected by the yt-dlp. In this way you can go to inspect mode (press f12) > network tab > search for m3u8 or mpd to find the video actual link.
+Some websites embed their video in the website in a way that cannot be detected by the yt-dlp. In this way you can go to inspect mode (press f12) > network tab > search for `m3u8` or `mpd` or `mp4` to find the video actual link.
 
 **References:**
 
@@ -1800,7 +1800,7 @@ I use a custom installation using this command:
 To customize some applications like firefox we can use `tweaks.sh`:
 
 ```bash
-./tweaks.sh --firefox adaptive
+./tweaks.sh -f flat alt adaptive
 ```
 
 Please go to [Firefox menu] > [Customize...], and customize your Firefox to make it work. Move your 'new tab' button to the titlebar instead of tab-switcher.
