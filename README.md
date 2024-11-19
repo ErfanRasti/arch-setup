@@ -88,6 +88,31 @@ sensors
 - https://wiki.archlinux.org/title/Lm_sensors
 - https://www.reddit.com/r/Ubuntu/comments/an53ft/overheat_while_watching_videos/
 
+## `cpupower`
+
+This tool shows and sets processor power related values.
+
+```bash
+sudo pacman -S cpupower
+```
+
+And use it like this:
+
+```bash
+sudo cpupower frequency-info
+```
+
+To manage power usage of CPU at boot using `cpupower`:
+
+```bash
+sudo systemctl enable cpupower.service
+sudo systemctl start cpupower.service
+```
+
+**References:**
+
+- https://wiki.archlinux.org/title/CPU_frequency_scaling#cpupower
+
 # NVIDIA
 
 `nvidia-dkms` is used for managing multiple kernels. Since we installed both `linux-lts` and `linux` kernels this is a better option. `nvidia-dkms` also manages kernel upgrades automatically.
@@ -1209,6 +1234,7 @@ flatpak install flathub io.github.lo2dev.Echo
 flatpak install flathub io.github.idevecore.Valuta
 flatpak install flathub com.belmoussaoui.Authenticator
 flatpak install flathub com.github.flxzt.rnote
+flatpak install flathub com.github.unrud.VideoDownloader
 ```
 
 I completely removed the per-system installation and replaced it with user-system installation as I mentioned [here](#flatpak-and-flathub). So all of the flatpak applications are installed per-user and there is no need to explicitly write `--user`.
@@ -1228,7 +1254,7 @@ paru -S spotify
 ## Essential `pacman` applications
 
 ```bash
-sudo pacman -S fuse less bat dconf-editor telegram-desktop neofetch vlc kvantum gparted ntfs-3g uget wget wireplumber rsync glxinfo unrar fastfetch
+sudo pacman -S fuse less bat dconf-editor telegram-desktop neofetch gparted ntfs-3g uget wget wireplumber rsync glxinfo unrar fastfetch
 ```
 
 ## Manuals and Documentations
@@ -1285,6 +1311,10 @@ sudo pacman -S xournalpp
 ```bash
 sudo pacman -S krita vlc
 ```
+
+If you had a problem with playing some formats, change the following setting:
+
+Tools > Preferences > Input/Codecs/ > Hardware-accelerated decoding > Change it to VA-API video decoder
 
 ### PhotoGIMP
 
