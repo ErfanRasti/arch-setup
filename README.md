@@ -918,6 +918,16 @@ man pacman
 
 or take a look at [this](https://wiki.archlinux.org/title/Pacman#Removing_packages).
 
+**Note:** Always consider checking `/var/log/pacman.log` to remove unneeded dependencies. Maybe some branched packages installed by installing the script of another package weren't removed by -Rsucn.
+
+To remove the list of packages and don't get stopped by some _not found_ packages use the following:
+
+```bash
+for package in $(cat package-list.txt); do
+   sudo pacman -Rsucn "$package" || echo "Package $package not found, skipping..."
+done
+```
+
 To uninstall `flatpak` applications:
 
 ```bash
@@ -933,6 +943,7 @@ cd ~/.var/app
 **References:**
 
 - https://wiki.archlinux.org/title/Pacman#Removing_packages
+- https://bbs.archlinux.org/viewtopic.php?id=88600
 
 ## Upgrading packages
 
@@ -1254,7 +1265,7 @@ paru -S spotify
 ## Essential `pacman` applications
 
 ```bash
-sudo pacman -S fuse less bat dconf-editor telegram-desktop neofetch gparted ntfs-3g uget wget wireplumber rsync glxinfo unrar fastfetch
+sudo pacman -S fuse less bat dconf-editor telegram-desktop neofetch gparted ntfs-3g uget wget wireplumber rsync glxinfo unrar fastfetch gnome-usage
 ```
 
 ## Manuals and Documentations
@@ -1799,6 +1810,14 @@ Open Home Tab > Preferences (Gear Icon) > MATLAB > Fonts > Use antiliasing to sm
 **References:**
 
 - https://wiki.archlinux.org/title/HiDPI#MATLAB
+
+## Speedtest
+
+I use `speedtest-cli` to check the speed of the internet:
+
+```bash
+sudo pacman -S speedtest-cli
+```
 
 # Themes
 
