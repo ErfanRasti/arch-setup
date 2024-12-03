@@ -1941,6 +1941,10 @@ sudo pacman -S kitty hyprland
 
 Now you can start `hyprland` by relogin to the systemd and choose `hyprland` at list of your display managers and start!
 
+**References:**
+
+- https://wiki.hyprland.org/Getting-Started/Installation/
+
 ## Basic Configuration
 
 At first login, you have a naive desktop manager without anything. You can launch `kitty` by pressing `<super>+Q`. Usually the resolution doesn't fit and everything is so small for `HiDPI` displays.
@@ -1985,8 +1989,11 @@ I also changed some shortcuts according to my setup:
 bind = $mainMod, T, exec, $terminal
 bind = $mainMod, Q, killactive,
 bind = $mainMod, space, exec, $menu
-
 ```
+
+**References:**
+
+- https://wiki.hyprland.org/Configuring/Keywords/
 
 ### Touchpad
 
@@ -2032,7 +2039,29 @@ animation = workspacesOut, 1, 2, almostLinear, slide
 
 You can more customize it according to the [wiki](https://wiki.hyprland.org/Configuring/Animations/).
 
+### `waybar`
+
+```bash
+sudo pacman -S waybar
+```
+
+`waybar` also needs `ttf-font-awesome`:
+
+```bash
+sudo pacman -S ttf-font-awesome
+```
+
+To configure `waybar` go to [this](https://github.com/Alexays/Waybar/blob/master/resources/config.jsonc) and copy the configuration.
+
+Paste the configuration into this:
+
+```bash
+mkdir -p ~/.config/waybar/
+nano ~/.config/waybar/config
+```
+
+You should add some configuration modules by your own. Also you should consider changing `sway` to `hyprland` in different modules.
+
 **References:**
 
-- https://wiki.hyprland.org/Getting-Started/Installation/
-- https://wiki.hyprland.org/Configuring/Keywords/
+- https://github.com/Alexays/Waybar/wiki/Configuration
