@@ -1971,6 +1971,18 @@ Copy the name of your desired monitor (Mine was `eDP-1`); The go back to `hyprla
 monitor=eDP-1,preferred,auto,1.4
 ```
 
+## Default file manager
+
+```bash
+nano ~/.config/hypr/hyprland.conf
+```
+
+Change this line:
+
+```conf
+$fileManager = nautilus
+```
+
 ### Program Launcher
 
 I recommend `wofi`:
@@ -1988,12 +2000,16 @@ I also changed some shortcuts according to my setup:
 ```conf
 bind = $mainMod, T, exec, $terminal
 bind = $mainMod, Q, killactive,
-bind = $mainMod, space, exec, $menu
+bind = $mainMod, Super_L, exec, $menu
+# bind = ALT, space, exec, $menu
 ```
+
+`$mainMod, Super_L` means triggering the menu by just pressing the `<SUPER>` key (`$mainMod=SUPER`). `ALT+space` also is a nice combination.
 
 **References:**
 
 - https://wiki.hyprland.org/Configuring/Keywords/
+- https://github.com/hyprwm/Hyprland/discussions/2506
 
 ### Touchpad
 
@@ -2065,3 +2081,37 @@ You should add some configuration modules by your own. Also you should consider 
 **References:**
 
 - https://github.com/Alexays/Waybar/wiki/Configuration
+
+## Notification
+
+```bash
+paru -S swaync
+```
+
+You can also add `swaync` to `hyprland.conf` to start at Hyprland login:
+
+```conf
+exec-once = waybar & swaync
+```
+
+But for me that wasn't necessary.
+
+### Screenshot
+
+```bash
+paru -S hyprshot
+```
+
+To test it:
+
+```bash
+hyprshot -m window
+```
+
+You should also add some keybindings for ease of use to the `hyprland.conf`:
+
+```conf
+# Screenshot keybindings
+bind = shift, PRINT, exec, hyprshot -m window
+bind = , PRINT, exec, hyprshot -m region
+```
