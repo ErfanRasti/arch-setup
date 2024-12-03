@@ -82,11 +82,20 @@ This package will monitor the CPU usage. You can also check the usage using this
 ```bash
 sensors
 ```
+To check the all the `i915` parameters install `sysfsutils`:
+```bash
+sudo pacman -S sysfsutils
+```
+To check them:
+```bash
+sudo systool -vm i915
+```
 
 **References:**
 
 - https://wiki.archlinux.org/title/Lm_sensors
 - https://www.reddit.com/r/Ubuntu/comments/an53ft/overheat_while_watching_videos/
+- https://askubuntu.com/questions/59135/how-can-i-know-list-available-options-for-kernel-modules
 
 ## `cpupower`
 
@@ -1038,6 +1047,47 @@ paru
 - https://bbs.archlinux.org/viewtopic.php?id=142798
 - https://www.reddit.com/r/archlinux/comments/v2zyad/pacman_invalid_or_corrupted_database_pgp_signature/
 
+# Power Management
+
+For laptop users, power usage is one of the most critical things in linux.
+
+## Measure power usage
+
+There are many ways to check this.
+
+1. You can user `powertop` to measure your power usage:
+
+   ```bash
+   sudo pacman -S powertop
+   ```
+
+   Then:
+
+   ```bash
+   sudo powertop
+   ```
+
+   It will print the discharge rate of your device (if not in charge).
+
+2. One easy way of doing this is:
+
+   ```bash
+   awk '{printf "%.2f\n", $1 / 1000000}' /sys/class/power_supply/BAT0/power_now
+   ```
+
+3. You can use `upower` to take lots of information about your battery:
+
+   ```bash
+   sudo pacman -S upower
+   upower -i /org/freedesktop/UPower/devices/battery_BAT0
+   ```
+
+**References:**
+
+- https://github.com/fenrus75/powertop
+- https://wiki.archlinux.org/title/Power_management#Console
+- https://superuser.com/questions/808397/understanding-the-output-of-sys-class-power-supply-bat0-uevent
+
 # GTK
 
 ## GTK 4 applications are slow
@@ -1140,8 +1190,10 @@ systemctl --user start wireplumber.service
 I use bluez to manage my bluetooth devices:
 
 ```bash
-sudo pacman -S bluez bluez-utils
+sudo pacman -S bluez bluez-utils blueman
 ```
+
+`blueman` is very useful to manage bluetooth devices. It gives some information about battery of connected devices.
 
 ## Auto-connect
 
@@ -1246,6 +1298,7 @@ flatpak install flathub io.github.idevecore.Valuta
 flatpak install flathub com.belmoussaoui.Authenticator
 flatpak install flathub com.github.flxzt.rnote
 flatpak install flathub com.github.unrud.VideoDownloader
+# flatpak install flathub com.jeffser.Alpaca
 ```
 
 I completely removed the per-system installation and replaced it with user-system installation as I mentioned [here](#flatpak-and-flathub). So all of the flatpak applications are installed per-user and there is no need to explicitly write `--user`.
