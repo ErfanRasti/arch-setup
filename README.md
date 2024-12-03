@@ -794,7 +794,7 @@ For me it wasn't activated.
 
 # Application and package managers
 
-**Warning:** Always read package build (PKGBUILD) before installing a package from AUR. There is a small chance to get malicious software. But by checking package build you can detect it. Also you should read package build during updates. `paru` always show you the package build anway so I recommand using `paru` instead of `yay`.
+**Warning:** Always read package build (PKGBUILD) before installing a package from AUR. There is a small chance to get malicious software. But by checking package build you can detect it. Also you should read package build during updates. `paru` always show you the package build anway so I recommend using `paru` instead of `yay`.
 
 **References:**
 
@@ -1524,7 +1524,7 @@ Change `Icon` path:
 Icon=/home/<USER>/.icons/firefox/<ICON>
 ```
 
-Also I highly recommand you take a look at [this](https://mozilla.design/firefox/#logos-usage). It has lots of cool icons.
+Also I highly recommend you take a look at [this](https://mozilla.design/firefox/#logos-usage). It has lots of cool icons.
 **References:**
 
 - https://www.reddit.com/r/firefox/comments/1ecmxys/cool_firefox_icons_i_stumbled_upon_links_below/
@@ -1933,7 +1933,7 @@ After all relogin to get the theme availiable on all apps.
 
 ## Installation
 
-The installation is so easy. Also I highly recommand you to install kitty terminal first ( as pre-requirement):
+The installation is so easy. Also I highly recommend you to install kitty terminal first ( as pre-requirement):
 
 ```bash
 sudo pacman -S kitty hyprland
@@ -1945,7 +1945,7 @@ Now you can start `hyprland` by relogin to the systemd and choose `hyprland` at 
 
 At first login, you have a naive desktop manager without anything. You can launch `kitty` by pressing `<super>+Q`. Usually the resolution doesn't fit and everything is so small for `HiDPI` displays.
 
-### Display Setttings
+### Display Settings
 
 After `kitty` has been launched you should edit `~/.config/hypr/hyprland.conf` to remove the warrning dialog at top of the display manager and also make everything work with your screen:
 
@@ -1963,12 +1963,76 @@ hyprctl monitors all
 
 Copy the name of your desired monitor (Mine was `eDP-1`); The go back to `hyprland.conf` and add find the monitors section and add `monitor=<MONITOR_NAME>,<RESOLUTION>,<POSITION>,<SCALE>`. Mine is:
 
-```bash
+```conf
 monitor=eDP-1,preferred,auto,1.4
 ```
 
-###
+### Program Launcher
+
+I recommend `wofi`:
+
+```bash
+sudo pacman -S wofi
+```
+
+To see the shortcut dedicated to it, chech the `bind` command that is dedictaed to `$menu` (If you look at the `$menu` initialization, it is mapped to `wofi`).
+
+### Shortcuts
+
+I also changed some shortcuts according to my setup:
+
+```conf
+bind = $mainMod, T, exec, $terminal
+bind = $mainMod, Q, killactive,
+bind = $mainMod, space, exec, $menu
+
+```
+
+### Touchpad
+
+Change natural scroll to `true:
+
+```conf
+touchpad {
+        natural_scroll = true
+    }
+```
+
+For gestures on workspaces:
+
+```conf
+gestures {
+    workspace_swipe = true
+}
+```
+
+### sudo apps
+
+According to [this](https://github.com/hyprwm/Hyprland/discussions/7790), If you want to run GUI apps from terminal with `sudo`:
+
+```bash
+sudo -E <APP_NAME>
+```
+
+### Animations
+
+To activate slide animations on workspaces go to `animations {}` and follow this:
+
+```bash
+animation = NAME, ONOFF, SPEED, CURVE [,STYLE]
+```
+
+To add `slide` animations:
+
+```conf
+animation = workspaces, 1, 2, almostLinear, slide
+animation = workspacesIn, 1, 2, almostLinear, slide
+animation = workspacesOut, 1, 2, almostLinear, slide
+```
+
+You can more customize it according to the [wiki](https://wiki.hyprland.org/Configuring/Animations/).
 
 **References:**
 
 - https://wiki.hyprland.org/Getting-Started/Installation/
+- https://wiki.hyprland.org/Configuring/Keywords/
