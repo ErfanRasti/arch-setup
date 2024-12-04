@@ -1945,11 +1945,11 @@ Now you can start `hyprland` by relogin to the systemd and choose `hyprland` at 
 
 - https://wiki.hyprland.org/Getting-Started/Installation/
 
-## Basic Configuration
-
 At first login, you have a naive desktop manager without anything. You can launch `kitty` by pressing `<super>+Q`. Usually the resolution doesn't fit and everything is so small for `HiDPI` displays.
 
-### Display Settings
+**Note:** Hyperland is based on wayland. Remember removing 'linux_display_server x11' from `~/.config/kitty/kitty.conf`. It can cause misbehavior of `kitty` terminal.
+
+## Display Settings
 
 After `kitty` has been launched you should edit `~/.config/hypr/hyprland.conf` to remove the warrning dialog at top of the display manager and also make everything work with your screen:
 
@@ -1983,7 +1983,7 @@ Change this line:
 $fileManager = nautilus
 ```
 
-### Program Launcher
+## Program Launcher
 
 I recommend `wofi`:
 
@@ -1993,7 +1993,7 @@ sudo pacman -S wofi
 
 To see the shortcut dedicated to it, chech the `bind` command that is dedictaed to `$menu` (If you look at the `$menu` initialization, it is mapped to `wofi`).
 
-### Shortcuts
+## Shortcuts
 
 I also changed some shortcuts according to my setup:
 
@@ -2011,7 +2011,7 @@ bind = $mainMod, Super_L, exec, $menu
 - https://wiki.hyprland.org/Configuring/Keywords/
 - https://github.com/hyprwm/Hyprland/discussions/2506
 
-### Touchpad
+## Touchpad
 
 Change natural scroll to `true:
 
@@ -2029,7 +2029,7 @@ gestures {
 }
 ```
 
-### sudo apps
+## sudo apps
 
 According to [this](https://github.com/hyprwm/Hyprland/discussions/7790), If you want to run GUI apps from terminal with `sudo`:
 
@@ -2037,7 +2037,7 @@ According to [this](https://github.com/hyprwm/Hyprland/discussions/7790), If you
 sudo -E <APP_NAME>
 ```
 
-### Animations
+## Animations
 
 To activate slide animations on workspaces go to `animations {}` and follow this:
 
@@ -2055,7 +2055,7 @@ animation = workspacesOut, 1, 2, almostLinear, slide
 
 You can more customize it according to the [wiki](https://wiki.hyprland.org/Configuring/Animations/).
 
-### `waybar`
+## `waybar`
 
 ```bash
 sudo pacman -S waybar
@@ -2096,7 +2096,7 @@ exec-once = waybar & swaync
 
 But for me that wasn't necessary.
 
-### Screenshot
+## Screenshot
 
 ```bash
 paru -S hyprshot
@@ -2116,7 +2116,7 @@ bind = shift, PRINT, exec, hyprshot -m window
 bind = , PRINT, exec, hyprshot -m region
 ```
 
-### Lockscreen
+## Lockscreen
 
 ```bash
 paru -S hyprlock
@@ -2168,7 +2168,7 @@ bind = $mainMod, L,exec, hyprlock
 
 - https://wiki.hyprland.org/Hypr-Ecosystem/hyprlock/
 
-### idle manager
+## idle manager
 
 ```bash
 sudo pacman -S hypridle
