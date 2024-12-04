@@ -1932,6 +1932,16 @@ After all relogin to get the theme availiable on all apps.
 - https://github.com/vinceliuice/WhiteSur-gtk-theme?tab=readme-ov-file#--fix-for-flatpak--
 - https://itsfoss.com/flatpak-app-apply-theme/
 
+## Catppuccin
+
+```bash
+paru -S catppuccin-gtk-theme-mocha
+```
+
+**References:**
+
+- https://catppuccin.com/
+
 # Hyprland
 
 Hyprland is an amazing tiling window manager. In this section I explain all the configurations I use to customize it.
@@ -2040,6 +2050,15 @@ sudo pacman -S wofi
 ```
 
 To see the shortcut dedicated to it, chech the `bind` command that is dedictaed to `$menu` (If you look at the `$menu` initialization, it is mapped to `wofi`).
+
+For more configurations you can use this custom `.css`:
+
+```bash
+mkdir -p ~/Programs/
+git clone https://github.com/typecraft-dev/dotfiles.git ~/Programs/typecraft-dotfiles
+cd  ~/Programs/typecraft-dotfiles
+stow -t ~ wofi
+```
 
 ## Shortcuts
 
@@ -2152,6 +2171,12 @@ nano ~/.config/waybar/config
 
 You should add some configuration modules by your own. Also you should consider changing `sway` to `hyprland` in different modules.
 
+For more configurations (as I did in `wofi`):
+```bash
+rm ~/.config/waybar/config
+cd  ~/Programs/typecraft-dotfiles
+stow -t ~ waybar
+```
 **References:**
 
 - https://github.com/Alexays/Waybar/wiki/Configuration
@@ -2238,6 +2263,16 @@ Bind a key for it:
 bind = $mainMod, L,exec, hyprlock
 ```
 
+For more configurations (as I did in `wofi`):
+```bash
+rm ~/.config/hypr/hyprlock.conf
+cd  ~/Programs/typecraft-dotfiles
+stow -t ~ hyprmocha/
+stow -t ~ hyprlock
+```
+Make sure to change `monitor` and `path` according to your config.
+
+
 **References:**
 
 - https://wiki.hyprland.org/Hypr-Ecosystem/hyprlock/
@@ -2300,7 +2335,13 @@ Add `hypridle` to `exec-once` on `hyprland.conf`:
 
 ## Themes
 
-It is recommended to install `nwg-look` for GTK themes.
+It is recommended to install `nwg-look` for GTK themes:
+
+```bash
+sudo pacman -S nwg-look
+```
+
+Now open `nwg-look` and apply what theme you want.
 
 **References:**
 
@@ -2406,8 +2447,8 @@ nano ~/.config/hypr/hyprpaper.conf
 For me:
 
 ```conf
-preload = ~/Pictures/Wallpapers/MatrixWallapapers/trinity-matrix.png
-wallpaper = eDP-1, ~/Pictures/Wallpapers/MatrixWallapapers/trinity-matrix.png
+preload = ~/Pictures/Wallpapers/MatrixWallpapers/trinity-matrix.png
+wallpaper = eDP-1, ~/Pictures/Wallpapers/MatrixWallpapers/trinity-matrix.png
 ```
 
 3. Add this at the first of your `hyprland.conf`:
