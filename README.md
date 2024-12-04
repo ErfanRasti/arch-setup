@@ -2117,15 +2117,19 @@ bind = , PRINT, exec, hyprshot -m region
 ```
 
 ### Lockscreen
+
 ```bash
 paru -S hyprlock
 ```
 
 Configuration:
+
 ```bash
 nano ~/.config/hypr/hyprlock.conf
 ```
+
 Add this configuration:
+
 ```conf
 background {
     monitor =
@@ -2155,6 +2159,7 @@ input-field {
 ```
 
 Bind a key for it:
+
 ```conf
 bind = $mainMod, L,exec, hyprlock
 ```
@@ -2163,3 +2168,58 @@ bind = $mainMod, L,exec, hyprlock
 
 - https://wiki.hyprland.org/Hypr-Ecosystem/hyprlock/
 
+### idle manager
+
+```bash
+sudo pacman -S hypridle
+```
+
+Configurations:
+
+```bash
+nano ~/.config/hypr/hypridle.conf
+```
+
+Add the configuration from [this](https://wiki.hyprland.org/Hypr-Ecosystem/hypridle/):
+
+```conf
+general {
+    lock_cmd = pidof hyprlock || hyprlock       # avoid starting multiple hyprlock instances.
+    before_sleep_cmd = loginctl lock-session    # lock before suspend.
+    after_sleep_cmd = hyprctl dispatch dpms on  # to avoid having to press a key twice to turn on the display.
+}
+
+listener {
+    timeout = 150                                # 2.5min.
+    on-timeout = brightnessctl -s set 10         # set monitor backlight to minimum, avoid 0 on OLED monitor.
+    on-resume = brightnessctl -r                 # monitor backlight restore.
+}
+
+# turn off keyboard backlight, comment out this section if you dont have a keyboard backlight.
+listener {
+    timeout = 150                                          # 2.5min.
+    on-timeout = brightnessctl -sd rgb:kbd_backlight set 0 # turn off keyboard backlight.
+    on-resume = brightnessctl -rd rgb:kbd_backlight        # turn on keyboard backlight.
+}
+
+listener {
+    timeout = 300                                 # 5min
+    on-timeout = loginctl lock-session            # lock screen when timeout has passed
+}
+
+listener {
+    timeout = 330                                 # 5.5min
+    on-timeout = hyprctl dispatch dpms off        # screen off when timeout has passed
+    on-resume = hyprctl dispatch dpms on          # screen on when activity is detected after timeout has fired.
+}
+
+listener {
+    timeout = 600                                # 10min
+    on-timeout = systemctl suspend                # suspend pc
+}
+```
+
+Add `hypridle` to `exec-once` on `hyprland.conf`:
+**References:**
+
+- https://wiki.hyprland.org/Hypr-Ecosystem/hypridle/
