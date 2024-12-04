@@ -16,6 +16,7 @@ The installation configuration can be described as follows:
 - Bootloader: `systemd-boot`
 - Swap: `zram`
 - Desktop environment: GNOME
+- Tiling window manager: Hyprland
 - Windowing system: Wayland, X11
 
 I also use 11th Gen Intel® Core™ i7 processor alongside NVIDIA GeForce RTX 3060. So the drivers installation instruction would be based on these hardware components.
@@ -1915,7 +1916,6 @@ You need install adaptive-tab-bar-colour plugin first for `adaptive` mode: https
 
 **Note:** If you faced a misplaced searchbar on firefox, close firefox and reexecute the `./tweaks.sh` command.
 
-
 If you don't get themes on flatpak applications, run this:
 
 ```bash
@@ -1933,6 +1933,16 @@ After all relogin to get the theme availiable on all apps.
 - https://itsfoss.com/flatpak-app-apply-theme/
 
 # Hyprland
+
+Hyprland is an amazing tiling window manager. In this section I explain all the configurations I use to customize it.
+
+First of all I should especially thank [typecraft](https://www.youtube.com/@typecraft_dev) for these amazing videos. I used them to customize my system.
+
+**References:**
+
+- https://youtu.be/2CP_9-jCV6A?si=BlMLNR5JLj67ER-Y
+- https://youtu.be/KA1jv40q9lQ?si=UxY36R0i7Y02K7xl
+- https://youtu.be/omhJMH9lPPc?si=lRB-t1ZECN9ZB4Zr
 
 ## Installation
 
@@ -2031,10 +2041,25 @@ bind = $mainMod, Super_L, exec, $menu
 
 `$mainMod, Super_L` means triggering the menu by just pressing the `<SUPER>` key (`$mainMod=SUPER`). `ALT+space` also is a nice combination.
 
+To switch between different worksapces using `SUPER+ALT+ARROWS` I used the following keybingds:
+
+```conf
+# Switch workspaces using $mainMod+Alt+Arrow keys
+bind = $mainMod ALT, left, workspace, m-1
+bind = $mainMod Alt, right, workspace, m+1
+```
+
+To make brightness control shortcuts work, install this package:
+
+```bash
+sudo pacman -S brightnessctl
+```
+
 **References:**
 
 - https://wiki.hyprland.org/Configuring/Keywords/
 - https://github.com/hyprwm/Hyprland/discussions/2506
+- https://www.reddit.com/r/hyprland/comments/1f23gdd/shortcut_for_changing_workspaces/
 
 ## Touchpad
 
@@ -2287,6 +2312,7 @@ rm -rf ~/.local/share/keyrings
 - https://bbs.archlinux.org/viewtopic.php?id=285563
 
 ## Cursor
+
 To set the cursor first you should put your theme(s) in ~/.local/share/icons or ~/.icons:
 
 ```bash
@@ -2294,6 +2320,12 @@ cp -rf Bibata-Modern-Classic ~/.icons
 ```
 
 Then add this to the `hyprland.conf`:
+
 ```conf
 exec-once = hyprctl setcursor Bibata-Modern-Classic 24
 ```
+
+**References:**
+
+- https://wiki.hyprland.org/Hypr-Ecosystem/hyprcursor/
+- https://www.reddit.com/r/hyprland/comments/18axtng/how_do_i_set_my_cursor_theme/
