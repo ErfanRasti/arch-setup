@@ -1949,14 +1949,27 @@ First of all I should especially thank [typecraft](https://www.youtube.com/@type
 The installation is so easy. Also I highly recommend you to install kitty terminal first ( as pre-requirement):
 
 ```bash
-sudo pacman -S kitty hyprland
+sudo pacman -S kitty
 ```
 
-Now you can start `hyprland` by relogin to the systemd and choose `hyprland` at list of your display managers and start!
+I prefer AUR version of `hyprland` because it is more updated:
+
+```bash
+paru -S hyprland-git
+```
+
+It is recommended to launch hyprland on `uwsn` to make it compatible with systemd distros. So we should Install it:
+
+```bash
+paru -S uwsn
+```
+
+Now you can start `hyprland` by relogin to the systemd and choose `hyprland (uwsn-managed)` at list of your display managers and start!
 
 **References:**
 
 - https://wiki.hyprland.org/Getting-Started/Installation/
+- https://wiki.hyprland.org/Useful-Utilities/Systemd-start/#installation
 
 At first login, you have a naive desktop manager without anything. You can launch `kitty` by pressing `<super>+Q`. Usually the resolution doesn't fit and everything is so small for `HiDPI` displays.
 
@@ -2045,8 +2058,8 @@ To switch between different worksapces using `SUPER+ALT+ARROWS` I used the follo
 
 ```conf
 # Switch workspaces using $mainMod+Alt+Arrow keys
-bind = $mainMod ALT, left, workspace, m-1
-bind = $mainMod Alt, right, workspace, m+1
+bind = $mainMod ALT, left, workspace, e-1
+bind = $mainMod ALT, right, workspace, e+1
 ```
 
 To make brightness control shortcuts work, install this package:
@@ -2329,3 +2342,38 @@ exec-once = hyprctl setcursor Bibata-Modern-Classic 24
 
 - https://wiki.hyprland.org/Hypr-Ecosystem/hyprcursor/
 - https://www.reddit.com/r/hyprland/comments/18axtng/how_do_i_set_my_cursor_theme/
+
+## Powerbutton remap
+
+1. Install `acpid` and enable `systemd-logind`:
+
+```bash
+sudo pacman -S acpid
+sudo systemctl enable --now systemd-logind
+```
+
+2. Edit `logind.conf`:
+
+```bash
+sudo mkdir -p /etc/systemd/logind.conf.d/
+sudo cp /etc/systemd/logind.conf /etc/systemd/logind.conf.d/
+sudo nano /etc/systemd/logind.conf.d/logind.conf
+```
+
+Change:
+
+```conf
+HandlePowerKey=suspend
+```
+
+3. Restart `systemd-logind`:
+
+```bash
+sudo systemctl restart systemd-logind
+```
+
+This instruction also remapped closing the lid for me.
+
+**References:**
+
+- https://www.reddit.com/r/hyprland/comments/1dym0f1/how_to_change_what_power_button_does/
