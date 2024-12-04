@@ -1968,8 +1968,30 @@ hyprctl monitors all
 Copy the name of your desired monitor (Mine was `eDP-1`); The go back to `hyprland.conf` and add find the monitors section and add `monitor=<MONITOR_NAME>,<RESOLUTION>,<POSITION>,<SCALE>`. Mine is:
 
 ```conf
-monitor=eDP-1,preferred,auto,1.4
+monitor=eDP-1,preferred,auto,1.25
 ```
+
+#### XWayland
+
+In the above config you will encounter some bluriness in `XWayland` applications. To fix it add these lines to the `hyprland.conf`:
+
+```conf
+# change monitor to high resolution, the last argument is the scale factor
+monitor = , highres, auto, 1.25
+
+# unscale XWayland
+xwayland {
+  force_zero_scaling = true
+}
+
+# toolkit-specific scale
+env = GDK_SCALE,2
+env = XCURSOR_SIZE,32
+```
+
+**References:**
+
+- https://wiki.hyprland.org/Configuring/XWayland/#hidpi-xwayland
 
 ## Default file manager
 
@@ -2223,3 +2245,40 @@ Add `hypridle` to `exec-once` on `hyprland.conf`:
 **References:**
 
 - https://wiki.hyprland.org/Hypr-Ecosystem/hypridle/
+
+## Themes
+
+It is recommended to install `nwg-look` for GTK themes.
+
+**References:**
+
+- https://wiki.hyprland.org/Getting-Started/Master-Tutorial/#themes
+
+## Troubleshooting
+
+### Losing Browser Session when Switching DE
+
+This is an annoying problem. Thanks to reddit explanation:
+
+1. Install `gnome-keyring`:
+
+```bash
+sudo pacman -S gnome-keyring
+```
+
+2. Add following option to `exec-once`:
+
+```conf
+exec-once = gnome-keyring-daemon -sd
+```
+
+3. Remove `~/.local/share/keyrings`:
+
+```bash
+rm -rf ~/.local/share/keyrings
+```
+
+**References:**
+
+- https://www.reddit.com/r/hyprland/comments/1avevff/brave_deletes_all_sessions_after_closure_in/
+- https://bbs.archlinux.org/viewtopic.php?id=285563
