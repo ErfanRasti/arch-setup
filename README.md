@@ -2377,3 +2377,32 @@ This instruction also remapped closing the lid for me.
 **References:**
 
 - https://www.reddit.com/r/hyprland/comments/1dym0f1/how_to_change_what_power_button_does/
+
+## Wallpaper
+
+1. install `hyprpaper`:
+
+```bash
+sudo pacman -S hyprpaper
+```
+
+2. configure it and pass your desired wallpaper to it:
+
+```conf
+nano ~/.config/hypr/hyprpaper.conf
+```
+
+```conf
+preload = ~/Pictures/Wallpapers/MatrixWallapapers/trinity-matrix.png
+wallpaper = eDP-1, ~/Pictures/Wallpapers/MatrixWallapapers/trinity-matrix.png
+```
+
+3. Add this at the first of your `hyprland.conf`:
+
+```conf
+exec-once = hyprpaper
+```
+
+**References:**
+
+- https://wiki.hyprland.org/Hypr-Ecosystem/hyprpaper/
