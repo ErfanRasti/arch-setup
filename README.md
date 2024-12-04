@@ -2060,12 +2060,23 @@ To switch between different worksapces using `SUPER+ALT+ARROWS` I used the follo
 # Switch workspaces using $mainMod+Alt+Arrow keys
 bind = $mainMod ALT, left, workspace, e-1
 bind = $mainMod ALT, right, workspace, e+1
+# Move window forward or backward
+bind = $mainMod SHIFT ALT, left, movetoworkspace, e-1
+bind = $mainMod SHIFT ALT, right, movetoworkspace, e+1
 ```
 
 To make brightness control shortcuts work, install this package:
 
 ```bash
 sudo pacman -S brightnessctl
+```
+
+I also chagned the percent:
+
+```conf
+T_AUDIO_SOURCE@ toggle
+bindel = ,XF86MonBrightnessUp, exec, brightnessctl s 5%+
+bindel = ,XF86MonBrightnessDown, exec, brightnessctl s 5%-
 ```
 
 **References:**
@@ -2386,11 +2397,13 @@ This instruction also remapped closing the lid for me.
 sudo pacman -S hyprpaper
 ```
 
-2. configure it and pass your desired wallpaper to it:
+2. Configure it and pass your desired wallpaper to it:
 
 ```conf
 nano ~/.config/hypr/hyprpaper.conf
 ```
+
+For me:
 
 ```conf
 preload = ~/Pictures/Wallpapers/MatrixWallapapers/trinity-matrix.png
