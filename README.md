@@ -1913,6 +1913,9 @@ Please go to [Firefox menu] > [Customize...], and customize your Firefox to make
 
 You need install adaptive-tab-bar-colour plugin first for `adaptive` mode: https://addons.mozilla.org/firefox/addon/adaptive-tab-bar-colour/
 
+**Note:** If you faced a misplaced searchbar on firefox, close firefox and reexecute the `./tweaks.sh` command.
+
+
 If you don't get themes on flatpak applications, run this:
 
 ```bash
@@ -2282,3 +2285,15 @@ rm -rf ~/.local/share/keyrings
 
 - https://www.reddit.com/r/hyprland/comments/1avevff/brave_deletes_all_sessions_after_closure_in/
 - https://bbs.archlinux.org/viewtopic.php?id=285563
+
+## Cursor
+To set the cursor first you should put your theme(s) in ~/.local/share/icons or ~/.icons:
+
+```bash
+cp -rf Bibata-Modern-Classic ~/.icons
+```
+
+Then add this to the `hyprland.conf`:
+```conf
+exec-once = hyprctl setcursor Bibata-Modern-Classic 24
+```
