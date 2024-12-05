@@ -1323,7 +1323,7 @@ paru -S spotify
 ## Essential `pacman` applications
 
 ```bash
-sudo pacman -S fuse less bat dconf-editor telegram-desktop neofetch gparted ntfs-3g uget wget wireplumber rsync glxinfo unrar fastfetch gnome-usage
+sudo pacman -S fuse less bat dconf-editor neofetch gparted ntfs-3g uget wget wireplumber rsync glxinfo unrar fastfetch gnome-usage
 ```
 
 ## Manuals and Documentations
@@ -1877,6 +1877,12 @@ I use `speedtest-cli` to check the speed of the internet:
 sudo pacman -S speedtest-cli
 ```
 
+## Social media applications
+
+```bash
+sudo pacman -S telegram-desktop discord
+```
+
 # Themes
 
 GNOME by default provides a simple and beautiful theme but we can adjust it in the way we want in this section I provide some popular themes which I like the most.
@@ -2060,6 +2066,10 @@ cd  ~/Programs/typecraft-dotfiles
 stow -t ~ wofi
 ```
 
+**References:**
+
+- https://github.com/typecraft-dev/dotfiles/tree/master
+
 ## Shortcuts
 
 I also changed some shortcuts according to my setup:
@@ -2067,7 +2077,10 @@ I also changed some shortcuts according to my setup:
 ```conf
 bind = $mainMod, T, exec, $terminal
 bind = $mainMod, Q, killactive,
+bind = $mainMod, F, togglefloating,
 bind = $mainMod, Super_L, exec, $menu
+bind = $mainMod SHIFT, Q, exit,
+
 # bind = ALT, space, exec, $menu
 ```
 
@@ -2172,11 +2185,13 @@ nano ~/.config/waybar/config
 You should add some configuration modules by your own. Also you should consider changing `sway` to `hyprland` in different modules.
 
 For more configurations (as I did in `wofi`):
+
 ```bash
 rm ~/.config/waybar/config
 cd  ~/Programs/typecraft-dotfiles
 stow -t ~ waybar
 ```
+
 **References:**
 
 - https://github.com/Alexays/Waybar/wiki/Configuration
@@ -2264,14 +2279,15 @@ bind = $mainMod, L,exec, hyprlock
 ```
 
 For more configurations (as I did in `wofi`):
+
 ```bash
 rm ~/.config/hypr/hyprlock.conf
 cd  ~/Programs/typecraft-dotfiles
 stow -t ~ hyprmocha/
 stow -t ~ hyprlock
 ```
-Make sure to change `monitor` and `path` according to your config.
 
+Make sure to change `monitor` and `path` according to your config.
 
 **References:**
 
@@ -2460,3 +2476,55 @@ exec-once = hyprpaper
 **References:**
 
 - https://wiki.hyprland.org/Hypr-Ecosystem/hyprpaper/
+
+## Resize windows
+
+Activate it by:
+
+```conf
+resize_on_border = true
+```
+
+**References:**
+
+- https://wiki.hyprland.org/Configuring/Variables/
+- https://www.reddit.com/r/hyprland/comments/1d7djl5/might_be_a_stupid_question_but_how_do_i_resize/
+
+## HyprPanel
+
+### Installation
+
+```bash
+curl -fsSL https://bun.sh/install | bash && \
+  sudo ln -s $HOME/.bun/bin/bun /usr/local/bin/bun
+
+sudo pacman -S pipewire libgtop bluez bluez-utils btop networkmanager dart-sass wl-clipboard brightnessctl swww python gnome-bluetooth-3.0 pacman-contrib power-profiles-daemon gvfs sass
+paru -S grimblast-git gpu-screen-recorder hyprpicker matugen-bin python-gpustat hyprsunset-git hypridle-git
+git clone https://github.com/Jas-SinghFSU/HyprPanel.git ~/Programs/HyprPanel
+cd  ~/Programs/HyprPanel;
+git pull
+./make_agsv1.sh
+
+# Moves the current ~/.config/ags directory to ~/.config/ags.bkup
+mv $HOME/.config/ags $HOME/.config/ags.bkup
+
+# Installs HyprPanel to ~/.config/ags
+git clone https://github.com/Jas-SinghFSU/HyprPanel.git && \
+  ln -s $(pwd)/HyprPanel $HOME/.config/ags
+
+agsv1
+```
+
+The above commands are extracted from the wiki. I also had a `CaskaydiaCove NF` font installed. If you don't have install a `nerdfont`.
+
+`HyprPanel` is fantastic and it aims to replace `waybar` with lots of configurations. Add it to your `hyprland.conf`:
+
+```conf
+exec-once = agsv1
+```
+
+**References:**
+
+- https://hyprpanel.com/getting_started/installation.html
+- https://github.com/Jas-SinghFSU/HyprPanel
+- https://www.youtube.com/watch?v=6Dn9k8EX0-M
