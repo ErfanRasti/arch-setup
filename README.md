@@ -1948,6 +1948,14 @@ paru -S catppuccin-gtk-theme-mocha
 
 - https://catppuccin.com/
 
+## Gradience
+
+This is an amazing tool to apply themes. You can also apply theme based on your wallpaper using its mount engine.
+
+```bash
+paru -S gradience
+```
+
 # Hyprland
 
 Hyprland is an amazing tiling window manager. In this section I explain all the configurations I use to customize it.
@@ -1982,14 +1990,31 @@ paru -S uwsn
 
 Now you can start `hyprland` by relogin to the systemd and choose `hyprland (uwsn-managed)` at list of your display managers and start!
 
+At first login, you have a naive desktop manager without anything. You can launch `kitty` by pressing `<super>+Q`. Usually the resolution doesn't fit and everything is so small for `HiDPI` displays.
+
+**Note:** Hyperland is based on wayland. Remember removing `linux_display_server x11` from `~/.config/kitty/kitty.conf`. It can cause misbehavior of `kitty` terminal.
+
 **References:**
 
 - https://wiki.hyprland.org/Getting-Started/Installation/
 - https://wiki.hyprland.org/Useful-Utilities/Systemd-start/#installation
 
-At first login, you have a naive desktop manager without anything. You can launch `kitty` by pressing `<super>+Q`. Usually the resolution doesn't fit and everything is so small for `HiDPI` displays.
+### Must Have
 
-**Note:** Hyperland is based on wayland. Remember removing 'linux_display_server x11' from `~/.config/kitty/kitty.conf`. It can cause misbehavior of `kitty` terminal.
+```bash
+paru -S xdg-desktop-portal-hyprland-git
+paru -S hyprpolkitagent-git
+sudo pacman -S qt5-wayland qt6-wayland
+sudo pacman -S pipewire wireplumber
+```
+
+Add `exec-once = systemctl --user start hyprpolkitagent` to `hyprland.conf`.
+
+**References:**
+
+- https://wiki.hyprland.org/Useful-Utilities/Must-have/
+- https://wiki.hyprland.org/Hypr-Ecosystem/xdg-desktop-portal-hyprland/
+- https://wiki.hyprland.org/Hypr-Ecosystem/hyprpolkitagent/
 
 ## Display Settings
 
@@ -2047,9 +2072,9 @@ Change this line:
 $fileManager = nautilus
 ```
 
-## Program Launcher
+## App Launcher
 
-I recommend `wofi`:
+### `wofi`
 
 ```bash
 sudo pacman -S wofi
@@ -2069,6 +2094,38 @@ stow -t ~ wofi
 **References:**
 
 - https://github.com/typecraft-dev/dotfiles/tree/master
+
+### `rofi`
+
+I recommand `rofi`:
+
+```bash
+sudo pacman -S rofi
+```
+
+Customization:
+
+1. Installation
+   ```bash
+   git clone --depth=1 https://github.com/adi1090x/rofi.git ~/Programs/rofi-themes/
+   cd ~/Programs/rofi-themes/
+   chmod +x setup.sh
+   ./setup.sh
+   ```
+2. Change theme:
+   ```bash
+   mkdir -p ~/.config/rofi/applets/shared/
+   nano ~/.config/rofi/applets/shared/theme.bash
+   ```
+   Add:
+   ```conf
+   type="$HOME/.config/rofi/applets/type-1"
+   style='style-1.rasi'
+   ```
+
+**References:**
+
+- https://www.youtube.com/watch?v=TutfIwxSE_s
 
 ## Shortcuts
 
@@ -2103,12 +2160,11 @@ To make brightness control shortcuts work, install this package:
 sudo pacman -S brightnessctl
 ```
 
-I also chagned the percent:
+I use intel in conjunction with nvidia. It should be specified to work corretly. I also chagned the percent:
 
 ```conf
-T_AUDIO_SOURCE@ toggle
-bindel = ,XF86MonBrightnessUp, exec, brightnessctl s 5%+
-bindel = ,XF86MonBrightnessDown, exec, brightnessctl s 5%-
+bindel = ,XF86MonBrightnessUp, exec, brightnessctl -d intel_backlight s 5%+
+bindel = ,XF86MonBrightnessDown, exec, brightnessctl -d intel_backlight s 5%-
 ```
 
 **References:**
@@ -2528,3 +2584,17 @@ exec-once = agsv1
 - https://hyprpanel.com/getting_started/installation.html
 - https://github.com/Jas-SinghFSU/HyprPanel
 - https://www.youtube.com/watch?v=6Dn9k8EX0-M
+
+## gnome-control-center
+
+Add this to `hyprland.conf`:
+
+```conf
+$settings = env XDG_CURRENT_DESKTOP=GNOME gnome-control-center
+# Settings shortcut
+bind = $mainMod, I, exec, $settings
+```
+
+**References:**
+
+- https://discourse.gnome.org/t/gnome-control-center-outside-of-gnome/15771
