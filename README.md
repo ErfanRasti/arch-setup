@@ -2579,11 +2579,49 @@ The above commands are extracted from the wiki. I also had a `CaskaydiaCove NF` 
 exec-once = agsv1
 ```
 
+For custom modules on the bar you should go to `Configurations > Bar > Layouts > Bar Layouts for Monitors` and change your `.json` file.
+
+```json
+{
+  "0": {
+    "left": ["dashboard", "workspaces", "windowtitle"],
+    "middle": ["media"],
+    "right": [
+      "systray",
+      "cpu",
+      "cputemp",
+      "ram",
+      "kbinput",
+      "volume",
+      "bluetooth",
+      "network",
+      "battery",
+      "clock",
+      "notifications"
+    ]
+  },
+  "1": {
+    "left": ["dashboard", "workspaces", "windowtitle"],
+    "middle": ["media"],
+    "right": ["volume", "clock", "notifications"]
+  },
+  "2": {
+    "left": ["dashboard", "workspaces", "windowtitle"],
+    "middle": ["media"],
+    "right": ["volume", "clock", "notifications"]
+  }
+}
+```
+
+This is my configurations.
+Numbers are associated to monitor numbers.
+
 **References:**
 
 - https://hyprpanel.com/getting_started/installation.html
 - https://github.com/Jas-SinghFSU/HyprPanel
 - https://www.youtube.com/watch?v=6Dn9k8EX0-M
+- https://hyprpanel.com/configuration/panel.html#layouts
 
 ## gnome-control-center
 
@@ -2645,5 +2683,6 @@ input {
 
 - https://wiki.hyprland.org/Configuring/Uncommon-tips--tricks/
 - https://unix.stackexchange.com/questions/43976/list-all-valid-kbd-layouts-variants-and-toggle-options-to-use-with-setxkbmap
-- https://wiki.hyprland.org/Configuring/Variables/#input
 - https://www.reddit.com/r/hyprland/comments/176algg/how_do_i_change_the_keyboard_language_in_hyprland/
+- https://www.reddit.com/r/hyprland/comments/xtxmv8/eli5_how_do_i_change_keyboard_layout_in_hyprland/
+- https://wiki.hyprland.org/Configuring/Variables/#input
