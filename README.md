@@ -1801,7 +1801,7 @@ nano ~/.local/share/applications/matlab.desktop
 
 Add these lines to it:
 
-```desktop
+```conf
 [Desktop Entry]
 Type=Application
 Terminal=false
@@ -1982,13 +1982,15 @@ I prefer AUR version of `hyprland` because it is more updated:
 paru -S hyprland-git
 ```
 
-It is recommended to launch hyprland on `uwsn` to make it compatible with systemd distros. So we should Install it:
+It is recommended to launch hyprland on `uwsm` to make it compatible with systemd distros. So we should Install it:
 
 ```bash
-paru -S uwsn
+paru -S uwsm
+paru -S hyprland-qtutils
 ```
-
-Now you can start `hyprland` by relogin to the systemd and choose `hyprland (uwsn-managed)` at list of your display managers and start!
+`hyprland-qtutils` is a package that provides some useful utilities for `hyprland`. It is recommended as a warning after openning `hyprland (uwsm-managed)`.
+Now you can start `hyprland` by relogin to the systemd and choose `hyprland (uwsm-managed)` at list of your display managers and start!
+In my experiance `uwsm` was so buggy and I personally prefer sticking with the default version.
 
 At first login, you have a naive desktop manager without anything. You can launch `kitty` by pressing `<super>+Q`. Usually the resolution doesn't fit and everything is so small for `HiDPI` displays.
 
@@ -2038,7 +2040,7 @@ Copy the name of your desired monitor (Mine was `eDP-1`); The go back to `hyprla
 monitor=eDP-1,preferred,auto,1.25
 ```
 
-#### XWayland
+### XWayland
 
 In the above config you will encounter some bluriness in `XWayland` applications. To fix it add these lines to the `hyprland.conf`:
 
@@ -2056,9 +2058,38 @@ env = GDK_SCALE,2
 env = XCURSOR_SIZE,32
 ```
 
+#### `uwsm`
+
+**Note:** `uwsm` should avoid using `env` in `hyprland.conf`. Instead:
+
+```bash
+mkdir -p ~/.config/uwsm/
+nano ~/.config/uwsm/env
+```
+
+Add:
+
+```sh
+export GDK_SCALE=2
+export XCURSOR_SIZE=32
+```
+
+And for `HYPR*` and `AQ_*`:
+
+```bash
+nano ~/.config/uwsm/env-hyprland
+```
+
+Add:
+
+```bash
+export HYPRCURSOR_SIZE=32
+```
+
 **References:**
 
 - https://wiki.hyprland.org/Configuring/XWayland/#hidpi-xwayland
+- https://wiki.hyprland.org/Configuring/Environment-variables/
 
 ## Default file manager
 
@@ -2135,13 +2166,18 @@ I also changed some shortcuts according to my setup:
 bind = $mainMod, T, exec, $terminal
 bind = $mainMod, Q, killactive,
 bind = $mainMod, F, togglefloating,
-bind = $mainMod, Super_L, exec, $menu
+bind = ALT, space, exec, $menu
+# bind = $mainMod, Super_L, exec, $menu
 bind = $mainMod SHIFT, Q, exit,
-
-# bind = ALT, space, exec, $menu
 ```
 
 `$mainMod, Super_L` means triggering the menu by just pressing the `<SUPER>` key (`$mainMod=SUPER`). `ALT+space` also is a nice combination.
+
+**Note:** `uwsm` users should avoid using `exit` in the `hyprland.conf` according to the wiki.
+
+```conf
+bind = $mainMod SHIFT, Q, exec, uwsm stop
+```
 
 To switch between different worksapces using `SUPER+ALT+ARROWS` I used the following keybingds:
 
@@ -2172,6 +2208,7 @@ bindel = ,XF86MonBrightnessDown, exec, brightnessctl -d intel_backlight s 5%-
 - https://wiki.hyprland.org/Configuring/Keywords/
 - https://github.com/hyprwm/Hyprland/discussions/2506
 - https://www.reddit.com/r/hyprland/comments/1f23gdd/shortcut_for_changing_workspaces/
+- https://wiki.hyprland.org/Configuring/Dispatchers/
 
 ## Touchpad
 
@@ -2431,7 +2468,7 @@ This is an annoying problem. Thanks to reddit explanation:
 sudo pacman -S gnome-keyring
 ```
 
-2. Add following option to `exec-once`:
+2. Add following to `hyprland.conf`:
 
 ```conf
 exec-once = gnome-keyring-daemon -sd
@@ -2442,6 +2479,10 @@ exec-once = gnome-keyring-daemon -sd
 ```bash
 rm -rf ~/.local/share/keyrings
 ```
+
+When the pop up appears in GNOME, press enter and don't make any password for authentication.
+
+**Warning:** Avoid using GNOME online accounts. It will reset the keyring password.
 
 **References:**
 
@@ -2554,6 +2595,7 @@ resize_on_border = true
 curl -fsSL https://bun.sh/install | bash && \
   sudo ln -s $HOME/.bun/bin/bun /usr/local/bin/bun
 
+paru -S aylurs-gtk-shell
 sudo pacman -S pipewire libgtop bluez bluez-utils btop networkmanager dart-sass wl-clipboard brightnessctl swww python gnome-bluetooth-3.0 pacman-contrib power-profiles-daemon gvfs sass
 paru -S grimblast-git gpu-screen-recorder hyprpicker matugen-bin python-gpustat hyprsunset-git hypridle-git
 git clone https://github.com/Jas-SinghFSU/HyprPanel.git ~/Programs/HyprPanel
@@ -2686,3 +2728,23 @@ input {
 - https://www.reddit.com/r/hyprland/comments/176algg/how_do_i_change_the_keyboard_language_in_hyprland/
 - https://www.reddit.com/r/hyprland/comments/xtxmv8/eli5_how_do_i_change_keyboard_layout_in_hyprland/
 - https://wiki.hyprland.org/Configuring/Variables/#input
+
+## PROXY
+
+To make proxy work, add this to `hyprland.conf`:
+
+```conf
+$addr_port= 127.0.0.1:1234
+
+env=HTTPS_PROXY=$addr_port
+env=https_proxy=$addr_port
+env=ALL_PROXY=$addr_port
+env=all_proxy=$addr_port
+env=NO_PROXY=$addr_port
+env=no_proxy=$addr_port
+env=http_proxy=$addr_port
+env=ftp_proxy=$addr_port
+env=FTP_PROXY=$addr_port
+```
+
+Relogin to work.
