@@ -2598,3 +2598,52 @@ bind = $mainMod, I, exec, $settings
 **References:**
 
 - https://discourse.gnome.org/t/gnome-control-center-outside-of-gnome/15771
+
+## Keyboard Languages
+
+If you want to use another keyboard language on your system, first you should find your keymap layout and your specified variant:
+
+```bash
+localectl list-x11-keymap-layouts
+```
+
+Mine is persian which is refered as `ir`. For variant:
+
+```bash
+localectl list-x11-keymap-variants ir
+# Output:
+# azb
+# ku
+# ku_alt
+# ku_ara
+# ku_f
+# pes_keypad
+# winkeys
+```
+
+I choose `winkeys` for comfortability. I also chooe `SUPER+SPACE` for changing keyboard languages. Finally you should change `hyprland.conf`:
+
+```conf
+input {
+    kb_layout = us, ir
+    kb_variant =,winkeys
+    kb_model =
+    kb_options =grp:win_space_toggle
+    kb_rules =
+
+    follow_mouse = 1
+
+    sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
+
+    touchpad {
+        natural_scroll = true
+    }
+}
+```
+
+**References:**
+
+- https://wiki.hyprland.org/Configuring/Uncommon-tips--tricks/
+- https://unix.stackexchange.com/questions/43976/list-all-valid-kbd-layouts-variants-and-toggle-options-to-use-with-setxkbmap
+- https://wiki.hyprland.org/Configuring/Variables/#input
+- https://www.reddit.com/r/hyprland/comments/176algg/how_do_i_change_the_keyboard_language_in_hyprland/
