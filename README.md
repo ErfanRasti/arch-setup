@@ -1385,6 +1385,15 @@ If you had a problem with playing some formats, change the following setting:
 
 Tools > Preferences > Input/Codecs/ > Hardware-accelerated decoding > Change it to VA-API video decoder
 
+For video editing I recommend `kdenlive`:
+
+```bash
+sudo pacman -S kdenlive
+```
+
+In the installation process choose `qt6-multimedia-ffmpeg` instead of `qt6-multimedia-gstreamer`; because it has more features.
+
+
 ### PhotoGIMP
 
 PhotoGIMP is like a UI for GIMP.
@@ -1988,6 +1997,7 @@ It is recommended to launch hyprland on `uwsm` to make it compatible with system
 paru -S uwsm
 paru -S hyprland-qtutils
 ```
+
 `hyprland-qtutils` is a package that provides some useful utilities for `hyprland`. It is recommended as a warning after openning `hyprland (uwsm-managed)`.
 Now you can start `hyprland` by relogin to the systemd and choose `hyprland (uwsm-managed)` at list of your display managers and start!
 In my experiance `uwsm` was so buggy and I personally prefer sticking with the default version.
@@ -2471,7 +2481,7 @@ sudo pacman -S gnome-keyring
 2. Add following to `hyprland.conf`:
 
 ```conf
-exec-once = gnome-keyring-daemon -sd
+exec-once = gnome-keyring-daemon --start --components=secrets
 ```
 
 3. Remove `~/.local/share/keyrings`:
@@ -2748,3 +2758,9 @@ env=FTP_PROXY=$addr_port
 ```
 
 Relogin to work.
+
+If you want to remove these environment variables you can use `unset` command:
+
+```bash
+unset HTTP_PROXY HTTPS_PROXY https_proxy ALL_PROXY all_proxy NO_PROXY no_proxy http_proxy FTP_PROXY ftp_proxy
+```
