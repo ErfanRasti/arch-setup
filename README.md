@@ -2057,6 +2057,10 @@ fc-cache
 fc-cache -fv
 ```
 
+**References:**
+
+- https://wiki.archlinux.org/title/Font_configuration
+
 # Hyprland
 
 Hyprland is an amazing tiling window manager. In this section I explain all the configurations I use to customize it.
@@ -2558,39 +2562,6 @@ Now open `nwg-look` and apply what theme you want.
 
 - https://wiki.hyprland.org/Getting-Started/Master-Tutorial/#themes
 
-## Troubleshooting
-
-### Losing Browser Session when Switching DE
-
-This is an annoying problem. Thanks to reddit explanation:
-
-1. Install `gnome-keyring`:
-
-```bash
-sudo pacman -S gnome-keyring
-```
-
-2. Add following to `hyprland.conf`:
-
-```conf
-exec-once = gnome-keyring-daemon --start --components=secrets
-```
-
-3. Remove `~/.local/share/keyrings`:
-
-```bash
-rm -rf ~/.local/share/keyrings
-```
-
-When the pop up appears in GNOME, press enter and don't make any password for authentication.
-
-**Warning:** Avoid using GNOME online accounts. It will reset the keyring password.
-
-**References:**
-
-- https://www.reddit.com/r/hyprland/comments/1avevff/brave_deletes_all_sessions_after_closure_in/
-- https://bbs.archlinux.org/viewtopic.php?id=285563
-
 ## Cursor
 
 To set the cursor first you should put your theme(s) in ~/.local/share/icons or ~/.icons:
@@ -2698,6 +2669,7 @@ curl -fsSL https://bun.sh/install | bash && \
   sudo ln -s $HOME/.bun/bin/bun /usr/local/bin/bun
 
 paru -S aylurs-gtk-shell
+sudo pacman -S ttf-jetbrains-mono-nerd
 sudo pacman -S pipewire libgtop bluez bluez-utils btop networkmanager dart-sass wl-clipboard brightnessctl swww python gnome-bluetooth-3.0 pacman-contrib power-profiles-daemon gvfs sass
 paru -S grimblast-git gpu-screen-recorder hyprpicker matugen-bin python-gpustat hyprsunset-git hypridle-git
 git clone https://github.com/Jas-SinghFSU/HyprPanel.git ~/Programs/HyprPanel
@@ -2722,6 +2694,8 @@ The above commands are extracted from the wiki. I also had a `CaskaydiaCove NF` 
 ```conf
 exec-once = agsv1
 ```
+
+### Configurations
 
 For custom modules on the bar you should go to `Configurations > Bar > Layouts > Bar Layouts for Monitors` and change your `.json` file.
 
@@ -2857,3 +2831,45 @@ If you want to remove these environment variables you can use `unset` command:
 ```bash
 unset HTTP_PROXY HTTPS_PROXY https_proxy ALL_PROXY all_proxy NO_PROXY no_proxy http_proxy FTP_PROXY ftp_proxy
 ```
+
+## Troubleshooting
+
+### Losing Browser Session when Switching DE
+
+This is an annoying problem. Thanks to reddit explanation:
+
+1. Install `gnome-keyring`:
+
+```bash
+sudo pacman -S gnome-keyring
+```
+
+2. Add following to `hyprland.conf`:
+
+```conf
+exec-once = gnome-keyring-daemon --start --components=secrets
+```
+
+3. Remove `~/.local/share/keyrings`:
+
+```bash
+rm -rf ~/.local/share/keyrings
+```
+
+When the pop up appears in GNOME, press enter and don't make any password for authentication.
+
+**Warning:** Avoid using GNOME online accounts. It will reset the keyring password.
+
+**References:**
+
+- https://www.reddit.com/r/hyprland/comments/1avevff/brave_deletes_all_sessions_after_closure_in/
+- https://bbs.archlinux.org/viewtopic.php?id=285563
+
+### Cannot turn on the bluetooth
+```bash
+rfkill unblock bluetooth
+```
+**References:**
+
+- https://stackoverflow.com/questions/68728478/failed-to-set-power-on-org-bluez-error-blocked-problem
+- https://stackoverflow.com/questions/34709583/bluetoothctl-set-passkey
