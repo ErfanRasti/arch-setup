@@ -1210,6 +1210,41 @@ rm -r ~/.local/state/wireplumber # deletes settings
 systemctl --user start wireplumber.service
 ```
 
+To automate the `wireplumber.service` restart using `udev`:
+
+1. Edit this:
+
+   ```bash
+   sudo nano /etc/udev/rules.d/99-bluetooth-restart-wireplumber.rules
+   ```
+
+   Script:
+
+   ```conf
+   ACTION=="add", SUBSYSTEM=="bluetooth", ATTR{address}=="XX:XX:XX:XX:XX:XX", RUN+="sleep 2; /usr/bin/systemctl --user restart wireplumber.service"
+   ```
+
+   Fill `ATTR{address}` with the address dedicated to your bluetooth device:
+
+   ```bash
+   bluetoothctl
+
+   [bluetooth]#devices
+   Device XX:XX:XX:XX:XX:XX Erfan’s AirPods Pro
+   ```
+
+2. Run:
+
+   ```bash
+   sudo udevadm control --reload-rules
+   ```
+
+3. Test:
+
+   ```bash
+   systemctl --user status wireplumber
+   ```
+
 **References:**
 
 - https://wiki.archlinux.org/title/WirePlumber#Delete_corrupt_settings
@@ -1990,12 +2025,26 @@ paru -S catppuccin-gtk-theme-mocha
 
 - https://catppuccin.com/
 
+## Yaru Theme (Ubuntu Theme)
+
+```bash
+paru -S yaru-gtk-theme
+```
+
 ## Gradience
 
 This is an amazing tool to apply themes. You can also apply theme based on your wallpaper using its mount engine.
 
 ```bash
 paru -S gradience
+```
+
+# Icons
+
+## Yaru icons (Ubuntu Icons)
+
+```bash
+paru -S yaru-icon-theme
 ```
 
 # Fonts
