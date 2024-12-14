@@ -2030,6 +2030,10 @@ sudo pacman -S telegram-desktop discord
 
 GNOME by default provides a simple and beautiful theme but we can adjust it in the way we want in this section I provide some popular themes which I like the most.
 
+```bash
+sudo pacman -S gnome-themes-standard
+```
+
 ## WhitsSur
 
 This is a complete MacOS like themes including lots of customizablity. It has some prerequrements:
@@ -2105,7 +2109,55 @@ This is an amazing tool to apply themes. You can also apply theme based on your 
 paru -S gradience
 ```
 
+To activate gradience themes you need to install `adw-gtk-theme`:
+
+```bash
+sudo pacman -S adw-gtk-theme
+```
+
+You can use some custom themes on gradience like `Pretty Purple` or another:
+
+```bash
+paru -S skeuowaita-git
+```
+
+To reset, _sudo gtk theme_ remove `*.css` files from `/root/.config/gtk-3.0` and `/root/.config/gtk-4.0` folders.
+
+**References:**
+
+- https://www.reddit.com/r/gnome/comments/x2d3dq/gradience_the_tool_to_adjust_colors_for/
+- https://github.com/RusticBard/Skeuowaita
+
+## Themes on flatpak apps
+
+If flatpak apps doesn't worked properly according to default gnome themes apply:
+
+```bash
+sudo flatpak override --reset
+flatpak --user override --reset
+```
+
+To apply custom theme on flatpak apps:
+
+```bash
+sudo flatpak override --filesystem=$HOME/.themes
+sudo flatpak override --filesystem=$HOME/.icons
+
+sudo flatpak override --env=GTK_THEME=MY_THEME
+sudo flatpak override --env=ICON_THEME=MY_ICON_THEME
+```
+
+**References:**
+
+- https://itsfoss.com/flatpak-app-apply-theme/
+
 # Icons
+
+## Papirus
+
+```bash
+sudo pacman -S papirus-icon-theme
+```
 
 ## Yaru icons (Ubuntu Icons)
 
