@@ -901,6 +901,90 @@ For me it wasn't activated.
 - https://man.archlinux.org/man/bootctl.1
 - https://www.youtube.com/watch?v=yU-SE7QX6WQ
 
+# GNOME
+
+## dconf backup
+
+To backup your GNOME configurations:
+
+```bash
+dconf dump /org/gnome/ > dconf-gnome-backup.conf
+```
+
+Load them using:
+
+```bash
+dconf load /org/gnome/ < dconf-gnome-backup.conf
+```
+
+Also for complete system configuration backup:
+
+```bash
+dconf dump / > dconf-system-backup.conf
+```
+
+Load them using:
+
+```bash
+dconf load / < dconf-system-backup.conf
+```
+
+- Use dconf dump / for a complete system configuration backup.
+- Use dconf dump /org/gnome/ for a targeted GNOME-specific configuration backup.
+
+**References:**
+
+- https://man.archlinux.org/man/dconf.1.en
+
+## Troubleshooting
+
+### No animation and Software Rendering
+
+First check this:
+
+```bash
+glxinfo | grep "OpenGL renderer"
+```
+
+Reinstall your drivers:
+
+```bash
+sudo pacman -Rsucm xf86-video-intel
+sudo pacman -S intel-media-driver
+sudo pacman -S nvidia-dkms nvidia-utils
+sudo reboot
+```
+
+**References:**
+
+- https://www.reddit.com/r/gnome/comments/wzsxfl/comment/j3gmzet/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+
+### GNOME Wayland crashes at starting
+
+In my case this configuration in `/org/gnome` made a huge conflict and caused GNOME to get crashed everytime I start it under `wayland` compositor:
+
+```conf
+[desktop/a11y/keyboard]
+mousekeys-enable=true
+```
+
+If you messed something on gnome configurations:
+
+1. Backup your current configurations:
+   ```bash
+   dconf dump /org/gnome/ > ~/dconf-backup.conf
+   ```
+2. Reset your configurations:
+   ```bash
+   dconf reset -f /org/gnome/
+   ```
+   Now login and check if everything is working. If the problem still exsits, do the previous commands with `/` instead of `/org/gnome/`.
+3. Now you should search in your `~/dconf-backup.conf` for a bad configurations. Comment out half of the configurations with `#` and load them using:
+   ```bash
+   dconf load /org/gnome/ < ~/dconf-backup.conf
+   ```
+   Hold the nonproblematic half and do it again and again for sub partitions untill you found th problem.
+
 # Application and package managers
 
 **Warning:** Always read package build (PKGBUILD) before installing a package from AUR. There is a small chance to get malicious software. But by checking package build you can detect it. Also you should read package build during updates. `paru` always show you the package build anway so I recommend using `paru` instead of `yay`.
@@ -2157,11 +2241,7 @@ To activate gradience themes you need to install `adw-gtk-theme`:
 sudo pacman -S adw-gtk-theme
 ```
 
-You can use some custom themes on gradience like `Pretty Purple` or another:
-
-```bash
-paru -S skeuowaita-git
-```
+You can use some custom themes on gradience like `Pretty Purple`.
 
 To reset, _sudo gtk theme_ remove `*.css` files from `/root/.config/gtk-3.0` and `/root/.config/gtk-4.0` folders.
 
@@ -2206,6 +2286,16 @@ sudo pacman -S papirus-icon-theme
 ```bash
 paru -S yaru-icon-theme
 ```
+
+## Skeuowaita
+
+```bash
+paru -S skeuowaita-git
+```
+
+**References:**
+
+- https://github.com/RusticBard/Skeuowaita
 
 # Fonts
 
@@ -2327,7 +2417,7 @@ sudo pacman -S kitty
 I prefer AUR version of `hyprland` because it is more updated:
 
 ```bash
-paru -S hyprland-git
+sudo pacman -S hyprland
 ```
 
 It is recommended to launch hyprland on `uwsm` to make it compatible with systemd distros. So we should Install it:
@@ -2977,12 +3067,21 @@ For custom modules on the bar you should go to `Configurations > Bar > Layouts >
 This is my configurations.
 Numbers are associated to monitor numbers.
 
+#### CPU Temperature
+
+In order to display the CPU Temperature properly, you must first determine the correct CPU sensor for your system. To do that you can use the following command:
+
+```bash
+for i in /sys/class/hwmon/hwmon*/temp*_input; do echo "$(<$(dirname $i)/name): $(cat ${i%_*}_label 2>/dev/null || echo $(basename ${i%_*})) $(readlink -f $i)"; done
+```
+
 **References:**
 
 - https://hyprpanel.com/getting_started/installation.html
 - https://github.com/Jas-SinghFSU/HyprPanel
 - https://www.youtube.com/watch?v=6Dn9k8EX0-M
 - https://hyprpanel.com/configuration/panel.html#layouts
+- https://hyprpanel.com/configuration/panel.html#cpu-temperature
 
 ## gnome-control-center
 
