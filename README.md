@@ -27,7 +27,7 @@ You can install the Arch Linux from scratch (which I highly recommend to adopt w
 
 1. Download `Arch Linux` from the following link:
 
-https://archlinux.org/download/
+<https://archlinux.org/download/>
 
 2. Choose your desired mirror link at the end.
 3. `checksum` Arch using:
@@ -83,9 +83,9 @@ https://archlinux.org/download/
 
 **References:**
 
-- https://wiki.archlinux.org/title/Iwd
-- https://wiki.archlinux.org/title/Archinstall
-- https://youtu.be/8YE1LlTxfMQ?si=l4oiXkGNmAxkCv93
+- <https://wiki.archlinux.org/title/Iwd>
+- <https://wiki.archlinux.org/title/Archinstall>
+- <https://youtu.be/8YE1LlTxfMQ?si=l4oiXkGNmAxkCv93>
 
 # Linux kernels
 
@@ -137,7 +137,7 @@ Using both `linux` and `linux-lts` kernels allows for a fallback option. If an u
 
 **References:**
 
-- https://bbs.archlinux.org/viewtopic.php?id=72344
+- <https://bbs.archlinux.org/viewtopic.php?id=72344>
 
 # Intel drivers
 
@@ -174,11 +174,11 @@ sudo mkinitcpio -P
 
 **For more info:**
 
-- Tutorial: https://www.youtube.com/watch?v=gIVIHJmW1P0
-- https://wiki.archlinux.org/title/Microcode
-- https://wiki.archlinux.org/title/Hardware_video_acceleration
-- https://wiki.archlinux.org/title/Intel_graphics
-- https://wiki.archlinux.org/title/GPGPU
+- Tutorial: <https://www.youtube.com/watch?v=gIVIHJmW1P0>
+- <https://wiki.archlinux.org/title/Microcode>
+- <https://wiki.archlinux.org/title/Hardware_video_acceleration>
+- <https://wiki.archlinux.org/title/Intel_graphics>
+- <https://wiki.archlinux.org/title/GPGPU>
 
 ## Monitor CPU Utilization
 
@@ -206,9 +206,9 @@ sudo systool -vm i915
 
 **References:**
 
-- https://wiki.archlinux.org/title/Lm_sensors
-- https://www.reddit.com/r/Ubuntu/comments/an53ft/overheat_while_watching_videos/
-- https://askubuntu.com/questions/59135/how-can-i-know-list-available-options-for-kernel-modules
+- <https://wiki.archlinux.org/title/Lm_sensors>
+- <https://www.reddit.com/r/Ubuntu/comments/an53ft/overheat_while_watching_videos/>
+- <https://askubuntu.com/questions/59135/how-can-i-know-list-available-options-for-kernel-modules>
 
 ## `cpupower`
 
@@ -233,7 +233,7 @@ sudo systemctl start cpupower.service
 
 **References:**
 
-- https://wiki.archlinux.org/title/CPU_frequency_scaling#cpupower
+- <https://wiki.archlinux.org/title/CPU_frequency_scaling#cpupower>
 
 # NVIDIA
 
@@ -267,8 +267,8 @@ One Important problem caused by these services is _screen blanking_ which is pro
 
 **References:**
 
-- https://download.nvidia.com/XFree86/Linux-x86_64/435.17/README/powermanagement.html
-- https://askubuntu.com/questions/1405262/how-to-solve-black-screen-after-suspension-with-ubuntu-22-04-lts
+- <https://download.nvidia.com/XFree86/Linux-x86_64/435.17/README/powermanagement.html>
+- <https://askubuntu.com/questions/1405262/how-to-solve-black-screen-after-suspension-with-ubuntu-22-04-lts>
 
 ## Nvidia controllers (`envycontrol`)
 
@@ -312,10 +312,10 @@ cat /sys/bus/pci/devices/0000\:01\:00.0/power/runtime_status
 
 **References:**
 
-- https://www.reddit.com/r/archlinux/comments/16iz9co/nvidia_or_nvidiadkms/
-- https://wiki.archlinux.org/title/NVIDIA
-- https://github.com/bayasdev/envycontrol
-- https://www.youtube.com/watch?v=cTNkb-qG0Dc
+- <https://www.reddit.com/r/archlinux/comments/16iz9co/nvidia_or_nvidiadkms/>
+- <https://wiki.archlinux.org/title/NVIDIA>
+- <https://github.com/bayasdev/envycontrol>
+- <https://www.youtube.com/watch?v=cTNkb-qG0Dc>
 
 ## PRIME
 
@@ -334,7 +334,7 @@ prime-run nautilus
 
 **References:**
 
-- https://wiki.archlinux.org/title/PRIME
+- <https://wiki.archlinux.org/title/PRIME>
 
 # DKMS and KMS
 
@@ -351,10 +351,10 @@ I installed `nvidia-dkms` which automatically regenerate the `initramfs` after u
 
 **References:**
 
-- https://wiki.archlinux.org/title/NVIDIA#Installation
-- https://wiki.archlinux.org/title/Dynamic_Kernel_Module_Support#Installation
-- https://wiki.archlinux.org/title/NVIDIA#pacman_hook
-- https://wiki.archlinux.org/title/Mkinitcpio#Manual_generation
+- <https://wiki.archlinux.org/title/NVIDIA#Installation>
+- <https://wiki.archlinux.org/title/Dynamic_Kernel_Module_Support#Installation>
+- <https://wiki.archlinux.org/title/NVIDIA#pacman_hook>
+- <https://wiki.archlinux.org/title/Mkinitcpio#Manual_generation>
 
 # Swap partition
 
@@ -379,7 +379,7 @@ I usually don't prefer this method because I have good amount of RAM. I use manu
 
 **References:**
 
-- https://wiki.archlinux.org/title/Zram
+- <https://wiki.archlinux.org/title/Zram>
 
 ## Swap partition
 
@@ -515,14 +515,14 @@ I usually don't prefer this method because I have good amount of RAM. I use manu
 
 **References:**
 
-- https://btrfs.readthedocs.io/en/latest/Swapfile.html
-- https://man.archlinux.org/man/btrfs.5#SWAPFILE_SUPPORT
-- https://wiki.archlinux.org/title/Btrfs#Swap_file
-- https://www.youtube.com/watch?v=3DnLrxrnl2I
-- https://wiki.archlinux.org/title/Swap#Swappiness
-- https://www.howtogeek.com/449691/what-is-swapiness-on-linux-and-how-to-change-it/#swappiness
-- https://github.com/torvalds/linux/blob/v5.0/Documentation/sysctl/vm.txt#L809
-- https://askubuntu.com/questions/103915/how-do-i-configure-swappiness
+- <https://btrfs.readthedocs.io/en/latest/Swapfile.html>
+- <https://man.archlinux.org/man/btrfs.5#SWAPFILE_SUPPORT>
+- <https://wiki.archlinux.org/title/Btrfs#Swap_file>
+- <https://www.youtube.com/watch?v=3DnLrxrnl2I>
+- <https://wiki.archlinux.org/title/Swap#Swappiness>
+- <https://www.howtogeek.com/449691/what-is-swapiness-on-linux-and-how-to-change-it/#swappiness>
+- <https://github.com/torvalds/linux/blob/v5.0/Documentation/sysctl/vm.txt#L809>
+- <https://askubuntu.com/questions/103915/how-do-i-configure-swappiness>
 
 ## Utilities
 
@@ -631,10 +631,10 @@ My default suspend mode is `deep` and there is no need to do any of this for me!
 
 **References:**
 
-- https://wiki.archlinux.org/title/Power_management/Suspend_and_hibernate
-- https://docs.kernel.org/admin-guide/pm/sleep-states.html#basic-sysfs-interfaces-for-system-suspend-and-hibernation
-- https://wiki.archlinux.org/title/Kernel_parameters
-- https://web.archive.org/web/20230614200816/https://01.org/blogs/qwang59/2018/how-achieve-s0ix-states-linux
+- <https://wiki.archlinux.org/title/Power_management/Suspend_and_hibernate>
+- <https://docs.kernel.org/admin-guide/pm/sleep-states.html#basic-sysfs-interfaces-for-system-suspend-and-hibernation>
+- <https://wiki.archlinux.org/title/Kernel_parameters>
+- <https://web.archive.org/web/20230614200816/https://01.org/blogs/qwang59/2018/how-achieve-s0ix-states-linux>
 
 # Hibernation
 
@@ -683,8 +683,8 @@ Special Thanks to legendary archwiki!
 
 **References:**
 
-- https://wiki.archlinux.org/title/Power_management/Suspend_and_hibernate#Hibernation
-- https://btrfs.readthedocs.io/en/latest/ch-swapfile.html
+- <https://wiki.archlinux.org/title/Power_management/Suspend_and_hibernate#Hibernation>
+- <https://btrfs.readthedocs.io/en/latest/ch-swapfile.html>
 
 ## Hibernation button
 
@@ -708,7 +708,7 @@ Then reload the gnome-shell by logging out.
 
 **References:**
 
-- https://www.reddit.com/r/Fedora/comments/10h6kop/unite_gnome_shell_extension_cant_be_enabled_due/
+- <https://www.reddit.com/r/Fedora/comments/10h6kop/unite_gnome_shell_extension_cant_be_enabled_due/>
 
 # Wayland and X11 setup
 
@@ -783,10 +783,10 @@ sudo tee /etc/modprobe.d/nvidia-modeset.conf <<< 'options nvidia_drm modeset=1 f
 
    **References:**
 
-- https://wiki.archlinux.org/title/NVIDIA#DRM_kernel_mode_setting
-- https://forum.manjaro.org/t/how-to-add-nvidia-drm-modeset-1-kernel-parameter/152447
-- https://wiki.archlinux.org/title/Mkinitcpio#HOOKS
-- https://www.reddit.com/r/archlinux/comments/1bdf8eo/black_screen_after_installing_nvidia/
+- <https://wiki.archlinux.org/title/NVIDIA#DRM_kernel_mode_setting>
+- <https://forum.manjaro.org/t/how-to-add-nvidia-drm-modeset-1-kernel-parameter/152447>
+- <https://wiki.archlinux.org/title/Mkinitcpio#HOOKS>
+- <https://www.reddit.com/r/archlinux/comments/1bdf8eo/black_screen_after_installing_nvidia/>
 
 # Secure Boot
 
@@ -896,10 +896,10 @@ For me it wasn't activated.
 
 **References:**
 
-- https://github.com/Foxboron/sbctl
-- https://wiki.archlinux.org/title/Unified_Extensible_Firmware_Interface/Secure_Boot#Assisted_process_with_sbctl
-- https://man.archlinux.org/man/bootctl.1
-- https://www.youtube.com/watch?v=yU-SE7QX6WQ
+- <https://github.com/Foxboron/sbctl>
+- <https://wiki.archlinux.org/title/Unified_Extensible_Firmware_Interface/Secure_Boot#Assisted_process_with_sbctl>
+- <https://man.archlinux.org/man/bootctl.1>
+- <https://www.youtube.com/watch?v=yU-SE7QX6WQ>
 
 # GNOME
 
@@ -934,7 +934,7 @@ dconf load / < dconf-system-backup.conf
 
 **References:**
 
-- https://man.archlinux.org/man/dconf.1.en
+- <https://man.archlinux.org/man/dconf.1.en>
 
 ## Troubleshooting
 
@@ -957,7 +957,7 @@ sudo reboot
 
 **References:**
 
-- https://www.reddit.com/r/gnome/comments/wzsxfl/comment/j3gmzet/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+- <https://www.reddit.com/r/gnome/comments/wzsxfl/comment/j3gmzet/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button>
 
 ### GNOME Wayland crashes at starting
 
@@ -991,7 +991,7 @@ If you messed something on gnome configurations:
 
 **References:**
 
-- https://www.youtube.com/watch?v=anCaH8nzoeI
+- <https://www.youtube.com/watch?v=anCaH8nzoeI>
 
 ## `Flatpak` and `Flathub`
 
@@ -1005,14 +1005,14 @@ If you installed gnome, `flatpak` is installed by default. I personally prefer t
 
 ```bash
 flatpak --system remote-delete flathub
-flatpak --user remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+flatpak --user remote-add --if-not-exists flathub <https://dl.flathub.org/repo/flathub.flatpakrepo>
 ```
 
 **References:**
 
-- https://flatpak.org/setup/Arch
-- https://docs.flathub.org/docs/for-users/user-vs-system-install
-- https://docs.flatpak.org/en/latest/using-flatpak.html
+- <https://flatpak.org/setup/Arch>
+- <https://docs.flathub.org/docs/for-users/user-vs-system-install>
+- <https://docs.flatpak.org/en/latest/using-flatpak.html>
 
 ## Yay AUR Helper
 
@@ -1038,8 +1038,8 @@ yay -Yc
 
 **References:**
 
-- https://github.com/Jguer/yay
-- https://wiki.archlinux.org/title/AUR_helpers
+- <https://github.com/Jguer/yay>
+- <https://wiki.archlinux.org/title/AUR_helpers>
 
 ## Paru AUR Helper
 
@@ -1101,10 +1101,10 @@ Take a look at [this](https://www.youtube.com/watch?v=URCDBY3LaXc) for more info
 
 **References:**
 
-- https://github.com/Morganamilo/paru
-- https://github.com/Morganamilo/paru/issues/1239
-- https://www.youtube.com/watch?v=URCDBY3LaXc
-- https://wiki.archlinux.org/title/Pacman#Querying_package_databases
+- <https://github.com/Morganamilo/paru>
+- <https://github.com/Morganamilo/paru/issues/1239>
+- <https://www.youtube.com/watch?v=URCDBY3LaXc>
+- <https://wiki.archlinux.org/title/Pacman#Querying_package_databases>
 
 ## Uninstalling a package
 
@@ -1148,8 +1148,8 @@ cd ~/.var/app
 
 **References:**
 
-- https://wiki.archlinux.org/title/Pacman#Removing_packages
-- https://bbs.archlinux.org/viewtopic.php?id=88600
+- <https://wiki.archlinux.org/title/Pacman#Removing_packages>
+- <https://bbs.archlinux.org/viewtopic.php?id=88600>
 
 ## Upgrading packages
 
@@ -1173,9 +1173,9 @@ flatpak update
 
 **References:**
 
-- https://wiki.archlinux.org/title/Pacman#Upgrading_packages
-- https://github.com/Morganamilo/paru
-- https://github.com/Jguer/yay
+- <https://wiki.archlinux.org/title/Pacman#Upgrading_packages>
+- <https://github.com/Morganamilo/paru>
+- <https://github.com/Jguer/yay>
 
 ## Cleaning the package cache
 
@@ -1194,10 +1194,10 @@ flatpak repair
 
 **References:**
 
-- https://wiki.archlinux.org/title/Pacman#Cleaning_the_package_cache
-- https://linuxcommandlibrary.com/man/paru
-- https://linuxcommandlibrary.com/man/yay
-- https://www.reddit.com/r/linuxquestions/comments/t3ztym/do_flatpaks_have_a_cache_folder_i_have_to_clean/
+- <https://wiki.archlinux.org/title/Pacman#Cleaning_the_package_cache>
+- <https://linuxcommandlibrary.com/man/paru>
+- <https://linuxcommandlibrary.com/man/yay>
+- <https://www.reddit.com/r/linuxquestions/comments/t3ztym/do_flatpaks_have_a_cache_folder_i_have_to_clean/>
 
 ## Query the package database
 
@@ -1217,7 +1217,7 @@ yay -Q | grep gnome
 
 **References:**
 
-- https://wiki.archlinux.org/title/Pacman#Querying_package_databases
+- <https://wiki.archlinux.org/title/Pacman#Querying_package_databases>
 
 ## Troubleshooting
 
@@ -1227,7 +1227,7 @@ These warnings at `pacman` update are not that serious. You can ignoore it or yo
 
 **References:**
 
-- https://www.reddit.com/r/archlinux/comments/seqdzk/possibly_missing_hardware/
+- <https://www.reddit.com/r/archlinux/comments/seqdzk/possibly_missing_hardware/>
 
 ### failed to synchronize all databases (invalid or corrupted database (PGP signature))
 
@@ -1241,8 +1241,8 @@ paru
 
 **References:**
 
-- https://bbs.archlinux.org/viewtopic.php?id=142798
-- https://www.reddit.com/r/archlinux/comments/v2zyad/pacman_invalid_or_corrupted_database_pgp_signature/
+- <https://bbs.archlinux.org/viewtopic.php?id=142798>
+- <https://www.reddit.com/r/archlinux/comments/v2zyad/pacman_invalid_or_corrupted_database_pgp_signature/>
 
 # Power Management
 
@@ -1297,9 +1297,9 @@ watch -n 1 cat /sys/bus/pci/devices/0000\:01\:00.0/power/runtime_status
 
 **References:**
 
-- https://github.com/fenrus75/powertop
-- https://wiki.archlinux.org/title/Power_management#Console
-- https://superuser.com/questions/808397/understanding-the-output-of-sys-class-power-supply-bat0-uevent
+- <https://github.com/fenrus75/powertop>
+- <https://wiki.archlinux.org/title/Power_management#Console>
+- <https://superuser.com/questions/808397/understanding-the-output-of-sys-class-power-supply-bat0-uevent>
 
 ## Troubleshoting
 
@@ -1307,7 +1307,7 @@ watch -n 1 cat /sys/bus/pci/devices/0000\:01\:00.0/power/runtime_status
 
 **References:**
 
-- https://unix.stackexchange.com/questions/503679/systemd-unit-file-wantedby-and-after
+- <https://unix.stackexchange.com/questions/503679/systemd-unit-file-wantedby-and-after>
 
 # GTK
 
@@ -1344,11 +1344,11 @@ MESA_LOADER_DRIVER_OVERRIDE=i915 google-chrome-stable --ozone-platform-hint=auto
 
 **References:**
 
-- https://bbs.archlinux.org/viewtopic.php?id=298254
-- https://wiki.archlinux.org/title/GTK#Configuration
-- https://wiki.archlinux.org/title/GTK#GTK_4_applications_are_slow
-- https://wiki.archlinux.org/title/Environment_variables#Per_Wayland_session
-- https://github.com/dreemurrs-embedded/Pine64-Arch/issues/175
+- <https://bbs.archlinux.org/viewtopic.php?id=298254>
+- <https://wiki.archlinux.org/title/GTK#Configuration>
+- <https://wiki.archlinux.org/title/GTK#GTK_4_applications_are_slow>
+- <https://wiki.archlinux.org/title/Environment_variables#Per_Wayland_session>
+- <https://github.com/dreemurrs-embedded/Pine64-Arch/issues/175>
 
 # Screen
 
@@ -1362,9 +1362,9 @@ In the date of adding this instruction, `wayland` still hasn't released the frac
 
 **References:**
 
-- https://wiki.archlinux.org/title/HiDPI#Fractional_scaling
-- https://www.reddit.com/r/gnome/comments/xvc5oe/gnome_scaling/
-- https://www.youtube.com/watch?v=dZIfjbZN0H8
+- <https://wiki.archlinux.org/title/HiDPI#Fractional_scaling>
+- <https://www.reddit.com/r/gnome/comments/xvc5oe/gnome_scaling/>
+- <https://www.youtube.com/watch?v=dZIfjbZN0H8>
 
 ## Is it Wayland or XWayland?
 
@@ -1380,9 +1380,9 @@ There are lots of other methods. Your can check references for this.
 
 **References:**
 
-- https://www.reddit.com/r/wayland/comments/1ake7mw/how_do_i_know_my_app_uses_wayland_or_x11/#:~:text=Run%20xeyes%20and%20move%20mouse,%27t%2C%20it%27s%20native%20Wayland.
-- https://askubuntu.com/questions/1393618/how-can-i-tell-if-an-application-is-using-xwayland
-- https://medium.com/@bugaevc/how-to-easily-determine-if-an-app-runs-on-xwayland-or-on-wayland-natively-8191b506ab9a
+- <https://www.reddit.com/r/wayland/comments/1ake7mw/how_do_i_know_my_app_uses_wayland_or_x11/#:~:text=Run%20xeyes%20and%20move%20mouse,%27t%2C%20it%27s%20native%20Wayland.>
+- <https://askubuntu.com/questions/1393618/how-can-i-tell-if-an-application-is-using-xwayland>
+- <https://medium.com/@bugaevc/how-to-easily-determine-if-an-app-runs-on-xwayland-or-on-wayland-natively-8191b506ab9a>
 
 # Sound
 
@@ -1439,7 +1439,7 @@ To automate the `wireplumber.service` restart using `udev`:
 
 **References:**
 
-- https://wiki.archlinux.org/title/WirePlumber#Delete_corrupt_settings
+- <https://wiki.archlinux.org/title/WirePlumber#Delete_corrupt_settings>
 
 # Bluetooth
 
@@ -1468,7 +1468,7 @@ sudo systemctl start bluetooth-autoconnect
 
 **References:**
 
-- https://github.com/jrouleau/bluetooth-autoconnect
+- <https://github.com/jrouleau/bluetooth-autoconnect>
 
 # Touchpad
 
@@ -1497,11 +1497,11 @@ sudo systemctl stop touchegg
 
 **References:**
 
-- https://github.com/JoseExposito/touchegg
-- https://github.com/JoseExposito/touche
-- https://github.com/JoseExposito/gnome-shell-extension-x11gestures?tab=readme-ov-file
-- https://flathub.org/apps/com.github.joseexposito.touche
-- https://wiki.archlinux.org/title/Touchegg
+- <https://github.com/JoseExposito/touchegg>
+- <https://github.com/JoseExposito/touche>
+- <https://github.com/JoseExposito/gnome-shell-extension-x11gestures?tab=readme-ov-file>
+- <https://flathub.org/apps/com.github.joseexposito.touche>
+- <https://wiki.archlinux.org/title/Touchegg>
 
 # Conservation mode
 
@@ -1513,8 +1513,8 @@ echo 0 | sudo tee /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation
 
 **References:**
 
-- https://wiki.archlinux.org/title/Laptop/Lenovo#Battery_conservation_mode
-- https://askubuntu.com/questions/900306/how-to-turn-off-lenovo-conservative-mode-using-ubuntu
+- <https://wiki.archlinux.org/title/Laptop/Lenovo#Battery_conservation_mode>
+- <https://askubuntu.com/questions/900306/how-to-turn-off-lenovo-conservative-mode-using-ubuntu>
 
 # Applications and Packages
 
@@ -1569,7 +1569,7 @@ paru -S spotify
 
 **References:**
 
-- https://wiki.archlinux.org/title/Spotify
+- <https://wiki.archlinux.org/title/Spotify>
 
 ## Essential `pacman` applications
 
@@ -1593,12 +1593,12 @@ sudo pacman -S libreoffice-fresh
 
 One of the useful extensions for LibreOffice to quickly resolve the most common formatting mistakes of old scans, PDF imports and every digital text file, is Pepito Cleaner. You can download and install it via the following link:
 
-- https://pepitoweb.altervista.org/pepito_cleaner/index.php
+- <https://pepitoweb.altervista.org/pepito_cleaner/index.php>
 
 To make `libreoffice` more functional I highly recommend you to watch the following YouTube videos:
 
-- https://www.youtube.com/watch?v=x44bda1dz84
-- https://www.youtube.com/watch?v=G0che2Az9hw
+- <https://www.youtube.com/watch?v=x44bda1dz84>
+- <https://www.youtube.com/watch?v=G0che2Az9hw>
 
 ### OnlyOffice
 
@@ -1616,7 +1616,7 @@ One of the advanced tools for PDF editing is LibreOffice Draw which will be auto
 
 **References:**
 
-- https://www.youtube.com/watch?v=ie7Jb1KiIBM
+- <https://www.youtube.com/watch?v=ie7Jb1KiIBM>
 
 ### Xournal++
 
@@ -1653,7 +1653,7 @@ This instruction is prepared for `flatpak` installation of GIMP.
 ```bash
 mkdir -p ~/Downloads
 cd ~/Downloads
-wget https://github.com/Diolinux/PhotoGIMP/releases/download/1.1/PhotoGIMP.zip
+wget <https://github.com/Diolinux/PhotoGIMP/releases/download/1.1/PhotoGIMP.zip>
 unzip PhotoGIMP.zip -d PhotoGIMP/
 cd PhotoGIMP/PhotoGIMP-master/
 rsync -r .var/ ~/.var/
@@ -1665,8 +1665,8 @@ Always check for new versions of PhotoGIMP at [this](https://github.com/Diolinux
 
 **References:**
 
-- https://github.com/Diolinux/PhotoGIMP
-- https://unix.stackexchange.com/questions/149965/how-to-copy-merge-two-directories
+- <https://github.com/Diolinux/PhotoGIMP>
+- <https://unix.stackexchange.com/questions/149965/how-to-copy-merge-two-directories>
 
 ### Extract audio from video files
 
@@ -1754,9 +1754,9 @@ Exec=/usr/bin/code ---ozone-platform-hint=auto --enable-features=TouchpadOverscr
 
 **References:**
 
-- https://www.reddit.com/r/swaywm/comments/n8dymo/vs_code_finally_works_natively_in_wayland/
-- https://wiki.archlinux.org/title/Visual_Studio_Code#Running_natively_under_Wayland
-- https://www.reddit.com/r/Fedora/comments/1afkoge/how_to_make_vscode_run_in_wayland_mode/
+- <https://www.reddit.com/r/swaywm/comments/n8dymo/vs_code_finally_works_natively_in_wayland/>
+- <https://wiki.archlinux.org/title/Visual_Studio_Code#Running_natively_under_Wayland>
+- <https://www.reddit.com/r/Fedora/comments/1afkoge/how_to_make_vscode_run_in_wayland_mode/>
 
 ## Browsers
 
@@ -1793,7 +1793,7 @@ Icon=/home/<USER>/.icons/firefox/<ICON>
 Also I highly recommend you take a look at [this](https://mozilla.design/firefox/#logos-usage). It has lots of cool icons.
 **References:**
 
-- https://www.reddit.com/r/firefox/comments/1ecmxys/cool_firefox_icons_i_stumbled_upon_links_below/
+- <https://www.reddit.com/r/firefox/comments/1ecmxys/cool_firefox_icons_i_stumbled_upon_links_below/>
 
 ### Microsoft Edge
 
@@ -1818,7 +1818,7 @@ The add following flags to `Exec` lines:
 
 **References:**
 
-- https://wiki.archlinux.org/title/Chromium#Touchpad_Gestures_for_Navigation
+- <https://wiki.archlinux.org/title/Chromium#Touchpad_Gestures_for_Navigation>
 
 ### Google Chrome
 
@@ -1844,7 +1844,7 @@ The add following flags to `Exec` lines:
 Remember adding these flags before `%U` or `%F`.
 **References:**
 
-- https://wiki.archlinux.org/title/Chromium#Touchpad_Gestures_for_Navigation
+- <https://wiki.archlinux.org/title/Chromium#Touchpad_Gestures_for_Navigation>
 
 ### Epiphany
 
@@ -1852,7 +1852,7 @@ Epiphany is very neat and simple. It is the default browser for GNOME and it wil
 
 **References:**
 
-- https://wiki.archlinux.org/title/GNOME/Web
+- <https://wiki.archlinux.org/title/GNOME/Web>
 
 ### tor Browser
 
@@ -1862,7 +1862,7 @@ sudo pacman -S torbrowser-launcher
 
 **References:**
 
-- https://wiki.archlinux.org/title/Tor#Installation
+- <https://wiki.archlinux.org/title/Tor#Installation>
 
 ## Mail
 
@@ -1932,11 +1932,11 @@ Some websites embed their video in the website in a way that cannot be detected 
 
 **References:**
 
-- https://wiki.archlinux.org/title/Yt-dlp#Cookies
-- https://github.com/yt-dlp/yt-dlp
-- https://www.reddit.com/r/youtubedl/wiki/cookies/
-- https://www.reddit.com/r/youtubedl/comments/iexk4j/comment/g3002y8/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
-- https://www.reddit.com/r/youtubedl/comments/1beiy6w/comment/lgxfhkm/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+- <https://wiki.archlinux.org/title/Yt-dlp#Cookies>
+- <https://github.com/yt-dlp/yt-dlp>
+- <https://www.reddit.com/r/youtubedl/wiki/cookies/>
+- <https://www.reddit.com/r/youtubedl/comments/iexk4j/comment/g3002y8/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button>
+- <https://www.reddit.com/r/youtubedl/comments/1beiy6w/comment/lgxfhkm/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button>
 
 ## Extract audio from YouTube
 
@@ -1987,8 +1987,8 @@ ln -s /{MATLAB}/bin/matlab /usr/local/bin
 
 **References:**
 
-- https://wiki.archlinux.org/title/MATLAB#Unable_to_launch_the_MATLABWindow_application
-- https://wiki.archlinux.org/title/MATLAB#Installing_from_the_MATLAB_installation_software
+- <https://wiki.archlinux.org/title/MATLAB#Unable_to_launch_the_MATLABWindow_application>
+- <https://wiki.archlinux.org/title/MATLAB#Installing_from_the_MATLAB_installation_software>
 
 ### Usage Issues
 
@@ -2039,8 +2039,8 @@ with the following line:
 
 **References:**
 
-- https://wiki.archlinux.org/title/MATLAB
-- https://wiki.archlinux.org/title/MATLAB#OpenGL_acceleration
+- <https://wiki.archlinux.org/title/MATLAB>
+- <https://wiki.archlinux.org/title/MATLAB#OpenGL_acceleration>
 
 ### Sound Check
 
@@ -2054,7 +2054,7 @@ This should play an except from Handel's "Hallelujah Chorus."
 
 **References:**
 
-- https://wiki.archlinux.org/title/MATLAB#Sound
+- <https://wiki.archlinux.org/title/MATLAB#Sound>
 
 ### Wayland Check
 
@@ -2070,7 +2070,7 @@ Mine was by default on `XWayland`.
 
 **References:**
 
-- https://wiki.archlinux.org/title/MATLAB#Running_on_Wayland
+- <https://wiki.archlinux.org/title/MATLAB#Running_on_Wayland>
 
 ### MATLAB desktop entry
 
@@ -2125,9 +2125,9 @@ update-desktop-database ~/.local/share/applications
 
 **References:**
 
-- https://wiki.archlinux.org/title/MATLAB#Desktop_entry
-- https://ch.mathworks.com/matlabcentral/answers/526460-matlab-with-2-icons-on-the-dock-in-linux
-- https://iconduck.com/icons/63437/matlab
+- <https://wiki.archlinux.org/title/MATLAB#Desktop_entry>
+- <https://ch.mathworks.com/matlabcentral/answers/526460-matlab-with-2-icons-on-the-dock-in-linux>
+- <https://iconduck.com/icons/63437/matlab>
 
 ### HiDPI scaling
 
@@ -2148,7 +2148,7 @@ Open Home Tab > Preferences (Gear Icon) > MATLAB > Fonts > Use antiliasing to sm
 
 **References:**
 
-- https://wiki.archlinux.org/title/HiDPI#MATLAB
+- <https://wiki.archlinux.org/title/HiDPI#MATLAB>
 
 ## Speedtest
 
@@ -2203,7 +2203,7 @@ To customize some applications like firefox we can use `tweaks.sh`:
 
 Please go to [Firefox menu] > [Customize...], and customize your Firefox to make it work. Move your 'new tab' button to the titlebar instead of tab-switcher.
 
-You need install adaptive-tab-bar-colour plugin first for `adaptive` mode: https://addons.mozilla.org/firefox/addon/adaptive-tab-bar-colour/
+You need install adaptive-tab-bar-colour plugin first for `adaptive` mode: <https://addons.mozilla.org/firefox/addon/adaptive-tab-bar-colour/>
 
 **Note:** If you faced a misplaced searchbar on firefox, close firefox and reexecute the `./tweaks.sh` command.
 
@@ -2219,9 +2219,9 @@ After all relogin to get the theme availiable on all apps.
 
 **References:**
 
-- https://github.com/vinceliuice/WhiteSur-gtk-theme
-- https://github.com/vinceliuice/WhiteSur-gtk-theme?tab=readme-ov-file#--fix-for-flatpak--
-- https://itsfoss.com/flatpak-app-apply-theme/
+- <https://github.com/vinceliuice/WhiteSur-gtk-theme>
+- <https://github.com/vinceliuice/WhiteSur-gtk-theme?tab=readme-ov-file#--fix-for-flatpak-->
+- <https://itsfoss.com/flatpak-app-apply-theme/>
 
 ## Catppuccin
 
@@ -2231,7 +2231,7 @@ paru -S catppuccin-gtk-theme-mocha
 
 **References:**
 
-- https://catppuccin.com/
+- <https://catppuccin.com/>
 
 ## Yaru Theme (Ubuntu Theme)
 
@@ -2259,8 +2259,8 @@ To reset, _sudo gtk theme_ remove `*.css` files from `/root/.config/gtk-3.0` and
 
 **References:**
 
-- https://www.reddit.com/r/gnome/comments/x2d3dq/gradience_the_tool_to_adjust_colors_for/
-- https://github.com/RusticBard/Skeuowaita
+- <https://www.reddit.com/r/gnome/comments/x2d3dq/gradience_the_tool_to_adjust_colors_for/>
+- <https://github.com/RusticBard/Skeuowaita>
 
 ## Themes on flatpak apps
 
@@ -2283,7 +2283,7 @@ sudo flatpak override --env=ICON_THEME=MY_ICON_THEME
 
 **References:**
 
-- https://itsfoss.com/flatpak-app-apply-theme/
+- <https://itsfoss.com/flatpak-app-apply-theme/>
 
 # Icons
 
@@ -2307,7 +2307,7 @@ paru -S skeuowaita-git
 
 **References:**
 
-- https://github.com/RusticBard/Skeuowaita
+- <https://github.com/RusticBard/Skeuowaita>
 
 # Fonts
 
@@ -2319,8 +2319,8 @@ sudo pacman -S noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra
 
 **References:**
 
-- https://wiki.archlinux.org/title/Fonts#Emoji_and_symbols
-- https://www.reddit.com/r/archlinux/comments/1af46vq/some_unicode_characters_not_rendering_properly/
+- <https://wiki.archlinux.org/title/Fonts#Emoji_and_symbols>
+- <https://www.reddit.com/r/archlinux/comments/1af46vq/some_unicode_characters_not_rendering_properly/>
 
 ## `nerd-fonts`
 
@@ -2343,7 +2343,7 @@ paru -S ttf-ms-win11-auto
 
 **References:**
 
-- https://wiki.archlinux.org/title/Microsoft_fonts
+- <https://wiki.archlinux.org/title/Microsoft_fonts>
 
 ## Awesome Fonts
 
@@ -2353,8 +2353,8 @@ sudo pacman -S ttf-font-awesome
 
 **References:**
 
-- https://www.reddit.com/r/gnome/comments/9c8a07/what_fonts_do_you_use_with_your_gnome/
-- https://fontawesome.com/
+- <https://www.reddit.com/r/gnome/comments/9c8a07/what_fonts_do_you_use_with_your_gnome/>
+- <https://fontawesome.com/>
 
 ## Persian Fonts
 
@@ -2404,7 +2404,7 @@ fc-cache -fv
 
 **References:**
 
-- https://wiki.archlinux.org/title/Font_configuration
+- <https://wiki.archlinux.org/title/Font_configuration>
 
 # Hyprland
 
@@ -2414,9 +2414,9 @@ First of all I should especially thank [typecraft](https://www.youtube.com/@type
 
 **References:**
 
-- https://youtu.be/2CP_9-jCV6A?si=BlMLNR5JLj67ER-Y
-- https://youtu.be/KA1jv40q9lQ?si=UxY36R0i7Y02K7xl
-- https://youtu.be/omhJMH9lPPc?si=lRB-t1ZECN9ZB4Zr
+- <https://youtu.be/2CP_9-jCV6A?si=BlMLNR5JLj67ER-Y>
+- <https://youtu.be/KA1jv40q9lQ?si=UxY36R0i7Y02K7xl>
+- <https://youtu.be/omhJMH9lPPc?si=lRB-t1ZECN9ZB4Zr>
 
 ## Installation
 
@@ -2449,8 +2449,8 @@ At first login, you have a naive desktop manager without anything. You can launc
 
 **References:**
 
-- https://wiki.hyprland.org/Getting-Started/Installation/
-- https://wiki.hyprland.org/Useful-Utilities/Systemd-start/#installation
+- <https://wiki.hyprland.org/Getting-Started/Installation/>
+- <https://wiki.hyprland.org/Useful-Utilities/Systemd-start/#installation>
 
 ### Must Have
 
@@ -2465,9 +2465,9 @@ Add `exec-once = systemctl --user start hyprpolkitagent` to `hyprland.conf`.
 
 **References:**
 
-- https://wiki.hyprland.org/Useful-Utilities/Must-have/
-- https://wiki.hyprland.org/Hypr-Ecosystem/xdg-desktop-portal-hyprland/
-- https://wiki.hyprland.org/Hypr-Ecosystem/hyprpolkitagent/
+- <https://wiki.hyprland.org/Useful-Utilities/Must-have/>
+- <https://wiki.hyprland.org/Hypr-Ecosystem/xdg-desktop-portal-hyprland/>
+- <https://wiki.hyprland.org/Hypr-Ecosystem/hyprpolkitagent/>
 
 ## Display Settings
 
@@ -2539,8 +2539,8 @@ export HYPRCURSOR_SIZE=32
 
 **References:**
 
-- https://wiki.hyprland.org/Configuring/XWayland/#hidpi-xwayland
-- https://wiki.hyprland.org/Configuring/Environment-variables/
+- <https://wiki.hyprland.org/Configuring/XWayland/#hidpi-xwayland>
+- <https://wiki.hyprland.org/Configuring/Environment-variables/>
 
 ## Default file manager
 
@@ -2575,7 +2575,7 @@ stow -t ~ wofi
 
 **References:**
 
-- https://github.com/typecraft-dev/dotfiles/tree/master
+- <https://github.com/typecraft-dev/dotfiles/tree/master>
 
 ### `rofi`
 
@@ -2589,7 +2589,7 @@ Customization:
 
 1. Installation
    ```bash
-   git clone --depth=1 https://github.com/adi1090x/rofi.git ~/Programs/rofi-themes/
+   git clone --depth=1 <https://github.com/adi1090x/rofi.git ~/Programs/rofi-themes/>
    cd ~/Programs/rofi-themes/
    chmod +x setup.sh
    ./setup.sh
@@ -2607,7 +2607,7 @@ Customization:
 
 **References:**
 
-- https://www.youtube.com/watch?v=TutfIwxSE_s
+- <https://www.youtube.com/watch?v=TutfIwxSE_s>
 
 ## Shortcuts
 
@@ -2656,10 +2656,10 @@ bindel = ,XF86MonBrightnessDown, exec, brightnessctl -d intel_backlight s 5%-
 
 **References:**
 
-- https://wiki.hyprland.org/Configuring/Keywords/
-- https://github.com/hyprwm/Hyprland/discussions/2506
-- https://www.reddit.com/r/hyprland/comments/1f23gdd/shortcut_for_changing_workspaces/
-- https://wiki.hyprland.org/Configuring/Dispatchers/
+- <https://wiki.hyprland.org/Configuring/Keywords/>
+- <https://github.com/hyprwm/Hyprland/discussions/2506>
+- <https://www.reddit.com/r/hyprland/comments/1f23gdd/shortcut_for_changing_workspaces/>
+- <https://wiki.hyprland.org/Configuring/Dispatchers/>
 
 ## Touchpad
 
@@ -2738,7 +2738,7 @@ stow -t ~ waybar
 
 **References:**
 
-- https://github.com/Alexays/Waybar/wiki/Configuration
+- <https://github.com/Alexays/Waybar/wiki/Configuration>
 
 ## Notification
 
@@ -2835,7 +2835,7 @@ Make sure to change `monitor` and `path` according to your config.
 
 **References:**
 
-- https://wiki.hyprland.org/Hypr-Ecosystem/hyprlock/
+- <https://wiki.hyprland.org/Hypr-Ecosystem/hyprlock/>
 
 ## idle manager
 
@@ -2891,7 +2891,7 @@ listener {
 Add `hypridle` to `exec-once` on `hyprland.conf`:
 **References:**
 
-- https://wiki.hyprland.org/Hypr-Ecosystem/hypridle/
+- <https://wiki.hyprland.org/Hypr-Ecosystem/hypridle/>
 
 ## Themes
 
@@ -2905,7 +2905,7 @@ Now open `nwg-look` and apply what theme you want.
 
 **References:**
 
-- https://wiki.hyprland.org/Getting-Started/Master-Tutorial/#themes
+- <https://wiki.hyprland.org/Getting-Started/Master-Tutorial/#themes>
 
 ## Cursor
 
@@ -2923,8 +2923,8 @@ exec-once = hyprctl setcursor Bibata-Modern-Classic 24
 
 **References:**
 
-- https://wiki.hyprland.org/Hypr-Ecosystem/hyprcursor/
-- https://www.reddit.com/r/hyprland/comments/18axtng/how_do_i_set_my_cursor_theme/
+- <https://wiki.hyprland.org/Hypr-Ecosystem/hyprcursor/>
+- <https://www.reddit.com/r/hyprland/comments/18axtng/how_do_i_set_my_cursor_theme/>
 
 ## Powerbutton remap
 
@@ -2959,7 +2959,7 @@ This instruction also remapped closing the lid for me.
 
 **References:**
 
-- https://www.reddit.com/r/hyprland/comments/1dym0f1/how_to_change_what_power_button_does/
+- <https://www.reddit.com/r/hyprland/comments/1dym0f1/how_to_change_what_power_button_does/>
 
 ## Wallpaper
 
@@ -2990,7 +2990,7 @@ exec-once = hyprpaper
 
 **References:**
 
-- https://wiki.hyprland.org/Hypr-Ecosystem/hyprpaper/
+- <https://wiki.hyprland.org/Hypr-Ecosystem/hyprpaper/>
 
 ## Resize windows
 
@@ -3002,15 +3002,15 @@ resize_on_border = true
 
 **References:**
 
-- https://wiki.hyprland.org/Configuring/Variables/
-- https://www.reddit.com/r/hyprland/comments/1d7djl5/might_be_a_stupid_question_but_how_do_i_resize/
+- <https://wiki.hyprland.org/Configuring/Variables/>
+- <https://www.reddit.com/r/hyprland/comments/1d7djl5/might_be_a_stupid_question_but_how_do_i_resize/>
 
 ## HyprPanel
 
 ### Installation
 
 ```bash
-curl -fsSL https://bun.sh/install | bash && \
+curl -fsSL <https://bun.sh/install | bash && \>
   sudo ln -s $HOME/.bun/bin/bun /usr/local/bin/bun
 
 paru -S aylurs-gtk-shell
@@ -3089,11 +3089,11 @@ for i in /sys/class/hwmon/hwmon*/temp*_input; do echo "$(<$(dirname $i)/name): $
 
 **References:**
 
-- https://hyprpanel.com/getting_started/installation.html
-- https://github.com/Jas-SinghFSU/HyprPanel
-- https://www.youtube.com/watch?v=6Dn9k8EX0-M
-- https://hyprpanel.com/configuration/panel.html#layouts
-- https://hyprpanel.com/configuration/panel.html#cpu-temperature
+- <https://hyprpanel.com/getting_started/installation.html>
+- <https://github.com/Jas-SinghFSU/HyprPanel>
+- <https://www.youtube.com/watch?v=6Dn9k8EX0-M>
+- <https://hyprpanel.com/configuration/panel.html#layouts>
+- <https://hyprpanel.com/configuration/panel.html#cpu-temperature>
 
 ## gnome-control-center
 
@@ -3107,7 +3107,7 @@ bind = $mainMod, I, exec, $settings
 
 **References:**
 
-- https://discourse.gnome.org/t/gnome-control-center-outside-of-gnome/15771
+- <https://discourse.gnome.org/t/gnome-control-center-outside-of-gnome/15771>
 
 ## Keyboard Languages
 
@@ -3153,11 +3153,11 @@ input {
 
 **References:**
 
-- https://wiki.hyprland.org/Configuring/Uncommon-tips--tricks/
-- https://unix.stackexchange.com/questions/43976/list-all-valid-kbd-layouts-variants-and-toggle-options-to-use-with-setxkbmap
-- https://www.reddit.com/r/hyprland/comments/176algg/how_do_i_change_the_keyboard_language_in_hyprland/
-- https://www.reddit.com/r/hyprland/comments/xtxmv8/eli5_how_do_i_change_keyboard_layout_in_hyprland/
-- https://wiki.hyprland.org/Configuring/Variables/#input
+- <https://wiki.hyprland.org/Configuring/Uncommon-tips--tricks/>
+- <https://unix.stackexchange.com/questions/43976/list-all-valid-kbd-layouts-variants-and-toggle-options-to-use-with-setxkbmap>
+- <https://www.reddit.com/r/hyprland/comments/176algg/how_do_i_change_the_keyboard_language_in_hyprland/>
+- <https://www.reddit.com/r/hyprland/comments/xtxmv8/eli5_how_do_i_change_keyboard_layout_in_hyprland/>
+- <https://wiki.hyprland.org/Configuring/Variables/#input>
 
 ## PROXY
 
@@ -3216,8 +3216,8 @@ When the pop up appears in GNOME, press enter and don't make any password for au
 
 **References:**
 
-- https://www.reddit.com/r/hyprland/comments/1avevff/brave_deletes_all_sessions_after_closure_in/
-- https://bbs.archlinux.org/viewtopic.php?id=285563
+- <https://www.reddit.com/r/hyprland/comments/1avevff/brave_deletes_all_sessions_after_closure_in/>
+- <https://bbs.archlinux.org/viewtopic.php?id=285563>
 
 ### Cannot turn on the bluetooth
 
@@ -3227,5 +3227,5 @@ rfkill unblock bluetooth
 
 **References:**
 
-- https://stackoverflow.com/questions/68728478/failed-to-set-power-on-org-bluez-error-blocked-problem
-- https://stackoverflow.com/questions/34709583/bluetoothctl-set-passkey
+- <https://stackoverflow.com/questions/68728478/failed-to-set-power-on-org-bluez-error-blocked-problem>
+- <https://stackoverflow.com/questions/34709583/bluetoothctl-set-passkey>
