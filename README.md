@@ -949,7 +949,7 @@ glxinfo | grep "OpenGL renderer"
 Reinstall your drivers:
 
 ```bash
-sudo pacman -Rsucm xf86-video-intel
+sudo pacman -Rsucn xf86-video-intel
 sudo pacman -S intel-media-driver
 sudo pacman -S nvidia-dkms nvidia-utils
 sudo reboot
@@ -1668,6 +1668,12 @@ Always check for new versions of PhotoGIMP at [this](https://github.com/Diolinux
 - https://github.com/Diolinux/PhotoGIMP
 - https://unix.stackexchange.com/questions/149965/how-to-copy-merge-two-directories
 
+### Extract audio from video files
+
+```bash
+ffmpeg -i "<YOUR_VIDEO>.mp4" audio.mp3
+```
+
 ## Terminals
 
 ```bash
@@ -1931,6 +1937,12 @@ Some websites embed their video in the website in a way that cannot be detected 
 - https://www.reddit.com/r/youtubedl/wiki/cookies/
 - https://www.reddit.com/r/youtubedl/comments/iexk4j/comment/g3002y8/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
 - https://www.reddit.com/r/youtubedl/comments/1beiy6w/comment/lgxfhkm/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+
+## Extract audio from YouTube
+
+```bash
+yt-dlp -x --audio-format mp3 "<YOUR_LINK>"
+```
 
 ## MATLAB
 
