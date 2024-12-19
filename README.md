@@ -90,7 +90,7 @@ https://archlinux.org/download/
 # Linux kernels
 
 ```shell
-sudo pacman -Syyu
+sudo pacman -Syu
 sudo pacman -S linux-firmware
 sudo pacman -S linux linux-headers linux-lts linux-lts-headers
 ```
@@ -261,7 +261,7 @@ sudo systemctl enable nvidia-hibernate.service nvidia-suspend.service nvidia-res
 sudo systemctl start nvidia-powerd.service
 ```
 
-These services help the `system` to manage Nvidia drivers during suspension and hibernation. If you don't enable them, you cannot suspend properly, which leads to high power usage.
+These services help the `system` to manage Nvidia drivers during suspension and hibernation. If you don't enable them, you cannot suspend properly, which leads to high power usage. `nvidia-powerd.service` and `nvidia-persistenced.service` are not necessary you can ignore theme.
 
 One Important problem caused by these services is _screen blanking_ which is produced by running these services after suspend or hibernation modes. This is caused by switching the Nvidia driver to `suspend` mode leading to changing `gnome-shell` subsystems.
 
