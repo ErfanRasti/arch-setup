@@ -639,8 +639,8 @@ For custom modules on the bar you should go to `Configurations > Bar > Layouts >
 ```json
 {
   "0": {
-    "left": ["dashboard", "workspaces", "windowtitle"],
-    "middle": ["media"],
+    "left": ["dashboard", "workspaces", "windowtitle", "media"],
+    "middle": ["clock"],
     "right": [
       "systray",
       "cpu",
@@ -651,19 +651,18 @@ For custom modules on the bar you should go to `Configurations > Bar > Layouts >
       "bluetooth",
       "network",
       "battery",
-      "clock",
       "notifications"
     ]
   },
   "1": {
-    "left": ["dashboard", "workspaces", "windowtitle"],
-    "middle": ["media"],
-    "right": ["volume", "clock", "notifications"]
+    "left": ["dashboard", "workspaces", "windowtitle", "media"],
+    "middle": ["clock"],
+    "right": ["volume", "notifications"]
   },
   "2": {
-    "left": ["dashboard", "workspaces", "windowtitle"],
-    "middle": ["media"],
-    "right": ["volume", "clock", "notifications"]
+    "left": ["dashboard", "workspaces", "windowtitle", "media"],
+    "middle": ["clock"],
+    "right": ["volume", "notifications"]
   }
 }
 ```
