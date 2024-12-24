@@ -77,7 +77,7 @@ To find your desired screen run:
 hyprctl monitors all
 ```
 
-Copy the name of your desired monitor (Mine was `eDP-1`); The go back to `hyprland.conf` and add find the monitors section and add `monitor=<MONITOR_NAME>,<RESOLUTION>,<POSITION>,<SCALE>`. Mine is:
+Copy the name of your desired monitor (Mine was `eDP-1`); Then go back to `hyprland.conf` and add find the monitors section and add `monitor=<MONITOR_NAME>,<RESOLUTION>,<POSITION>,<SCALE>`. Mine is:
 
 ```conf
 monitor=eDP-1,preferred,auto,1.25
@@ -481,6 +481,7 @@ listener {
 ```
 
 Add `hypridle` to `exec-once` on `hyprland.conf`:
+
 **References:**
 
 - <https://wiki.hyprland.org/Hypr-Ecosystem/hypridle/>
@@ -607,8 +608,11 @@ curl -fsSL <https://bun.sh/install | bash && \>
 
 paru -S aylurs-gtk-shell
 sudo pacman -S ttf-jetbrains-mono-nerd
-sudo pacman -S pipewire libgtop bluez bluez-utils btop networkmanager dart-sass wl-clipboard brightnessctl swww python gnome-bluetooth-3.0 pacman-contrib power-profiles-daemon gvfs sass
-paru -S grimblast-git gpu-screen-recorder hyprpicker matugen-bin python-gpustat hyprsunset-git hypridle-git
+sudo pacman -S pipewire libgtop bluez bluez-utils btop networkmanager \
+  dart-sass wl-clipboard brightnessctl swww python gnome-bluetooth-3.0 \
+  pacman-contrib power-profiles-daemon gvfs sass
+paru -S grimblast-git gpu-screen-recorder hyprpicker matugen-bin \
+  python-gpustat hyprsunset-git hypridle-git
 git clone https://github.com/Jas-SinghFSU/HyprPanel.git ~/Programs/HyprPanel
 cd  ~/Programs/HyprPanel;
 git pull
@@ -675,7 +679,11 @@ Numbers are associated to monitor numbers.
 In order to display the CPU Temperature properly, you must first determine the correct CPU sensor for your system. To do that you can use the following command:
 
 ```bash
-for i in /sys/class/hwmon/hwmon*/temp*_input; do echo "$(<$(dirname $i)/name): $(cat ${i%_*}_label 2>/dev/null || echo $(basename ${i%_*})) $(readlink -f $i)"; done
+for i in /sys/class/hwmon/hwmon*/temp*_input; do echo \
+  "$(<$(dirname $i)/name): $(cat ${i%_*}_label 2>\
+  /dev/null || echo $(basename ${i%_*})) \
+  $(readlink -f $i)"; \
+   done
 ```
 
 **References:**
