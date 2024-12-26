@@ -18,7 +18,7 @@ If you installed gnome, `flatpak` is installed by default. I personally prefer t
 
 ```bash
 flatpak --system remote-delete flathub
-flatpak --user remote-add --if-not-exists flathub <https://dl.flathub.org/repo/flathub.flatpakrepo>
+flatpak --user remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 ```
 
 **References:**

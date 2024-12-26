@@ -135,7 +135,7 @@ This instruction is prepared for `flatpak` installation of GIMP.
 ```bash
 mkdir -p ~/Downloads
 cd ~/Downloads
-wget <https://github.com/Diolinux/PhotoGIMP/releases/download/1.1/PhotoGIMP.zip>
+wget https://github.com/Diolinux/PhotoGIMP/releases/download/1.1/PhotoGIMP.zip
 unzip PhotoGIMP.zip -d PhotoGIMP/
 cd PhotoGIMP/PhotoGIMP-master/
 rsync -r .var/ ~/.var/
