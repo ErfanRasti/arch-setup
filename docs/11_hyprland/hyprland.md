@@ -185,7 +185,7 @@ Customization:
 
 1. Installation
    ```bash
-   git clone --depth=1 <https://github.com/adi1090x/rofi.git ~/Programs/rofi-themes/>
+   git clone --depth=1 https://github.com/adi1090x/rofi.git ~/Programs/rofi-themes/
    cd ~/Programs/rofi-themes/
    chmod +x setup.sh
    ./setup.sh
@@ -607,7 +607,7 @@ resize_on_border = true
 ### Installation
 
 ```bash
-curl -fsSL <https://bun.sh/install | bash && \>
+curl -fsSL https://bun.sh/install | bash && \
   sudo ln -s $HOME/.bun/bin/bun /usr/local/bin/bun
 
 paru -S aylurs-gtk-shell
