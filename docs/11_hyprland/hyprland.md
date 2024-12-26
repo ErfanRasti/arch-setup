@@ -18,20 +18,24 @@ The installation is so easy. Also I highly recommend you to install kitty termin
 sudo pacman -S kitty
 ```
 
-I prefer AUR version of `hyprland` because it is more updated:
+I prefer stick to the community repository version of `hyprland` because it is more stable:
 
 ```bash
 sudo pacman -S hyprland
 ```
 
+paru -S hyprland-qtutils
+
+`hyprland-qtutils` is a package that provides some useful utilities for `hyprland`. It is recommended as a warning after openning `hyprland`. If you don't install it you get this warning:
+
+_Your system does not have hyprland-qtutils installed. This is runtime dependency for some dialogs. Consider installing it._
+
 It is recommended to launch hyprland on `uwsm` to make it compatible with systemd distros. So we should Install it:
 
 ```bash
 paru -S uwsm
-paru -S hyprland-qtutils
 ```
 
-`hyprland-qtutils` is a package that provides some useful utilities for `hyprland`. It is recommended as a warning after openning `hyprland (uwsm-managed)`.
 Now you can start `hyprland` by relogin to the systemd and choose `hyprland (uwsm-managed)` at list of your display managers and start!
 In my experiance `uwsm` was so buggy and I personally prefer sticking with the default version.
 
