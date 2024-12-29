@@ -54,6 +54,7 @@ paru -S persian-fonts
 To render Persian fonts correctly:
 
 ```bash
+mkdir -p ~/.config/fontconfig
 nano ~/.config/fontconfig/fonts.conf
 ```
 
