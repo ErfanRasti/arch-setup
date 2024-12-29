@@ -35,7 +35,7 @@ You can install the Arch Linux from scratch (which I highly recommend to adopt w
 8. Run:
    ```bash
    iwctl
-   [iwctl]# list devices
+   [iwctl]# device list
    [iwctl]# station wlan0 scan
    [iwctl]# station wlan0 get-networks
    [iwctl]# station wlan0 connect "WIFI_NAME"
