@@ -42,6 +42,12 @@ You can install the Arch Linux from scratch (which I highly recommend to adopt w
    ```
 9. Now you are connected to the internet. You can install it!
 
+If you use `archinstall` make sure to update it before installation using following command:
+
+```bash
+sudo pacman -Sy archinstall
+```
+
    My configurations:
 
    - **Mirrors region:** United States (`/`for search)
