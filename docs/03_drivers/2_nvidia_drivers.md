@@ -73,6 +73,7 @@ sudo envycontrol -s hybrid --rtd3
 ```bash
 cat /sys/bus/pci/devices/0000\:01\:00.0/power/runtime_status
 ```
+**Note:** If you get `No such file or directory` check your pci devices and find nvidia using `lspci` command.
 
 **References:**
 
