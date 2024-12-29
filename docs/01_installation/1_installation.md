@@ -57,8 +57,8 @@ sudo pacman -Sy archinstall
    - **Bootloader:** `systemd-boot`
    - **Hostname:** Choose what you want
    - **Unified kernel:** disabled in my case
-   - **Root:**Choose your root password
-   - **User:**Create your desired user account with root privileges and desired password
+   - **Root:** Choose your root password
+   - **User:** Create your desired user account with root privileges and desired password
    - **Profile:** Desktop / GNOME / Open-Source Graphics Drivers
      (I use Intel + Nvidia hybrid. In this part I install Intel drivers. In future I will configure Nvidia drivers too)
    - **Audio:** `pipewire`
