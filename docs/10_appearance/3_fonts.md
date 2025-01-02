@@ -6,6 +6,10 @@
 sudo pacman -S noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra
 ```
 
+These are not necessary. You can ignore installing them but `noto-fonts-emoji` is required for `gnome-characters`.
+
+**Note:** If you want rendering Japanese and Chinese characters install all of them.
+
 **References:**
 
 - <https://wiki.archlinux.org/title/Fonts#Emoji_and_symbols>
@@ -36,6 +40,8 @@ paru -S ttf-ms-win11-auto
 
 ### Awesome Fonts
 
+If some fonts (including persian fonts) are not rendered correctly this font wil fix the related issues.
+
 ```bash
 sudo pacman -S ttf-font-awesome
 ```
@@ -49,6 +55,25 @@ sudo pacman -S ttf-font-awesome
 
 ```bash
 paru -S persian-fonts
+```
+
+**Warning:** Some packages of this font family cannot be downloaded correctly (more accurately `persian-hm-ftx-fonts` and `persian-hm-xs2-fonts`). To fix it you should download theme manually:
+
+```bash
+cd ~/.cache/paru/clone/persian-hm-ftx-fonts/
+wget  https://bitbucket.org/dma8hm1334/persian-hm-ftx-3.8/get/master.tar.gz
+mv ./master.tar.gz persian-hm-ftx-fonts-3.8.tar.gz.part
+cd ~/.cache/paru/clone/persian-hm-xs2-fonts/
+wget https://bitbucket.org/dma8hm1334/persian-hm-xs2-3.8/get/master.zip
+mv ./master.zip persian-hm-xs2-fonts-3.8.zip
+paru -S persian-fonts
+cd ~/
+```
+
+You can also install `vazirmatn-fonts` and `vazir-code-fonts` instead:
+
+```bash
+paru -S vazirmatn-fonts vazir-code-fonts
 ```
 
 To render Persian fonts correctly:
@@ -92,6 +117,29 @@ fc-cache
 fc-cache -fv
 ```
 
+Alternatively, if persian fonts looks ugly install this:
+
+```bash
+sudo pacman -S ttf-dejavu
+```
+
+Then:
+
+```bash
+fc-cache
+fc-cache -fv
+```
+
+And finally reopen the app that renders badly.
+
+In this case you can remove the fonts in the previous method:
+
+```bash
+rm -rf ~/.config/fontconfig
+```
+
 **References:**
 
 - <https://wiki.archlinux.org/title/Font_configuration>
+- <https://wiki.archlinux.org/title/Font_configuration/Examples>
+- <https://www.reddit.com/r/linuxquestions/comments/qniaxn/persian_fonts_looks_ugly/>
