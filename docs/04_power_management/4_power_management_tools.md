@@ -2,7 +2,6 @@
 
 For laptop users, power usage is one of the most critical things in linux.
 
-
 ### Conservation mode
 
 To activate conservation mode on Lenovo latops (To disable it pass `0` to it.):
@@ -15,7 +14,6 @@ echo 0 | sudo tee /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation
 
 - <https://wiki.archlinux.org/title/Laptop/Lenovo#Battery_conservation_mode>
 - <https://askubuntu.com/questions/900306/how-to-turn-off-lenovo-conservative-mode-using-ubuntu>
-
 
 ### Monitoring
 
@@ -64,11 +62,20 @@ There are many ways to check this.
 watch -n 1 cat /sys/bus/pci/devices/0000\:01\:00.0/power/runtime_status
 ```
 
+It can be different according to your `lspci` of your `nvidia` device.
+
+Also to get the `power_state` of your cards you can use this command:
+
+```bash
+cat /sys/class/drm/card*/device/power_state
+```
+
 **References:**
 
 - <https://github.com/fenrus75/powertop>
 - <https://wiki.archlinux.org/title/Power_management#Console>
 - <https://superuser.com/questions/808397/understanding-the-output-of-sys-class-power-supply-bat0-uevent>
+- <https://bbs.archlinux.org/viewtopic.php?id=286997>
 
 ### Troubleshoting
 
