@@ -69,7 +69,14 @@ sudo tee /etc/modprobe.d/nvidia-modeset.conf <<< 'options nvidia_drm modeset=1 f
    WaylandEnable=false
    ```
 
-   **References:**
+10. Finally I recommend you to remove unnecessary configuration for `x11`:
+
+    ```bash
+    cd /usr/share/X11/xorg.conf.d/
+    sudo rm 10-amdgpu.conf 10-radeon.conf
+    ```
+
+**References:**
 
 - <https://wiki.archlinux.org/title/NVIDIA#DRM_kernel_mode_setting>
 - <https://forum.manjaro.org/t/how-to-add-nvidia-drm-modeset-1-kernel-parameter/152447>
