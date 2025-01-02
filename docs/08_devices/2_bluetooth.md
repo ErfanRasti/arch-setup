@@ -1,4 +1,4 @@
-# Bluetooth
+## Bluetooth
 
 I use bluez to manage my bluetooth devices:
 
@@ -8,7 +8,7 @@ sudo pacman -S bluez bluez-utils blueman
 
 `blueman` is very useful to manage bluetooth devices. It gives some information about battery of connected devices.
 
-## Auto-connect
+### Auto-connect
 
 To auto-connect bluetooth devices after `suspend` mode or after turning on the bluetooth again I use this `AUR` package:
 
