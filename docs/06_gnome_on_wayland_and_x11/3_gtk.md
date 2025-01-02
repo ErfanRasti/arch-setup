@@ -16,7 +16,15 @@ GDK_DEBUG=gl-no-fractional
 
 Make sure to delete them when using `x11` because it conflicts with some subsystems and can lead to some miss behaviors in opening some applications like `nautilus.` You can also set `GSK_RENDERER=xlib` for `x11`, but it's not necessary because if you don't define `GSK_RENDERER`, it will automatically select `xlib` in the `x11` windowing system.
 
-**Note:** You may encounter some bluriness on fractional scaling. In this situation you can set `GSK_RENDERER=cairo`.
+**Note:** You may encounter some blurriness on fractional scaling. In this situation you can set `GSK_RENDERER=cairo`.
+
+My personal configuration includes this:
+
+```conf
+GSK_RENDERER=cairo
+```
+
+After all, `reboot` to take effect.
 
 _UPDATE:_ The recent updates of `GNOME` fixed it, but there is also a high power usage due to `Nvidia` GPU usage of `ngl`; you can remove it anytime you want, but I prefer to keep it:
 

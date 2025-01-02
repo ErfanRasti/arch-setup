@@ -81,7 +81,7 @@ This is an amazing tool to apply themes. You can also apply theme based on your 
 paru -S gradience
 ```
 
-To activate gradience themes you need to install `adw-gtk-theme`:
+To activate gradience themes you need to install `adw-gtk-theme`. It is also necessary for dark theme on legacy applications on `gnome-tweaks`:
 
 ```bash
 sudo pacman -S adw-gtk-theme
