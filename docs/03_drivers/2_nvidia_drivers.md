@@ -1,4 +1,3 @@
-
 ## NVIDIA
 
 `nvidia-dkms` is used for managing multiple kernels. Since we installed both `linux-lts` and `linux` kernels this is a better option. `nvidia-dkms` also manages kernel upgrades automatically.
@@ -27,7 +26,7 @@ sudo systemctl start nvidia-powerd.service
 
 These services help the `system` to manage Nvidia drivers during suspension and hibernation. If you don't enable them, you cannot suspend properly, which leads to high power usage. `nvidia-powerd.service` and `nvidia-persistenced.service` are not necessary you can ignore theme.
 
-One Important problem caused by these services is _screen blanking_ which is produced by running these services after suspend or hibernation modes. This is caused by switching the Nvidia driver to `suspend` mode leading to changing `gnome-shell` subsystems.
+One Important problem caused by these services is _screen blanking_ which is produced by running these services after suspend or hibernation modes. This is caused by switching the Nvidia driver to `suspend` mode leading to changing `` subsystems.
 
 **References:**
 
@@ -73,7 +72,26 @@ sudo envycontrol -s hybrid --rtd3
 ```bash
 cat /sys/bus/pci/devices/0000\:01\:00.0/power/runtime_status
 ```
-**Note:** If you get `No such file or directory` check your pci devices and find nvidia using `lspci` command.
+
+**Note:** If you get `No such file or directory` check your pci devices and find nvidia using `lspci` command. for example it can be as below:
+
+```bash
+cat /sys/bus/pci/devices/0000\:02\:00\.0/power/runtime_status
+```
+
+**Note:** If you faced that gnome apps as `gjs` and `gnome-control-center` prevent nvidia from going to sleep take a look at [this](../06_gnome_on_wayland_and_x11/3_gtk.md#gtk-4-applications-are-slow). Also to prevent `gnome-shell` using the `nvidia` and remove it from `nvidia-smi` use this:
+
+```bash
+sudo nano /etc/modprobe.d/blacklist-nvidia.conf
+```
+
+Then add this:
+
+```conf
+blacklist nvidia
+blacklist nvidia-drm
+blacklist nvidia-modeset
+```
 
 **References:**
 
