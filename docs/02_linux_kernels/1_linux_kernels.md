@@ -1,5 +1,7 @@
 # Linux kernels
 
+## Installation
+
 ```shell
 sudo pacman -Syu
 sudo pacman -S linux-firmware
@@ -7,6 +9,12 @@ sudo pacman -S linux linux-headers linux-lts linux-lts-headers
 ```
 
 The point of `linux-lts` is that every time the `linux` kernel has been crashed we use `linux-lts` to recover it.
+
+**Note:** `linux-headers` are necessary for nvidia proprietary drivers to take effect. Make sure installing them to change the kernel driver from nouveau to NVIDIA.
+
+**References:**
+
+- <https://www.reddit.com/r/elementaryos/comments/12ii1qh/how_to_change_the_kernel_driver_from_nouveau_to/>
 
 ## Add boot entries
 
