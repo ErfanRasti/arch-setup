@@ -14,7 +14,7 @@ One of the best GUI apps manager is `Flatpak`. To install it:
 sudo pacman -S flatpak
 ```
 
-If you installed gnome, `flatpak` is installed by default. I personally prefer to per-user installation but the default behavior is system-wide installation. To adjust it:
+If you installed gnome, `flatpak` is installed by default. Default behavior is system-wide installation which is proper for personal usage but if you prefer adjusting it:
 
 ```bash
 flatpak --system remote-delete flathub
