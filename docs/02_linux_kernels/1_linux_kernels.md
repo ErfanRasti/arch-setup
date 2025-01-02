@@ -57,3 +57,18 @@ Using both `linux` and `linux-lts` kernels allows for a fallback option. If an u
 **References:**
 
 - <https://bbs.archlinux.org/viewtopic.php?id=72344>
+
+## Recovery using Bootable USB Drive
+
+If you ever messed up `mkinitcpio` or `PAM` or anything that lead to ruined Arch Linux, after booting into the USB Drive remember these lines:
+
+```bash
+cryptsetup luksOpen /dev/sda2/ btrfs-drv
+mount /dev/mapper/btrfs-drv -o subvolid=5 /mnt
+mount /dev/sda1 /mnt/@/boot
+chroot /mnt/@
+```
+
+**References:**
+
+- <https://bbs.archlinux.org/viewtopic.php?id=289800>
