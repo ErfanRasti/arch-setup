@@ -1,5 +1,13 @@
 ## Bluetooth
 
+First of all if the bluetooth device doesn't work:
+
+```bash
+rfkill unblock bluetooth
+sudo systemctl enable bluetooth.service
+sudo systemctl start bluetooth.service
+```
+
 I use bluez to manage my bluetooth devices:
 
 ```bash
