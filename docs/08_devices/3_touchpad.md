@@ -1,4 +1,4 @@
-# Touchpad
+## Touchpad
 
 Touchpad doesn't need anything on `wayland` but on `x11` you should install `touchegg` to make it work:
 
