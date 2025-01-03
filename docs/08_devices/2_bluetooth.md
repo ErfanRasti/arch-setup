@@ -8,7 +8,19 @@ sudo systemctl enable bluetooth.service
 sudo systemctl start bluetooth.service
 ```
 
-I use bluez to manage my bluetooth devices:
+To turn it on or off you can use `bluetoothctl`:
+
+```bash
+bluetoothctl
+[bluetooth]# power on
+[bluetooth]# agent on
+[bluetooth]# default-agent
+[bluetooth]# exit
+```
+
+- `default-agent`: Set agent as the default one
+
+I use `bluez` to manage my bluetooth devices:
 
 ```bash
 sudo pacman -S bluez bluez-utils blueman
@@ -31,6 +43,11 @@ sudo systemctl enable bluetooth-autoconnect
 sudo systemctl start bluetooth-autoconnect
 ```
 
+### Troubleshooting
+
+For noise problems on bluetooth headphones shutdown the computer and hold the power key for 50 seconds. Remember connecting the device to power during the process.
+
 **References:**
 
 - <https://github.com/jrouleau/bluetooth-autoconnect>
+- <https://wiki.archlinux.org/title/Bluetooth_headset#Apple_AirPods_have_low_volume>
