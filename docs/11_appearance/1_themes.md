@@ -2,9 +2,13 @@
 
 GNOME by default provides a simple and beautiful theme but we can adjust it in the way we want in this section I provide some popular themes which I like the most.
 
+### Gnome Themes
+
 ```bash
-sudo pacman -S gnome-themes-standard
+sudo pacman -S gnome-themes-extra
 ```
+
+This package provides some extra themes including `Adwaita-dark` for legacy applications and also high contrast themes.
 
 ### WhitsSur
 
@@ -65,12 +69,47 @@ paru -S catppuccin-gtk-theme-mocha
 
 **References:**
 
+- <https://github.com/catppuccin/gtk>
 - <https://catppuccin.com/>
+
+Another method:
+
+```bash
+sudo pacman -S gtk-engine-murrine
+mkdir -p ~/Programs
+cd ~/Programs
+git clone https://github.com/Fausto-Korpsvart/Catppuccin-GTK-Theme
+cd ./Catppuccin-GTK-Theme/themes/
+./install.sh -t red -l --tweaks macos
+cd ~
+```
+
+It also provides icons:
+
+```bash
+cd ~/Programs/Catppuccin-GTK-Theme/icons
+mkdir -p ~/.icons
+cp -r Catppuccin-Macchiato ~/.icons
+cd ~
+```
+
+**References:**
+
+- <https://github.com/Fausto-Korpsvart/Catppuccin-GTK-Theme>
 
 ### Yaru Theme (Ubuntu Theme)
 
 ```bash
 paru -S yaru-gtk-theme
+```
+
+### Pretty-In-Purple
+
+```bash
+mkdir -p ~/.themes
+cd ~/.themes
+git clone https://github.com/juju-ko/Pretty-In-Purple
+cd ~
 ```
 
 ### Gradience
@@ -81,7 +120,7 @@ This is an amazing tool to apply themes. You can also apply theme based on your 
 paru -S gradience
 ```
 
-To activate gradience themes you need to install `adw-gtk-theme`. It is also necessary for dark theme on legacy applications on `gnome-tweaks`:
+To activate gradience themes you need to install `adw-gtk-theme`. It can also be used for dark theme on legacy applications on `gnome-tweaks`:
 
 ```bash
 sudo pacman -S adw-gtk-theme
@@ -111,8 +150,8 @@ To apply custom theme on flatpak apps:
 sudo flatpak override --filesystem=$HOME/.themes
 sudo flatpak override --filesystem=$HOME/.icons
 
-sudo flatpak override --env=GTK_THEME=MY_THEME
-sudo flatpak override --env=ICON_THEME=MY_ICON_THEME
+sudo flatpak override --env=GTK_THEME=<MY_THEME>
+sudo flatpak override --env=ICON_THEME=<MY_ICON_THEME>
 ```
 
 **References:**
