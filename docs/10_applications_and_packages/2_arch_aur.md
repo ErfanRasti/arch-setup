@@ -13,8 +13,24 @@ paru -S spotify
 ## Essential `pacman` applications
 
 ```bash
-sudo pacman -S fuse less bat dconf-editor neofetch gparted ntfs-3g uget wget wireplumber rsync glxinfo unrar fastfetch gnome-usage
+sudo pacman -S fuse less bat dconf-editor neofetch fastfetch gparted ntfs-3g uget wget wireplumber rsync glxinfo unrar gnome-usage
 ```
+
+- `fuse`: Filesystem in Userspace.
+- `less`: A file viewer.
+- `bat`: A cat clone with wings.
+- `dconf-editor`: A graphical editor for the dconf database.
+- `neofetch`: A command-line system information tool.
+- `fastfetch`: A command-line system information tool.
+- `gparted`: A partition editor.
+- `ntfs-3g`: A read-write NTFS driver.
+- `uget`: A download manager.
+- `wget`: A command-line downloader.
+- `wireplumber`: A session manager for PipeWire.
+- `rsync`: A fast, versatile, remote (and local) file-copying tool.
+- `glxinfo`: A command that can be used to display information about the OpenGL and GLX implementations.
+- `unrar`: A command-line utility to extract, test and view the contents of archives created with the RAR archiver.
+- `gnome-usage`: A system monitor.
 
 ## Manuals and Documentations
 
@@ -118,6 +134,46 @@ ffmpeg -i "<YOUR_VIDEO>.mp4" audio.mp3
 ```bash
 sudo pacman -S nautilus yazi
 ```
+
+`yazi` is a terminal based file manager.
+
+I also use some extensions for `nuatilus`:
+
+```bash
+sudo pacman -S sushi nautilus-image-converter nautilus-share
+paru -S nautilus-admin-gtk4 nautilus-open-any-terminal nautilus-code
+```
+
+- `sushi`: Quick file previewer for Nautilus. Part of `gnome`.
+- `nautilus-image-converter`: Resize/rotate images (written in C).
+- `nautilus-share`: Nautilus extension to share folder using Samba (written in C).
+- `nautilus-admin-gtk4`: Add to menu: "Open as administrator" or "Edit as administrator" (written in Python).
+- `nautilus-open-any-terminal`: Nautilus extension which adds an context-entry for opening other terminal emulators.
+- `nautilus-code`: Nautilus extension to open files in Visual Studio Code.
+
+To run nautilus as root:
+
+```bash
+nautilus admin:/
+```
+
+It will open nautilus in the `/` directory.
+
+If you want to open nautilus in your current directory:
+
+```bash
+nautilus admin://$(pwd)
+```
+
+Or if you want to open it in the home directory:
+
+```bash
+nautilus admin://$HOME
+```
+
+**References:**
+
+- <https://wiki.archlinux.org/title/GNOME/Files>
 
 ## Terminals
 
@@ -402,3 +458,28 @@ sudo pacman -S speedtest-cli
 ```bash
 sudo pacman -S telegram-desktop discord
 ```
+
+## VPS apps
+
+```bash
+paru -S nekoray-bin
+paru -S hiddify-next-bin
+```
+
+**References:**
+
+- <https://github.com/hiddify/hiddify-app>
+- <https://github.com/MatsuriDayo/nekoray>
+
+## Extensions managaing
+
+```bash
+paru -S gnome-extensions-cli
+```
+
+Wonderful application to manage GNOME extensions.
+
+**References:**
+
+- <https://github.com/essembeh/gnome-extensions-cli>
+- <https://superuser.com/questions/1691843/install-gnome-shell-extension-on-command-line>
