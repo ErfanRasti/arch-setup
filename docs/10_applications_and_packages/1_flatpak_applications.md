@@ -35,6 +35,7 @@ flatpak install flathub org.gnome.Decibels
 flatpak install flathub org.gimp.GIMP
 flatpak install flathub io.gitlab.adhami3310.Converter
 flatpak install flathub io.github.tfuxu.Halftone
+flatpak install flathub io.gitlab.theevilskeleton.Upscaler
 flatpak install flathub org.gnome.gitlab.YaLTeR.Identity
 flatpak install flathub app.fotema.Fotema
 ```
@@ -42,6 +43,7 @@ flatpak install flathub app.fotema.Fotema
 - `org.gimp.GIMP`: A photo editor application.
 - `io.gitlab.adhami3310.Converter`: Convert between different image filetypes and resize them easily.
 - `io.github.tfuxu.Halftone`: A simple Libadwaita app for lossy image compression using dithering technique.
+- `io.gitlab.theevilskeleton.Upscaler`: Upscale and enhance images.
 - `org.gnome.gitlab.YaLTeR.Identity`: A program for comparing multiple versions of an image or video.
 - `app.fotema.Fotema`: A photo gallery for everyone who wants their photos to live locally on their devices.
 
@@ -50,7 +52,6 @@ flatpak install flathub app.fotema.Fotema
 ```bash
 flatpak install flathub io.gitlab.adhami3310.Footage
 flatpak install flathub org.gnome.gitlab.YaLTeR.VideoTrimmer
-
 ```
 
 - `io.gitlab.adhami3310.Footage`: Trim, flip, rotate and crop individual clips.
@@ -103,6 +104,7 @@ flatpak install flathub io.github.seadve.Delineate
 ### Tools
 
 ```bash
+flatpak install flathub com.mattjakeman.ExtensionManager
 flatpak install flathub io.gitlab.adhami3310.Impression
 flatpak install flathub org.gnome.design.Emblem
 flatpak install flathub io.github.lo2dev.Echo
@@ -112,9 +114,10 @@ flatpak install flathub com.jeffser.Alpaca
 flatpak install flathub app.drey.Warp
 flatpak install flathub com.github.finefindus.eyedropper
 flatpak install flathub app.devsuite.Ptyxis
-
+flatpak install flathub menu.kando.Kando
 ```
 
+- `com.mattjakeman.ExtensionManager`: Browse, install, and manage GNOME Shell Extensions.
 - `io.gitlab.adhami3310.Impression`: Write disk images to your drives with ease.
 - `org.gnome.design.Emblem`: Generate projects avatars for your Matrix rooms and git forges from a symbolic icon.
 - `io.github.lo2dev.Echo`: Utility to ping websites.
@@ -124,6 +127,10 @@ flatpak install flathub app.devsuite.Ptyxis
 - `app.drey.Warp`: Fast and secure file transfer.
 - `com.github.finefindus.eyedropper`: Pick and format colors.
 - `app.devsuite.Ptyxis`: Container-oriented terminal.
+- `menu.kando.Kando`: Kando is a cross-platform pie menu for your desktop. To make it work install Kando Integration GNOME extension too:
+  ```bash
+  gext install kando-integration@kando-menu.github.io
+  ```
 
 ### Security
 
@@ -148,4 +155,3 @@ flatpak install flathub com.github.sixpounder.GameOfLife
 ```
 
 - `com.github.sixpounder.GameOfLife`: Play Conway's Game of Life.
-
