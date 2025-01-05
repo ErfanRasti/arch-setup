@@ -456,7 +456,7 @@ sudo pacman -S speedtest-cli
 ## Social media applications
 
 ```bash
-sudo pacman -S telegram-desktop discord
+sudo pacman -S telegram-desktop discord skypeforlinux-bin
 ```
 
 ## VPS apps
@@ -478,6 +478,8 @@ paru -S gnome-extensions-cli
 ```
 
 Wonderful application to manage GNOME extensions.
+
+**Note:** If you use `Window Gestures` extension remember to don't use `Show Desktop` action. It creates weird random black boxes at top right corner of the screen.
 
 **References:**
 
