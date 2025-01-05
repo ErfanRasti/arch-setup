@@ -87,7 +87,17 @@ Finally add your model:
 sudo howdy add
 ```
 
-Choose your model name and then look at the camera straightly. Add multiple models to make it more accurate. Notice each additional model slows down the face recognition engine slightly
+Choose your model name and then look at the camera straightly. Add multiple models to make it more accurate. Notice each additional model slows down the face recognition engine slightly.
+
+**Note:** After using `howdy` and adding it to `PAM` you may disturb by `gnome-keyring` on some applications. To disable it you can remove keyrings:
+
+```bash
+rm -rf ~/.local/share/keyrings
+```
+
+The next time you see the pop-up keyring window, choose an empty password on keyrings (press enter on passwords). It will remove all your signin passwords.
+
+You can use `Passwords & Keys` application to choose and reset it to an empty password instead.
 
 **References:**
 
