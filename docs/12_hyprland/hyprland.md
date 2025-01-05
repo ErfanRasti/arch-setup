@@ -807,7 +807,7 @@ sudo pacman -S gnome-keyring
 exec-once = gnome-keyring-daemon --start --components=secrets
 ```
 
-3. Remove `~/.local/share/keyrings`:
+3. Remove `~/.local/share/keyrings` or use `Passwords & Keys` application to choose and reset it to an empty password:
 
 ```bash
 rm -rf ~/.local/share/keyrings
