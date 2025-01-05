@@ -184,11 +184,14 @@ In `flatpak` it is more user-friendly:
 flatpak update
 ```
 
+**Note:** Never use `sudo pacman -Sy <PACKAGE_NAME>`. It may cause dependency issues. Use `sudo pacman -Syu <PACKAGE_NAME>` instead.
+
 **References:**
 
 - <https://wiki.archlinux.org/title/Pacman#Upgrading_packages>
 - <https://github.com/Morganamilo/paru>
 - <https://github.com/Jguer/yay>
+- <https://wiki.archlinux.org/title/Pacman#Installing_packages>
 
 ## Cleaning the package cache
 
