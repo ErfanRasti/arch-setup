@@ -8,6 +8,7 @@ Some of my common highly used `flatpak` applications can be installed as bellow.
 
 ```bash
 flatpak install flathub io.missioncenter.MissionCenter
+flatpak install flathub net.nokyan.Resources
 flatpak install flathub com.github.tchx84.Flatseal
 flatpak install flathub io.github.realmazharhussain.GdmSettings
 flatpak install flathub re.sonny.Junction
@@ -15,6 +16,7 @@ flatpak install flathub re.sonny.Junction
 ```
 
 - `io.missioncenter.MissionCenter`: A task manager application.
+- `net.nokyan.Resources`: Keep an eye on system resources.font
 - `com.github.tchx84.Flatseal`: A flatpak permissions manager.
 - `io.github.realmazharhussain.GdmSettings`: Customize your login screen.
 - `re.sonny.Junction`: Junction pops up automatically when you open a file or link in another app.
@@ -131,6 +133,12 @@ flatpak install flathub menu.kando.Kando
   ```bash
   gext install kando-integration@kando-menu.github.io
   ```
+  Finally you should add `Kando` to startup applications:
+  ` gnome-tweaks > Startup Applications > Select Application > Kando`
+
+**References:**
+- <https://kando.menu/installation-on-linux/>
+- <https://github.com/kando-menu/kando>
 
 ### Security
 
