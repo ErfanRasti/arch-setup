@@ -1,5 +1,3 @@
-# Shell & Terminal
-
 ## Git & GitHub
 
 ### Installation
