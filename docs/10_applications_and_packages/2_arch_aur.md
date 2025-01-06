@@ -471,7 +471,15 @@ paru -S hiddify-next-bin
 - <https://github.com/hiddify/hiddify-app>
 - <https://github.com/MatsuriDayo/nekoray>
 
-## Extensions managaing
+## Extensions managing
+
+The main application is this:
+
+```bash
+sudo pacman -S gnome-shell-extensions
+```
+
+You can `enable` or `disable` your extensions using it.
 
 ```bash
 paru -S gnome-extensions-cli
