@@ -63,6 +63,10 @@ Another proper option (and also open source) is onlyoffice:
 paru -S onlyoffice-bin
 ```
 
+### Microsoft Office Web
+
+You can also use microsoft office web edition and add them as web application shortcuts to your GNOME apps. Check [this](https://www.reddit.com/r/linux4noobs/comments/14jq2s0/microsoft_office_and_linux_one_more_option/).
+
 ## PDF Editors
 
 ### LibreOffice Draw
