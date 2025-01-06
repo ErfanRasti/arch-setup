@@ -103,3 +103,5 @@ You can use `Passwords & Keys` application to choose and reset it to an empty pa
 
 - <https://wiki.archlinux.org/title/Howdy>
 - <https://wiki.archlinux.org/title/PAM>
+- <https://forum.manjaro.org/t/disable-unlock-default-keyring-in-gnome/113336>
+- <https://www.reddit.com/r/gnome/comments/18ddqjd/authentication_required_popup_this_keeps/>
