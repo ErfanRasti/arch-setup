@@ -2,6 +2,11 @@
 
 GNOME by default provides a simple and beautiful theme but we can adjust it in the way we want in this section I provide some popular themes which I like the most.
 
+Owners of `WhiteSur` and `Catppuccin` also have other fantastic themes. Chech their github:
+
+- <https://github.com/vinceliuice>
+- <https://github.com/Fausto-Korpsvart>
+
 ### Gnome Themes
 
 ```bash
@@ -10,7 +15,7 @@ sudo pacman -S gnome-themes-extra
 
 This package provides some extra themes including `Adwaita-dark` for legacy applications and also high contrast themes.
 
-### WhitsSur
+### WhiteSur
 
 This is a complete MacOS like themes including lots of customizablity. It has some prerequrements:
 
@@ -148,6 +153,14 @@ Alternatively, you can also use `gnome-tweaks` instead (On Appearance tab).
 - <https://drasite.com/flat-remix-gtk>
 - <https://drasite.com/flat-remix-gnome>
 
+### zOS
+
+Take a look at the references.
+
+**References:**
+
+- <https://www.reddit.com/r/unixporn/comments/16x0vuk/gnome_zos_my_first_rice/>
+
 ### Pretty-In-Purple
 
 ```bash
@@ -179,6 +192,12 @@ To reset, _sudo gtk theme_ remove `*.css` files from `/root/.config/gtk-3.0` and
 
 - <https://www.reddit.com/r/gnome/comments/x2d3dq/gradience_the_tool_to_adjust_colors_for/>
 - <https://github.com/RusticBard/Skeuowaita>
+
+### Traffic light title bar buttons
+
+If you only want traffic light title bar buttons and nothing more check this. There are some nice CSS configurations for that:
+
+- <https://www.reddit.com/r/gnome/comments/1bma6x2/traffic_light_titlebar_buttons/>
 
 ### Themes on flatpak apps
 
