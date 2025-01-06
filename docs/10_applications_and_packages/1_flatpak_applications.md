@@ -27,16 +27,19 @@ flatpak install flathub org.gnome.seahorse.Application
 ```bash
 flatpak install flathub org.gnome.SoundRecorder
 flatpak install flathub org.gnome.Decibels
+flatpak install flathub de.haeckerfelix.Shortwave
 ```
 
 - `org.gnome.SoundRecorder`: A sound recorder application.
 - `org.gnome.Decibels`: A sound player application.
+- `de.haeckerfelix.Shortwave`: Listen to internet radio.
 
 ### Photo
 
 ```bash
 flatpak install flathub org.gimp.GIMP
 flatpak install flathub io.gitlab.adhami3310.Converter
+flatpak install flathub com.github.tenderowl.frog
 flatpak install flathub io.github.tfuxu.Halftone
 flatpak install flathub io.gitlab.theevilskeleton.Upscaler
 flatpak install flathub org.gnome.gitlab.YaLTeR.Identity
@@ -45,6 +48,7 @@ flatpak install flathub app.fotema.Fotema
 
 - `org.gimp.GIMP`: A photo editor application.
 - `io.gitlab.adhami3310.Converter`: Convert between different image filetypes and resize them easily.
+- `com.github.tenderowl.frog`: Extract text from images.
 - `io.github.tfuxu.Halftone`: A simple Libadwaita app for lossy image compression using dithering technique.
 - `io.gitlab.theevilskeleton.Upscaler`: Upscale and enhance images.
 - `org.gnome.gitlab.YaLTeR.Identity`: A program for comparing multiple versions of an image or video.
