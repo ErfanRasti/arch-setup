@@ -60,7 +60,7 @@ Using both `linux` and `linux-lts` kernels allows for a fallback option. If an u
 
 ## Recovery using Bootable USB Drive
 
-If you ever messed up `mkinitcpio` or `PAM` or anything that lead to ruined Arch Linux, after booting into the USB Drive remember these lines:
+If you ever messed up `mkinitcpio` or `PAM` or anything that lead to a ruined Arch Linux, after booting into the USB Drive remember these lines:
 
 ```bash
 cryptsetup luksOpen /dev/sda2/ btrfs-drv
@@ -68,6 +68,15 @@ mount /dev/mapper/btrfs-drv -o subvolid=5 /mnt
 mount /dev/sda1 /mnt/@/boot
 chroot /mnt/@
 ```
+
+### TTY
+
+When you login to your GNOME, you make a session to your kernel:
+
+1. First session is the `gdm` which allow you choose your session. You can open it using `CTRL+ALT+f1`.
+2. Second session is usually your current GNOME session. You can open it using `CTRL+ALT+f2`.
+3. If you want to create a new `tty` session press `CTRL+ALT+f3`.
+4. If you want to return to `gdm` or anything from a `tty` session you should press this instead `LEFT_ALT+f<DESIRED_SESSION_NUMBER>`.
 
 **References:**
 
