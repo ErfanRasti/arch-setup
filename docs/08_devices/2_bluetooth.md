@@ -50,4 +50,5 @@ For noise problems on bluetooth headphones shutdown the computer and hold the po
 **References:**
 
 - <https://github.com/jrouleau/bluetooth-autoconnect>
+- <https://wiki.archlinux.org/title/Bluetooth>
 - <https://wiki.archlinux.org/title/Bluetooth_headset#Apple_AirPods_have_low_volume>
