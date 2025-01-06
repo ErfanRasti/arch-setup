@@ -1,5 +1,7 @@
 ## Anaconda
 
+### Installation
+
 1. First install pre-requirements:
    ```bash
    sudo pacman -Syu libxau libxi libxss libxtst libxcursor libxcomposite libxdamage libxfixes libxrandr libxrender mesa-libgl alsa-lib libglvnd
@@ -56,3 +58,54 @@
 **References:**
 
 - <https://docs.anaconda.com/anaconda/install/>
+
+### Environments
+
+It is highly recommended to don't change the base packages on `anaconda`. Instead, creat another environment and install your daily usage packages on that:
+
+```bash
+conda create --name py312 python=3.12
+```
+
+Activate this new environment and install your required packages on that:
+
+```bash
+conda activate py312
+conda install jupyter matplotlib numpy pandas
+```
+
+For deep learning applications create a separate environment and use it instead:
+
+```bash
+conda create --name deeplearning python=3.12
+conda activate deeplearning
+conda install pytorch torchvision torchaudio pytorch-cuda=<NEWEST_VERSION> -c pytorch -c nvidia
+conda install jupyter numpy pandas scikit-learn matplotlib
+```
+
+For PyTorch always check the installation page and install the latest version of `pytorch-cuda`.
+
+**Note:** To use `cuda` on `anaconda`, you should install NVIDIA drivers before and `nvidia-smi` should work properly.
+
+**Tip:** If you previously installed `pytorch` and you don't want to download it again in a new environment use this instead:
+
+```bash
+conda install pytorch torchvision torchaudio pytorch-cuda -c pytorch -c nvidia
+```
+
+After all check `pytorch-cuda` installation using this:
+
+```bash
+ipython
+>>> import torch
+>>> torch.cuda.is_available()
+True
+```
+
+Always check [this](https://pytorch.org/get-started/locally/) site to get sure all the drivers are updated.
+
+**References:**
+
+- <https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html>
+- <https://pytorch.org/>
+- <https://pytorch.org/get-started/locally/>
