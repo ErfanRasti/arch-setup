@@ -103,6 +103,51 @@ cd ~
 paru -S yaru-gtk-theme
 ```
 
+### Flat remix Theme
+
+```bash
+paru -S flat-remix-gtk flat-remix-gnome
+```
+
+For `gtk-3.0` and `gtk-4.0` apps go to the folder of your desired theme (after installation) and copy all of the files and folders to `~/.config/gtk-3.0` and `~/.config/gtk-4.0`.
+
+You can make a symlink to these files using gnu-stow:
+
+```bash
+cd /usr/share/themes/Flat-Remix-GTK-Magenta-Dark-Solid
+stow gtk-4.0 -t ~/.config/gtk-4.0
+stow gtk-3.0 -t ~/.config/gtk-3.0
+```
+
+To remove it:
+
+```bash
+cd ~/.config/gtk-4.0
+rm -rf assets gtk.css gtk-dark.css
+cd ~/.config/gtk-3.0
+rm -rf assets gtk.css gtk-dark.css
+```
+
+To set legacy applications theme:
+
+```bash
+gsettings set org.gnome.desktop.interface gtk-theme Flat-Remix-GTK-Magenta-Dark-Solid
+```
+
+To set gnome-shell theme (first you should enable `user-theme` extension):
+
+```bash
+gnome-extensions enable user-theme@gnome-shell-extensions.gcampax.github.com
+gsettings set org.gnome.shell.extensions.user-theme name Flat-Remix-Magenta-Darkest-fullPanel
+```
+
+Alternatively, you can also use `gnome-tweaks` instead (On Appearance tab).
+
+**References:**
+
+- <https://drasite.com/flat-remix-gtk>
+- <https://drasite.com/flat-remix-gnome>
+
 ### Pretty-In-Purple
 
 ```bash
