@@ -203,3 +203,15 @@ Open Home Tab > Preferences (Gear Icon) > MATLAB > Fonts > Use antiliasing to sm
 **References:**
 
 - <https://wiki.archlinux.org/title/HiDPI#MATLAB>
+
+### Black screen in livescripts
+
+If you faced with black screen in in help browser and livescripts:
+
+```bash
+paru -S libselinux
+```
+
+**References:**
+
+- <https://wiki.archlinux.org/title/MATLAB#Black_screen_in_help_browser_and_livescripts>
