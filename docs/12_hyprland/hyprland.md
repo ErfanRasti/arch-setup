@@ -821,6 +821,7 @@ When the pop up appears in GNOME, press enter and don't make any password for au
 
 - <https://www.reddit.com/r/hyprland/comments/1avevff/brave_deletes_all_sessions_after_closure_in/>
 - <https://bbs.archlinux.org/viewtopic.php?id=285563>
+- <https://forum.manjaro.org/t/disable-unlock-default-keyring-in-gnome/113336>
 
 ### Cannot turn on the bluetooth
 
