@@ -10,6 +10,7 @@ Some of my common highly used `flatpak` applications can be installed as bellow.
 flatpak install flathub io.missioncenter.MissionCenter
 flatpak install flathub net.nokyan.Resources
 flatpak install flathub com.github.tchx84.Flatseal
+flatpak install flathub com.github.d4nj1.tlpui
 flatpak install flathub io.github.realmazharhussain.GdmSettings
 flatpak install flathub re.sonny.Junction
 flatpak install flathub org.gnome.seahorse.Application
@@ -18,6 +19,7 @@ flatpak install flathub org.gnome.seahorse.Application
 - `io.missioncenter.MissionCenter`: A task manager application.
 - `net.nokyan.Resources`: Keep an eye on system resources.font
 - `com.github.tchx84.Flatseal`: A flatpak permissions manager.
+- `com.github.d4nj1.tlpui`: Change TLP settings easily and provide a basic overview of all the valid configuration values.
 - `io.github.realmazharhussain.GdmSettings`: Customize your login screen.
 - `re.sonny.Junction`: Junction pops up automatically when you open a file or link in another app.
 - `org.gnome.seahorse.Application`: Passwords and Keys is a GNOME application for managing encryption keys.
