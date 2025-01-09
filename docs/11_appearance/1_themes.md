@@ -13,7 +13,7 @@ Owners of `WhiteSur` and `Catppuccin` also have other fantastic themes. Chech th
 sudo pacman -S gnome-themes-extra
 ```
 
-This package provides some extra themes including `Adwaita-dark` for legacy applications and also high contrast themes.
+This package provides some extra themes including `Adwaita-dark` for legacy applications and also high contrast themes. TThese themes can be used on `gnome-tweaks` on the appearance tab. They aren't that pretty but they are useful for some applications.
 
 ### WhiteSur
 
@@ -184,6 +184,8 @@ To activate gradience themes you need to install `adw-gtk-theme`. It can also be
 sudo pacman -S adw-gtk-theme
 ```
 
+`adw-gtk-theme` has a nice looking dark theme on `Adw-gtk-dark`.
+
 You can use some custom themes on gradience like `Pretty Purple`.
 
 To reset, _sudo gtk theme_ remove `*.css` files from `/root/.config/gtk-3.0` and `/root/.config/gtk-4.0` folders.
@@ -191,6 +193,7 @@ To reset, _sudo gtk theme_ remove `*.css` files from `/root/.config/gtk-3.0` and
 **References:**
 
 - <https://www.reddit.com/r/gnome/comments/x2d3dq/gradience_the_tool_to_adjust_colors_for/>
+- <https://extensions.gnome.org/extension/7529/auto-adwaita-colors/>
 - <https://github.com/RusticBard/Skeuowaita>
 
 ### Traffic light title bar buttons
