@@ -10,6 +10,8 @@ Some of my common highly used `flatpak` applications can be installed as bellow.
 flatpak install flathub io.missioncenter.MissionCenter
 flatpak install flathub net.nokyan.Resources
 flatpak install flathub com.github.tchx84.Flatseal
+flatpak install flathub io.github.nokse22.inspector
+flatpak install flathub io.github.flattool.Warehouse
 flatpak install flathub com.github.d4nj1.tlpui
 flatpak install flathub io.github.realmazharhussain.GdmSettings
 flatpak install flathub re.sonny.Junction
@@ -19,6 +21,8 @@ flatpak install flathub org.gnome.seahorse.Application
 - `io.missioncenter.MissionCenter`: A task manager application.
 - `net.nokyan.Resources`: Keep an eye on system resources.font
 - `com.github.tchx84.Flatseal`: A flatpak permissions manager.
+- `io.github.nokse22.inspector`: View information about: Usb devices, Disk, Memory, PCI devices, Network, CPU, Motherboard and bios, System and distro.
+- `io.github.flattool.Warehouse`: Warehouse provides a simple UI to control complex Flatpak options, all without resorting to the command line.
 - `com.github.d4nj1.tlpui`: Change TLP settings easily and provide a basic overview of all the valid configuration values.
 - `io.github.realmazharhussain.GdmSettings`: Customize your login screen.
 - `re.sonny.Junction`: Junction pops up automatically when you open a file or link in another app.
@@ -29,11 +33,13 @@ flatpak install flathub org.gnome.seahorse.Application
 ```bash
 flatpak install flathub org.gnome.SoundRecorder
 flatpak install flathub org.gnome.Decibels
+flatpak install flathub com.github.neithern.g4music
 flatpak install flathub de.haeckerfelix.Shortwave
 ```
 
 - `org.gnome.SoundRecorder`: A sound recorder application.
 - `org.gnome.Decibels`: A sound player application.
+- `com.github.neithern.g4music`: Gapless (AKA: G4Music) is a light weight music player written in GTK4, focuses on large music collection.
 - `de.haeckerfelix.Shortwave`: Listen to internet radio.
 
 ### Photo
