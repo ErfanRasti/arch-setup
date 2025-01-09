@@ -463,6 +463,8 @@ sudo pacman -S speedtest-cli
 sudo pacman -S telegram-desktop discord skypeforlinux-bin
 ```
 
+Disable Skype startup from startup applications on `gnome-tweaks`.
+
 ## VPS apps
 
 ```bash
