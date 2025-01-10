@@ -201,6 +201,12 @@ I personally use `CaskaydiaCove Nerd Font` and it works fine for me. So I didn't
       ```conf
         typeset -g POWERLEVEL9K_VCS_MODIFIED_BACKGROUND=202
       ```
+   6. Icon padding:
+      ```conf
+        typeset -g POWERLEVEL9K_ICON_PADDING=moderate
+      ```
+      `moderate`: For overlap (Usually non-monospace fonts)
+      `none`: No overlap (Monospace fonts)
 
 **References:**
 
