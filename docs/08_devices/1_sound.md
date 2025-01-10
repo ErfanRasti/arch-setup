@@ -54,3 +54,42 @@ To automate the `wireplumber.service` restart using `udev`:
 **References:**
 
 - <https://wiki.archlinux.org/title/WirePlumber#Delete_corrupt_settings>
+
+### Audio is distorted
+
+1. Copy `pipewire.conf` to `~/.config/pipewire/pipewire.conf`:
+   ```bash
+   mkdir -p ~/.config/pipewire
+   cp /usr/share/pipewire/pipewire.conf ~/.config/pipewire/pipewire.conf
+   ```
+2. Add clock rate configurations:
+
+   ```bash
+   code ~/.config/pipewire/pipewire.conf
+   ```
+
+   Uncomment and add these lines:
+
+   ```conf
+   context.properties = {
+
+    default.clock.rate          = 44100
+    default.clock.allowed-rates = [ 44100 48000 ]
+   }
+   ```
+
+   Check different `default.clock.rate` values like `48000`.
+
+3. Restart related services:
+
+   ```bash
+   systemctl --user restart pipewire.service pipewire.socket pipewire-pulse.service pipewire-pulse.socket wireplumber.service bluetooth.target;
+   ```
+
+**References:**
+
+- <https://wiki.archlinux.org/title/PipeWire#Audio_is_distorted>
+- <https://wiki.archlinux.org/title/WirePlumber>
+- <https://wiki.archlinux.org/title/PipeWire#Changing_the_default_sample_rate>
+- <https://wiki.archlinux.org/title/PipeWire#Changing_the_allowed_sample_rate(s)>
+- <https://wiki.archlinux.org/title/Bluetooth_headset#Headset_via_PipeWire>
