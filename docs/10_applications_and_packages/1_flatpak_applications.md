@@ -11,6 +11,7 @@ flatpak install flathub io.missioncenter.MissionCenter
 flatpak install flathub net.nokyan.Resources
 flatpak install flathub com.github.tchx84.Flatseal
 flatpak install flathub io.github.nokse22.inspector
+flatpak install flathub page.tesk.Refine
 flatpak install flathub io.github.flattool.Warehouse
 flatpak install flathub com.github.d4nj1.tlpui
 flatpak install flathub io.github.realmazharhussain.GdmSettings
@@ -22,6 +23,7 @@ flatpak install flathub org.gnome.seahorse.Application
 - `net.nokyan.Resources`: Keep an eye on system resources.font
 - `com.github.tchx84.Flatseal`: A flatpak permissions manager.
 - `io.github.nokse22.inspector`: View information about: Usb devices, Disk, Memory, PCI devices, Network, CPU, Motherboard and bios, System and distro.
+- `page.tesk.Refine`: Refine helps discover advanced and experimental features in GNOME.
 - `io.github.flattool.Warehouse`: Warehouse provides a simple UI to control complex Flatpak options, all without resorting to the command line.
 - `com.github.d4nj1.tlpui`: Change TLP settings easily and provide a basic overview of all the valid configuration values.
 - `io.github.realmazharhussain.GdmSettings`: Customize your login screen.
