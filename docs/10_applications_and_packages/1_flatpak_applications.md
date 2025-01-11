@@ -52,6 +52,7 @@ flatpak install flathub io.gitlab.adhami3310.Converter
 flatpak install flathub com.github.tenderowl.frog
 flatpak install flathub io.github.tfuxu.Halftone
 flatpak install flathub io.gitlab.theevilskeleton.Upscaler
+flatpak install flathub io.gitlab.gregorni.Letterpress
 flatpak install flathub org.gnome.gitlab.YaLTeR.Identity
 flatpak install flathub app.fotema.Fotema
 ```
@@ -61,6 +62,7 @@ flatpak install flathub app.fotema.Fotema
 - `com.github.tenderowl.frog`: Extract text from images.
 - `io.github.tfuxu.Halftone`: A simple Libadwaita app for lossy image compression using dithering technique.
 - `io.gitlab.theevilskeleton.Upscaler`: Upscale and enhance images.
+- `io.gitlab.gregorni.Letterpress`: Letterpress converts your images into a picture made up of ASCII characters.
 - `org.gnome.gitlab.YaLTeR.Identity`: A program for comparing multiple versions of an image or video.
 - `app.fotema.Fotema`: A photo gallery for everyone who wants their photos to live locally on their devices.
 
