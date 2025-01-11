@@ -96,6 +96,12 @@ ExecStart=/usr/bin/powertop --auto-tune
 WantedBy=multi-user.target
 ```
 
+You can also add this line to the `[Service]` section in order to prevent your "Mouse" from getting disconnected upon booting, if it is already connected to your system.
+
+```conf
+ExecStartPost=/bin/sh -c 'for f in $(grep -l "Mouse" /sys/bus/usb/devices/*/product | sed "s/product/power\\/control/"); do echo on >| "$f"; done'
+```
+
 Then enable and start the service:
 
 ```bash
@@ -114,6 +120,10 @@ Finally you can auto-tune `powertop`:
 ```bash
 sudo powertop --auto-tune
 ```
+
+#### Error: Cannot load from file
+
+If you receive an error like the following when starting powertop, it is likely that powertop has not collected enough measurement data yet. To fix this, keep powertop running for a certain time connected to battery power only.
 
 **References:**
 
