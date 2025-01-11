@@ -499,3 +499,23 @@ Wonderful application to manage GNOME extensions.
 
 - <https://github.com/essembeh/gnome-extensions-cli>
 - <https://superuser.com/questions/1691843/install-gnome-shell-extension-on-command-line>
+
+## LaTeX
+
+Installation:
+
+```bash
+sudo pacman -S texlive texlive-xetex texlive-basic texlive-fontsrecommended
+```
+
+For Persian language support:
+
+```bash
+sudo pacman -S texlive-langarabic
+```
+
+To check persian language fonts run:
+
+```bash
+fc-list :lang=fa
+```
