@@ -1,11 +1,10 @@
-
 # Installation
 
 You can install the Arch Linux from scratch (which I highly recommend to adopt with arch philosophy) or use `archinstall`. First you should USB flash installation medium:
 
 1. Download `Arch Linux` from the following link:
 
-<https://archlinux.org/download/>
+   - <https://archlinux.org/download/>
 
 2. Choose your desired mirror link at the end.
 3. `checksum` Arch using:
@@ -48,22 +47,22 @@ If you use `archinstall` make sure to update it before installation using follow
 sudo pacman -Sy archinstall
 ```
 
-   My configurations:
+My configurations:
 
-   - **Mirrors region:** United States (`/`for search)
-   - **Partition:** `btrfs` / Use compression
-   - **Encryption:** `LUKS`
-   - **Swap:** `zram` enabled
-   - **Bootloader:** `systemd-boot`
-   - **Hostname:** Choose what you want
-   - **Unified kernel:** disabled in my case
-   - **Root:** Choose your root password
-   - **User:** Create your desired user account with root privileges and desired password
-   - **Profile:** Desktop / GNOME / Open-Source Graphics Drivers
-     (I use Intel + Nvidia hybrid. In this part I install Intel drivers. In future I will configure Nvidia drivers too)
-   - **Audio:** `pipewire`
-   - **Kernels:** `linux`, `linux-lts`
-   - **Network configuration:** `networkmanager`
+- **Mirrors region:** United States (`/`for search)
+- **Partition:** `btrfs` / Use compression
+- **Encryption:** `LUKS`
+- **Swap:** `zram` enabled
+- **Bootloader:** `systemd-boot`
+- **Hostname:** Choose what you want
+- **Unified kernel:** disabled in my case
+- **Root:** Choose your root password
+- **User:** Create your desired user account with root privileges and desired password
+- **Profile:** Desktop / GNOME / Open-Source Graphics Drivers
+  (I use Intel + Nvidia hybrid. In this part I install Intel drivers. In future I will configure Nvidia drivers too)
+- **Audio:** `pipewire`
+- **Kernels:** `linux`, `linux-lts`
+- **Network configuration:** `networkmanager`
 
 **References:**
 
