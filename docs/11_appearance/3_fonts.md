@@ -1,5 +1,9 @@
 ## Fonts
 
+Some extra fonts are available here:
+
+- <https://www.reddit.com/r/archlinux/comments/rm3kch/comment/hpkd7cp/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button>
+
 ### `noto-fonts`
 
 ```bash
@@ -143,3 +147,21 @@ rm -rf ~/.config/fontconfig
 - <https://wiki.archlinux.org/title/Font_configuration>
 - <https://wiki.archlinux.org/title/Font_configuration/Examples>
 - <https://www.reddit.com/r/linuxquestions/comments/qniaxn/persian_fonts_looks_ugly/>
+
+### Chinese and Japanese
+
+Some applications (like `telegram-desktop`) doesn't apply these languages through `noto-fonts-cjk`. You need to install them separately using the following packages:
+
+```bash
+sudo pacman -S wqy-zenhei otf-ipafont
+```
+
+- **wqy-zenhei:** A Hei Ti Style (sans-serif) Chinese Outline Font.
+- **otf-ipafont:** Japanese outline fonts by Information-technology Promotion Agency, Japan (IPA)
+
+**References:**
+
+- <https://wiki.archlinux.org/title/Localization/Chinese#Fonts>
+- <https://wiki.archlinux.org/title/Localization/Japanese#Fonts>
+- <https://archlinux.org/packages/extra/any/wqy-zenhei/>
+- <https://archlinux.org/packages/extra/any/otf-ipafont/>
