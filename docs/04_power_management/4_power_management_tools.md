@@ -129,6 +129,16 @@ If you receive an error like the following when starting powertop, it is likely 
 
 - <https://wiki.archlinux.org/title/Powertop>
 
+### GNOME Power Manager
+
+You can use `gnome-power-manager` to manage your power usage in `GNOME`.
+
+Installation:
+
+```bash
+sudo pacman -S gnome-power-manager
+```
+
 ### Conservation mode
 
 To activate conservation mode on Lenovo latops (To disable it pass `0` to it.):
