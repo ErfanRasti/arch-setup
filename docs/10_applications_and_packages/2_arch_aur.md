@@ -460,11 +460,13 @@ sudo pacman -S speedtest-cli
 ```bash
 paru -S simplenote
 ```
+
 **References:**
 
 - <https://github.com/Automattic/simplenote-electron>
 
 ## System management
+
 ```bash
 paru -S stacer
 ```
@@ -472,9 +474,29 @@ paru -S stacer
 - <https://github.com/oguzhaninan/Stacer>
 
 ## Matrix
+
 ```bash
 sudo pacman -S cmatrix
+paru -S unimatrix-git
 ```
+
+Run:
+
+```bash
+cmatrix
+```
+
+or:
+
+```bash
+unimatrix -s 95
+```
+
+Welcome to the Matrix!
+
+**References:**
+
+- <https://github.com/will8211/unimatrix>
 
 ## Social media applications
 
