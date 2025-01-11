@@ -259,3 +259,14 @@ paru
 
 - <https://bbs.archlinux.org/viewtopic.php?id=142798>
 - <https://www.reddit.com/r/archlinux/comments/v2zyad/pacman_invalid_or_corrupted_database_pgp_signature/>
+
+## One or more files did not pass the validity check!
+
+If you faced this:
+
+```bash
+<PACKAGE_NAME>.zip ... FAILED
+==> ERROR: One or more files did not pass the validity check!
+```
+
+go to your file manager (my case `nautilus`) in the home directory and search for `<PACKAGE_NAME>.zip`. If you found it, delete it and then run the installation again.
