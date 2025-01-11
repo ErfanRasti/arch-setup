@@ -153,11 +153,11 @@ rm -rf ~/.config/fontconfig
 Some applications (like `telegram-desktop`) doesn't apply these languages through `noto-fonts-cjk`. You need to install them separately using the following packages:
 
 ```bash
-sudo pacman -S wqy-zenhei otf-ipafont
+sudo pacman -S wqy-zenhei otf-ipaexfont
 ```
 
-- **wqy-zenhei:** A Hei Ti Style (sans-serif) Chinese Outline Font.
-- **otf-ipafont:** Japanese outline fonts by Information-technology Promotion Agency, Japan (IPA)
+- `wqy-zenhei`: A Hei Ti Style (sans-serif) Chinese Outline Font.
+- `otf-ipaexfont`: Japanese outline fonts by Information-technology Promotion Agency, Japan (IPA)
 
 **References:**
 
