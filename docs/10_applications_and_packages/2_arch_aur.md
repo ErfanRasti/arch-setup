@@ -497,6 +497,7 @@ Welcome to the Matrix!
 **References:**
 
 - <https://github.com/will8211/unimatrix>
+- <https://askubuntu.com/questions/1479438/how-to-install-japanese-font-for-cmatrix>
 
 ## Social media applications
 
