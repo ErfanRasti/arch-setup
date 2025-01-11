@@ -145,7 +145,7 @@ I also use some extensions for `nuatilus`:
 
 ```bash
 sudo pacman -S sushi nautilus-image-converter nautilus-share
-paru -S nautilus-admin-gtk4 nautilus-open-any-terminal nautilus-code
+paru -S nautilus-admin-gtk4 nautilus-open-any-terminal code-nautilus-git
 ```
 
 - `sushi`: Quick file previewer for Nautilus. Part of `gnome`.
@@ -153,9 +153,7 @@ paru -S nautilus-admin-gtk4 nautilus-open-any-terminal nautilus-code
 - `nautilus-share`: Nautilus extension to share folder using Samba (written in C).
 - `nautilus-admin-gtk4`: Add to menu: "Open as administrator" or "Edit as administrator" (written in Python).
 - `nautilus-open-any-terminal`: Nautilus extension which adds an context-entry for opening other terminal emulators.
-- `nautilus-code`: Nautilus extension to open files in Visual Studio Code.
-
-To run nautilus as root:
+- `code-nautilus-git`: Nautilus extension to open files and directories in Visual Studio Code (written in Python).
 
 ```bash
 nautilus admin:/
@@ -455,6 +453,27 @@ I use `speedtest-cli` to check the speed of the internet:
 
 ```bash
 sudo pacman -S speedtest-cli
+```
+
+## Note taking
+
+```bash
+paru -S simplenote
+```
+**References:**
+
+- <https://github.com/Automattic/simplenote-electron>
+
+## System management
+```bash
+paru -S stacer
+```
+
+- <https://github.com/oguzhaninan/Stacer>
+
+## Matrix
+```bash
+sudo pacman -S cmatrix
 ```
 
 ## Social media applications
