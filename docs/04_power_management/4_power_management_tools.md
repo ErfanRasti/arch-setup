@@ -141,16 +141,27 @@ sudo pacman -S gnome-power-manager
 
 ### Conservation mode
 
-To activate conservation mode on Lenovo latops (To disable it pass `0` to it.):
+To activate conservation mode on Lenovo laptops (To disable it pass `0` to it.):
 
 ```bash
 echo 0 | sudo tee /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode
+```
+
+For ASUS laptops:
+```bash
+echo 80 | sudo tee /sys/class/power_supply/BAT0/charge_control_end_threshold
+```
+
+Check the status of charging:
+```bash
+cat /sys/class/power_supply/BAT0/status
 ```
 
 **References:**
 
 - <https://wiki.archlinux.org/title/Laptop/Lenovo#Battery_conservation_mode>
 - <https://askubuntu.com/questions/900306/how-to-turn-off-lenovo-conservative-mode-using-ubuntu>
+- <https://wiki.archlinux.org/title/Laptop/ASUS#Battery_charge_threshold>
 
 ### Monitoring
 
