@@ -239,7 +239,7 @@ yay -Q | grep gnome
 
 ### Possibly missing hardware
 
-These warnings at `pacman` update are not that serious. You can ignoore it or you can remove them by installing `linux-firmware-qlogic`; but I recommend to don't install it.
+These warnings at `pacman` update are not that serious. You can ignoore it or you can remove them by installing `linux-firmware-qlogic`; but I recommend ignoring it.
 
 **References:**
 
@@ -259,6 +259,19 @@ paru
 
 - <https://bbs.archlinux.org/viewtopic.php?id=142798>
 - <https://www.reddit.com/r/archlinux/comments/v2zyad/pacman_invalid_or_corrupted_database_pgp_signature/>
+- <https://bbs.archlinux.org/viewtopic.php?id=268087>
+
+### Failed to init transaction (unable to lock database)
+
+If pacman is interrupted while changing the database, this stale lock file can remain. If you are certain that no instances of pacman are running then delete the lock file:
+
+```bash
+sudo rm /var/lib/pacman/db.lck
+```
+
+**References:**
+
+-<https://wiki.archlinux.org/title/Pacman#.22Failed_to_init_transaction_.28unable_to_lock_database.29.22_error>
 
 ## One or more files did not pass the validity check!
 
