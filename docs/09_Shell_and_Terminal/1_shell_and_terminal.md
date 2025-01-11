@@ -155,7 +155,7 @@ I personally use `CaskaydiaCove Nerd Font` and it works fine for me. So I didn't
 4. After the configuration, you can customize the colors the way you want:
 
    ```bash
-    code ~/.p10k.zsh
+   code ~/.p10k.zsh
    ```
 
    To see the color codes you can use this command:
