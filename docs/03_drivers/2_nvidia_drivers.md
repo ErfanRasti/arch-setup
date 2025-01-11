@@ -24,14 +24,30 @@ sudo systemctl enable nvidia-hibernate.service nvidia-suspend.service nvidia-res
 sudo systemctl start nvidia-powerd.service
 ```
 
-These services help the `system` to manage Nvidia drivers during suspension and hibernation. If you don't enable them, you cannot suspend properly, which leads to high power usage. `nvidia-powerd.service` and `nvidia-persistenced.service` are not necessary you can ignore theme.
+- `nvidia-hibernate.service`: Manages the NVIDIA GPU state during system hibernation.
+- `nvidia-suspend.service`: Handles the NVIDIA GPU state during system suspend (sleep) operations.
+- `nvidia-resume.service`: Manages the NVIDIA GPU state when the system resumes from suspend or hibernation.
+- `nvidia-powerd.service`: Manages power settings and optimizes the NVIDIA GPU's power consumption (Recommended for laptops).
+- `nvidia-persistenced.service`: Maintains a persistent NVIDIA driver state to reduce initialization latency and improve performance (Recommended for desktops and servers).
 
-One Important problem caused by these services is _screen blanking_ which is produced by running these services after suspend or hibernation modes. This is caused by switching the Nvidia driver to `suspend` mode leading to changing `` subsystems.
+These services help the `system` to manage Nvidia drivers during suspension and hibernation. If you don't enable them, you cannot suspend properly, which leads to high power usage. `nvidia-powerd.service` and `nvidia-persistenced.service` are not necessary you can ignore them. Also they can conflict with eachother and cause problems.
+
+```bash
+sudo systemctl stop nvidia-persistenced.service
+sudo systemctl disable nvidia-persistenced.service
+sudo systemctl stop nvidia-powerd.service
+sudo systemctl disable nvidia-powerd.service
+```
+
+**Note:** One Important problem caused by these services is _screen blanking_ which is produced by running these services after suspend or hibernation modes. This is caused by switching the Nvidia driver to `suspend` mode leading to changing `` subsystems.
 
 **References:**
 
 - <https://download.nvidia.com/XFree86/Linux-x86_64/435.17/README/powermanagement.html>
 - <https://askubuntu.com/questions/1405262/how-to-solve-black-screen-after-suspension-with-ubuntu-22-04-lts>
+- <https://wiki.archlinux.org/title/NVIDIA/Tips_and_tricks#Preserve_video_memory_after_suspend>
+- <https://download.nvidia.com/XFree86/Linux-x86_64/510.47.03/README/dynamicboost.html>
+- <https://download.nvidia.com/XFree86/Linux-x86_64/396.51/README/nvidia-persistenced.html>
 
 ## Nvidia controllers (`envycontrol`)
 
