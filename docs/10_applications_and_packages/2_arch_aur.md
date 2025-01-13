@@ -95,9 +95,6 @@ If you had a problem with playing some formats, change the following setting:
 
 Tools > Preferences > Input/Codecs/ > Hardware-accelerated decoding > Change it to VA-API video decoder
 
-To activate touchscreen scrolling on `firefox`:
-In firefox search section type `dom.w3c_touch_events.enabled`. Then select boolean and change it to `True`.
-
 For video editing I recommend `kdenlive`:
 
 ```bash
@@ -297,9 +294,19 @@ Icon=/home/<USER>/.icons/firefox/<ICON>
 ```
 
 Also I highly recommend you take a look at [this](https://mozilla.design/firefox/#logos-usage). It has lots of cool icons.
+
 **References:**
 
 - <https://www.reddit.com/r/firefox/comments/1ecmxys/cool_firefox_icons_i_stumbled_upon_links_below/>
+
+#### Touchscreen on `firefox`
+
+To activate touchscreen scrolling on `firefox`:
+In firefox search section type `dom.w3c_touch_events.enabled`. Then select boolean and change it to `True`.
+
+**References:**
+
+- <https://askubuntu.com/questions/1122332/one-finger-scrolling-touchscreen-in-firefox?noredirect=1&lq=1>
 
 ### Microsoft Edge
 
