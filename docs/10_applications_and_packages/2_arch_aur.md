@@ -95,6 +95,9 @@ If you had a problem with playing some formats, change the following setting:
 
 Tools > Preferences > Input/Codecs/ > Hardware-accelerated decoding > Change it to VA-API video decoder
 
+To activate touchscreen scrolling on `firefox`:
+In firefox search section type `dom.w3c_touch_events.enabled`. Then select boolean and change it to `True`.
+
 For video editing I recommend `kdenlive`:
 
 ```bash
@@ -496,6 +499,7 @@ Welcome to the Matrix!
 
 **References:**
 
+- <https://github.com/abishekvashok/cmatrix>
 - <https://github.com/will8211/unimatrix>
 - <https://askubuntu.com/questions/1479438/how-to-install-japanese-font-for-cmatrix>
 
