@@ -55,6 +55,12 @@ To make `libreoffice` more functional I highly recommend you to watch the follow
 - <https://www.youtube.com/watch?v=x44bda1dz84>
 - <https://www.youtube.com/watch?v=G0che2Az9hw>
 
+To support persian language you can install the persian language pack for `libreoffice`:
+
+```bash
+sudo pacman -S libreoffice-fresh-fa
+```
+
 ### OnlyOffice
 
 Another proper option (and also open source) is onlyoffice:
