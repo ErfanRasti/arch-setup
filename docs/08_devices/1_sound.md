@@ -51,11 +51,15 @@ To automate the `wireplumber.service` restart using `udev`:
    systemctl --user status wireplumber
    ```
 
+   **Note:** Most of the distortion and noises in bluetooth headphones are caused by the interference between 2.4GHz WiFi and the bluetooth. Try separate their bands first, but if it don't fixed the issue check the following [troubleshooting section](#troubleshooting).
+
 **References:**
 
 - <https://wiki.archlinux.org/title/WirePlumber#Delete_corrupt_settings>
 
-### Audio is distorted
+### Troubleshooting
+
+#### Audio is distorted
 
 1. Copy `pipewire.conf` to `~/.config/pipewire/pipewire.conf`:
    ```bash
@@ -83,7 +87,7 @@ To automate the `wireplumber.service` restart using `udev`:
 3. Restart related services:
 
    ```bash
-   systemctl --user restart pipewire.service pipewire.socket pipewire-pulse.service pipewire-pulse.socket wireplumber.service bluetooth.target;
+   systemctl --user restart wireplumber.service pipewire.service pipewire.socket pipewire-pulse.service pipewire-pulse.socket bluetooth.target;
    ```
 
 **References:**
@@ -93,3 +97,36 @@ To automate the `wireplumber.service` restart using `udev`:
 - <https://wiki.archlinux.org/title/PipeWire#Changing_the_default_sample_rate>
 - <https://wiki.archlinux.org/title/PipeWire#Changing_the_allowed_sample_rate(s)>
 - <https://wiki.archlinux.org/title/Bluetooth_headset#Headset_via_PipeWire>
+
+#### Fix Audio Crackling/Choppy Audio (Mostly for VMs)
+
+1. Reset `pipewire` settings to default:
+
+   ```bash
+   sudo cp /usr/share/pipewire/pipewire.conf /etc/pipewire/
+   ```
+
+   Also you can check the differences before reset:
+
+   ```bash
+   diff /usr/share/pipewire/pipewire.conf /etc/pipewire/
+   ```
+
+2. Reset `wireplumber` `alsa` related configs:
+
+   ```bash
+   mkdir -p ~/.config/wireplumber/wireplumber.conf.d/
+   cp /usr/share/wireplumber/wireplumber.conf.d/alsa-vm.conf ~/.config/wireplumber/wireplumber.conf.d/
+   ```
+
+3. Reset related packages:
+
+   ```bash
+   systemctl --user restart wireplumber pipewire pipewire-pulse
+   ```
+
+**References:**
+
+- <https://gitlab.freedesktop.org/pipewire/pipewire/-/wikis/Troubleshooting#stuttering-audio-in-virtual-machine>
+- <https://pipewire.pages.freedesktop.org/wireplumber/daemon/configuration/migration.html#config-migration>
+- <https://www.youtube.com/watch?v=SA5GAPKQOBk>
