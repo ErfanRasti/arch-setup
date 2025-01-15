@@ -1,7 +1,7 @@
 ## Power Management Tools
 
 For laptop users, power usage is one of the most critical things in linux.
-I personally prefer using `power-profiles-daemon` and `powertop` together. But you can use `tlp` instead of `power-profiles-daemon` if you want.
+I personally prefer using `power-profiles-daemon` , `powertop`, and `thermald` together. But you can use `tlp` instead of `power-profiles-daemon` if you want.
 
 ### TLP
 
@@ -128,6 +128,26 @@ If you receive an error like the following when starting powertop, it is likely 
 **References:**
 
 - <https://wiki.archlinux.org/title/Powertop>
+
+### thermald
+
+Installation:
+
+```bash
+sudo pacman -S thermald
+```
+
+Enable and start:
+
+```bash
+sudo systemctl enable thermald.service
+sudo systemctl start thermald.service
+```
+
+**References:**
+
+- <https://man.archlinux.org/man/thermald.8.en>
+- <https://github.com/intel/thermal_daemon>
 
 ### GNOME Power Manager
 
