@@ -148,20 +148,47 @@ echo 0 | sudo tee /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation
 ```
 
 For ASUS laptops:
+
 ```bash
 echo 80 | sudo tee /sys/class/power_supply/BAT0/charge_control_end_threshold
 ```
 
 Check the status of charging:
+
 ```bash
 cat /sys/class/power_supply/BAT0/status
 ```
+
+To set the battery limit automatically install the following extension:
+
+```bash
+gext install Battery-Health-Charging@maniacx.github.com
+```
+
+It is amazingly useful.
+
+After installation, go to the extension settings:
+`General tab`, `Installation part` and `Install privilege for this user`. Activate it and everything is ok now.
+
+If you faced with and error during resume process, download [this](https://raw.githubusercontent.com/maniacx/Battery-Health-Charging/Documentation/battery-health-charging-resources/downloads/bhc_patch.zip).
+
+Then run this:
+
+```bash
+bash bhc_patch.sh
+```
+
+I chose the first option (`1`) and continued with `sudo`.
+For more info check [this](https://maniacx.github.io/Battery-Health-Charging/polkitbug).
 
 **References:**
 
 - <https://wiki.archlinux.org/title/Laptop/Lenovo#Battery_conservation_mode>
 - <https://askubuntu.com/questions/900306/how-to-turn-off-lenovo-conservative-mode-using-ubuntu>
 - <https://wiki.archlinux.org/title/Laptop/ASUS#Battery_charge_threshold>
+- <https://github.com/maniacx/Battery-Health-Charging?tab=readme-ov-file>
+- <https://extensions.gnome.org/extension/5724/battery-health-charging/>
+- <https://maniacx.github.io/Battery-Health-Charging/polkitbug>
 
 ### Monitoring
 
