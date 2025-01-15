@@ -32,6 +32,30 @@ sudo pacman -S fuse less bat dconf-editor neofetch fastfetch gparted ntfs-3g uge
 - `unrar`: A command-line utility to extract, test and view the contents of archives created with the RAR archiver.
 - `gnome-usage`: A system monitor.
 
+## Useful Tools for System Management
+
+```bash
+sudo pacman -S pciutils usbutils procinfo-ng net-tools kmod lshw
+```
+
+- `pciutils`: A set of programs for listing PCI devices.
+- `usbutils`: A set of USB utilities.
+- `procinfo-ng`: A tool for gathering system information from various `/proc` files.
+- `net-tools`: A set of tools for controlling network subsystems. It includes `ifconfig` command.
+- `kmod`: A set of tools to handle common tasks with Linux kernel modules.
+- `lshw`: A small tool to provide detailed information on the hardware configuration of the machine.
+
+Remember these commands:
+
+- `ls`: List all files and folders in the current directory.
+- `lsmod`: List all loaded kernel modules.
+- `lspci`: List all PCI devices.
+- `lsusb`: List all USB devices.
+- `lscpu`: List CPU information.
+- `lsblk`: List block devices (like hard drives).
+- `lsdev`: List devices.
+- `lshw`: List hardware.
+
 ## Manuals and Documentations
 
 ```bash
