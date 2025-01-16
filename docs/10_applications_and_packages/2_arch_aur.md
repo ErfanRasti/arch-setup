@@ -55,6 +55,7 @@ Remember these commands:
 - `lsblk`: List block devices (like hard drives).
 - `lsdev`: List devices.
 - `lshw`: List hardware.
+- `lsof`: List open files.
 
 ## Manuals and Documentations
 
