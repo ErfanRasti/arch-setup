@@ -106,6 +106,12 @@ iw wlan1 info
 
 The difference between these two commands is that the first one shows the link layer information and the second one shows the general information about the interface.
 
+To turn off or on network completely:
+
+```bash
+nmcli networking off
+```
+
 #### channel sub-band selection
 
 Get the current sub-band using:
@@ -158,6 +164,72 @@ Then set the device power mode:
 ```bash
 sudo iw dev wlan0 set power_save on
 ```
+
+**References:**
+
+- <https://wiki.archlinux.org/title/Network_configuration/Wireless#Cause_#7>
+
+### `wpa_supplicant` vs `networkmanager`
+
+`wpa_supplicant` is a cross-platform supplicant with support for WEP, WPA and WPA2 (IEEE 802.11i). It is suitable for both desktop/laptop computers and embedded systems. `NetworkManager` is a program for providing detection and configuration for systems to automatically connect to network.
+
+Both of them are necessary for a Wi-Fi connection. `wpa_supplicant` is a backend tool for `NetworkManager`.
+
+```bash
+sudo systemctl enable NetworkManager
+sudo systemctl start NetworkManager
+sudo systemctl enable wpa_supplicant
+sudo systemctl start wpa_supplicant
+```
+
+**References:**
+
+- <https://wiki.archlinux.org/title/Wpa_supplicant>
+
+### Bluetooth and Wi-Fi coexistence
+
+Wi-Fi on 2.4 GHz and Bluetooth devices share the same frequency band. This can cause interference and performance degradation. To avoid this:
+
+```bash
+sudo modprobe -r iwlwifi
+sudo modprobe iwlwifi bt_coex_active=0
+```
+
+Or for `8821cu`:
+
+```bash
+sudo modprobe -r 8821cu
+sudo modprobe 8821cu rtw_btcoex_enable
+```
+
+To make it permanent:
+
+```bash
+sudo nano /etc/modprobe.d/iwlwifi.conf
+```
+
+Add:
+
+```conf
+options iwlwifi bt_coex_active=0
+```
+
+Or for `8821cu`:
+
+```bash
+sudo nano /etc/modprobe.d/8821cu.conf
+```
+
+Add:
+
+```conf
+options 8821cu rtw_btcoex_enable=0
+```
+
+**References:**
+
+- <https://josh.is-cool.dev/wifi-and-bluetooth-can-coexist/>
+- <https://wireless.docs.kernel.org/en/latest/en/users/documentation/bluetooth-coexistence.html>
 
 ### Archer T2UB Nano
 
