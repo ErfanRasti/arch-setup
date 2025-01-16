@@ -110,3 +110,40 @@ For me it wasn't activated.
 - <https://wiki.archlinux.org/title/Unified_Extensible_Firmware_Interface/Secure_Boot#Assisted_process_with_sbctl>
 - <https://man.archlinux.org/man/bootctl.1>
 - <https://www.youtube.com/watch?v=yU-SE7QX6WQ>
+
+## Change font size on `systemd-boot`
+
+Check this:
+
+```bash
+sudo nano /boot/loader/loader.conf
+```
+
+Add this:
+
+```conf
+console-mode auto
+```
+
+`console-mode` has different values:
+
+- `0`: Standard UEFI 80x25 mode.
+- `1`: 80x50 mode, not supported by all devices.
+- `2`: The first non-standard mode provided by the device firmware, if any.
+- `auto`: Pick a suitable mode automatically using heuristics.
+- `max`: Pick the highest-numbered available mode.
+- `keep`: Keep the mode selected by firmware (the default).
+
+And:
+
+```bash
+sudo bootctl update
+```
+
+If still get the previous appearance, press `r` key when boot menu appears.
+
+**References:**
+
+- <https://wiki.archlinux.org/title/Systemd-boot#Loader_configuration>
+- <https://www.reddit.com/r/pop_os/comments/nbjwu9/systemdboot_resolution_and_fonts/>
+- <https://bbs.archlinux.org/viewtopic.php?id=291241>
