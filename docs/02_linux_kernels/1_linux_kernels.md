@@ -81,3 +81,83 @@ When you login to your GNOME, you make a session to your kernel:
 **References:**
 
 - <https://bbs.archlinux.org/viewtopic.php?id=289800>
+
+### Kernel Modules
+
+To get list of all loaded kernel modules:
+
+```bash
+lsmod
+```
+
+To get list of all available kernel modules:
+
+```bash
+find /lib/modules/$(uname -r) -type f -name "*.ko*"
+```
+
+- `find` is a command to search for files in a directory hierarchy.
+- `uname -r` returns the current kernel version.
+- `-type f` is used to search for files only.
+- `-name "*.ko*"` is used to search for files with `.ko` or any extensions like `.ko.xz`.
+
+To get information about a specific kernel module:
+
+```bash
+modinfo <module_name>
+```
+
+You can see all parameters of a module using `modinfo` command.
+
+You can load a module using `modprobe` command:
+
+```bash
+sudo modprobe <module_name>
+```
+
+You can set parameters for a module using `modprobe` command:
+
+```bash
+sudo modprobe -r <module_name>
+sudo modprobe <module_name> <parameter_name>=<parameter_value>
+```
+
+You can unload a module using `modprobe` command:
+
+```bash
+sudo modprobe -r <module_name>
+```
+
+To get the current value of a parameter of a module:
+
+```bash
+cat /sys/module/<module_name>/parameters/<parameter_name>
+```
+
+To set the value of a parameter of a module:
+
+```bash
+echo <parameter_value> | sudo tee /sys/module/<module_name>/parameters/<parameter_name>
+```
+
+To load a module with specific parameters permanently:
+
+```bash
+sudo nano /etc/modprobe.d/<module_name>.conf
+```
+
+Add:
+
+```bash
+options <module_name> <parameter_name>=<parameter_value>
+```
+
+After all:
+
+```bash
+sudo mkinitcpio -P
+```
+
+**References:**
+
+- <https://wiki.archlinux.org/title/Kernel_module>
