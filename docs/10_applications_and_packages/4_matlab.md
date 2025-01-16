@@ -171,6 +171,13 @@ The change `Icon`:
 Icon=/usr/share/icons/matlab/matlab.svg
 ```
 
+You can also remove redundant icons related to `matlab`:
+
+```bash
+cd ~/.local/share/applications
+rm mw-matlabconnector.desktop mw-matlab.desktop mw-simulink.desktop
+```
+
 After all update desktop database:
 
 ```bash
