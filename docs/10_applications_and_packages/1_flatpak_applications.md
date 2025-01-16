@@ -134,6 +134,7 @@ flatpak install flathub app.drey.Warp
 flatpak install flathub com.github.finefindus.eyedropper
 flatpak install flathub app.devsuite.Ptyxis
 flatpak install flathub menu.kando.Kando
+flatpak install flathub dev.qwery.AddWater
 ```
 
 - `com.mattjakeman.ExtensionManager`: Browse, install, and manage GNOME Shell Extensions.
@@ -147,11 +148,15 @@ flatpak install flathub menu.kando.Kando
 - `com.github.finefindus.eyedropper`: Pick and format colors.
 - `app.devsuite.Ptyxis`: Container-oriented terminal.
 - `menu.kando.Kando`: Kando is a cross-platform pie menu for your desktop. To make it work install Kando Integration GNOME extension too:
+
   ```bash
   gext install kando-integration@kando-menu.github.io
   ```
+
   Finally you should add `Kando` to startup applications:
   ` gnome-tweaks > Startup Applications > Select Application > Kando`
+
+- `dev.qwery.AddWater`: AddWater is a simple tool to customize `firefox` appearance.
 
 **References:**
 
