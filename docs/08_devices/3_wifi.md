@@ -199,7 +199,7 @@ Or for `8821cu`:
 
 ```bash
 sudo modprobe -r 8821cu
-sudo modprobe 8821cu rtw_btcoex_enable
+sudo modprobe 8821cu rtw_btcoex_enable=0
 ```
 
 To make it permanent:
