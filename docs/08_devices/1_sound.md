@@ -90,6 +90,14 @@ To automate the `wireplumber.service` restart using `udev`:
    systemctl --user restart wireplumber.service pipewire.service pipewire.socket pipewire-pulse.service pipewire-pulse.socket bluetooth.target;
    ```
 
+4. Finally check your current in-use sample rate using this:
+
+   ```bash
+   pw-top
+   ```
+
+   Make a sound to check it.
+
 **References:**
 
 - <https://wiki.archlinux.org/title/PipeWire#Audio_is_distorted>
@@ -97,6 +105,7 @@ To automate the `wireplumber.service` restart using `udev`:
 - <https://wiki.archlinux.org/title/PipeWire#Changing_the_default_sample_rate>
 - <https://wiki.archlinux.org/title/PipeWire#Changing_the_allowed_sample_rate(s)>
 - <https://wiki.archlinux.org/title/Bluetooth_headset#Headset_via_PipeWire>
+- <https://wiki.archlinux.org/title/PipeWire#Checking_currently_used_sample_rate>
 
 #### Fix Audio Crackling/Choppy Audio (Mostly for VMs)
 
