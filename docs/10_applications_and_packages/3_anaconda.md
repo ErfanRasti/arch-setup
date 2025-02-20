@@ -71,7 +71,7 @@ Activate this new environment and install your required packages on that:
 
 ```bash
 conda activate py312
-conda install jupyter matplotlib numpy pandas
+conda install jupyter matplotlib numpy pandas seaborn scipy
 ```
 
 For deep learning applications create a separate environment and use it instead:
