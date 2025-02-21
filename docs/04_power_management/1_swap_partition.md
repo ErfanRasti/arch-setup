@@ -28,7 +28,7 @@ I usually don't prefer this method because I have good amount of RAM. I use manu
 1. First we should remove other swap partitions if exist. There is no need to remove them but I prefer to remove any swap files including `zram`. Run and check the path of the swap file. Mine is `/dev/zram0`:
 
    ```shell
-   sudo swap on
+   sudo swapon
    ```
 
    Next:
@@ -111,7 +111,7 @@ I usually don't prefer this method because I have good amount of RAM. I use manu
      sudo bash -c "echo /swap/swapfile none swap defaults 0 0 >> /etc/fstab"
      ```
 
-     First line creates the swap sub-volume for `btrfs`. Second line crets `swapfile` under the `/swap` subvolume with the determined size. Third line makes the `swapfile` on and the last line adds the `swapfile` to fstab to make it available at startup.
+     First line creates the swap sub-volume for `btrfs`. Second line creats `swapfile` under the `/swap` subvolume with the determined size. Third line makes the `swapfile` on and the last line adds the `swapfile` to fstab to make it available at startup.
 
      To see the activated `swapfile` and the percent of usage run:
 
@@ -150,7 +150,7 @@ I usually don't prefer this method because I have good amount of RAM. I use manu
      To set the swappiness value permanently:
 
      ```bash
-     sudo echo "vm.swappiness = 10" >> /etc/sysctl.d/99-swappiness.conf
+     sudo echo "vm.swappiness = 35" >> /etc/sysctl.d/99-swappiness.conf
      ```
 
      Which adds `vm.swappiness = 35` to `/etc/sysctl.d/99-swappiness.conf`.
