@@ -98,3 +98,28 @@ My default suspend mode is `deep` and there is no need to do any of this for me!
 - <https://docs.kernel.org/admin-guide/pm/sleep-states.html#basic-sysfs-interfaces-for-system-suspend-and-hibernation>
 - <https://wiki.archlinux.org/title/Kernel_parameters>
 - <https://web.archive.org/web/20230614200816/https://01.org/blogs/qwang59/2018/how-achieve-s0ix-states-linux>
+
+### Changing the power button behavior in systemd
+
+1. Create "drop-ins" in the `/etc/systemd/logind.conf.d/` directory:
+
+   ```bash
+   sudo mkdir -p /etc/systemd/logind.conf.d/
+   sudo nano /etc/systemd/logind.conf.d/override.conf
+   ```
+
+   Then add:
+
+   ```conf
+   [Login]
+   HandlePowerKey=suspend
+   ```
+
+2. Restart `systemd-logind`:
+   ```bash
+   sudo systemctl restart systemd-logind
+   ```
+
+**References:**
+
+- https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/administering_the_system_using_the_gnome_desktop_environment/changing-the-power-button-behavior_administering-the-system-using-the-gnome-desktop-environment#changing-the-power-button-behavior-in-systemd_changing-the-power-button-behavior
