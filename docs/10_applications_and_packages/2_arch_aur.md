@@ -656,3 +656,4 @@ This application is a nice way to mirror iPad or iPhone screen to the linux mach
 
 - https://github.com/antimof/UxPlay
 - https://www.omgubuntu.co.uk/2024/03/how-to-mirror-your-iphone-ipad-to-ubuntu
+- https://f-viktor.github.io/articles/scrgto.html
