@@ -274,7 +274,32 @@ cat /sys/class/drm/card*/device/power_state
 
 ### Troubleshoting
 
-### High power usage after resuming from suspend
+#### Wireless usb mouse not working
+
+I have a wireless mouse with USB dongle. It didn't work for me. I made it work using this command:
+
+```bash
+sudo nano /etc/udev/rules.d/50-usb_power_save.rules
+```
+
+Add this:
+
+```rules
+ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="idHere", ATTR{idProduct}=="idHere", GOTO="power_usb_rules_end"
+```
+
+Then reload `udev` rules:
+
+```bash
+sudo udevadm control --reload
+```
+
+**References:**
+
+- https://wiki.archlinux.org/title/Power_management#USB_autosuspend
+- https://www.reddit.com/r/archlinux/comments/qzae1u/comment/kzgq4se/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+
+#### High power usage after resuming from suspend
 
 **References:**
 
