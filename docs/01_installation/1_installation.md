@@ -32,6 +32,7 @@ You can install the Arch Linux from scratch (which I highly recommend to adopt w
    rfkill unblock wifi
    ```
 8. Run:
+
    ```bash
    iwctl
    [iwctl]# device list
@@ -39,7 +40,18 @@ You can install the Arch Linux from scratch (which I highly recommend to adopt w
    [iwctl]# station wlan0 get-networks
    [iwctl]# station wlan0 connect "WIFI_NAME"
    ```
-9. Now you are connected to the internet. You can install it!
+
+   Now you are connected to the internet.
+
+9. To prevent potential problems related to downloading packages, synchronize your system clock using this command:
+
+   ```bash
+   timectl set-ntp true
+   ```
+
+   `ntp` is network time protocol.
+
+10. You can install it!
 
 If you use `archinstall` make sure to update it before installation using following command:
 
@@ -69,3 +81,4 @@ My configurations:
 - <https://wiki.archlinux.org/title/Iwd>
 - <https://wiki.archlinux.org/title/Archinstall>
 - <https://youtu.be/8YE1LlTxfMQ?si=l4oiXkGNmAxkCv93>
+- <https://www.youtube.com/watch?v=xj81uEMqKKE>
