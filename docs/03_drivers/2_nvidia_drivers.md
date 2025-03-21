@@ -109,6 +109,17 @@ blacklist nvidia-drm
 blacklist nvidia-modeset
 ```
 
+That's not necessary because `gnome-shell` only uses the dPUG when you call `nvidia-smi` command.
+
+Finally you can disable and enable persistence mode on NVIDIA using this:
+
+```bash
+nvidia-smi -pm 0
+```
+
+- `0`: Disables persistence mode
+- `1`: Enables persistence mode
+
 **References:**
 
 - <https://www.reddit.com/r/archlinux/comments/16iz9co/nvidia_or_nvidiadkms/>
