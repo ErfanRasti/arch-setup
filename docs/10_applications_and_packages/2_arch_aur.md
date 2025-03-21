@@ -13,7 +13,7 @@ paru -S spotify
 ## Essential `pacman` applications
 
 ```bash
-sudo pacman -S fuse less bat dconf-editor neofetch fastfetch gparted ntfs-3g uget wget wireplumber rsync glxinfo unrar gnome-usage
+sudo pacman -S fuse less bat dconf-editor neofetch fastfetch gparted ntfs-3g uget wget wireplumber rsync glxinfo unrar gnome-usage tldr
 ```
 
 - `fuse`: Filesystem in Userspace.
@@ -31,6 +31,7 @@ sudo pacman -S fuse less bat dconf-editor neofetch fastfetch gparted ntfs-3g uge
 - `glxinfo`: A command that can be used to display information about the OpenGL and GLX implementations.
 - `unrar`: A command-line utility to extract, test and view the contents of archives created with the RAR archiver.
 - `gnome-usage`: A system monitor.
+- `tldr`: A collection of simplified man pages.
 
 ## Useful Tools for System Management
 
