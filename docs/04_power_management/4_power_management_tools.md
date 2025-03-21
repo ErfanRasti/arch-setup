@@ -28,6 +28,13 @@ sudo tlp start
 
 You can also use `tlpui` to manage `tlp`. Check [this](../10_applications_and_packages/1_flatpak_applications.md/#system-management) for more information.
 
+Also remember to set these if `RESTORE_DEVICE_STATE_ON_STARTUP=1` is configured:
+
+```bash
+sudo systemctl mask systemd-rfkill.socket
+sudo systemctl mask systemd-rfkill.service
+```
+
 **References:**
 
 - <https://wiki.archlinux.org/title/TLP>
