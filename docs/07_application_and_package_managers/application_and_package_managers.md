@@ -235,6 +235,39 @@ yay -Q | grep gnome
 
 - <https://wiki.archlinux.org/title/Pacman#Querying_package_databases>
 
+## Activating the testing repos
+
+```bash
+sudo nano /etc/pacman.conf
+```
+
+Uncomment these lines:
+
+```conf
+[core-testing]
+Include = /etc/pacman.d/mirrorlist
+
+[extra-testing]
+Include = /etc/pacman.d/mirrorlist
+```
+
+You should enable bouth `core-testing` and `extra-testing` together to prevent dependency issues.
+
+If you decided to revert it, comment these lines and run:
+```bash
+sudo pacman -Syuu
+```
+
+
+**References:**
+
+- <https://wiki.archlinux.org/title/Official_repositories#Testing_repositories>
+- <https://www.reddit.com/r/archlinux/comments/j5ctlh/are_testing_repositories_ok_for_daily_use/>
+
+- <https://www.reddit.com/r/archlinux/comments/tpfy1u/when_using_the_arch_testing_repos_is_it/>
+- <https://bbs.archlinux.org/viewtopic.php?id=261746>
+- <https://bbs.archlinux.org/viewtopic.php?id=55113>
+
 ## Troubleshooting
 
 ### Possibly missing hardware
