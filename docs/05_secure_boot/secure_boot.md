@@ -22,7 +22,7 @@ For me it wasn't activated.
    sudo systemctl reboot --firmware-setup
    ```
 
-   It will bring the `uefi`. First make sure secure boot is disabled (probably it is because Arch Linux doesn't support secure boot natively). Now you should look for _Reset to Setup Mode_ option.
+   It will bring the `uefi`. First, make sure secure boot is disabled (probably it is because Arch Linux doesn't support secure boot natively). Now you should look for _Reset to Setup Mode_ option.
    Mine was under Security tab:
 
    `Security > Secure Boot = Disabled`
@@ -55,7 +55,7 @@ For me it wasn't activated.
    ```bash
    sbctl enroll-keys -m
    ```
-6. The boot loader is only updated after a reboot in `systemd-boot`, and the `sbctl` pacman hook will therefore not sign the new file. As a workaround, it can be useful to sign the boot loader directly in `/usr/lib/`, as `bootctl` install and update will automatically recognize and copy `.efi.signed` files to the ESP if present, instead of the normal `.efi` file.
+6. The boot loader is only updated after a reboot in `systemd-boot`, and the `sbctl` pacman hook won't sign the new file. As a workaround, it can be useful to sign the boot loader directly in `/usr/lib/`, as `bootctl` install and update will automatically recognize and copy `.efi.signed` files to the ESP if present, instead of the normal `.efi` file.
    ```bash
    sbctl sign -s -o /usr/lib/systemd/boot/efi/systemd-bootx64.efi.signed /usr/lib/systemd/boot/efi/systemd-bootx64.efi
    ```
@@ -74,7 +74,7 @@ For me it wasn't activated.
    sbctl sign -s /boot/EFI/BOOT/BOOTX64.EFI
    sbctl sign -s /boot/EFI/systemd/systemd-bootx64.efi
    ```
-   I have two kernls so I should sign `vmlinuz-linux-lts` kernel too.
+   I have two kernels so I should sign `vmlinuz-linux-lts` kernel too.
    Finally verify again to make sure all those files are signed properly:
    ```bash
    sbctl verify
