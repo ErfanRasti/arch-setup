@@ -13,7 +13,7 @@ paru -S spotify
 ## Essential `pacman` applications
 
 ```bash
-sudo pacman -S fuse less bat dconf-editor neofetch fastfetch gparted ntfs-3g uget wget wireplumber rsync glxinfo unrar gnome-usage tldr
+sudo pacman -S fuse less bat dconf-editor neofetch fastfetch gparted ntfs-3g uget wget wireplumber rsync glxinfo unrar gnome-usage tldr man
 ```
 
 - `fuse`: Filesystem in Userspace.
@@ -32,6 +32,7 @@ sudo pacman -S fuse less bat dconf-editor neofetch fastfetch gparted ntfs-3g uge
 - `unrar`: A command-line utility to extract, test and view the contents of archives created with the RAR archiver.
 - `gnome-usage`: A system monitor.
 - `tldr`: A collection of simplified man pages.
+- `man`: An interface to the system reference manuals.
 
 ## Useful Tools for System Management
 
@@ -658,3 +659,25 @@ This application is a nice way to mirror iPad or iPhone screen to the linux mach
 - https://github.com/antimof/UxPlay
 - https://www.omgubuntu.co.uk/2024/03/how-to-mirror-your-iphone-ipad-to-ubuntu
 - https://f-viktor.github.io/articles/scrgto.html
+
+## hBlock
+
+`hBlock` is a POSIX-compliant shell script that gets a list of domains that serve ads, tracking scripts and malware from multiple sources and creates a `hosts` file that prevents your system from connecting to them.
+
+First backup your current `hosts` file, then install and enjoy:
+
+```bash
+sudo mv /etc/hosts /etc/hosts.backup
+sudo pacman -S hblock
+```
+
+Also if you want to use GNOME extension for `hBlock` you can install it using this command:
+
+```bash
+gext install blocker@pesader.dev
+```
+
+**References:**
+
+- <https://github.com/hectorm/hblock>
+- <https://github.com/pesader/gnome-shell-extension-blocker?tab=readme-ov-file>
