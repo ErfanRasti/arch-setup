@@ -22,6 +22,10 @@
    Docker installation path is `/opt/docker-desktop`.
 
 4. Open docker desktop on your desktop environment.
+   Instead of above instruction you cann use `paru`:
+   ```bash
+   paru -S docker-desktop
+   ```
 5. Select accept on startup of the applications.
 6. If you couldn't login to your docker account follow this instruction:
 
