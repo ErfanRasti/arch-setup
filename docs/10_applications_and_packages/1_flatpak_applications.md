@@ -17,6 +17,7 @@ flatpak install flathub com.github.d4nj1.tlpui
 flatpak install flathub io.github.realmazharhussain.GdmSettings
 flatpak install flathub re.sonny.Junction
 flatpak install flathub org.gnome.seahorse.Application
+flatpak install flathub io.github.giantpinkrobots.flatsweep
 ```
 
 - `io.missioncenter.MissionCenter`: A task manager application.
@@ -29,6 +30,7 @@ flatpak install flathub org.gnome.seahorse.Application
 - `io.github.realmazharhussain.GdmSettings`: Customize your login screen.
 - `re.sonny.Junction`: Junction pops up automatically when you open a file or link in another app.
 - `org.gnome.seahorse.Application`: Passwords and Keys is a GNOME application for managing encryption keys.
+- `io.github.giantpinkrobots.flatsweep`: Clean up your system by removing unused flatpak runtimes and extensions.
 
 ### Sound
 
@@ -37,12 +39,14 @@ flatpak install flathub org.gnome.SoundRecorder
 flatpak install flathub org.gnome.Decibels
 flatpak install flathub com.github.neithern.g4music
 flatpak install flathub de.haeckerfelix.Shortwave
+flatpak install flathub io.github.seadve.Mousai
 ```
 
 - `org.gnome.SoundRecorder`: A sound recorder application.
 - `org.gnome.Decibels`: A sound player application.
 - `com.github.neithern.g4music`: Gapless (AKA: G4Music) is a light weight music player written in GTK4, focuses on large music collection.
 - `de.haeckerfelix.Shortwave`: Listen to internet radio.
+- `io.github.seadve.Mousai`: Discover songs you are aching to know with an easy-to-use interface.
 
 ### Photo
 
@@ -55,6 +59,8 @@ flatpak install flathub io.gitlab.theevilskeleton.Upscaler
 flatpak install flathub io.gitlab.gregorni.Letterpress
 flatpak install flathub org.gnome.gitlab.YaLTeR.Identity
 flatpak install flathub app.fotema.Fotema
+flatpak install flathub com.boxy_svg.BoxySVG
+flatpak install flathub page.kramo.Sly
 ```
 
 - `org.gimp.GIMP`: A photo editor application.
@@ -65,16 +71,20 @@ flatpak install flathub app.fotema.Fotema
 - `io.gitlab.gregorni.Letterpress`: Letterpress converts your images into a picture made up of ASCII characters.
 - `org.gnome.gitlab.YaLTeR.Identity`: A program for comparing multiple versions of an image or video.
 - `app.fotema.Fotema`: A photo gallery for everyone who wants their photos to live locally on their devices.
+- `com.boxy_svg.BoxySVG`: A vector graphics editor. Boxy SVG project goal is to create the best tool for editing SVG files.
+- `page.kramo.Sly`: Edit your images easily.
 
 ### Video
 
 ```bash
 flatpak install flathub io.gitlab.adhami3310.Footage
 flatpak install flathub org.gnome.gitlab.YaLTeR.VideoTrimmer
+flatpak install flathub org.gnome.Showtime
 ```
 
 - `io.gitlab.adhami3310.Footage`: Trim, flip, rotate and crop individual clips.
 - `org.gnome.gitlab.YaLTeR.VideoTrimmer`: Trim videos.
+- `org.gnome.Showtime`: A video player application.
 
 ### Note taking and listing
 
@@ -83,12 +93,14 @@ flatpak install flathub io.github.mrvladus.List
 flatpak install flathub com.vixalien.sticky
 flatpak install flathub org.gnome.World.Iotas
 flatpak install flathub com.github.flxzt.rnote
+flatpak install flathub com.toolstack.Folio
 ```
 
 - `io.github.mrvladus.List`: Manage your tasks.
 - `com.vixalien.sticky`: A sticky note application.
 - `org.gnome.World.Iotas`: Simple note taking.
 - `com.github.flxzt.rnote`: Sketch and take handwritten notes.
+- `flatpak install flathub com.toolstack.Folio`: Create notebooks and take notes in markdown.
 
 ### Text editors
 
@@ -104,11 +116,13 @@ flatpak install flathub org.gnome.gitlab.somas.Apostrophe
 flatpak install flathub re.sonny.Workbench
 flatpak install flathub io.github.ronniedroid.concessio
 flatpak install flathub io.github.david_swift.Flashcards
+flatpak install flathub com.github.hugolabe.Wike
 ```
 
 - `re.sonny.Workbench`: Workbench is for learning and prototyping with GNOME technologies.
 - `io.github.ronniedroid.concessio`: Understand file permissions.
 - `io.github.david_swift.Flashcards`: Study flashcards.
+- `com.github.hugolabe.Wike`: Wike is a simple Wikipedia reader.
 
 ### Graphs and data
 
@@ -123,6 +137,7 @@ flatpak install flathub io.github.seadve.Delineate
 ### Tools
 
 ```bash
+flatpak install flathub org.gnome.Papers
 flatpak install flathub com.mattjakeman.ExtensionManager
 flatpak install flathub io.gitlab.adhami3310.Impression
 flatpak install flathub org.gnome.design.Emblem
@@ -135,8 +150,21 @@ flatpak install flathub com.github.finefindus.eyedropper
 flatpak install flathub app.devsuite.Ptyxis
 flatpak install flathub menu.kando.Kando
 flatpak install flathub dev.qwery.AddWater
+flatpak install flathub io.github.lainsce.Colorway
+flatpak install flathub com.github.johnfactotum.QuickLookup
+flatpak install flathub com.github.johnfactotum.Foliate
+flatpak install flathub dev.geopjr.Collision
+flatpak install flathub org.gnome.design.IconLibrary
+flatpak install flathub nl.emphisia.icon
+flatpak install flathub io.github.giantpinkrobots.varia
+flatpak install flathub com.github.flxzt.rnote
+flatpak install flathub xyz.tytanium.DoorKnocker
+flatpak install flathub dev.bragefuglseth.Keypunch
+flatpak install flathub io.github.andreibachim.shortcut
+flatpak install flathub garden.jamie.Morphosis
 ```
 
+- `org.gnome.Papers`: A document viewer for the GNOME desktop.
 - `com.mattjakeman.ExtensionManager`: Browse, install, and manage GNOME Shell Extensions.
 - `io.gitlab.adhami3310.Impression`: Write disk images to your drives with ease.
 - `org.gnome.design.Emblem`: Generate projects avatars for your Matrix rooms and git forges from a symbolic icon.
@@ -156,12 +184,28 @@ flatpak install flathub dev.qwery.AddWater
   Finally you should add `Kando` to startup applications:
   ` gnome-tweaks > Startup Applications > Select Application > Kando`
 
+  **References:**
+
+  - <https://kando.menu/installation-on-linux/>
+  - <https://github.com/kando-menu/kando>
+
 - `dev.qwery.AddWater`: AddWater is a simple tool to customize `firefox` appearance.
-
-**References:**
-
-- <https://kando.menu/installation-on-linux/>
-- <https://github.com/kando-menu/kando>
+- `io.github.lainsce.Colorway`: Generate color pairings from selected color that follow certain color rules.
+- `com.github.johnfactotum.QuickLookup`: Look up words quickly with Quick Lookup, a dictionary application powered by Wiktionary™.
+- `com.github.johnfactotum.Foliate`: A simple and modern eBook viewer.
+- `dev.geopjr.Collision`: Check hashes for your files
+- `org.gnome.design.IconLibrary`: Icon Library is a simple tool to browse and search for icons.
+- `nl.emphisia.icon`: This program allows an easy and intuitive way to add an icon on top of a folder to help you differentiate it better.
+  Using this app and the previous app, you can easily add icons to your folders.
+  Check these:
+  - <https://www.youtube.com/watch?v=8i0vd4tvOzc>
+  - <https://github.com/youpie/Iconic>
+- `io.github.giantpinkrobots.varia`: Varia is better than your browser at downloading stuff. You can also add its browser extension. Check (this)[https://github.com/giantpinkrobots/varia].
+- `com.github.flxzt.rnote`: Sketch and take handwritten notes.
+- `xyz.tytanium.DoorKnocker`: Door Knocker allows you to check availability of all portals provided by xdg-desktop-portal.
+- `dev.bragefuglseth.Keypunch`: Practice your typing skills.
+- `io.github.andreibachim.shortcut`: Make app shortcuts.
+- `garden.jamie.Morphosis`: Use Morphosis to easily convert your text documents to other formats.
 
 ### Security
 
