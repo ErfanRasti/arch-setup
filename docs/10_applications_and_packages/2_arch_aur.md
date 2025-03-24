@@ -13,7 +13,7 @@ paru -S spotify
 ## Essential `pacman` applications
 
 ```bash
-sudo pacman -S fuse less bat dconf-editor neofetch fastfetch gparted ntfs-3g uget wget wireplumber rsync glxinfo unrar gnome-usage tldr man
+sudo pacman -S fuse less bat dconf-editor neofetch fastfetch gparted ntfs-3g uget wget wireplumber rsync glxinfo unrar gnome-usage tldr man nmap
 ```
 
 - `fuse`: Filesystem in Userspace.
@@ -33,6 +33,7 @@ sudo pacman -S fuse less bat dconf-editor neofetch fastfetch gparted ntfs-3g uge
 - `gnome-usage`: A system monitor.
 - `tldr`: A collection of simplified man pages.
 - `man`: An interface to the system reference manuals.
+- `nmap`: A network exploration tool and security/port scanner.
 
 ## Useful Tools for System Management
 
