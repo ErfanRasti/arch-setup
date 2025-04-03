@@ -38,9 +38,19 @@ paru -S apple-fonts
 paru -S ttf-ms-win11-auto
 ```
 
+#### Troubleshooting
+
+- `Times New Roman not found.`: Install this font and it will do it all.
+- `findfont: Generic family 'serif' not found because none of the following families were found: Times New Roman`:
+  ```bash
+  rm ~/.cache/matplotlib -rf
+  ```
+
 **References:**
 
 - <https://wiki.archlinux.org/title/Microsoft_fonts>
+- <https://askubuntu.com/questions/210680/installing-times-new-roman-font>
+- <https://stackoverflow.com/questions/42097053/matplotlib-cannot-find-basic-fonts>
 
 ### Awesome Fonts
 
