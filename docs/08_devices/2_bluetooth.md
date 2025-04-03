@@ -70,6 +70,50 @@ sudo systemctl start bluetooth-autoconnect
    sudo reboot
    ```
 
+### Chinese bluetooth dongle
+
+If you want to make chinese bluetooth dongle work:
+
+1. follow [this](../02_linux_kernels/1_linux_kernels.md#custom-kernels) until step 7.
+2. Make your customizations:
+
+   ```bash
+   cd ./drivers/bluetooth/
+   code btusb.c
+   ```
+
+   Comment out lines related to CSR devices (Check the logic of the code.)
+
+3. Compile the kernel module:
+   ```bash
+   make -C /lib/modules/$(uname -r)/build M=$(pwd) clean
+   cp /lib/modules/$(uname -r)/build/.config ./
+   cp /lib/modules/$(uname -r)/build/Module.symvers Module.symvers
+   make -C /lib/modules/$(uname -r)/build M=$(pwd) modules
+   ```
+4. Install it:
+   ```bash
+   zstd btusb.ko
+   sudo cp btusb.ko.zst /lib/modules/$(uname -r)/kernel/drivers/bluetooth/
+   sudo depmod
+   sudo modprobe -r btusb
+   sudo modprobe -v btusb
+   ```
+
+To revert it:
+
+```bash
+sudo rm /lib/modules/$(uname -r)/kernel/drivers/bluetooth/btusb.ko
+sudo pacman -S linux
+sudo depmod
+sudo modprobe -r btusb
+sudo modprobe btusb
+```
+
+**References:**
+
+- <https://unam.re/blog/fixing-chinese-bluetooth-dongle-linux>
+
 ### Troubleshooting
 
 For noise problems on bluetooth headphones shutdown the computer and hold the power key for 50 seconds. Remember connecting the device to power during the process.
