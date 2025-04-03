@@ -564,6 +564,15 @@ paru -S hiddify-next-bin
 - <https://github.com/hiddify/hiddify-app>
 - <https://github.com/MatsuriDayo/nekoray>
 
+## Some AUR apps
+
+```bash
+paru -S rustdesk-bin r-quick-share-bin
+```
+
+- `rustdesk-bin`: Yet another remote desktop software, written in Rust. Works out of the box, no configuration required.
+- `r-quick-share-bin`: Rust implementation of NearbyShare/QuickShare from Android for Linux.
+
 ## Extensions managing
 
 The main application is this:
