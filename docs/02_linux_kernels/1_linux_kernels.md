@@ -63,9 +63,57 @@ sudo mv <DATE>_linux-lts.conf linux-lts.conf
 sudo mv <DATE>_linux-lts-fallback.conf linux-lts-fallback.conf
 ```
 
+These parameters can be added at the end of the `options` line:
+
+1. `quiet`:
+
+   Reduces the verbosity of kernel messages displayed during boot.
+   Only critical error messages are shown, hiding informational and debug messages.
+   Without quiet, the system displays detailed startup logs and kernel messages during boot.
+
+2. `splash`:
+
+   Enables the graphical splash screen during boot (often showing the distribution logo or loading animation).
+   It hides the scrolling boot messages, offering a cleaner, more polished appearance during startup.
+
 **References:**
 
 - <https://bbs.archlinux.org/viewtopic.php?id=72344>
+- <https://wiki.archlinux.org/title/Silent_boot>
+
+## Plymouth
+
+`plymouth` provides polished boot process. To use it:
+
+1. Install it:
+   ```bash
+   sudo pacman -S plymouth
+   ```
+2. Make sure you added `quiet splash` into your boot entries.
+3. Add `plymouth` to the HOOKS array in mkinitcpio.conf:
+
+   ```bash
+   sudo nano /etc/mkinitcpio.conf
+   ```
+
+   If you are using the systemd hook, it must be before `plymouth`.
+
+   Furthermore make sure you place `plymouth` before the `encrypt` or `sd-encrypt` hook.
+
+   Something like this:
+
+   ```conf
+   HOOKS=(... plymouth encrypt ...)
+   ```
+
+4. Finally regenerate the `initramfs`:
+   ```bash
+   sudo mkinitcpio -P
+   ```
+
+**References:**
+
+- <https://wiki.archlinux.org/title/Plymouth>
 
 ## Recovery using Bootable USB Drive
 
