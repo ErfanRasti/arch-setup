@@ -170,3 +170,67 @@ sudo mkinitcpio -P
 **References:**
 
 - <https://wiki.archlinux.org/title/Kernel_module>
+
+## Custom kernels
+
+1.  Create a folder dedicated to the source code:
+    ```bash
+    mkdir ~/kernelbuild
+    cd ~/kernelbuild
+    ```
+2.  Go to <https://cdn.kernel.org/pub/linux/kernel/> select your desired kernel (probably the latest release). Then download the kernel and its signature:
+
+    ```bash
+
+    wget https://cdn.kernel.org/pub/linux/kernel/vA.x/linux-A.B.C.tar.xz
+
+    wget https://cdn.kernel.org/pub/linux/kernel/vA.x/linux-A.B.C.tar.sign
+    ```
+
+3.  Run this:
+
+    ```bash
+    gpg --list-packets linux-A.B.C.tar.sign | grep -i keyid | awk '{print $NF}' | xargs gpg --recv-keys
+    ```
+
+    This line:
+
+    - Extracts the GPG key ID used to sign a file.
+    - Retrieves the corresponding public key from a keyserver.
+    - Allows you to later verify the file's signature with `gpg --verify`.
+
+4.  Extract the `.xz` file and verify it:
+
+    ```bash
+    unxz linux-A.B.C.tar.xz
+    gpg --verify linux-6.13.2.tar.sign linux-6.13.2.tar
+    ```
+
+    _Do not proceed if this does not result in output that includes the string "Good signature"._
+
+5.  Unpack the kernel source and transfer the ownership of a folder with every file in it:
+    ```bash
+    tar -xvf linux-A.B.C.tar
+    chown -R $USER:$USER linux-A.B.C/
+    ```
+6.  Then:
+    ```bash
+    cd linux-A.B.C/
+    make mrproper
+    ```
+7.  Configure your kernel:
+    This method will create a `.config` file for the custom kernel using the default Arch kernel settings. If a stock Arch kernel is running, you can use the following command inside the custom kernel source directory:
+    ```bash
+    zcat /proc/config.gz > .config
+    ```
+8.  Now you can compile the kernel and install it:
+
+        ```bash
+        make
+        make modules
+        ```
+
+**References:**
+
+- <https://wiki.archlinux.org/title/Kernel/Arch_build_system>
+- <https://wiki.archlinux.org/title/Kernel/Traditional_compilation>
