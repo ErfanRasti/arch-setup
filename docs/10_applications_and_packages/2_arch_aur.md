@@ -682,3 +682,40 @@ gext install blocker@pesader.dev
 
 - <https://github.com/hectorm/hblock>
 - <https://github.com/pesader/gnome-shell-extension-blocker?tab=readme-ov-file>
+
+## remote login
+
+If you want to connect to a GNOME DE (system 1) from another GNOME DE (system 2), first you should do this on system 1:
+
+- Goto settings > system > remote desktop > remote login > enter a user and password
+
+Now you can connect here from somewhere else
+
+Install remmina on system 2:
+
+```bash
+sudo pacman -S remmina
+```
+
+Add a new connection:
+
+Enter the ip of system 1:
+
+To find the ip on system 1:
+
+```bash
+ip addr
+```
+
+Find the one under wl\*\*\*\* section.
+
+Enter the user and password on system 2.
+
+Now you can eassily connect.
+
+Desktop sharing suffers from unmatched screen resolutions.
+
+**References:**
+
+- <https://www.youtube.com/watch?v=_ZSXG_nQdZs>
+- <https://www.youtube.com/watch?v=NiCs6c5LlJ4>
