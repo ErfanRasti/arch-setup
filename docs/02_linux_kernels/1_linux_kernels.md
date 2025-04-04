@@ -106,6 +106,8 @@ These parameters can be added at the end of the `options` line:
    HOOKS=(... plymouth encrypt ...)
    ```
 
+   This will change the appearance of the password prompt dedicated to disk encryption. If you don't like it ignore steps 3 and 4.
+
 4. Finally regenerate the `initramfs`:
    ```bash
    sudo mkinitcpio -P
