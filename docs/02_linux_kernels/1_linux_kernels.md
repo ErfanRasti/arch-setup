@@ -76,6 +76,11 @@ These parameters can be added at the end of the `options` line:
    Enables the graphical splash screen during boot (often showing the distribution logo or loading animation).
    It hides the scrolling boot messages, offering a cleaner, more polished appearance during startup.
 
+3. `pcie_aspm=force`:
+   Forces the activation of PCIe Active State Power Management (ASPM), ensuring devices can enter low power states even if the system or BIOS doesn't enable it by default.
+   It is used primarily to reduce power consumption and increase battery life on laptops and other portable systems.
+   It can cause instability on some hardware, so it should be used cautiously and tested for your specific configuration.
+
 **References:**
 
 - <https://bbs.archlinux.org/viewtopic.php?id=72344>
