@@ -739,3 +739,46 @@ Desktop sharing suffers from unmatched screen resolutions.
 - <https://www.youtube.com/watch?v=_ZSXG_nQdZs>
 - <https://www.youtube.com/watch?v=NiCs6c5LlJ4>
 
+## Waydroid
+
+1. Install `binder_linux-dkms`:
+   ```bash
+   paru -S waydroid
+   ```
+   Choose `waydroid` option and that's it.
+   Then run:
+   ```bash
+   sudo waydroid init -s GAPPS
+   ```
+   I personally made it work using this command (I'm on Intel Core i7 8th Gen) but for other cpus you should install something else. Check archiwiki in the references.
+2. To make GAPPS work you should register your device. First you should find your android id:
+
+   Enter waydroid shell:
+
+   ```bash
+   sudo waydroid shell
+   ```
+
+   Find the waydroid id:
+
+   ```shell
+   ANDROID_RUNTIME_ROOT=/apex/com.android.runtime ANDROID_DATA=/data ANDROID_TZDATA_ROOT=/apex/com.android.tzdata ANDROID_I18N_ROOT=/apex/com.android.i18n sqlite3 /data/data/com.google.android.gsf/databases/gservices.db "select * from main where name = \"android_id\";"
+   ```
+
+   Use the string of numbers printed by the command to register the device on your Google Account at <https://www.google.com/android/uncertified>.
+
+   Give the Google services some minutes to reflect the change, then restart waydroid.
+
+3. If you want to merge the waydroid windows run:
+   ```bash
+    waydroid prop set persist.waydroid.multi_windows true
+   ```
+   Also restart the session:
+   ```bash
+    sudo waydroid session stop
+   ```
+
+**References:**
+
+- <https://wiki.archlinux.org/title/Waydroid>
+- <https://docs.waydro.id/faq/google-play-certification>
