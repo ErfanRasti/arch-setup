@@ -776,9 +776,19 @@ Desktop sharing suffers from unmatched screen resolutions.
    Also restart the session:
    ```bash
     sudo waydroid session stop
+    sudo waydroid session start
    ```
 
 **References:**
 
 - <https://wiki.archlinux.org/title/Waydroid>
 - <https://docs.waydro.id/faq/google-play-certification>
+
+## hardinfo
+
+A complete hardware info application as a equivalent of device manager:
+
+```bash
+paru -S hardinfo
+```
+Select the first option (not the git version).
