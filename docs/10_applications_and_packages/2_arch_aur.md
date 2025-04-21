@@ -363,6 +363,8 @@ The add following flags to `Exec` lines:
 --ozone-platform-hint=auto --enable-features=TouchpadOverscrollHistoryNavigation
 ```
 
+Remember adding these flags before `%U` or `%F`.
+
 **References:**
 
 - <https://wiki.archlinux.org/title/Chromium#Touchpad_Gestures_for_Navigation>
@@ -476,6 +478,14 @@ yt-dlp --cookies <cookies.txt> <LINK>
 ```
 
 Some websites embed their video in the website in a way that cannot be detected by the yt-dlp. In this way you can go to inspect mode (press f12) > network tab > search for `m3u8` or `mpd` or `mp4` to find the video actual link.
+
+To specify the output name use `-o "my_video.%(ext)s"`:
+
+```bash
+yt-dlp --cookies-from-browser edge <LINK> -o "my_video.%(ext)s"
+```
+
+`%(ext)s` will automatically add the correct file extension based on the format of the video being downloaded.
 
 **References:**
 
@@ -716,7 +726,7 @@ To find the ip on system 1:
 ip addr
 ```
 
-Find the one under wl\*\*\*\* section.
+Find the one under `wlan*` section.
 
 Enter the user and password on system 2.
 
@@ -728,3 +738,4 @@ Desktop sharing suffers from unmatched screen resolutions.
 
 - <https://www.youtube.com/watch?v=_ZSXG_nQdZs>
 - <https://www.youtube.com/watch?v=NiCs6c5LlJ4>
+
