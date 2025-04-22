@@ -135,6 +135,8 @@ If you receive an error like the following when starting powertop, it is likely 
 **References:**
 
 - <https://wiki.archlinux.org/title/Powertop>
+- <https://wiki.archlinux.org/title/Powertop#Apply_settings
+>
 
 ### thermald
 
