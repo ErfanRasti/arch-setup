@@ -85,6 +85,7 @@ These parameters can be added at the end of the `options` line:
 
 - <https://bbs.archlinux.org/viewtopic.php?id=72344>
 - <https://wiki.archlinux.org/title/Silent_boot>
+- <https://wiki.archlinux.org/title/Power_management#Active_State_Power_Management>
 
 ## Plymouth
 
@@ -111,7 +112,7 @@ These parameters can be added at the end of the `options` line:
    HOOKS=(... plymouth encrypt ...)
    ```
 
-   This will change the appearance of the password prompt dedicated to disk encryption. If you don't like it ignore steps 3 and 4.
+   This will change the appearance of the password prompt dedicated to disk encryption. If you don't like it ignore steps 3 and 4. It could potentially lead to unwanted fan speed.
 
 4. Finally regenerate the `initramfs`:
    ```bash
