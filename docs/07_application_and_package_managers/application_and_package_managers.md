@@ -254,10 +254,10 @@ Include = /etc/pacman.d/mirrorlist
 You should enable bouth `core-testing` and `extra-testing` together to prevent dependency issues.
 
 If you decided to revert it, comment these lines and run:
+
 ```bash
 sudo pacman -Syuu
 ```
-
 
 **References:**
 
@@ -267,6 +267,18 @@ sudo pacman -Syuu
 - <https://www.reddit.com/r/archlinux/comments/tpfy1u/when_using_the_arch_testing_repos_is_it/>
 - <https://bbs.archlinux.org/viewtopic.php?id=261746>
 - <https://bbs.archlinux.org/viewtopic.php?id=55113>
+
+## Downgrading packages
+
+You can easily use `downgrade`:
+
+```bash
+paru -S downgrade
+```
+
+**References:**
+
+- <https://wiki.archlinux.org/title/Downgrading_packages>
 
 ## Troubleshooting
 
@@ -316,3 +328,46 @@ If you faced this:
 ```
 
 go to your file manager (my case `nautilus`) in the home directory and search for `<PACKAGE_NAME>.zip`. If you found it, delete it and then run the installation again.
+
+## Nix
+
+Nix is a nice package manager based on declarative programming. I used th following commands to set it up:
+
+```bash
+sudo pacman -S nix
+sudo systemctl enable nix-daemon
+sudo systemctl start nix-daemon
+sudo groupadd nix-users
+sudo gpasswd -a $USER nix-users
+nix-channel --add https://nixos.org/channels/nixpkgs-unstable
+nix-channel --update
+```
+
+To check it:
+
+```bash
+nix-env -iA nixpkgs.hello
+```
+
+Run `hello` and make sure it is in the right PATH. Now you can uninstall it:
+
+```bash
+nix-env --uninstall hello
+```
+
+Check the list of packages:
+
+```bash
+nix-env --query
+```
+
+Also check the list of generations:
+
+```bash
+nix-env --list-generations
+```
+
+**References:**
+
+- <https://wiki.archlinux.org/title/Nix>
+- <https://wiki.archlinux.org/title/Users_and_groups#Group_management>
