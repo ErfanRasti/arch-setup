@@ -46,7 +46,11 @@ ln -s /{MATLAB}/bin/matlab /usr/local/bin
 
 ### Usage Issues
 
-After installation you may encounter with some problems and error in loading `matalb`. One of them can be related to `OpenGL acceleration` and `NullPointerException`. According to [this](https://wiki.archlinux.org/title/MATLAB#OpenGL_acceleration) page of Arch Wiki first run:
+After installation you may encounter with some problems and error in loading `matalb`; for example:
+
+_Warning: MATLAB has disabled some advanced graphics rendering features by switching to software OpenGL._
+
+One of them can be related to `OpenGL acceleration` and `NullPointerException`. According to [this page](https://wiki.archlinux.org/title/MATLAB#OpenGL_acceleration) of Arch Wiki first run:
 
 ```bash
 matlab -nodesktop -nosplash -r "opengl info; exit" | grep Software
@@ -71,6 +75,14 @@ If it works, you can edit Matlab launcher script to add:
 ```bash
 sudo nano ~/matlab/R<version>/bin/matlab
 ```
+
+Or use
+
+```bash
+sudo nano /usr/local/MATLAB/R<version>/bin/matlab
+```
+
+In case you installed `matlab` as root.
 
 Add these lines to the first of the file:
 
