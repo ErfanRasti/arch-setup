@@ -211,6 +211,14 @@ nautilus admin://$HOME
 
 - <https://wiki.archlinux.org/title/GNOME/Files>
 
+### Create link to a file or folder
+
+You Left-Click and drag the file to where you want it to go, but right before you release the left-button, hold down the Alt key, then release the left-button, and a menu will pop up asking you if you want to Move, Copy, or Link the file.
+
+**References:**
+
+- <https://askubuntu.com/questions/941706/create-link-to-file-on-desktop-or-in-folder>
+
 ## Terminals
 
 ```bash
@@ -295,11 +303,21 @@ Exec=/usr/bin/code ---ozone-platform-hint=auto --enable-features=TouchpadOverscr
 - <https://wiki.archlinux.org/title/Visual_Studio_Code#Running_natively_under_Wayland>
 - <https://www.reddit.com/r/Fedora/comments/1afkoge/how_to_make_vscode_run_in_wayland_mode/>
 
+## PyCharm
+
+it is a nice IDE dedicated to Python programming language. Install it using this command:
+
+```bash
+sudo pacman -S pycharm-community-edition
+```
+
+Choose `jdk17-openjdk` during installation.
+
 ## Browsers
 
 ### Firefox
 
-One of the favourite browsers for linux users is `firefox` due to opensource properties:
+One of the favorite browsers for linux users is `firefox` due to opensource properties:
 
 ```bash
 sudo pacman -S firefox
@@ -341,6 +359,25 @@ In firefox search section type `dom.w3c_touch_events.enabled`. Then select boole
 **References:**
 
 - <https://askubuntu.com/questions/1122332/one-finger-scrolling-touchscreen-in-firefox?noredirect=1&lq=1>
+
+### Zen Browser
+
+My favorite browser which is based on firefox. It had ton of features and customization tools despite the simplicity in its design. It has a god feature named zen modes which let you do lots of behaviors in your browser. Install it using AUR:
+
+```bash
+paru -S zen-browser-bin
+```
+
+**References:**
+
+- <https://zen-browser.app/>
+- <https://flavienbonvin.com/articles/how-to-make-zen-browser-feel-like-arc>
+
+#### Favorite Zen Modes
+
+- trackpad animation
+- Tab title fixes
+- Better CtrlTab Panel
 
 ### Microsoft Edge
 
@@ -394,6 +431,14 @@ Remember adding these flags before `%U` or `%F`.
 **References:**
 
 - <https://wiki.archlinux.org/title/Chromium#Touchpad_Gestures_for_Navigation>
+
+### Vivaldi
+
+A feature-rich chromium-based browser:
+
+```bash
+sudo pacman -S vivaldi
+```
 
 ### Epiphany
 
@@ -791,4 +836,5 @@ A complete hardware info application as a equivalent of device manager:
 ```bash
 paru -S hardinfo
 ```
+
 Select the first option (not the git version).
