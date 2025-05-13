@@ -36,7 +36,6 @@ If the problematic application uses Ozone platform you can fix it using `MESA_LO
 
 ```bash
 MESA_LOADER_DRIVER_OVERRIDE=i915 google-chrome-stable --ozone-platform-hint=auto
-
 ```
 
 **References:**
