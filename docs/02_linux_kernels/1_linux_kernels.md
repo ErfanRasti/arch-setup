@@ -128,7 +128,7 @@ These parameters can be added at the end of the `options` line:
 If you ever messed up `mkinitcpio` or `PAM` or anything that lead to a ruined Arch Linux, after booting into the USB Drive remember these lines:
 
 ```bash
-cryptsetup luksOpen /dev/sda2/ btrfs-drv
+cryptsetup luksOpen /dev/sda2 btrfs-drv
 mount /dev/mapper/btrfs-drv -o subvolid=5 /mnt
 mount /dev/sda1 /mnt/@/boot
 chroot /mnt/@
