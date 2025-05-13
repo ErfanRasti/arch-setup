@@ -371,3 +371,4 @@ nix-env --list-generations
 
 - <https://wiki.archlinux.org/title/Nix>
 - <https://wiki.archlinux.org/title/Users_and_groups#Group_management>
+- <https://dev.to/sleeyax/why-i-stopped-using-nixos-and-went-back-to-arch-4070>
