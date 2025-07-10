@@ -19,33 +19,44 @@ The point of `linux-lts` is that every time the `linux` kernel has been crashed 
 ## Add boot entries
 
 1. Run:
-   ```bash
+
+   ```zsh
    sudo nano /boot/loader/entries/linux-lts.conf
    ```
+
 2. Add:
+
    ```conf
    title   Arch Linux (linux-lts)
    linux   /vmlinuz-linux-lts
    initrd  /initramfs-linux-lts.img
    options cryptdevice=PARTUUID=<your-root-partuuid>:root root=/dev/mapper/root zswap.enabled=0 rootflags=subvol=@ rw rootfstype=btrfs
    ```
+
    This is according to my configuration.
 3. Run:
+
    ```bash
    sudo nano /boot/loader/entries/linux-lts-fallback.conf
    ```
+
 4. Add:
+
    ```conf
    title   Arch Linux (linux-lts-fallback)
    linux   /vmlinuz-linux-lts
    initrd  /initramfs-linux-lts-fallback.img
    options cryptdevice=PARTUUID=<your-root-partuuid>:root root=/dev/mapper/root zswap.enabled=0 rootflags=subvol=@ rw rootfstype=btrfs
    ```
+
 5. Run:
+
    ```bash
    sudo bootctl update
    ```
+
 6. To check the boot list:
+
    ```bash
    bootctl list
    ```
@@ -81,6 +92,8 @@ These parameters can be added at the end of the `options` line:
    It is used primarily to reduce power consumption and increase battery life on laptops and other portable systems.
    It can cause instability on some hardware, so it should be used cautiously and tested for your specific configuration.
 
+**Hint:** If you use ArchWiki, all the commands that start with `#` are for root user. Also if you see `$` it means you are a normal user.
+
 **References:**
 
 - <https://bbs.archlinux.org/viewtopic.php?id=72344>
@@ -92,9 +105,11 @@ These parameters can be added at the end of the `options` line:
 `plymouth` provides polished boot process. To use it:
 
 1. Install it:
+
    ```bash
    sudo pacman -S plymouth
    ```
+
 2. Make sure you added `quiet splash` into your boot entries.
 3. Add `plymouth` to the HOOKS array in mkinitcpio.conf:
 
@@ -115,6 +130,7 @@ These parameters can be added at the end of the `options` line:
    This will change the appearance of the password prompt dedicated to disk encryption. If you don't like it ignore steps 3 and 4. It could potentially lead to unwanted fan speed.
 
 4. Finally regenerate the `initramfs`:
+
    ```bash
    sudo mkinitcpio -P
    ```
@@ -122,6 +138,8 @@ These parameters can be added at the end of the `options` line:
 **References:**
 
 - <https://wiki.archlinux.org/title/Plymouth>
+- <https://www.reddit.com/r/linux4noobs/comments/ltugat/how_to_disable_luks_password_entry_asterisks_when/>
+- <https://wiki.archlinux.org/title/Fan_speed_control>
 
 ## Recovery using Bootable USB Drive
 
@@ -229,12 +247,14 @@ sudo mkinitcpio -P
 
 ## Custom kernels
 
-1.  Create a folder dedicated to the source code:
+1. Create a folder dedicated to the source code:
+
     ```bash
     mkdir ~/kernelbuild
     cd ~/kernelbuild
     ```
-2.  Go to <https://cdn.kernel.org/pub/linux/kernel/> select your desired kernel (probably the latest release). Then download the kernel and its signature:
+
+2. Go to <https://cdn.kernel.org/pub/linux/kernel/> select your desired kernel (probably the latest release). Then download the kernel and its signature:
 
     ```bash
 
@@ -243,7 +263,7 @@ sudo mkinitcpio -P
     wget https://cdn.kernel.org/pub/linux/kernel/vA.x/linux-A.B.C.tar.sign
     ```
 
-3.  Run this:
+3. Run this:
 
     ```bash
     gpg --list-packets linux-A.B.C.tar.sign | grep -i keyid | awk '{print $NF}' | xargs gpg --recv-keys
@@ -255,7 +275,7 @@ sudo mkinitcpio -P
     - Retrieves the corresponding public key from a keyserver.
     - Allows you to later verify the file's signature with `gpg --verify`.
 
-4.  Extract the `.xz` file and verify it:
+4. Extract the `.xz` file and verify it:
 
     ```bash
     unxz linux-A.B.C.tar.xz
@@ -264,22 +284,28 @@ sudo mkinitcpio -P
 
     _Do not proceed if this does not result in output that includes the string "Good signature"._
 
-5.  Unpack the kernel source and transfer the ownership of a folder with every file in it:
+5. Unpack the kernel source and transfer the ownership of a folder with every file in it:
+
     ```bash
     tar -xvf linux-A.B.C.tar
     chown -R $USER:$USER linux-A.B.C/
     ```
-6.  Then:
+
+6. Then:
+
     ```bash
     cd linux-A.B.C/
     make mrproper
     ```
-7.  Configure your kernel:
+
+7. Configure your kernel:
     This method will create a `.config` file for the custom kernel using the default Arch kernel settings. If a stock Arch kernel is running, you can use the following command inside the custom kernel source directory:
+
     ```bash
     zcat /proc/config.gz > .config
     ```
-8.  Now you can compile the kernel and install it:
+
+8. Now you can compile the kernel and install it:
 
         ```bash
         make
