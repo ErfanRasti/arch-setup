@@ -1054,7 +1054,51 @@ Desktop sharing suffers from unmatched screen resolutions.
 A complete hardware info application as a equivalent of device manager:
 
 ```bash
-paru -S hardinfo
+paru -S hardinfo2
 ```
 
 Select the first option (not the git version).
+
+## Connect iOS devices to Linux
+
+1. Install this:
+
+   ```bash
+   sudo pacman -S libimobiledevice
+   ```
+
+2. Connect your iOS device and check:
+
+   ```bash
+   systemctl status usbmuxd.service
+   ```
+
+   It should be active.
+3. Unlock your iOS device and trust your computer on it. Then run:
+
+   ```bash
+   idevicepair pair
+   ```
+
+   It should be in `SUCCESS` status.
+
+   Validate your device:
+
+   ```bash
+   idevicepair validate
+   ```
+
+4. Install `gvfs-afc` to preview `*.MOV` files on using `SPACE` key on `nautilus`:
+
+   ```bash
+   sudo pacman -S gvfs-afc
+   ```
+
+5. To see all of the files on your iOS device open `Documents on <YOUR_DEVICE>`, then press `<CTRL>+L` to edit the `nautilus` path. The remove the three last leters `3:/` and press enter. It will show you all of the files on your device.
+
+**References:**
+
+- <https://wiki.archlinux.org/title/IOS>
+- <https://www.reddit.com/r/linux/comments/1ewk4rs/how_to_transfer_import_photos_from_iphone/>
+- <https://ounapuu.ee/posts/2024/09/02/iphone-media-recovery/>
+
