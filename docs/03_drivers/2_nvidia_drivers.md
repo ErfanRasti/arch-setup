@@ -48,8 +48,11 @@ sudo systemctl disable nvidia-powerd.service
 - <https://wiki.archlinux.org/title/NVIDIA/Tips_and_tricks#Preserve_video_memory_after_suspend>
 - <https://download.nvidia.com/XFree86/Linux-x86_64/510.47.03/README/dynamicboost.html>
 - <https://download.nvidia.com/XFree86/Linux-x86_64/396.51/README/nvidia-persistenced.html>
+- <https://www.youtube.com/watch?v=jncc3QL8RWI>
 
-## Nvidia controllers (`envycontrol`)
+## Nvidia controllers
+
+### envycontrol
 
 One of the best options I found for managing Nvidia graphic cards is `envycontrol`. I use `paru` AUR helper to install it(For more information about `paru` take a look at [this](#paru-aur-helper)):
 
@@ -157,7 +160,7 @@ sudo mkinitcpio -P linux
 sudo mkinitcpio -P linux-lts
 ```
 
-I installed `nvidia-dkms` which automatically regenerate the `initramfs` after updates, but if the drivers break, check [this](https://wiki.archlinux.org/title/NVIDIA#pacman_hook) to make a pacman hook for Nvidia.
+I've installed `nvidia-dkms` which automatically regenerate the `initramfs` after updates, but if the drivers break, check [this](https://wiki.archlinux.org/title/NVIDIA#pacman_hook) to make a `pacman` hook for NVIDIA.
 
 **References:**
 
@@ -165,3 +168,53 @@ I installed `nvidia-dkms` which automatically regenerate the `initramfs` after u
 - <https://wiki.archlinux.org/title/Dynamic_Kernel_Module_Support#Installation>
 - <https://wiki.archlinux.org/title/NVIDIA#pacman_hook>
 - <https://wiki.archlinux.org/title/Mkinitcpio#Manual_generation>
+
+### Troubleshooting
+
+Here I give you an overview of all of the problems that I've faced:
+
+1. If you faced that gnome apps as `gjs` and `gnome-control-center` prevent nvidia from going to sleep take a look at [this](../06_gnome_on_wayland_and_x11/3_gtk.md#gtk-4-applications-are-slow).
+2. Also to prevent `/usr/bin/gnome-shell` using the `nvidia` and remove it from `nvidia-smi` use this:
+
+    ```bash
+    sudo nano /etc/environment
+    ```
+
+    Add:
+
+    ```env
+    __EGL_VENDOR_LIBRARY_FILENAMES=/usr/share/glvnd/egl_vendor.d/50_mesa.json
+    ```
+
+    **References:**
+
+    - <https://wiki.archlinux.org/title/Wayland#Avoid_loading_NVIDIA_modules>
+    - <https://wiki.archlinux.org/title/Wayland#Avoid_loading_NVIDIA_modules>
+    - <https://wiki.archlinux.org/title/Wayland#Avoid_loading_NVIDIA_modules>
+
+3. Add this to your `/etc/modprobe.d/nvidia.conf` to support `rtd3` on your graphic card:
+
+    ```conf
+    options nvidia "NVreg_EnableGpuFirmware=0"
+    ```
+
+    **References:**
+
+    - <https://bbs.archlinux.org/viewtopic.php?id=297276#9>
+
+4. Also to activate `rtd3` on your device:
+
+    ```conf
+    options nvidia "NVreg_DynamicPowerManagement=0x02"
+    ```
+
+    - `0x00`: disable runtime D3 power management features
+    - `0x01`: coarse-grained power control (Pascal )
+    - `0x02`:  fine-grained power control (Turing or later)
+    - `0x03`: For Ampere or later notebooks with supported configurations, this value
+   translates to fine-grained power control.
+
+    **References:**
+    - <https://www.reddit.com/r/Fedora/comments/1irhbus/enabling_d3_power_management_in_hybrid_laptops/>
+    - <https://download.nvidia.com/XFree86/Linux-x86_64/510.47.03/README/dynamicpowermanagement.html>
+    - <https://nouveau.freedesktop.org/CodeNames.html>
