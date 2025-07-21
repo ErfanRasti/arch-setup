@@ -312,7 +312,7 @@ Include = /etc/pacman.d/mirrorlist
 Include = /etc/pacman.d/mirrorlist
 ```
 
-You should enable bouth `core-testing` and `extra-testing` together to prevent dependency issues.
+You should enable both `core-testing` and `extra-testing` together to prevent dependency issues.
 
 If you decided to revert it, comment these lines and run:
 
@@ -328,6 +328,45 @@ sudo pacman -Syuu
 - <https://www.reddit.com/r/archlinux/comments/tpfy1u/when_using_the_arch_testing_repos_is_it/>
 - <https://bbs.archlinux.org/viewtopic.php?id=261746>
 - <https://bbs.archlinux.org/viewtopic.php?id=55113>
+
+## Upgrading mirrors
+
+Mirrors indicate the servers that `pacman` uses to upgrade and install its packages from. Due to different geographical regions, we can use different mirrors. To update them according to our internet condition I personally recommend  `rate-mirrors` which is one of the most active projects for this purpose. Before installation ensure to disable system services related to `reflector` (default `mirrorlist` manager on Arch which is used the first time you installed Arch):
+
+```bash
+sudo systemctl disable reflector.service
+sudo systemctl stop reflector.service
+sudo systemctl disable reflector.timer
+sudo systemctl stop reflector.timer
+```
+
+To install it:
+
+```bash
+paru -S rate-mirrors-bin
+```
+
+If you prefer backup your current `mirrorlist` and update it with new ones from `rate-mirrors` run this:
+
+```bash
+export TMPFILE="$(mktemp)"; \
+    sudo true; \
+    rate-mirrors --save=$TMPFILE arch --max-delay=43200 \
+      && sudo mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-backup \
+      && sudo mv $TMPFILE /etc/pacman.d/mirrorlist
+```
+
+If you don't want to backup the previous one:
+
+```bash
+rate-mirrors arch | sudo tee /etc/pacman.d/mirrorlist
+```
+
+See the [`rate-mirror` repository](https://github.com/westandskif/rate-mirrors) for more information about some automations and aliases.
+**References:**
+
+- <https://wiki.archlinux.org/title/Mirrors>
+- <https://github.com/westandskif/rate-mirrors>
 
 ## Downgrading packages
 
@@ -379,7 +418,7 @@ sudo rm /var/lib/pacman/db.lck
 
 -<https://wiki.archlinux.org/title/Pacman#.22Failed_to_init_transaction_.28unable_to_lock_database.29.22_error>
 
-## One or more files did not pass the validity check!
+## One or more files did not pass the validity check
 
 If you faced this:
 
@@ -426,6 +465,18 @@ Also check the list of generations:
 
 ```bash
 nix-env --list-generations
+```
+
+For zsh integration:
+
+```bash
+paru -S zsh-nix-shell
+```
+
+For zsh autocompletion:
+
+```bash
+paru -S nix-zsh-completions
 ```
 
 **References:**
