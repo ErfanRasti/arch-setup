@@ -210,7 +210,7 @@ Try to install the related package with `--overwrite='*'` or `--overwrite \*` fl
 sudo pacman -S PACKAGE_NAME --overwrite \*
 ```
 
-Also you can use lostfiles package:
+Also you can use `lostfiles` package:
 
 ```bash
 sudo pacman -S lostfiles
@@ -223,6 +223,7 @@ sudo usermod -d /home/<USERNAME> <USERNAME>
 ```
 
 Also to recover `flatpak` applications:
+
 ```bash
 flatpak install flathub $(ls ~/.var/app)
 ```

@@ -356,6 +356,8 @@ Check tutor at `:Tutor` to learn Neovim.
 - <https://github.com/nvim-telescope/telescope-ui-select.nvim>
 - <https://github.com/jay-babu/mason-null-ls.nvim>
 - <https://yobibyte.github.io/vim.html>
+- <https://www.reddit.com/r/LazyVim/comments/1io24kf/how_do_i_check_lazyvim_version/>
+
 
 ## Modern Unix tools
 
