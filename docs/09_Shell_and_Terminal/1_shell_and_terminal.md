@@ -360,9 +360,16 @@ Check tutor at `:Tutor` to learn Neovim.
 ## Modern Unix tools
 
 ```bash
-sudo pacman -S duf exa
-sudo pacman -S git-delta
+sudo pacman -S duf exa eza git-delta
 ```
+
+**References:**
+
+- <https://github.com/ibraheemdev/modern-unix>
+- <https://github.com/dandavison/delta?tab=readme-ov-file>
+- <https://github.com/ogham/exa>
+- <https://github.com/eza-community/eza>
+- <https://github.com/muesli/duf>
 
 ## Fish
 
