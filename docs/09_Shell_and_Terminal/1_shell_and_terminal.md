@@ -357,3 +357,10 @@ Check tutor at `:Tutor` to learn Neovim.
 - <https://github.com/jay-babu/mason-null-ls.nvim>
 - <https://yobibyte.github.io/vim.html>
 
+## Modern Unix tools
+
+```bash
+sudo pacman -S duf exa
+sudo pacman -S git-delta
+```
+
