@@ -76,6 +76,10 @@ sudo howdy config
 Change these:
 
 ```conf
+[core]
+workaround = input
+[video]
+timeout=5
 [snapshots]
 save_failed = false
 save_successful = false
