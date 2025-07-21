@@ -709,6 +709,32 @@ yt-dlp --cookies-from-browser edge <LINK> -o "my_video.%(ext)s"
 
 `%(ext)s` will automatically add the correct file extension based on the format of the video being downloaded.
 
+To determine the format of the video (Recommended command):
+
+```bash
+yt-dlp --cookies-from-browser edge -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]" <LINK>
+```
+
+In this case I merged best video quality with `.mp4` format and best audio with `.m4a` format. This is my recommended option.
+
+To force custom extension with the name:
+
+```bash
+yt-dlp --cookies-from-browser edge -f "best" -o "%(title)s.mp4" <VIDEO_URL>
+```
+
+The general form:
+
+```bash
+yt-dlp --cookies-from-browser edge -f "best" -o "%(title)s.mp4" <VIDEO_URL>
+```
+
+Some issues like this _ERROR: secretstorage not available as the `secretstorage` module is not installed._ require installing `python-secretestorage:
+
+```bash
+sudo pacman -S python-secretstorage
+```
+
 **References:**
 
 - <https://wiki.archlinux.org/title/Yt-dlp#Cookies>
