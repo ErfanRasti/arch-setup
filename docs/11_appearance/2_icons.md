@@ -81,3 +81,28 @@ paru -S skeuowaita-git
 **References:**
 
 - <https://github.com/RusticBard/Skeuowaita>
+
+### Fluent Icon Theme
+```bash
+paru -S fluent-icon-theme-git
+
+**References:**
+
+- <https://github.com/vinceliuice/Fluent-icon-theme>
+
+```
+```
+```
+```
+```
+### Troubleshooting
+
+#### Application icon appearing in the corner of window
+
+```bash
+gsettings set org.gnome.desktop.wm.preferences button-layout :minimize,maximize,close
+```
+
+**References:**
+
+- <https://askubuntu.com/questions/1152436/application-icon-appearing-in-the-corner-of-window>
