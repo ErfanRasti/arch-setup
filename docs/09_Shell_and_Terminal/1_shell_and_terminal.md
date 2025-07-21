@@ -11,7 +11,8 @@ sudo pacman -S git github-cli
 ```bash
 git config --global user.name <YOUR_COMPLETE_NAME>
 git config --global user.email "<ID_CODE>+<GITHUB_USERNAME>@users.noreply.github.com"
-git config --global core.editor nano
+git config --global core.editor nvim
+# git config --global core.editor nano
 gh auth login
 ```
 
@@ -63,6 +64,18 @@ Finally add this to `~/.zshrc`:
 
 ```conf
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting zsh-autocomplete)
+```
+
+If your default shell is not `zsh`, you can change it using this command:
+
+```bash
+chsh -s $(which zsh)
+```
+
+If you want to change it for a specific user, you can use this command:
+
+```bash
+sudo chsh -s $(which zsh) <username>
 ```
 
 **References:**
