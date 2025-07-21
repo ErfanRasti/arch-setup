@@ -128,7 +128,7 @@ paru -S pdfsam
 ## Photo and Video
 
 ```bash
-sudo pacman -S krita vlc
+sudo pacman -S krita vlc vlc-plugins-all mpv
 ```
 
 If you had a problem with playing some formats, change the following setting:
@@ -414,7 +414,7 @@ Tabby is a great terminal for managing different sessions also for different ser
 paru -S visual-studio-code-bin
 ```
 
-To activate touchpad gestures and wayland support on VS Code, you should copy the default application icon and add some flags to it:
+To activate touchpad gestures and Wayland support on VS Code, you should copy the default application icon and add some flags to it:
 
 ```bash
 cp /usr/share/applications/code.desktop ~/.local/share/applications/
@@ -433,6 +433,21 @@ Exec=/usr/bin/code ---ozone-platform-hint=auto --enable-features=TouchpadOverscr
 - <https://wiki.archlinux.org/title/Visual_Studio_Code#Running_natively_under_Wayland>
 - <https://www.reddit.com/r/Fedora/comments/1afkoge/how_to_make_vscode_run_in_wayland_mode/>
 
+## Micro
+
+`micro` is one of the coolest and most useful simple text editors I've used. Install it:
+
+```bash
+sudo pacman -S micro
+```
+
+Press `<C-g>` to open help documentations. To open help menu related to a topic press `<C-e>` and type `> help colors`. I personally prefer matching the text editor color with my terminal. So I set it simple using this command `> set colorscheme simple`.
+
+## Zed
+Zed is one of the simplest and most lightweight text editors. You can try it as a new experiance like VSCode:
+```bash
+sudo pacman -S zed
+```
 ## PyCharm
 
 it is a nice IDE dedicated to Python programming language. Install it using this command:
@@ -442,6 +457,12 @@ sudo pacman -S pycharm-community-edition
 ```
 
 Choose `jdk17-openjdk` during installation.
+
+## CLion
+
+```bash
+paru -S clion
+```
 
 ## Browsers
 
