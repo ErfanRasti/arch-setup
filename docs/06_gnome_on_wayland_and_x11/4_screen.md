@@ -16,7 +16,7 @@ In the date of adding this instruction, `wayland` still hasn't released the frac
 
 ### Is it Wayland or XWayland?
 
-To check that is an app using `xwayland` or `wayland` you can use `xeyes`. Move your mouse on the app you want to check. If the eyes re moving toward your pointer movements, it's `xwayland`. If they don't, it's native `wayland`.
+To check that is an app using `xwayland` or `wayland` you can use `xeyes`. Move your mouse on the app you want to check. If the eyes are moving toward your pointer movements, it's `xwayland`. If they don't, it's native `wayland`.
 To install `xeyes` and run it:
 
 ```bash

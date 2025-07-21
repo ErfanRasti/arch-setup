@@ -159,6 +159,8 @@ After this you should manually remove the application files from the following f
 cd ~/.var/app
 ```
 
+Also you can use `io.github.giantpinkrobots.flatsweep` to remove the redundant files.
+
 **References:**
 
 - <https://wiki.archlinux.org/title/Pacman#Removing_packages>
@@ -201,12 +203,71 @@ paru -Sc
 yay -Sc
 ```
 
-For flatpak:
+For `flatpak`:
 
 ```bash
 flatpak uninstall --unused
 flatpak repair
 ```
+
+Also to automatically removed leftover data from uninstalled applications, you can use this script:
+
+```bash
+sudo nano ~/Programs/flatpak-cleanup.sh
+```
+
+Then add this:
+
+```bash
+#!/bin/bash
+
+echo "Checking for leftover Flatpak app data in ~/.var/app/..."
+
+# List leftovers (dry run)
+echo "=== Leftover app data found (not installed in Flatpak): ==="
+found=0
+for dir in ~/.var/app/*; do
+    APP_ID=$(basename "$dir")
+    if ! flatpak list --columns=application | grep -q "^$APP_ID$"; then
+        echo "  - $APP_ID"
+        found=1
+    fi
+done
+
+if [ "$found" -eq 0 ]; then
+    echo "No leftover data found. Everything is clean!"
+    exit 0
+fi
+
+# Ask for deletion
+read -p "Delete these folders? (y/N) " confirm
+if [[ "$confirm" =~ ^[Yy]$ ]]; then
+    for dir in ~/.var/app/*; do
+        APP_ID=$(basename "$dir")
+        if ! flatpak list --columns=application | grep -q "^$APP_ID$"; then
+            echo "Deleting: $APP_ID..."
+            rm -rf "$dir"
+        fi
+    done
+    echo "Cleanup complete!"
+else
+    echo "Aborted. No files were deleted."
+fi
+```
+
+Then make it executable:
+
+```bash
+chmod +x ~/Programs/flatpak-cleanup.sh
+```
+
+And run it:
+
+```bash
+~/Programs/flatpak-cleanup.sh
+```
+
+You can also add this script to your `crontab` to run it periodically.
 
 **References:**
 
