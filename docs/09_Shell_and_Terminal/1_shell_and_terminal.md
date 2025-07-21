@@ -117,6 +117,10 @@ set keycolor cyan
 set functioncolor green
 ```
 
+**References:**
+
+- <https://wiki.archlinux.org/title/Nano>
+
 ## Change the default shell path
 
 ```bash
@@ -141,9 +145,11 @@ cd ~/Code
 I personally use `CaskaydiaCove Nerd Font` and it works fine for me. So I didn't install Meslo Nerd Font.
 
 1. Install it:
+
    ```bash
-   paru -S zsh-theme-powerlevel10k-git
+   paru -S zsh-theme-powerlevel10k
    ```
+
 2. Source it:
 
    ```bash
@@ -204,24 +210,58 @@ I personally use `CaskaydiaCove Nerd Font` and it works fine for me. So I didn't
       ```
 
    4. DIR:
+
       ```conf
       # Current directory background color.
       typeset -g POWERLEVEL9K_DIR_BACKGROUND=057
       # Default current directory foreground color.
       typeset -g POWERLEVEL9K_DIR_FOREGROUND=015
       ```
+
    5. VCS (GIT branch and status):
+
       ```conf
         typeset -g POWERLEVEL9K_VCS_MODIFIED_BACKGROUND=202
       ```
+
    6. Icon padding:
+
       ```conf
         typeset -g POWERLEVEL9K_ICON_PADDING=moderate
       ```
+
       `moderate`: For overlap (Usually non-monospace fonts)
       `none`: No overlap (Monospace fonts)
+   7. Directory hyperlink:
 
+      ```conf
+      typeset -g POWERLEVEL9K_DIR_HYPERLINK=true
+      ```
+  
 **References:**
 
 - <https://github.com/romkatv/powerlevel10k?tab=readme-ov-file#arch-linux>
 - <https://github.com/romkatv/powerlevel10k?tab=readme-ov-file#how-do-i-change-prompt-colors>
+
+## Shortcuts for Editing the command
+
+Shortcuts in linux terminal are as these:
+
+- `CTRL-w`: Delete a word before the cursor. This is actually kind of a "cut to clipboard".
+- `CTRL-k`: Cut to the end of the line.
+- `CTRL-u`: Start of the line.
+- `CTRL-y`: ("yank") to paste it back elsewhere.
+- `ALT-b`: Skip over a word backwards.
+- `ALT-f`: Skip over a word forwards.
+- `ALT-BACKSPACE`: Delete the word on the left.
+- `CTRL-DEL`: Delete the word to the right from the current position.
+- `CTRL-e`: Go to the end of the command.
+- `CTRL-a`: Go to the beginning of the command.
+- `ALT-d`: Delete from the current position to the end of the word.
+
+**References:**
+
+- <https://askubuntu.com/questions/1268570/how-do-i-delete-or-skip-over-a-word-or-a-line-of-text-in-ubuntu-terminal>
+- <https://gist.github.com/tuxfight3r/60051ac67c5f0445efee>
+- <https://kapeli.com/cheat_sheets/Bash_Shortcuts.docset/Contents/Resources/Documents/index>
+
