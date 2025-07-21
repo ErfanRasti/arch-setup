@@ -53,6 +53,8 @@
 
    6. Go to the docker desktop and try to login. Then it will redirect you to your browser. Enter your username and password of your docker account. Then it will return you to the docker desktop.
 
+   7. T
+
 **References:**
 
 - <https://docs.docker.com/desktop/setup/install/linux/archlinux/>
