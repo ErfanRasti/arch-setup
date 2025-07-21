@@ -657,8 +657,6 @@ sudo pacman -S geary
 paru -S kuro-appimaged
 ```
 
-## PDF Editors
-
 ## OCR
 
 To extract text from an image or a pdf you can use `gimagereader`:

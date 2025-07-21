@@ -162,6 +162,9 @@ flatpak install flathub xyz.tytanium.DoorKnocker
 flatpak install flathub dev.bragefuglseth.Keypunch
 flatpak install flathub io.github.andreibachim.shortcut
 flatpak install flathub garden.jamie.Morphosis
+flatpak install flathub io.github.nozwock.Packet
+flatpak install flathub io.github.hamza_algohary.Coulomb
+flatpak install flathub be.alexandervanhee.gradia
 ```
 
 - `org.gnome.Papers`: A document viewer for the GNOME desktop.
@@ -182,7 +185,7 @@ flatpak install flathub garden.jamie.Morphosis
   ```
 
   Finally you should add `Kando` to startup applications:
-  ` gnome-tweaks > Startup Applications > Select Application > Kando`
+  `gnome-tweaks > Startup Applications > Select Application > Kando`
 
   **References:**
 
@@ -200,12 +203,21 @@ flatpak install flathub garden.jamie.Morphosis
   Check these:
   - <https://www.youtube.com/watch?v=8i0vd4tvOzc>
   - <https://github.com/youpie/Iconic>
-- `io.github.giantpinkrobots.varia`: Varia is better than your browser at downloading stuff. You can also add its browser extension. Check (this)[https://github.com/giantpinkrobots/varia].
+- `io.github.giantpinkrobots.varia`: Varia is better than your browser at downloading stuff. You can also add its browser extension. Check [this](https://github.com/giantpinkrobots/varia).
 - `com.github.flxzt.rnote`: Sketch and take handwritten notes.
 - `xyz.tytanium.DoorKnocker`: Door Knocker allows you to check availability of all portals provided by xdg-desktop-portal.
 - `dev.bragefuglseth.Keypunch`: Practice your typing skills.
 - `io.github.andreibachim.shortcut`: Make app shortcuts.
 - `garden.jamie.Morphosis`: Use Morphosis to easily convert your text documents to other formats.
+- `io.github.nozwock.Packet`: Packet is a simple and fast file transfer tool with Android devices. 
+-`io.github.hamza_algohary.Coulomb`: Coulomb is a simple and elegant circuit simulator.
+  Activate Nautilus plugin in its preferences. It has two pre-requirements:
+
+  ```bash
+  sudo pacman -S nautilus-python python-dbus
+  ```
+
+- `flathub be.alexandervanhee.gradia`: Gradia helps you quickly prepare your screenshots for sharing by fixing common issues like transparency and awkward sizing.
 
 ### Security
 
