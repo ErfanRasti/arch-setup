@@ -265,3 +265,95 @@ Shortcuts in linux terminal are as these:
 - <https://gist.github.com/tuxfight3r/60051ac67c5f0445efee>
 - <https://kapeli.com/cheat_sheets/Bash_Shortcuts.docset/Contents/Resources/Documents/index>
 
+## Neovim
+
+```bash
+sudo pacman -S neovim
+```
+
+Some amazing plugin resources:
+
+- <https://dotfyle.com/neovim/plugins/trending>
+
+To support fish on neovim:
+
+```bash
+
+```fish
+sudo pacman -S shfmt stylua
+```
+
+To setup `tree-sitter` on `npm`:
+
+```bash
+# 1. Create a directory for global packages
+mkdir ~/.npm-global
+
+# 2. Configure npm to use this directory
+npm config set prefix '~/.npm-global'
+
+# 3. Add to your PATH (add to ~/.bashrc or ~/.zshrc)
+echo 'export PATH=~/.npm-global/bin:$PATH' >> ~/.bashrc
+source ~/.bashrc
+
+# For fish shell
+set -U fish_user_paths ~/.npm-global/bin $fish_user_paths
+
+# 4. Now install without sudo
+npm install -g tree-sitter-cli
+```
+
+Press `esc` to enter normal mode and then write down `:wq`.
+
+Install `luarocks` for some features in `lazy.nvim`:
+
+```bash
+sudo pacman -S lua51 luarocks
+```
+
+Check the health on `nvim` using `:checkhealth lazy`. If you get an error about plugins,
+don't worry and follow the plugins documentations. There are some plugins link on references section.
+
+```bash
+nvim ~/.config/nvim/lua/config/options.lua
+```
+
+```lua
+vim.cmd("set expandtab")
+vim.cmd("set tabstop=4")
+vim.cmd("set softtabstop=4")
+vim.cmd("set shiftwidth=4")
+```
+
+Check tutor at `:Tutor` to learn Neovim.
+
+### Some shortcuts
+
+- `"+y`: copy
+- `v`: character selection
+- `V`: line selection
+- `<CTRL>+v`: block selection
+- `"+y`: copy the selected text (yank to system clipboard)
+- `:%y+`: copy the entire file
+- `"+p`: paste from system clipboard
+- `dd`: cut current line
+- `"+dd`: cut line to system clipboard
+
+**References:**
+
+- <https://dotfyle.com/neovim/colorscheme/trending>
+- <https://wiki.archlinux.org/title/Neovim>
+- <https://lazy.folke.io/installation>
+- <https://www.youtube.com/playlist?list=PLsz00TDipIffreIaUNk64KxTIkQaGguqn>
+- <https://github.com/catppuccin/nvim>
+- <https://github.com/cpow/neovim-for-newbs>
+- <https://github.com/nvim-telescope/telescope.nvim>
+- <https://github.com/nvim-treesitter/nvim-treesitter/wiki/Installation>
+- <https://github.com/nvim-neo-tree/neo-tree.nvim>
+- <https://github.com/mason-org/mason.nvim>
+- <https://github.com/mason-org/mason-lspconfig.nvim>
+- <https://github.com/neovim/nvim-lspconfig>
+- <https://github.com/nvim-telescope/telescope-ui-select.nvim>
+- <https://github.com/jay-babu/mason-null-ls.nvim>
+- <https://yobibyte.github.io/vim.html>
+
