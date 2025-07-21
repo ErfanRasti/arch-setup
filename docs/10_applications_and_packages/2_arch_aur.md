@@ -468,7 +468,7 @@ paru -S clion
 
 ### Firefox
 
-One of the favorite browsers for linux users is `firefox` due to opensource properties:
+One of the favorite browsers for Linux users is `firefox` due to open-source properties:
 
 ```bash
 sudo pacman -S firefox
@@ -478,7 +478,7 @@ It supports touchpad gestures natively on `wayland`.
 
 To change the color of `firefox` and tabs based on the open tab you can install [this](https://addons.mozilla.org/en-US/firefox/addon/adaptive-tab-bar-colour/) extension.
 
-To change the firefox icon color after downloading the icon you should copy the `firefox` icon to the user applications directory and change the path of the iocn. My prefered icons are [this](https://icon-icons.com/icon/firefox-reality-browser-logo/152988) and [this](https://www.flaticon.com/free-icons/firefox).
+To change the Firefox icon color after downloading the icon you should copy the `firefox` icon to the user applications directory and change the path of the icon. My preferred icons are [this](https://icon-icons.com/icon/firefox-reality-browser-logo/152988) and [this](https://www.flaticon.com/free-icons/firefox).
 
 ```bash
 mkdir -p ~/.icons/firefox/
@@ -513,22 +513,48 @@ In firefox search section type `dom.w3c_touch_events.enabled`. Then select boole
 
 ### Zen Browser
 
-My favorite browser which is based on firefox. It had ton of features and customization tools despite the simplicity in its design. It has a god feature named zen modes which let you do lots of behaviors in your browser. Install it using AUR:
+My favorite browser which is based on Firefox. It had ton of features and customization tools despite the simplicity in its design. It has a god feature named zen modes which let you do lots of behaviors in your browser. Install it using AUR:
 
 ```bash
 paru -S zen-browser-bin
 ```
 
+#### Legacy New Tab
+1. `about:config`
+2. Set `zen.urlbar.replace-newtab` to `false`.
+3. Also if you want a transparent URL bar set `browser.tabs.allow_transparent_browser` to `true`.
+4. To use the top bar for searching, go to `settings > Customize the URL bar to your liking` and change the behavior to `Normal`.
+5. To have a blank page on your new tabs, set `new tabs` and `home page and new windows` to `Blank Page`.
+    If you prefer some custom new tabs install your desired extensions and set it through this. My favourites:
+    - <https://addons.mozilla.org/en-US/firefox/addon/tabliss/>
+    - <https://addons.mozilla.org/en-US/firefox/addon/material-you-newtab/>
+
+
+#### Custom setup
+If you want custom CSS theme take a loot at [this](https://github.com/TheBigWazz/ZenThemes/tree/main/Zen-current-theme).
+
+
 **References:**
 
 - <https://zen-browser.app/>
 - <https://flavienbonvin.com/articles/how-to-make-zen-browser-feel-like-arc>
+- <https://docs.zen-browser.app/user-manual/urlbar>
+- <https://www.reddit.com/r/zen_browser/comments/1ijz3fo/when_i_click_the_new_tab_button_the_url_bar_opens/>
+
 
 #### Favorite Zen Modes
 
 - trackpad animation
 - Tab title fixes
 - Better CtrlTab Panel
+
+#### Activate tab groups:
+`about:config` > `browser.tabs.groups.enabled`
+
+
+**References:**
+
+- <https://www.reddit.com/r/zen_browser/comments/1i132l2/tab_groups_finally_here/>
 
 ### Microsoft Edge
 
