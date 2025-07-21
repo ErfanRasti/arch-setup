@@ -38,7 +38,33 @@ paru -S apple-fonts
 paru -S ttf-ms-win11-auto
 ```
 
-#### Troubleshooting
+The normal version `ttf-ms-win11` could not be downloaded correctly.
+
+There is a bug with this package. If you get `httpdirfs: error while loading shared libraries`:
+
+```bash
+cd ~/.cache/paru/clone/ttf-ms-win11-auto/
+sudo nano ./PKGBUILD
+```
+
+Removing the `--cache` flag in line 416 of the `PKGBUILD` solved the problem:
+
+```pkgbuild
+httpdirfs --single-file-mode "$_iso" mnt/http
+```
+
+Then run:
+
+```bash
+makepkg -si
+```
+
+**References:**
+
+- <https://www.reddit.com/r/linux4noobs/comments/1janyqq/ttfmswin11auto_not_installing/>
+- <https://aur.archlinux.org/packages/ttf-ms-win11-auto>
+
+### Troubleshooting
 
 - `Times New Roman not found.`: Install this font and it will do it all.
 - `findfont: Generic family 'serif' not found because none of the following families were found: Times New Roman`:
@@ -175,3 +201,31 @@ sudo pacman -S wqy-zenhei otf-ipaexfont
 - <https://wiki.archlinux.org/title/Localization/Japanese#Fonts>
 - <https://archlinux.org/packages/extra/any/wqy-zenhei/>
 - <https://archlinux.org/packages/extra/any/otf-ipafont/>
+
+### Troubleshooting
+
+#### Black and White Emojis are missing
+
+```bash
+sudo ln -s /usr/share/fontconfig/conf.default/* /etc/fonts/conf.d/
+```
+
+**References:**
+
+- <https://bbs.archlinux.org/viewtopic.php?id=255616>
+- <https://christitus.com/emoji/>
+- <https://bbs.archlinux.org/viewtopic.php?id=293103>
+
+### Reset GNOME fonts
+
+```bash
+gsettings reset org.gnome.desktop.interface font-name
+gsettings reset org.gnome.desktop.interface document-font-name
+gsettings reset org.gnome.desktop.interface monospace-font-name
+gsettings reset org.gnome.desktop.wm.preferences titlebar-font
+gsettings reset org.gnome.desktop.interface text-scaling-factor
+```
+
+**References:**
+
+- <https://askubuntu.com/questions/4989/how-do-i-reset-gnome-font-configuration>
