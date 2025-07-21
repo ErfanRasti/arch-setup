@@ -235,24 +235,25 @@ You Left-Click and drag the file to where you want it to go, but right before yo
 ## Terminals
 
 ```bash
-sudo pacman -S kitty gnome-terminal tilix
+sudo pacman -S kitty gnome-terminal tilix ghostty
+paru -S tabby-bin
 ```
 
-## Kitty
+### Kitty
 
 `kitty` makes itself the default for DING (Desktop Icons NG). So after installing kitty right click on a folder icon on the desktop and choose `Open with` and set the nautilus as the default.
 
 To open `kitty.conf` press `ctrl+shift+f2`.
 To save and exit first press `esc` to exit insert mode, then press `:x`. Also if you want to just exit without saving press `:q`.
 
-### Search in Kitty
+#### Search in Kitty
 
 `kitty` has a `vim` like utility for doing tasks. To search in `kitty`:
 
 1. Press `ctrl+shift+h`.
 2. Type `?` and then type the expression you want to search.
 
-### Proxy in Kitty
+#### Proxy in Kitty
 
 `kitty` by default doesn't inherit user environment variables; So the system proxy doesn't apply on it. To activate system proxy you should add proxy env variables manually to `kitty.conf`:
 
@@ -282,7 +283,7 @@ env | grep -i proxy
 
 You can also use VPN instead.
 
-### Kitty display server
+#### Kitty display server
 
 If you don't like the ugly titlebar on `wayland`, you should change display server back to `x11`:
 Add the following to the `kitty.conf`:
@@ -290,6 +291,122 @@ Add the following to the `kitty.conf`:
 ```conf
 linux_disaply_server x11
 ```
+
+### Wave terminal
+
+Wave is an open-source terminal with superpowers, integrating file previews, file editing, AI, web browsing, and workspace organization.
+
+To install it on arch:
+
+```bash
+paru -S waveterm-bin
+```
+
+To configure default settings on it (`~/.config/waveterm/settings.json`):
+
+```json
+{
+  "window:blur": true,
+  "term:fontfamily": "CaskaydiaCove Nerd Font",
+  "term:fontsize": 12
+}
+```
+
+This is my basic config. You can change it as you want.
+
+**References:**
+
+- <https://docs.waveterm.dev/config>
+- <https://github.com/wavetermdev/waveterm>
+- <https://www.waveterm.dev/>
+
+### System proxy on any terminal
+
+I made a configuration bash file and anytime I want to use system proxy on my terminal I run it:
+
+```bash
+nano ~/set_proxy.sh
+```
+
+Add these:
+
+```sh
+#!/bin/zsh
+export http_proxy="<LOCAL_IP>:<PORT>"
+export https_proxy="<LOCAL_IP>:<PORT>"
+export ftp_proxy="<LOCAL_IP>:<PORT>"
+export socks_proxy="<LOCAL_IP>:<PORT>"
+export no_proxy="localhost,  <LOCAL_IP/END>,  ::1"
+```
+
+```bash
+chmod +x ~/set_proxy.sh
+```
+
+Every time you want to use it, run one of these:
+
+```bash
+. ~/set_proxy.sh
+```
+
+or:
+
+```bash
+source ~/set_proxy.sh
+```
+
+Another method is to automate this task on new terminals to sync with gnome. Add this to the end of your `.zshrc`:
+
+```bash
+# setup proxy
+# Get GNOME proxy settings and apply them
+apply_gnome_proxy() {
+   local proxy_mode=$(gsettings get org.gnome.system.proxy mode)
+   if [[ "$proxy_mode" == "'manual'" ]]; then
+       local proxy_host=$(gsettings get org.gnome.system.proxy.http host | tr -d "'")
+       local proxy_port=$(gsettings get org.gnome.system.proxy.http port)
+       export http_proxy="http://$proxy_host:$proxy_port"
+       export https_proxy="http://$proxy_host:$proxy_port"
+       export ftp_proxy="http://$proxy_host:$proxy_port"
+       export socks_proxy="http://$proxy_host:$proxy_port"
+       export no_proxy="localhost,127.0.0.1"
+   elif [[ "$proxy_mode" == "'none'" ]]; then
+       unset http_proxy https_proxy ftp_proxy socks_proxy no_proxy
+   fi
+}
+apply_gnome_proxy
+```
+
+### Ghostty
+
+One of the most modern terminals which is compatible with GNOME philosophy.
+
+To open its configuration press `<CTRL>+,`. Also to reload the current terminal configuration press `<CTRL>+<SHIFT>+,`.
+
+It has lots of themes and include the popular ones. To check them type:
+
+```sh
+ghostty +list-themes
+```
+
+The default editor for `ghostty` is the default editor of your DE. To set the default editor in GNOME:
+
+Check the current value:
+
+```sh
+xdg-mime query default text/plain
+```
+
+Set `nvim` as the new value:
+
+```sh
+xdg-mime default nvim.desktop text/plain
+```
+
+Note that you should mention the exact `*.desktop` name.
+
+### Tabby
+Tabby is a great terminal for managing different sessions also for different server profiles.
 
 ## Visual Studio Code
 
