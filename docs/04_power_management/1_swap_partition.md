@@ -13,15 +13,25 @@ Then add:
 
 ```conf
 [zram0]
-zram-size = ram / 2
+zram-size = min(ram / 2, 4096)
 compression-algorithm = zstd
 ```
 
-I usually don't prefer this method because I have good amount of RAM. I use manual swap partition for hibernation mode which is explained completely in the following.
+Then activate the related `systemd` service:
 
+```bash
+sudo systemctl daemon-reload
+sudo systemctl enable systemd-zram-setup@zram0.service
+sudo systemctl start systemd-zram-setup@zram0.service
+```
+
+Finally reboot to activate zram.
+
+I usually don't prefer this method because I have good amount of RAM. I use manual swap partition for hibernation mode which is explained completely in the following; But you can use both methods together.
 **References:**
 
 - <https://wiki.archlinux.org/title/Zram>
+- <https://man.archlinux.org/man/zram-generator.conf.5>
 
 ### Swap partition
 
@@ -111,7 +121,10 @@ I usually don't prefer this method because I have good amount of RAM. I use manu
      sudo bash -c "echo /swap/swapfile none swap defaults 0 0 >> /etc/fstab"
      ```
 
-     First line creates the swap sub-volume for `btrfs`. Second line creats `swapfile` under the `/swap` subvolume with the determined size. Third line makes the `swapfile` on and the last line adds the `swapfile` to fstab to make it available at startup.
+     - First line creates the swap sub-volume for `btrfs`.
+     - Second line creates `swapfile` under the `/swap` sub-volume with the determined size.
+     - Third line makes the `swapfile` on.
+     - The last line adds the `swapfile` to fstab to make it available at startup.
 
      To see the activated `swapfile` and the percent of usage run:
 
@@ -147,7 +160,7 @@ I usually don't prefer this method because I have good amount of RAM. I use manu
      sudo sysctl -w vm.swappiness=35
      ```
 
-     To set the swappiness value permanently:
+     To set the `swappiness` value permanently:
 
      ```bash
      sudo echo "vm.swappiness = 35" >> /etc/sysctl.d/99-swappiness.conf
