@@ -152,6 +152,86 @@ mount /dev/sda1 /mnt/@/boot
 chroot /mnt/@
 ```
 
+## Fix corrupted Linux files
+
+There is a more complete method for recovery. If you accidentally deleted `/etc` `/usr` or `/var` or any critical directory you need full access to the mount points:
+
+```bash
+cryptsetp luksOpen /dev/sda2 btrfs-dev
+mount /dev/mapper/btrfs-dev -o subvol='@' /mnt
+mount /dev/mapper/btrfs-dev -o subvol='@home' /mnt/home
+mount /dev/mapper/btrfs-dev -o subvol='@pkg' /mnt/var/cache/pacman/pkg
+mount /dev/mapper/btrfs-dev -o subvol='@.snapshots' /mnt/.snapshots
+mount /dev/mapper/btrfs-dev -o subvol='@log' /mnt/var/log
+mount /dev/sda1 /mnt/boot
+```
+
+According to the possible corruption of packages, install base packages using `pacstrap`:
+
+```bash
+pacstrap -K /mnt base linux linux-firmware sudo vim intel-ucode btrfs-progs
+```
+
+After all of these regenerate `fstab`:
+
+```bash
+genfstab -U /mnt >/mnt/etc/fstab
+```
+
+To reinstall your `pacman` packages:
+
+```bash
+pacman --root /mnt --cachedir /mnt/var/cache/pacman/pkg -Sy --overwrite='*' $(pacman --root /mnt -Qnq)
+```
+
+After login to your system reinstall all official packages using:
+
+```bash
+sudo pacman -Sy $(pacman -Qqn)
+```
+
+To recover your AUR packages you should check the `~/.cache/` folder of your AUR helper:
+
+```bash
+# find previously installed aur packages
+ls ~/.cache/paru/clone/
+
+# all packages (with pacman or aur or without them)
+# find unowned apps using:
+(
+    export LC_ALL=C.UTF-8
+    comm -13 <(pacman -Qlq | sed 's,/$,,' | sort) <(find /etc /usr /opt -path /usr/lib/modules -prune -o -print | sort)
+)
+```
+
+Try to install the related package with `--overwrite='*'` or `--overwrite \*` flags
+
+```bash
+sudo pacman -S PACKAGE_NAME --overwrite \*
+```
+
+Also you can use lostfiles package:
+
+```bash
+sudo pacman -S lostfiles
+```
+
+Check `sudo bat /etc/passwd` for your specific user. The path shouldn't include `/` at the end. For example the path shouldn't be like `/home/<USERNAME>/`. If so:
+
+```bash
+sudo usermod -d /home/<USERNAME> <USERNAME>
+```
+
+Also to recover `flatpak` applications:
+```bash
+flatpak install flathub $(ls ~/.var/app)
+```
+
+**References:**
+
+- <https://wiki.archlinux.org/title/Pacman/Tips_and_tricks>
+- <https://superuser.com/questions/271925/where-is-the-home-environment-variable-set>
+
 ### TTY
 
 When you login to your GNOME, you make a session to your kernel:
