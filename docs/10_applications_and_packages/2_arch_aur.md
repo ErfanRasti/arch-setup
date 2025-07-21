@@ -119,6 +119,12 @@ One of the best tools for editing and writing on pdfs:
 sudo pacman -S xournalpp
 ```
 
+### PDFsam
+
+```bash
+paru -S pdfsam
+```
+
 ## Photo and Video
 
 ```bash
@@ -188,6 +194,13 @@ paru -S nautilus-admin-gtk4 nautilus-open-any-terminal code-nautilus-git
 - `nautilus-admin-gtk4`: Add to menu: "Open as administrator" or "Edit as administrator" (written in Python).
 - `nautilus-open-any-terminal`: Nautilus extension which adds an context-entry for opening other terminal emulators.
 - `code-nautilus-git`: Nautilus extension to open files and directories in Visual Studio Code (written in Python).
+
+Follow [this](https://github.com/bassmanitram/actions-for-nautilus?tab=readme-ov-file#configuration-ui).
+
+```bash
+mkdir -p ${HOME}/.local/share/actions-for-nautilus/
+nano ${HOME}/.local/share/actions-for-nautilus/config.json
+```
 
 ```bash
 nautilus admin:/
