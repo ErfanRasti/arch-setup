@@ -15,6 +15,32 @@ To Watch Nvidia running apps:
 watch -n 1 nvidia-smi
 ```
 
+Some useful variables to ckec:
+
+1. To check the power state (D0 D3, ...):
+
+    ```bash
+    cat /sys/bus/pci/devices/0000\:02\:00\.0/power_state
+    ```
+
+    or:
+
+    ```bash
+    cat /sys/class/drm/card1/device/power_state
+    ```
+
+2. To check that if the RTD3 is available and enabled:
+
+    ```bash
+    cat /proc/driver/nvidia/gpus/0000\:02\:00.0/power
+    ```
+
+3. To check that if the gpu is activated or not:
+
+    ```bash
+    cat /sys/bus/pci/devices/0000\:02\:00\.0/power/runtime_status
+    ```
+
 ### Nvidia state management
 
 We can activate nvidia service modes using `systemctl`:
