@@ -170,7 +170,7 @@ Some icon packs doesn't support `matlab` icon by default. You can use the native
 Icon=/home/<user>/matlab/R<version>/bin/glnxa64/cef_resources/matlab_icon.png
 ```
 
-To custom the `Icon` you can manually download matlab icon from [this webpage](https://iconduck.com/icons/63437/matlab) and then move it to the icons folder:
+To custom the `Icon` you can manually download MATLAB icon from [this webpage](https://iconduck.com/icons/63437/matlab) and then move it to the icons folder:
 
 ```bash
 sudo mkdir -p matlab/
