@@ -743,6 +743,12 @@ sudo pacman -S python-secretstorage
 - <https://www.reddit.com/r/youtubedl/comments/iexk4j/comment/g3002y8/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button>
 - <https://www.reddit.com/r/youtubedl/comments/1beiy6w/comment/lgxfhkm/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button>
 
+## Subtitle downloader
+
+```bash
+paru -S bazarr
+```
+
 ## Extract audio from YouTube
 
 ```bash
@@ -878,7 +884,7 @@ fc-list :lang=fa
 
 This application is a nice way to mirror iPad or iPhone screen to the linux machine.
 
-1.  Install it using this:
+1. Install it using this:
 
     ```bash
     paru -S uxplay
@@ -886,7 +892,7 @@ This application is a nice way to mirror iPad or iPhone screen to the linux mach
 
     I chose the default one (not `uxplay-git`).
 
-2.  to use it you need to start and `avahi-daemon` service:
+2. to use it you need to start and `avahi-daemon` service:
 
     ```bash
     sudo systemctl start avahi-daemon.service
@@ -894,22 +900,24 @@ This application is a nice way to mirror iPad or iPhone screen to the linux mach
 
     Then open `uxplay` via its shrotcut or the commandline.
 
-3.  Connect your device (iPad or iPhonne) to the same network.
-4.  Open the `Screen Mirroring` section via control panel and choose your UxPlay device.
-5.  If you don't want `gstreamer` and `uxplay` use your dedicated NVIDIA GPU, do this:
+3. Connect your device (iPad or iPhonne) to the same network.
+4. Open the `Screen Mirroring` section via control panel and choose your UxPlay device.
+5. If you don't want `gstreamer` and `uxplay` use your dedicated NVIDIA GPU, do this:
 
-    1.  Locate the NVIDIA GStreamer plugins:
+    1. Locate the NVIDIA GStreamer plugins:
+
         ```bash
         find /usr/lib/gstreamer-1.0 -name "libgstnv\*.so"
         ```
-    2.  Move the NVIDIA plugins to a different directory (e.g., `~/.gstreamer-1.0/disabled-plugins`):
+
+    2. Move the NVIDIA plugins to a different directory (e.g., `~/.gstreamer-1.0/disabled-plugins`):
 
         ```bash
         mkdir -p ~/.gstreamer-1.0/disabled-plugins
         sudo mv /usr/lib/gstreamer-1.0/libgstnv*.so ~/.gstreamer-1.0/disabled-plugins/
         ```
 
-    3.  Check the `nvidia-smi`:
+    3. Check the `nvidia-smi`:
 
         ```bash
         watch -n 1 nvidia-smi
@@ -922,11 +930,13 @@ This application is a nice way to mirror iPad or iPhone screen to the linux mach
     rm -rf ~/.gstreamer-1.0
     ```
 
+6. Check extension called `uxplay-control@xxanqw` to control it on GNOME.
+
 **References:**
 
-- https://github.com/antimof/UxPlay
-- https://www.omgubuntu.co.uk/2024/03/how-to-mirror-your-iphone-ipad-to-ubuntu
-- https://f-viktor.github.io/articles/scrgto.html
+- <https://github.com/antimof/UxPlay>
+- <https://www.omgubuntu.co.uk/2024/03/how-to-mirror-your-iphone-ipad-to-ubuntu>
+- <https://f-viktor.github.io/articles/scrgto.html>
 
 ## hBlock
 
