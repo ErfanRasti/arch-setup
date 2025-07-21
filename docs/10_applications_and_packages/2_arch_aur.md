@@ -827,6 +827,19 @@ paru -S hiddify-next-bin
 
 - <https://github.com/hiddify/hiddify-app>
 - <https://github.com/MatsuriDayo/nekoray>
+## OVPN
+
+To install it:
+
+```bash
+sudo pacman -S networkmanager-openvpn
+```
+
+Now on your GNOME network section you can see it and import your configuration.
+
+**References:**
+
+- <https://wiki.archlinux.org/title/OpenVPN>
 
 ## Some AUR apps
 
@@ -1102,3 +1115,14 @@ Select the first option (not the git version).
 - <https://www.reddit.com/r/linux/comments/1ewk4rs/how_to_transfer_import_photos_from_iphone/>
 - <https://ounapuu.ee/posts/2024/09/02/iphone-media-recovery/>
 
+## XP-Pen Tablet
+
+```bash
+paru -S xp-pen-tablet
+```
+
+## Stores
+
+```bash
+paru -S bazaar-git
+```
