@@ -124,7 +124,7 @@ This should play an except from Handel's "Hallelujah Chorus."
 
 ### Wayland Check
 
-To check if you are using `MATLAB` over `wayland` or not open `MATLAB` check [this](#is-it-wayland-or-xwayland).
+To check if you are using `MATLAB` over `wayland` or not open `MATLAB` check [this](../06_gnome_on_wayland_and_x11/4_screen.md/#is-it-wayland-or-xwayland).
 
 If you're not using wayland by default run this:
 
@@ -213,7 +213,7 @@ If everything is so small run the followin command in `matlab` to scale everythi
 
 You can change `2` to any number you desire. The settings take effect after MATLAB is restarted.
 
-Also activate antialiasing to smooth desktop fonts in the below path:
+Also activate anti-aliasing to smooth desktop fonts in the below path:
 
 ```
 Open Home Tab > Preferences (Gear Icon) > MATLAB > Fonts > Use antiliasing to smooth desktop fonts (require MATLAB restart)
@@ -225,7 +225,7 @@ Open Home Tab > Preferences (Gear Icon) > MATLAB > Fonts > Use antiliasing to sm
 
 ### Black screen in livescripts
 
-If you faced with black screen in in help browser and livescripts:
+If you faced with black screen in in help browser and live-scripts:
 
 ```bash
 paru -S libselinux
@@ -234,3 +234,11 @@ paru -S libselinux
 **References:**
 
 - <https://wiki.archlinux.org/title/MATLAB#Black_screen_in_help_browser_and_livescripts>
+
+### Font issues
+
+_Gtk-Message: Failed to load module "canberra-gtk-module"_
+
+```bash
+sudo pacman -S libcanberra
+```
