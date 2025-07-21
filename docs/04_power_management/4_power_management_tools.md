@@ -109,6 +109,12 @@ You can also add this line to the `[Service]` section in order to prevent your "
 ExecStartPost=/bin/sh -c 'for f in $(grep -l "Mouse" /sys/bus/usb/devices/*/product | sed "s/product/power\\/control/"); do echo on >| "$f"; done'
 ```
 
+Or if you want prevent your keyboard from getting disconnected too:
+
+```conf
+ExecStartPost=/bin/sh -c 'for f in $(grep -l -E "Mouse|Keyboard" /sys/bus/usb/devices/*/product | sed "s/product/power\\/control/"); do echo on >| "$f"; done'
+```
+
 Then enable and start the service:
 
 ```bash
@@ -130,13 +136,12 @@ sudo powertop --auto-tune
 
 #### Error: Cannot load from file
 
-If you receive an error like the following when starting powertop, it is likely that powertop has not collected enough measurement data yet. To fix this, keep powertop running for a certain time connected to battery power only.
+If you receive an error like the following when starting `powertop`, it is likely that `powertop` has not collected enough measurement data yet. To fix this, keep `powertop` running for a certain time connected to battery power only.
 
 **References:**
 
 - <https://wiki.archlinux.org/title/Powertop>
-- <https://wiki.archlinux.org/title/Powertop#Apply_settings
->
+- <https://wiki.archlinux.org/title/Powertop#Apply_settings>
 
 ### thermald
 
@@ -281,7 +286,25 @@ cat /sys/class/drm/card*/device/power_state
 - <https://superuser.com/questions/808397/understanding-the-output-of-sys-class-power-supply-bat0-uevent>
 - <https://bbs.archlinux.org/viewtopic.php?id=286997>
 
-### Troubleshoting
+#### Monitor battery health
+
+Using `upower`:
+
+```bash
+awk '/energy-full/ {print $2}' <(upower -i /org/freedesktop/UPower/devices/battery_BAT0) | \
+  awk 'NR==1{full=$1} NR==2{design=$1; printf "Battery health: %.2f%%\n", (full/design)*100}'
+```
+
+Using `acpi`:
+
+```bash
+sudo pacman -S acpi
+acpi -V
+```
+
+Then divide full capacity on design capacity. `acpi` may not show health directly but can show charge level and status. For health, `upower` is better.
+
+### Troubleshooting
 
 #### Wireless usb mouse not working
 
@@ -305,8 +328,8 @@ sudo udevadm control --reload
 
 **References:**
 
-- https://wiki.archlinux.org/title/Power_management#USB_autosuspend
-- https://www.reddit.com/r/archlinux/comments/qzae1u/comment/kzgq4se/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+- <https://wiki.archlinux.org/title/Power_management#USB_autosuspend>
+- <https://www.reddit.com/r/archlinux/comments/qzae1u/comment/kzgq4se/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button>
 
 #### High power usage after resuming from suspend
 
