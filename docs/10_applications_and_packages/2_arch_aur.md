@@ -874,7 +874,7 @@ For Persian language support:
 sudo pacman -S texlive-langarabic
 ```
 
-To check persian language fonts run:
+To check Persian language fonts run:
 
 ```bash
 fc-list :lang=fa
@@ -882,7 +882,7 @@ fc-list :lang=fa
 
 ## UxPlay
 
-This application is a nice way to mirror iPad or iPhone screen to the linux machine.
+This application is a nice way to mirror iPad or iPhone screen to the Linux machine.
 
 1. Install it using this:
 
@@ -898,9 +898,9 @@ This application is a nice way to mirror iPad or iPhone screen to the linux mach
     sudo systemctl start avahi-daemon.service
     ```
 
-    Then open `uxplay` via its shrotcut or the commandline.
+    Then open `uxplay` via its shortcut or the command-line.
 
-3. Connect your device (iPad or iPhonne) to the same network.
+3. Connect your device (iPad or iPhone) to the same network.
 4. Open the `Screen Mirroring` section via control panel and choose your UxPlay device.
 5. If you don't want `gstreamer` and `uxplay` use your dedicated NVIDIA GPU, do this:
 
@@ -1000,24 +1000,28 @@ Desktop sharing suffers from unmatched screen resolutions.
 ## Waydroid
 
 1. Install `binder_linux-dkms`:
+
    ```bash
    paru -S waydroid
    ```
+
    Choose `waydroid` option and that's it.
    Then run:
+
    ```bash
    sudo waydroid init -s GAPPS
    ```
+
    I personally made it work using this command (I'm on Intel Core i7 8th Gen) but for other cpus you should install something else. Check archiwiki in the references.
 2. To make GAPPS work you should register your device. First you should find your android id:
 
-   Enter waydroid shell:
+   Enter Waydroid shell:
 
    ```bash
    sudo waydroid shell
    ```
 
-   Find the waydroid id:
+   Find the Waydroid id:
 
    ```shell
    ANDROID_RUNTIME_ROOT=/apex/com.android.runtime ANDROID_DATA=/data ANDROID_TZDATA_ROOT=/apex/com.android.tzdata ANDROID_I18N_ROOT=/apex/com.android.i18n sqlite3 /data/data/com.google.android.gsf/databases/gservices.db "select * from main where name = \"android_id\";"
@@ -1025,13 +1029,16 @@ Desktop sharing suffers from unmatched screen resolutions.
 
    Use the string of numbers printed by the command to register the device on your Google Account at <https://www.google.com/android/uncertified>.
 
-   Give the Google services some minutes to reflect the change, then restart waydroid.
+   Give the Google services some minutes to reflect the change, then restart Waydroid.
 
-3. If you want to merge the waydroid windows run:
+3. If you want to merge the Waydroid windows run:
+
    ```bash
     waydroid prop set persist.waydroid.multi_windows true
    ```
+
    Also restart the session:
+
    ```bash
     sudo waydroid session stop
     sudo waydroid session start
