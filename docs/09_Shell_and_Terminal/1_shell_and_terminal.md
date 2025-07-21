@@ -364,3 +364,80 @@ sudo pacman -S duf exa
 sudo pacman -S git-delta
 ```
 
+## Fish
+
+```sh
+sudo pacman -S fish pkgfile inetutils
+```
+
+The configuration file is `~/.config/fish/config.fish`. Run `fish_config` to configure it in a browser.
+
+For manual page completions run `fish_update_completions`.
+
+### aliases
+
+Add aliases like this
+
+```fish
+ alias --save l "ls -al"
+```
+
+### Conda
+
+Also to use `conda` on fish:
+
+```fish
+~/anaconda3/bin/conda init fish
+source ~/.config/fish/config.fish
+```
+
+### oh-my-fish
+
+To install it and check the checksum:
+
+```fish
+sudo pacman -S perl
+curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
+curl -sL https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install.sha256 | shasum -a 256 --check
+```
+
+Check list of plugins:
+
+```fish
+omf list
+omf install archlinu agnoster
+```
+
+### Custom themes
+
+```fish
+sudo pacman -S svn
+svn export https://github.com/folke/tokyonight.nvim/trunk/extras/fish ~/.config/fish/themes/tokyonight
+```
+
+### starship
+
+Install starship:
+
+```fish
+sudo pacman -S starship
+```
+
+### fisher and tide
+
+```fish
+sudo pacman -S fisher
+rm ~/.config/fish/functions/fish_prompt.fish
+fisher install IlanCosman/tide@v6
+```
+
+**References:**
+
+- <https://wiki.archlinux.org/title/Fish>
+- <https://www.youtube.com/watch?v=YC9gBFSI-70>
+- <https://www.youtube.com/watch?v=ZjArkI5xwJI>
+- <https://starship.rs/config/>
+- <https://github.com/oh-my-fish/oh-my-fish/blob/master/docs/Themes.md>
+- <https://github.com/jorgebucaran/fisher>
+- <https://github.com/IlanCosman/tide>
+- <https://fishshell.com/docs/current/index.html>
