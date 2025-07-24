@@ -59,6 +59,8 @@ source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.
 source /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 ```
 
+**Warning:** `zsh-autocomplete.plugin.zsh` made my `zsh` experience very slow.
+
 Alternatively you can ignore installing these packages using AUR and Arch and use this:
 
 ```bash
@@ -446,6 +448,33 @@ sudo pacman -S starship
 sudo pacman -S fisher
 rm ~/.config/fish/functions/fish_prompt.fish
 fisher install IlanCosman/tide@v6
+```
+
+### Troubleshooting
+
+If you get:
+
+```
+Exception ignored in: <_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>
+BrokenPipeError: [Errno 32] Broken pipe
+```
+
+This is caused by `conda`. To solve it change the `conda` section to this:
+
+```fish
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+if test -f ~/anaconda3/bin/conda
+    status is-interactive &&
+        eval ~/anaconda3/bin/conda "shell.fish" hook $argv | source
+else
+    if test -f "~/anaconda3/etc/fish/conf.d/conda.fish"
+        . "~/anaconda3/etc/fish/conf.d/conda.fish"
+    else
+        set -x PATH ~/anaconda3/bin $PATH
+    end
+end
+# <<< conda initialize <<<
 ```
 
 **References:**
