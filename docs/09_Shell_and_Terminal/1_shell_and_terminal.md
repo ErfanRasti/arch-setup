@@ -393,6 +393,26 @@ The configuration file is `~/.config/fish/config.fish`. Run `fish_config` to con
 
 For manual page completions run `fish_update_completions`.
 
+### Setting fish as interactive shell only
+
+I personally take bash as pure as possible, and I rather add fish to the top of the `~/bashrc` and make it my default terminal instead of `~/.zshrc`:
+
+```sh
+chsh -s $(which bash)
+nvim ~/.bashrc
+```
+
+Add:
+
+```sh
+# Activate fish
+if [[ $(ps --no-header --pid=$PPID --format=comm) != "fish" && -z ${BASH_EXECUTION_STRING} && ${SHLVL} == 1 ]]
+then
+ shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=''
+ exec fish $LOGIN_OPTION
+fi
+```
+
 ### aliases
 
 Add aliases like this
