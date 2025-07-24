@@ -372,7 +372,19 @@ Check tutor at `:Tutor` to learn Neovim.
 ## Modern Unix tools
 
 ```bash
-sudo pacman -S duf exa eza git-delta
+sudo pacman -S duf exa eza git-delta zoxide
+```
+
+- `duf` – A modern, user-friendly alternative to df for checking disk usage.
+- `exa` – A modern replacement for ls with colors, icons, and better formatting.
+- `eza` – A fork of exa with continued development and extra features.
+- `git`-delta – A syntax-highlighting pager for git, improving diff output.
+- `zoxide` – A smarter cd command that learns your frequent directories
+
+For zoxide and fish add the following to `~/.config/fish/config.fish`:
+
+```fish
+zoxide init fish | source
 ```
 
 **References:**
@@ -382,6 +394,7 @@ sudo pacman -S duf exa eza git-delta
 - <https://github.com/ogham/exa>
 - <https://github.com/eza-community/eza>
 - <https://github.com/muesli/duf>
+- <https://github.com/ajeetdsouza/zoxide>
 
 ## Fish
 
