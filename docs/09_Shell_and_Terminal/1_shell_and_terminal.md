@@ -19,6 +19,14 @@ gh auth login
 Choose according to this:
 `GitHub.com > HTTPS > Y > Login with a web browser > Copy the code and continue`.
 
+## bash
+
+There is not much to say about `bash` but if you want to restore the default `bash` configuration:
+
+```bash
+cp /etc/skel/.bashrc ~/
+```
+
 ## ZSH $ OhMyZsh
 
 ## Installation
