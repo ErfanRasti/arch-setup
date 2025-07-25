@@ -381,10 +381,18 @@ sudo pacman -S duf exa eza git-delta zoxide
 - `git`-delta – A syntax-highlighting pager for git, improving diff output.
 - `zoxide` – A smarter cd command that learns your frequent directories
 
-For zoxide and fish add the following to `~/.config/fish/config.fish`:
+For `zoxide` and fish add the following to `~/.config/fish/config.fish`:
 
 ```fish
+# Activate zoxide
 zoxide init fish | source
+```
+
+or:
+
+```bash
+# Activate zoxide
+eval "$(zoxide init zsh)"
 ```
 
 **References:**
