@@ -411,6 +411,34 @@ set -g focus-events on
 
 I have a `dotfile` for it. I'll add it at the end.
 
+### Open tmux on your login shell
+
+Add this to the beginning of your `~/.zshrc`:
+
+```bash
+# stratup tmux
+if [ -x "$(command -v tmux)" ] && [ -n "${DISPLAY}" ] && [ -z "${TMUX}" ]; then
+    # exec tmux new-session -A -s ${USER} >/dev/null 2>&1
+    exec tmux new
+fi
+```
+
+or add this to `~/.config/fish/config.fish`:
+
+```fish
+# stratup tmux
+if command -q tmux && set -q DISPLAY && ! set -q TMUX
+    # exec tmux new-session -A -s $USER >/dev/null 2>&1
+    exec tmux new
+end
+```
+
+**Warning:** If you changed your shell using `chsh` you should terminate `tmux` process to make the change applied on your session.
+
+**References:**
+
+- <https://wiki.archlinux.org/title/Tmux#Start_tmux_on_every_shell_login>
+
 
 ## Modern Unix tools
 
