@@ -542,8 +542,8 @@ end
 ## Modern Unix tools
 
 ```bash
-sudo pacman -S duf exa eza git-delta zoxide glow
-paru -S lazydocker-bin
+sudo pacman -S duf exa eza git-delta zoxide glow yazi
+paru -S lazydocker-bin ascii-image-converter-bin
 ```
 
 - `duf` – A modern, user-friendly alternative to df for checking disk usage.
@@ -555,6 +555,7 @@ paru -S lazydocker-bin
 - `lazygit` - A terminal UI for Git to simplify version control.
 - `lazydocker` - A terminal UI for managing Docker containers and images.
 - `yazi` - A blazing-fast terminal file manager with previews.
+- `ascii-image-converter` - A command-line tool that converts images.
 
 For `zoxide` and fish add the following to `~/.config/fish/config.fish`:
 
