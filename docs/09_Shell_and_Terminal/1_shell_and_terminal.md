@@ -455,6 +455,79 @@ end
 - <https://github.com/catppuccin/tmux?tab=readme-ov-file>
 - <https://github.com/omerxx/catppuccin-tmux>
 
+### Shortcuts
+
+#### Basic Controls
+
+- **Prefix key**: Default is `Ctrl + b` (press before any shortcut below)
+
+#### Session Management
+
+| Shortcut           | Description              |
+| ------------------ | ------------------------ |
+| `Prefix + d`       | Detach session           |
+| `tmux attach`      | Reattach to last session |
+| `tmux ls`          | List all sessions        |
+| `tmux new -s name` | Create named session     |
+| `Prefix + $`       | Rename current session   |
+| `Prefix + s`       | Switch between sessions  |
+| `Prefix + (`       | Previous session         |
+| `Prefix + )`       | Next session             |
+
+#### Window (Tab) Management
+
+| Shortcut       | Description                       |
+| -------------- | --------------------------------- |
+| `Prefix + c`   | Create new window                 |
+| `Prefix + &`   | Close current window              |
+| `Prefix + ,`   | Rename current window             |
+| `Prefix + p`   | Previous window                   |
+| `Prefix + n`   | Next window                       |
+| `Prefix + 0-9` | Jump to window by number          |
+| `Prefix + w`   | List windows interactively        |
+| `Prefix + .`   | Move window to new index          |
+| `Prefix + '`   | Prompt to jump to window by index |
+
+#### Pane Management
+
+| Shortcut             | Description                   |
+| -------------------- | ----------------------------- |
+| `Prefix + %`         | Split vertically              |
+| `Prefix + "`         | Split horizontally            |
+| `Prefix + x`         | Close current pane            |
+| `Prefix + z`         | Zoom pane (toggle fullscreen) |
+| `Prefix + Arrow`     | Switch between panes          |
+| `Prefix + Space`     | Cycle through pane layouts    |
+| `Prefix + Alt+Arrow` | Resize pane                   |
+| `Prefix + {`         | Move pane left                |
+| `Prefix + }`         | Move pane right               |
+| `Prefix + !`         | Convert pane to window        |
+| `Prefix + q`         | Show pane numbers             |
+
+#### Copy Mode (Text Selection)
+
+| Shortcut     | Description     |
+| ------------ | --------------- |
+| `Prefix + [` | Enter copy mode |
+| `q`          | Exit copy mode  |
+| `Space`      | Start selection |
+| `Enter`      | Copy selection  |
+| `/`          | Search forward  |
+| `?`          | Search backward |
+| `n`          | Next match      |
+| `N`          | Previous match  |
+| `g`          | Go to top       |
+| `G`          | Go to bottom    |
+
+#### Miscellaneous
+
+| Shortcut          | Description             |
+| ----------------- | ----------------------- |
+| `Prefix + :`      | Enter command mode      |
+| `Prefix + t`      | Show clock              |
+| `Prefix + r`      | Reload tmux config      |
+| `Prefix + D`      | Choose client to detach |
+| `Prefix + Ctrl+z` | Suspend tmux            |
 
 ## Modern Unix tools
 
