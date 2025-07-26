@@ -543,6 +543,7 @@ end
 
 ```bash
 sudo pacman -S duf exa eza git-delta zoxide glow
+paru -S lazydocker-bin
 ```
 
 - `duf` – A modern, user-friendly alternative to df for checking disk usage.
@@ -550,7 +551,10 @@ sudo pacman -S duf exa eza git-delta zoxide glow
 - `eza` – A fork of exa with continued development and extra features.
 - `git`-delta – A syntax-highlighting pager for git, improving diff output.
 - `zoxide` – A smarter cd command that learns your frequent directories.
-- `glow` - Render markdown on CLI.
+- `glow` - Render and view Markdown files in the terminal.
+- `lazygit` - A terminal UI for Git to simplify version control.
+- `lazydocker` - A terminal UI for managing Docker containers and images.
+- `yazi` - A blazing-fast terminal file manager with previews.
 
 For `zoxide` and fish add the following to `~/.config/fish/config.fish`:
 
@@ -688,6 +692,17 @@ else
 end
 # <<< conda initialize <<<
 ```
+
+### Suppress fish welcoming message
+
+Add this to your `~/.config/fish/config.fish`:
+
+```fish
+# Suppress fish welcoming message
+set fish_greeting
+```
+
+**Warning:** If you accidentally messed up a variable check `~/.config/fish/fish_variables` and delete that custom variable from it.
 
 **References:**
 
