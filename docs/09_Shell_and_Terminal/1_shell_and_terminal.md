@@ -539,6 +539,18 @@ end
 | `Prefix + D`      | Choose client to detach |
 | `Prefix + Ctrl+z` | Suspend tmux            |
 
+## zellij
+
+Zellij is a workspace aimed at developers, ops-oriented people and anyone who loves the terminal. Similar programs are sometimes called "Terminal Multiplexers".
+
+```sh
+sudo pacman -S zellij
+```
+
+**References:**
+
+- <https://github.com/zellij-org/zellij>
+
 ## Modern Unix tools
 
 ```bash
