@@ -447,7 +447,17 @@ end
     git clone https://github.com/tmux-plugins/tpm ~/.config/plugins/tpm
     ```
 
-2.
+2. Put these lines at your `~/.config/tmux/tmux.conf`:
+
+    ```conf
+    # List of plugins
+    set -g @plugin 'tmux-plugins/tpm'
+    set -g @plugin 'tmux-plugins/tmux-sensible'
+
+    run '~/.tmux/plugins/tpm/tpm'
+    ```
+
+3. Open `tmux` and press `<prefix>+I`.
 
 **References:**
 
@@ -532,14 +542,15 @@ end
 ## Modern Unix tools
 
 ```bash
-sudo pacman -S duf exa eza git-delta zoxide
+sudo pacman -S duf exa eza git-delta zoxide glow
 ```
 
 - `duf` – A modern, user-friendly alternative to df for checking disk usage.
 - `exa` – A modern replacement for ls with colors, icons, and better formatting.
 - `eza` – A fork of exa with continued development and extra features.
 - `git`-delta – A syntax-highlighting pager for git, improving diff output.
-- `zoxide` – A smarter cd command that learns your frequent directories
+- `zoxide` – A smarter cd command that learns your frequent directories.
+- `glow` - Render markdown on CLI.
 
 For `zoxide` and fish add the following to `~/.config/fish/config.fish`:
 
