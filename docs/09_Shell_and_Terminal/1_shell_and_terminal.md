@@ -368,6 +368,49 @@ Check tutor at `:Tutor` to learn Neovim.
 - <https://yobibyte.github.io/vim.html>
 - <https://www.reddit.com/r/LazyVim/comments/1io24kf/how_do_i_check_lazyvim_version/>
 
+## tmux
+
+```bash
+sudo pacman -S tmux
+```
+
+The default prefix is `CTRL+b`.
+
+There is a lot to set on `tmux`. I personally prefer `~/.config/tmux/tmux.conf`:
+
+```sh
+# Enable mouse support
+set -g mouse on
+
+# Use Vim keys in copy mode
+set -g mode-keys vi
+
+# Start selection with 'v' in copy mode
+bind-key -T copy-mode-vi v send-keys -X begin-selection
+
+# Yank selection with 'y' in copy mode
+bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
+
+# Easier pane navigation (Vim style)
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+
+# Faster window switching
+bind -r C-h select-window -t :-
+bind -r C-l select-window -t :+
+
+
+# Increase scrollback buffer
+set -g history-limit 10000
+
+# Enable focus events for Vim
+set -g focus-events on
+```
+
+I have a `dotfile` for it. I'll add it at the end.
+
 
 ## Modern Unix tools
 
