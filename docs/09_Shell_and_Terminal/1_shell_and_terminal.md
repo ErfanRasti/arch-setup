@@ -465,6 +465,18 @@ end
 - <https://github.com/catppuccin/tmux?tab=readme-ov-file>
 - <https://github.com/omerxx/catppuccin-tmux>
 
+### sesh
+Sesh is a smart terminal session manager that helps you create and manage tmux sessions quickly and easily using zoxide.
+
+```sh
+paru -S sesh-bin
+```
+
+**References:**
+
+- <https://github.com/joshmedeski/sesh>
+- <https://www.youtube.com/watch?v=-yX3GjZfb5Y>
+
 ### Shortcuts
 
 #### Basic Controls
