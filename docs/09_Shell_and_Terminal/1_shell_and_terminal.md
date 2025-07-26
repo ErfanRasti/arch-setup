@@ -439,6 +439,22 @@ end
 
 - <https://wiki.archlinux.org/title/Tmux#Start_tmux_on_every_shell_login>
 
+### Tmux Plugin Manager (TPM)
+
+1. Close the repo:
+
+    ```bash
+    git clone https://github.com/tmux-plugins/tpm ~/.config/plugins/tpm
+    ```
+
+2.
+
+**References:**
+
+- <https://github.com/tmux-plugins/tpm>
+- <https://github.com/catppuccin/tmux?tab=readme-ov-file>
+- <https://github.com/omerxx/catppuccin-tmux>
+
 
 ## Modern Unix tools
 
