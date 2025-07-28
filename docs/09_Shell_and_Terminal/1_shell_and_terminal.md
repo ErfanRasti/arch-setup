@@ -812,3 +812,15 @@ bind p fish_clipboard_paste
 - <https://dev.to/joshmedeski/why-i-switched-from-zsh-to-fish-2j17>
 - <https://erika.florist/wiki/linux/shellperformance/>
 
+## jujutsu
+
+```sh
+sudo pacman -S jujutsu
+```
+
+**References:**
+
+- <https://github.com/jj-vcs/jj>
+- <https://jj-vcs.github.io/jj/latest/install-and-setup/>
+- <https://www.youtube.com/watch?v=cZqFaMlufDY>
+
