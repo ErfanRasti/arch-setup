@@ -678,6 +678,8 @@ Add aliases like this
  alias --save l "ls -al"
 ```
 
+Aliases are saved under `/.config/fish/functions/`; If you want to remove it look into this folder.
+
 ### Conda
 
 Also to use `conda` on fish:
@@ -701,7 +703,7 @@ Check list of plugins:
 
 ```fish
 omf list
-omf install archlinu agnoster
+omf install archlinux agnoster
 ```
 
 ### Custom themes
@@ -725,6 +727,12 @@ sudo pacman -S starship
 sudo pacman -S fisher
 rm ~/.config/fish/functions/fish_prompt.fish
 fisher install IlanCosman/tide@v6
+```
+
+### fzf
+
+```fish
+fisher install PatrickF1/fzf.fish
 ```
 
 ### Troubleshooting
