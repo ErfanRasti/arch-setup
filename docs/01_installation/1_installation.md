@@ -82,3 +82,12 @@ My configurations:
 - <https://wiki.archlinux.org/title/Archinstall>
 - <https://youtu.be/8YE1LlTxfMQ?si=l4oiXkGNmAxkCv93>
 - <https://www.youtube.com/watch?v=xj81uEMqKKE>
+
+## GNU/Linux
+
+GNU stands for "GNU's Not Unix". It is a recursive acronym, meaning the acronym itself contains a definition of itself. GNU is a collection of free software, while Linux is the kernel that manages the computer's hardware. The combination of GNU tools and the Linux kernel forms a complete operating system, though other kernels can also be used with GNU software.
+
+**References:**
+
+- <https://wiki.archlinux.org/title/GNU>
+- <https://www.educba.com/linux-vs-gnu/>

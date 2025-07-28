@@ -595,6 +595,12 @@ or:
 eval "$(zoxide init zsh)"
 ```
 
+Also I use `ascii-image-converter` like this:
+
+```shell
+ascii-image-converter ~/Pictures/MyImages/Me-2024-winter/me-2024-winter-best.jpg -C -c --color-bg
+```
+
 **References:**
 
 - <https://github.com/ibraheemdev/modern-unix>
