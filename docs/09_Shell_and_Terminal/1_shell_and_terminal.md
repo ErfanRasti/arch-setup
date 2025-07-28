@@ -595,29 +595,38 @@ paru -S lazydocker-bin ascii-image-converter-bin gitbutler-bin
 - `lazygit` - A terminal UI for Git to simplify version control.
 - `lazydocker` - A terminal UI for managing Docker containers and images.
 - `yazi` - A blazing-fast terminal file manager with previews.
-1  For `yazi` press `<f1>` for help to the shortcuts.
+  For `yazi` press `<f1>` for help to the shortcuts.
 - `ascii-image-converter` - A command-line tool that converts images.
 
-For `zoxide` and fish add the following to `~/.config/fish/config.fish`:
+  I use it like this:
 
-```fish
-# Activate zoxide
-zoxide init fish | source
-```
+  ```shell
+  ascii-image-converter ~/Pictures/image.jpg -C -c --color-bg
+  ```
 
-or:
+- `aichat` - AIChat is an all-in-one LLM CLI tool featuring Shell Assistant, CMD & REPL Mode, RAG, AI Tools & Agents, and More.
+- `trash-cli` - `rm` is a dangerous command. I use `trash` instead and alias `rm` to it:
 
-```bash
-# Activate zoxide
-eval "$(zoxide init zsh)"
-```
+  ```fish
+  alias --save rm='echo "This is not the command you are looking for."; false'
+  ```
 
-Also I use `ascii-image-converter` like this:
+  Use trash instead. If you really want to use `rm` and bypasses aliases in Bash/Zsh/Fish:
 
-```shell
-ascii-image-converter ~/Pictures/MyImages/Me-2024-winter/me-2024-winter-best.jpg -C -c --color-bg
-```
+  ```fish
+  command rm some-file
+  ```
 
+  Or:
+
+  ```bash
+  \rm some-file
+  ```
+
+- `tree` - Prints out a directory structure in a tree-like display using utf-7 characters.
+  I cannot tell that it is modern but it is what it is.
+
+- `gitbutler` - Git branch management tool, built from the ground up for modern workflows.
 **References:**
 
 - <https://github.com/ibraheemdev/modern-unix>
@@ -626,6 +635,10 @@ ascii-image-converter ~/Pictures/MyImages/Me-2024-winter/me-2024-winter-best.jpg
 - <https://github.com/eza-community/eza>
 - <https://github.com/muesli/duf>
 - <https://github.com/ajeetdsouza/zoxide>
+- <https://yazi-rs.github.io/docs/quick-start/>
+- <https://github.com/andreafrancia/trash-cli/>
+- <https://github.com/gitbutlerapp/gitbutler>
+- <https://gitbutler.com/>
 
 ## Fish
 
