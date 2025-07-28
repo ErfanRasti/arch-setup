@@ -773,6 +773,29 @@ set fish_greeting
 
 **Warning:** If you accidentally messed up a variable check `~/.config/fish/fish_variables` and delete that custom variable from it.
 
+### Activate vi mode in fish
+
+To activate `vi` mode in fish:
+
+```fish
+fish_vi_key_bindings
+```
+
+To disable it and make it back to default:
+
+```fish
+fish_default_key_bindings
+```
+
+Also to support system clipboard add these to your `~/.config/fish/config.fish`:
+
+```fish
+# Clipboard managing in vi mode
+bind -M visual y fish_clipboard_copy
+bind -M default yy fish_clipboard_copy
+bind p fish_clipboard_paste
+```
+
 **References:**
 
 - <https://wiki.archlinux.org/title/Fish>
@@ -783,3 +806,9 @@ set fish_greeting
 - <https://github.com/jorgebucaran/fisher>
 - <https://github.com/IlanCosman/tide>
 - <https://fishshell.com/docs/current/index.html>
+- <https://stackoverflow.com/questions/41905019/how-to-disable-vi-mode-in-fish>
+- <https://www.reddit.com/r/fishshell/comments/1e29h9q/vi_mode_with_clipboard/>j
+- <https://github.com/PatrickF1/fzf.fish>
+- <https://dev.to/joshmedeski/why-i-switched-from-zsh-to-fish-2j17>
+- <https://erika.florist/wiki/linux/shellperformance/>
+
