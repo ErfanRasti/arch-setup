@@ -824,3 +824,47 @@ sudo pacman -S jujutsu
 - <https://jj-vcs.github.io/jj/latest/install-and-setup/>
 - <https://www.youtube.com/watch?v=cZqFaMlufDY>
 
+## dotfiles
+
+To manage `dotfiles` I recommend using `stow` and `git` together. There are lots of good resources on how to make our `dotfiles` which I share on references section for you.
+
+```sh
+sudo pacman -S git stow
+```
+
+There are some details in handling `dotfiles` using `stow`:
+
+- `.stowrc` - Handles the parameters like `--target` and others in `stow` command.
+- `.stow-local-ignore` - Ignores the files that are mentioned.
+- By default `stow` assumes that the target directory is the parent of the directory we are in.
+  To handle differently you should use `-t` or `--target`.
+- `stow */` - Looks under all directories under `./` and ignores files. It points to the next level of directory.
+- Running `stow` again and again don't raise any error and updates the files
+  (create symlink for new files under `dotfiles` directory  to the target directory);
+  But if the new files with the same name are exist previously on the
+  target directory which aren't linked to the `dotfiles`, it will raise an error.
+- If you want to undo the created symbolic links use `-D` argument.
+- `.stow-local-ignore` only get read if it is presented in the local directory. For instance,
+  if `.stow-local-ignore` is presented on `.` and you use `stow */`, `.stow-lcoal-ignore`
+  doesn't get read.
+
+If you want to add another repo as a sub-module to your `dotfiles` repository:
+
+```sh
+git submodule add  https://github.com/ErfanRasti/nvim nvim/.config/nvim/
+git submodule add  https://github.com/ErfanRasti/tmux tmux/.config/tmux/
+```
+
+Use `git submodule status` to check sub-module commits.
+To update sub-modules use `git submodule update --init --recursive`.
+
+**References:**
+
+- <https://wiki.archlinux.org/title/Dotfiles>
+- <https://dotfiles.github.io/inspiration/>
+- <https://www.youtube.com/watch?v=CxAT1u8G7is>
+- <https://www.youtube.com/watch?v=NoFiYOqnC4o>
+- <https://www.youtube.com/watch?v=WpQ5YiM7rD4>
+- <https://www.gnu.org/software/stow/manual/html_node/Types-And-Syntax-Of-Ignore-Lists.html>
+- <https://stackoverflow.com/questions/64231650/why-doesnt-gnu-stow-ignore-single-files-in-main-directory>
+- <https://git-scm.com/book/en/v2/Git-Tools-Submodules>
