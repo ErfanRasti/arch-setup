@@ -68,6 +68,7 @@ makepkg -si
 
 - `Times New Roman not found.`: Install this font and it will do it all.
 - `findfont: Generic family 'serif' not found because none of the following families were found: Times New Roman`:
+
   ```bash
   rm ~/.cache/matplotlib -rf
   ```
@@ -83,9 +84,21 @@ makepkg -si
 If some fonts (including persian fonts) are not rendered correctly this font wil fix the related issues.
 
 ```bash
-sudo pacman -S ttf-font-awesome
+sudo pacman -S woff2-font-awesome
 ```
 
+**New warnning:**
+<i>
+Starting from version 7.0.0, the Font Awesome upstream no longer includes '.ttf' webfonts
+and instead provides them in '.woff2' format, which is now the standard for webfont delivery.
+
+The 'ttf-font-awesome' package has therefore been replaced by the 'woff2-font-awesome' one.
+
+If your project(s) or configuration(s) still depend on '.ttf' files, please update
+them to use the '.woff2' format instead.
+
+See <https://fontawesome.com/changelog> for more details.**
+</i>
 **References:**
 
 - <https://www.reddit.com/r/gnome/comments/9c8a07/what_fonts_do_you_use_with_your_gnome/>
