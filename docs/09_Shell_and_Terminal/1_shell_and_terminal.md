@@ -466,7 +466,8 @@ end
 - <https://github.com/omerxx/catppuccin-tmux>
 
 ### sesh
-Sesh is a smart terminal session manager that helps you create and manage tmux sessions quickly and easily using zoxide.
+
+Sesh is a smart terminal session manager that helps you create and manage tmux sessions quickly and easily using `zoxide`.
 
 ```sh
 paru -S sesh-bin
@@ -566,8 +567,8 @@ sudo pacman -S zellij
 ## Modern Unix tools
 
 ```bash
-sudo pacman -S duf exa eza git-delta zoxide glow yazi
-paru -S lazydocker-bin ascii-image-converter-bin
+sudo pacman -S duf exa eza git-delta zoxide glow yazi aichat trash-cli tree
+paru -S lazydocker-bin ascii-image-converter-bin gitbutler-bin
 ```
 
 - `duf` – A modern, user-friendly alternative to df for checking disk usage.
@@ -575,10 +576,26 @@ paru -S lazydocker-bin ascii-image-converter-bin
 - `eza` – A fork of exa with continued development and extra features.
 - `git`-delta – A syntax-highlighting pager for git, improving diff output.
 - `zoxide` – A smarter cd command that learns your frequent directories.
+
+  For `zoxide` and fish add the following to `~/.config/fish/config.fish`:
+
+  ```fish
+  # Activate zoxide
+  zoxide init fish | source
+  ```
+
+  or:
+
+  ```bash
+  # Activate zoxide
+  eval "$(zoxide init zsh)"
+  ```
+
 - `glow` - Render and view Markdown files in the terminal.
 - `lazygit` - A terminal UI for Git to simplify version control.
 - `lazydocker` - A terminal UI for managing Docker containers and images.
 - `yazi` - A blazing-fast terminal file manager with previews.
+1  For `yazi` press `<f1>` for help to the shortcuts.
 - `ascii-image-converter` - A command-line tool that converts images.
 
 For `zoxide` and fish add the following to `~/.config/fish/config.fish`:

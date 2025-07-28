@@ -28,9 +28,11 @@ You can install the Arch Linux from scratch (which I highly recommend to adopt w
 
 6. Welcome to Arch Linux!
 7. Run:
+
    ```bash
    rfkill unblock wifi
    ```
+
 8. Run:
 
    ```bash
