@@ -185,3 +185,33 @@ If missing, regenerate it:
   umount -R /mnt
   reboot
   ```
+
+#### Selected snapshot device is not a system disk
+
+First check that your backups still exists:
+
+```bash
+sudo btrfs subvolume list / | grep timeshift
+```
+
+Since your snapshots exist but `timeshift` couldn’t detect them, mounting the top-level subvolume (ID 5) manually allowed you to access the timeshift-btrfs directory and fix the bind-mounts:
+
+```bash
+sudo btrfs subvol set-default 5 /
+```
+
+This means, when the system boots, it will automatically mount sub-volume ID `5` as `/` (instead of requiring manual `subvol=` in `/etc/fstab` or kernel parameters).
+
+**Why Subvolume ID 5?**
+
+- In Btrfs, ID 5 is special; it refers to the top-level/root subvolume of the filesystem (the parent of all other sub-volumes like `@`, `@home`, or `timeshift-btrfs`).
+
+- Setting ID 5 as default is often done to:
+
+  - Recover from boot failures (if the default was pointing to a deleted/corrupted sub-volume).
+
+  - Simplify mounting (since you won’t need to specify `subvol=` for basic access).
+
+**References:**
+
+- <https://www.reddit.com/r/archlinux/comments/f0r10z/fix_timeshift_selected_snapshot_device_is_not_a/>
