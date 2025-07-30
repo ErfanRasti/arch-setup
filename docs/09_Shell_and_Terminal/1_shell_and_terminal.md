@@ -510,6 +510,13 @@ paru -S sesh-bin
 | `Prefix + w`   | List windows interactively        |
 | `Prefix + .`   | Move window to new index          |
 | `Prefix + '`   | Prompt to jump to window by index |
+| `Prefix + m` | Move window to pane               |
+| `Prefix + :join-pane` | Paste the window here as a new pane|
+
+**References:**
+
+- <https://stackoverflow.com/questions/9592969/how-to-join-two-tmux-windows-into-one-as-panes>
+- <https://superuser.com/questions/879190/how-does-one-swap-two-panes-in-tmux>
 
 #### Pane Management
 
