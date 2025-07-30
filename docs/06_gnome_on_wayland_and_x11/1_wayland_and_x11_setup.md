@@ -107,7 +107,17 @@ dconf dump /org/gnome/ > ~/dconf.conf
 
 Open it and find `screen-magnifier-enabled`. Set it to `false`:
 
+```sh
+nvim ~/dconf.conf
+```
+
 ```conf
 [desktop/a11y/applications]
 screen-magnifier-enabled=false
+```
+
+Finally:
+
+```sh
+dconf load /org/gnome/ < dconf.conf
 ```
