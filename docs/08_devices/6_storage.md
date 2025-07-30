@@ -105,3 +105,83 @@ Then:
 ```bash
 sudo snapper -c root create-config /
 ```
+
+#### Messed up snapshots
+
+If you ever messed up your `timeshift` backup and even mount points like `@` and `@home`, you have to mount using a live boot usb flash drive and follow these steps:
+
+1. Decrypt your drive:
+
+  ```bash
+  cryptsetep luksOpen /dev/sda2 btrfs-dev
+  ```
+
+2. Mount the whole drive to `/mnt`:
+
+  ```bash
+  mount /dev/mapper/btrfs-dev /mnt
+  ```
+
+3. Check your sub-volumes:
+
+  ```bash
+  btrfs subvolume list /mnt
+  ```
+
+  If `@` is missing, check for `timeshift` snapshots or other sub-volumes.
+  
+  The `timeshift` sub-volumes are like `timeshift-btrfs/snapshots/<DATE>`.
+
+4. If there exists some broken `@` or `@home` delete them using these:
+
+  ```bash
+  # Only run if @ or @home exist but are corrupted
+  btrfs subvolume delete /mnt/@      # Delete broken root
+  btrfs subvolume delete /mnt/@home  # Delete broken home (if separate)
+  ```
+
+5. Restore your desired snapshots `@` and `@home`:
+
+  ```bash
+  btrfs subvolume snapshot /mnt/timeshift-btrfs/snapshots/[SNAPSHOT_DATE]/@ /mnt/@
+  btrfs subvolume snapshot /mnt/timeshift-btrfs/snapshots/[SNAPSHOT_DATE]/@home /mnt/@home
+  ```
+
+6. If your system fails to boot, the default sub-volume might be wrong. Set it to `@`:
+
+  ```bash
+  # Find the subvolume ID of /mnt/@
+  btrfs subvolume list /mnt | grep "@/"
+
+  # Set it as default (replace "256" with the actual ID)
+  btrfs subvolume set-default 256 /mnt
+  ```
+
+7. Ensure `/mnt/etc/fstab` points to the correct sub-volumes (`subvol=@`, `subvol=@home`).
+If missing, regenerate it:
+
+  Check the `fstab` first:
+
+  ```bash
+  genfstab -U /mnt
+  ```
+
+  Then:
+
+  ```bash
+  genfstab -U /mnt >> /mnt/etc/@/fstab
+  ```
+
+8. If your bootloader is corrupted too:
+
+  ```bash
+  bootctl install
+  ```
+
+9. You're good to go:
+
+  ```bash
+  exit
+  umount -R /mnt
+  reboot
+  ```

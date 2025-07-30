@@ -157,13 +157,19 @@ chroot /mnt/@
 There is a more complete method for recovery. If you accidentally deleted `/etc` `/usr` or `/var` or any critical directory you need full access to the mount points:
 
 ```bash
-cryptsetp luksOpen /dev/sda2 btrfs-dev
+cryptsetep luksOpen /dev/sda2 btrfs-dev
 mount /dev/mapper/btrfs-dev -o subvol='@' /mnt
 mount /dev/mapper/btrfs-dev -o subvol='@home' /mnt/home
 mount /dev/mapper/btrfs-dev -o subvol='@pkg' /mnt/var/cache/pacman/pkg
 mount /dev/mapper/btrfs-dev -o subvol='@.snapshots' /mnt/.snapshots
 mount /dev/mapper/btrfs-dev -o subvol='@log' /mnt/var/log
 mount /dev/sda1 /mnt/boot
+```
+
+Then `chroot`:
+
+```bash
+chroot /mnt
 ```
 
 According to the possible corruption of packages, install base packages using `pacstrap`:
@@ -232,6 +238,7 @@ flatpak install flathub $(ls ~/.var/app)
 
 - <https://wiki.archlinux.org/title/Pacman/Tips_and_tricks>
 - <https://superuser.com/questions/271925/where-is-the-home-environment-variable-set>
+
 
 ### TTY
 
