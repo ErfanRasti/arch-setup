@@ -82,3 +82,32 @@ sudo tee /etc/modprobe.d/nvidia-modeset.conf <<< 'options nvidia_drm modeset=1 f
 - <https://forum.manjaro.org/t/how-to-add-nvidia-drm-modeset-1-kernel-parameter/152447>
 - <https://wiki.archlinux.org/title/Mkinitcpio#HOOKS>
 - <https://www.reddit.com/r/archlinux/comments/1bdf8eo/black_screen_after_installing_nvidia/>
+
+### Troubleshooting
+
+#### Slow Qt apps
+
+For me the reason was this on the `dconf`:
+
+```conf
+[desktop/a11y/applications]
+.
+.
+.
+.
+
+screen-magnifier-enabled=true
+```
+
+To fix this:
+
+```sh
+dconf dump /org/gnome/ > ~/dconf.conf
+```
+
+Open it and find `screen-magnifier-enabled`. Set it to `false`:
+
+```conf
+[desktop/a11y/applications]
+screen-magnifier-enabled=false
+```
