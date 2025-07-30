@@ -406,6 +406,7 @@ xdg-mime default nvim.desktop text/plain
 Note that you should mention the exact `*.desktop` name.
 
 ### Tabby
+
 Tabby is a great terminal for managing different sessions also for different server profiles.
 
 ## Visual Studio Code
@@ -444,10 +445,13 @@ sudo pacman -S micro
 Press `<C-g>` to open help documentations. To open help menu related to a topic press `<C-e>` and type `> help colors`. I personally prefer matching the text editor color with my terminal. So I set it simple using this command `> set colorscheme simple`.
 
 ## Zed
+
 Zed is one of the simplest and most lightweight text editors. You can try it as a new experiance like VSCode:
+
 ```bash
 sudo pacman -S zed
 ```
+
 ## PyCharm
 
 it is a nice IDE dedicated to Python programming language. Install it using this command:
@@ -520,6 +524,7 @@ paru -S zen-browser-bin
 ```
 
 #### Legacy New Tab
+
 1. `about:config`
 2. Set `zen.urlbar.replace-newtab` to `false`.
 3. Also if you want a transparent URL bar set `browser.tabs.allow_transparent_browser` to `true`.
@@ -529,10 +534,9 @@ paru -S zen-browser-bin
     - <https://addons.mozilla.org/en-US/firefox/addon/tabliss/>
     - <https://addons.mozilla.org/en-US/firefox/addon/material-you-newtab/>
 
-
 #### Custom setup
-If you want custom CSS theme take a loot at [this](https://github.com/TheBigWazz/ZenThemes/tree/main/Zen-current-theme).
 
+If you want custom CSS theme take a loot at [this](https://github.com/TheBigWazz/ZenThemes/tree/main/Zen-current-theme).
 
 **References:**
 
@@ -541,16 +545,15 @@ If you want custom CSS theme take a loot at [this](https://github.com/TheBigWazz
 - <https://docs.zen-browser.app/user-manual/urlbar>
 - <https://www.reddit.com/r/zen_browser/comments/1ijz3fo/when_i_click_the_new_tab_button_the_url_bar_opens/>
 
-
 #### Favorite Zen Modes
 
 - trackpad animation
 - Tab title fixes
 - Better CtrlTab Panel
 
-#### Activate tab groups:
-`about:config` > `browser.tabs.groups.enabled`
+#### Activate tab groups
 
+`about:config` > `browser.tabs.groups.enabled`
 
 **References:**
 
@@ -809,10 +812,12 @@ Welcome to the Matrix!
 ## Social media applications
 
 ```bash
-sudo pacman -S telegram-desktop discord skypeforlinux-bin
+sudo pacman -S telegram-desktop discord skypeforlinux-bin element-desktop
 ```
 
 Disable Skype startup from startup applications on `gnome-tweaks`.
+
+`element-desktop` is a matrix client
 
 ## VPS apps
 
@@ -825,6 +830,7 @@ paru -S hiddify-next-bin
 
 - <https://github.com/hiddify/hiddify-app>
 - <https://github.com/MatsuriDayo/nekoray>
+
 ## OVPN
 
 To install it:
