@@ -184,18 +184,23 @@ sudo pacman -S rofi
 Customization:
 
 1. Installation
+
    ```bash
    git clone --depth=1 https://github.com/adi1090x/rofi.git ~/Programs/rofi-themes/
    cd ~/Programs/rofi-themes/
    chmod +x setup.sh
    ./setup.sh
    ```
+
 2. Change theme:
+
    ```bash
    mkdir -p ~/.config/rofi/applets/shared/
    nano ~/.config/rofi/applets/shared/theme.bash
    ```
+
    Add:
+
    ```conf
    type="$HOME/.config/rofi/applets/type-1"
    style='style-1.rasi'
@@ -606,39 +611,10 @@ resize_on_border = true
 
 ### Installation
 
-```bash
-curl -fsSL https://bun.sh/install | bash && \
-  sudo ln -s $HOME/.bun/bin/bun /usr/local/bin/bun
-
-paru -S aylurs-gtk-shell
-sudo pacman -S ttf-jetbrains-mono-nerd
-sudo pacman -S pipewire libgtop bluez bluez-utils btop networkmanager \
-  dart-sass wl-clipboard brightnessctl swww python gnome-bluetooth-3.0 \
-  pacman-contrib power-profiles-daemon gvfs sass
-paru -S grimblast-git gpu-screen-recorder hyprpicker matugen-bin \
-  python-gpustat hyprsunset-git hypridle-git
-git clone https://github.com/Jas-SinghFSU/HyprPanel.git ~/Programs/HyprPanel
-cd  ~/Programs/HyprPanel;
-git pull
-./make_agsv1.sh
-
-# Moves the current ~/.config/ags directory to ~/.config/ags.bkup
-mv $HOME/.config/ags $HOME/.config/ags.bkup
-
-# Installs HyprPanel to ~/.config/ags
-git clone https://github.com/Jas-SinghFSU/HyprPanel.git && \
-  ln -s $(pwd)/HyprPanel $HOME/.config/ags
-
-agsv1
+```sh
+paru -S ags-hyprpanel-git
 ```
-
-The above commands are extracted from the wiki. I also had a `CaskaydiaCove NF` font installed. If you don't have install a `nerdfont`.
-
-`HyprPanel` is fantastic and it aims to replace `waybar` with lots of configurations. Add it to your `hyprland.conf`:
-
-```conf
-exec-once = agsv1
-```
+The installation is so easy now.
 
 ### Configurations
 
@@ -821,7 +797,6 @@ When the pop up appears in GNOME, press enter and don't make any password for au
 
 - <https://www.reddit.com/r/hyprland/comments/1avevff/brave_deletes_all_sessions_after_closure_in/>
 - <https://bbs.archlinux.org/viewtopic.php?id=285563>
-
 
 ### Cannot turn on the bluetooth
 
