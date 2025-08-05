@@ -800,6 +800,22 @@ sudo pacman -S hyprsunset
 
 - <https://wiki.hypr.land/Hypr-Ecosystem/hyprsunset/>
 
+## Emoji
+
+```bash
+paru -S hypremoji
+```
+
+**References:**
+
+- <https://github.com/Musagy/hypremoji>
+
+## Hypr systeminfo
+
+```sh
+paru -S hyprsysteminfo
+```
+
 ## Troubleshooting
 
 ### Losing Browser Session when Switching DE
