@@ -161,7 +161,7 @@ $fileManager = nautilus
 sudo pacman -S wofi
 ```
 
-To see the shortcut dedicated to it, chech the `bind` command that is dedictaed to `$menu` (If you look at the `$menu` initialization, it is mapped to `wofi`).
+To see the shortcut dedicated to it, check the `bind` command that is dedicated to `$menu` (If you look at the `$menu` initialization, it is mapped to `wofi`).
 
 For more configurations you can use this custom `.css`:
 
@@ -178,7 +178,7 @@ stow -t ~ wofi
 
 ### `rofi`
 
-I recommand `rofi`:
+I recommend `rofi`:
 
 ```bash
 sudo pacman -S rofi
@@ -767,6 +767,16 @@ If you want to remove these environment variables you can use `unset` command:
 ```bash
 unset HTTP_PROXY HTTPS_PROXY https_proxy ALL_PROXY all_proxy NO_PROXY no_proxy http_proxy FTP_PROXY ftp_proxy
 ```
+
+## Minimize power usage
+
+- `decoration:blur:enabled = false` and `decoration:shadow:enabled = false` to disable fancy but battery hungry effects.
+
+- misc:`vfr = true`, since it’ll lower the amount of sent frames when nothing is happening on-screen.
+
+**References:**
+
+- <https://wiki.hypr.land/Configuring/Performance/#how-do-i-make-hyprland-draw-as-little-power-as-possible-on-my-laptop>
 
 ## Troubleshooting
 
