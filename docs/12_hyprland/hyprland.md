@@ -790,6 +790,16 @@ exec-once = systemctl --user start hyprpolkitagent
 
 - <https://wiki.hypr.land/Hypr-Ecosystem/hyprpolkitagent/>
 
+## Nightlight
+
+```sh
+sudo pacman -S hyprsunset
+```
+
+**References:**
+
+- <https://wiki.hypr.land/Hypr-Ecosystem/hyprsunset/>
+
 ## Troubleshooting
 
 ### Losing Browser Session when Switching DE
