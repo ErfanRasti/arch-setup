@@ -125,6 +125,12 @@ sudo pacman -S xournalpp
 paru -S pdfsam
 ```
 
+### Zathura
+
+```bash
+sudo pacman -S zathura zathura-pdf-poppler
+```
+
 ## Photo and Video
 
 ```bash
