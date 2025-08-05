@@ -511,7 +511,7 @@ paru -S sesh-bin
 | `Prefix + .`   | Move window to new index          |
 | `Prefix + '`   | Prompt to jump to window by index |
 | `Prefix + m` | Move window to pane               |
-| `Prefix + :join-pane -h` | Paste the window here as a new pane|
+| `Prefix + :join-pane -h` | Paste the window here as a new pane horizontally|
 
 **References:**
 
