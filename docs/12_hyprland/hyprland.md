@@ -778,6 +778,18 @@ unset HTTP_PROXY HTTPS_PROXY https_proxy ALL_PROXY all_proxy NO_PROXY no_proxy h
 
 - <https://wiki.hypr.land/Configuring/Performance/#how-do-i-make-hyprland-draw-as-little-power-as-possible-on-my-laptop>
 
+## Authentication
+
+Add this to your `hyprland` config:
+
+```conf
+exec-once = systemctl --user start hyprpolkitagent
+```
+
+**References:**
+
+- <https://wiki.hypr.land/Hypr-Ecosystem/hyprpolkitagent/>
+
 ## Troubleshooting
 
 ### Losing Browser Session when Switching DE
