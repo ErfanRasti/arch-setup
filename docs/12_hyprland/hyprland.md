@@ -816,6 +816,16 @@ paru -S hypremoji
 paru -S hyprsysteminfo
 ```
 
+## Waypaper
+
+Great tool to manage wallpapers using a GUI.
+
+```sh
+paru -S waypaper
+```
+
+- <https://anufrievroman.gitbook.io/waypaper/configuration>
+
 ## Troubleshooting
 
 ### Losing Browser Session when Switching DE
