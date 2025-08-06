@@ -259,6 +259,21 @@ To save and exit first press `esc` to exit insert mode, then press `:x`. Also if
 1. Press `ctrl+shift+h`.
 2. Type `?` and then type the expression you want to search.
 
+#### Set theme in Kitty
+
+Run the following command (outside of `tmux` just inside the kitty itself):
+
+```sh
+kitten themes
+```
+
+Choose your desired theme and press `M` to modify instantly or other options.
+For custom user themes put your themes on `~/.config/kitty/themes/`.
+
+**References:**
+
+- <https://sw.kovidgoyal.net/kitty/kittens/themes/>
+
 #### Proxy in Kitty
 
 `kitty` by default doesn't inherit user environment variables; So the system proxy doesn't apply on it. To activate system proxy you should add proxy env variables manually to `kitty.conf`:
