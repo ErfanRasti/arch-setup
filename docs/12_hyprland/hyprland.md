@@ -606,6 +606,23 @@ exec-once = hyprpaper
 
 - <https://wiki.hyprland.org/Hypr-Ecosystem/hyprpaper/>
 
+## Alt+Tab behaviour
+
+First checkout the link in the references. You need to install grim-hyprland. to do it:
+
+```bash
+git clone https://github.com/eriedaberrie/grim-hyprland ~/programs/grim=hyprland/
+meson build
+ninja -C build
+```
+
+Remember to change the line related to grim in the `~/.config/hypr/scripts/alttab/alttab.sh`
+to `~/programs/grim-hyprland/build/grim`
+
+**References:**
+
+- <https://wiki.hypr.land/Configuring/Uncommon-tips--tricks/#alt-tab-behaviour>
+
 ## Resize windows
 
 Activate it by:
