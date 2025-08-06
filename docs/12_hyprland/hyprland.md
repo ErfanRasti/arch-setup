@@ -48,6 +48,14 @@ At first login, you have a naive desktop manager without anything. You can launc
 - <https://wiki.hyprland.org/Getting-Started/Installation/>
 - <https://wiki.hyprland.org/Useful-Utilities/Systemd-start/#installation>
 
+### Commands
+
+See it using `hyprpanel explain`.
+
+**References:**
+
+- <https://hyprpanel.com/configuration/cli.html#toggling-menus>
+
 ### Must Have
 
 ```bash
@@ -264,6 +272,7 @@ bindel = ,XF86MonBrightnessDown, exec, brightnessctl -d intel_backlight s 5%-
 - <https://github.com/hyprwm/Hyprland/discussions/2506>
 - <https://www.reddit.com/r/hyprland/comments/1f23gdd/shortcut_for_changing_workspaces/>
 - <https://wiki.hyprland.org/Configuring/Dispatchers/>
+- <https://www.reddit.com/r/hyprland/comments/1heh8zi/launchers/>
 
 ## Touchpad
 
@@ -617,6 +626,7 @@ resize_on_border = true
 ```sh
 paru -S ags-hyprpanel-git
 ```
+
 The installation is so easy now.
 
 ### Configurations
@@ -699,7 +709,7 @@ If you want to use another keyboard language on your system, first you should fi
 localectl list-x11-keymap-layouts
 ```
 
-Mine is persian which is refered as `ir`. For variant:
+Mine is Persian which is referred as `ir`. For variant:
 
 ```bash
 localectl list-x11-keymap-variants ir
@@ -759,7 +769,7 @@ env=ftp_proxy=$addr_port
 env=FTP_PROXY=$addr_port
 ```
 
-Relogin to work.
+Re-login to work.
 **Note:** Some apps like `telegram-destkop` or `zen-browser` still may need to configure proxy manually in their settings. First try system proxy in their settings. If it doesn't work, manually set the proxy to the same address and port (`$addr_port`).
 
 If you want to remove these environment variables you can use `unset` command:
