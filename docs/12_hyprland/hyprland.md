@@ -933,3 +933,22 @@ to have plugins loaded at startup.
 - <https://wiki.hypr.land/Plugins/Using-Plugins/>
 - <https://github.com/hyprwm/hyprland-plugins>
 
+### Touchscreen gestures
+
+`hyprgrass` is a nice option for this. To use it:
+
+```sh
+sudo pacman -S glm meson ninja
+```
+
+Also for to install `hyprgrass` you need to use `hyprpm`. To install it:
+
+```sh
+hyprpm add https://github.com/horriblename/hyprgrass
+hyprpm enable hyprgrass
+hyprpm reload
+```
+
+**References:**
+
+- <https://github.com/horriblename/hyprgrass?tab=readme-ov-file>
