@@ -900,3 +900,36 @@ rfkill unblock bluetooth
 
 - <https://stackoverflow.com/questions/68728478/failed-to-set-power-on-org-bluez-error-blocked-problem>
 - <https://stackoverflow.com/questions/34709583/bluetoothctl-set-passkey>
+
+### Screensharing on Hyprland
+
+- <https://gist.github.com/brunoanc/2dea6ddf6974ba4e5d26c3139ffb7580>
+- <https://wiki.hypr.land/Useful-Utilities/Screen-Sharing/>
+
+### Plugins
+
+To install plugins you first need to install these:
+
+```sh
+sudo pacman -S cpio cmake git meson gcc
+```
+
+To list plugins use `hyprpm list`.
+Also run `hyprpm update` for the first time.
+
+Install a plugin:
+
+```sh
+hyprpm update
+hyprpm add https://github.com/hyprwm/hyprland-plugins
+hyprpm reload
+```
+
+You can add `exec-once = hyprpm reload -n` to your Hyprland config
+to have plugins loaded at startup.
+
+**References:**
+
+- <https://wiki.hypr.land/Plugins/Using-Plugins/>
+- <https://github.com/hyprwm/hyprland-plugins>
+
