@@ -535,10 +535,12 @@ Then add this to the `hyprland.conf`:
 exec-once = hyprctl setcursor Bibata-Modern-Classic 24
 ```
 
+Some gtk cursors need separate config files on `gtk-3.0` and `gtk-4.0` folders.
 **References:**
 
 - <https://wiki.hyprland.org/Hypr-Ecosystem/hyprcursor/>
 - <https://www.reddit.com/r/hyprland/comments/18axtng/how_do_i_set_my_cursor_theme/>
+- <https://github.com/hyprwm/Hyprland/issues/6320#issuecomment-2243109637>
 
 ## Powerbutton remap
 
@@ -833,9 +835,16 @@ sudo pacman -S hyprsunset
 paru -S hypremoji
 ```
 
+Also `rofi-emoji` is good as well:
+
+```sh
+sudo pacman -S rofi-emoji
+```
+
 **References:**
 
 - <https://github.com/Musagy/hypremoji>
+- <https://github.com/Mange/rofi-emoji>
 
 ## Hypr systeminfo
 
@@ -928,10 +937,13 @@ hyprpm reload
 You can add `exec-once = hyprpm reload -n` to your Hyprland config
 to have plugins loaded at startup.
 
+Other plugins at awesome-hyprland repo.
+
 **References:**
 
 - <https://wiki.hypr.land/Plugins/Using-Plugins/>
 - <https://github.com/hyprwm/hyprland-plugins>
+- <https://github.com/hyprland-community/awesome-hyprland#plugins>
 
 ### Touchscreen gestures
 
