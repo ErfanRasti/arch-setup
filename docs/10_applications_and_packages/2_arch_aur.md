@@ -10,6 +10,72 @@ paru -S spotify
 
 - <https://wiki.archlinux.org/title/Spotify>
 
+## Spicetify
+
+`spicetify` is a nice package to customize s`potify` and add custom apps and themes to it. To install it:
+
+```sh
+paru -S spicetify-cli
+```
+
+There is a chance you need to give read and write permissions to spotify:
+
+```sh
+sudo chmod a+wr /opt/spotify
+sudo chmod a+wr /opt/spotify/Apps -R
+```
+
+-`a:` Stands for "all" (i.e., the file's owner, group, and others).
+-`+:` Adds the specified permissions.
+-`wr`: Grants both write (w) and read (r) permissions.
+
+`<ctrl_shift_r>` for apply in spotify SaveDesktop.
+
+Then upgrade and apply to see the `spicetify` config on your `spotify`:
+
+```sh
+spicetify upgrade
+spicetify apply
+```
+
+### Setup marketplace
+
+```sh
+paru -S spicetify-marketplace-bin
+spicetify config inject_css 1
+spicetify config replace_colors 1
+spicetify config current_theme marketplace
+spicetify config custom_apps marketplace
+```
+
+Finally apply:
+
+```sh
+spicetify apply
+```
+
+### Setup Reddit plugin
+
+```sh
+spicetify config custom_apps reddit
+spicetify apply
+```
+
+### Setup themes
+
+```sh
+paru -S spicetify-themes-git
+spicetify config current_theme Blossom
+spicetify apply
+```
+
+This setting conflicts with the previous marketplace setting. Stick to the marketplace it is more user-friendly.
+
+**References:**
+
+- <https://github.com/spicetify/spicetify-themes>
+- <https://spicetify.app/docs/advanced-usage/themes>
+
 ## Essential `pacman` applications
 
 ```bash
