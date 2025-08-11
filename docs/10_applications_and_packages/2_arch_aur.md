@@ -1217,3 +1217,17 @@ paru -S xp-pen-tablet
 ```bash
 paru -S bazaar-git
 ```
+
+## Show Me The Key
+
+One of the coolest and best applications to show which key is pressed on Wayland (for showing clicked keys). To install it:
+
+```sh
+paru -S showmethekey
+```
+
+To perform the setup completely stick with the usage dialog from app menu.
+
+**References:**
+
+- <https://github.com/AlynxZhou/showmethekey>
