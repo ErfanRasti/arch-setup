@@ -1008,3 +1008,16 @@ libinput-gestures-setup restart
 - <https://wayland.freedesktop.org/libinput/doc/latest/gestures.html>
 - <https://wiki.hypr.land/Configuring/Keywords/#gestures>
 - <https://www.reddit.com/r/hyprland/comments/12qjea7/additional_gestures/>
+
+### Overview menu
+
+`Hyprspace` is a great plugin to add overview menu to Hyprland.
+
+```sh
+hyprpm add <https://github.com/KZDKM/Hyprspace>
+hyprpm enable Hyprspace
+```
+
+**References:**
+
+- <https://github.com/KZDKM/Hyprspace>
