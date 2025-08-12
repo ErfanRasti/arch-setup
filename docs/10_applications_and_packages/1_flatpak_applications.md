@@ -89,6 +89,7 @@ flatpak install flathub org.gnome.Showtime
 ### Note taking and listing
 
 ```bash
+flatpak install flathub io.github.alainm23.planify
 flatpak install flathub io.github.mrvladus.List
 flatpak install flathub com.vixalien.sticky
 flatpak install flathub org.gnome.World.Iotas
@@ -96,6 +97,7 @@ flatpak install flathub com.github.flxzt.rnote
 flatpak install flathub com.toolstack.Folio
 ```
 
+- `io.github.alainm23.planify`: Forget about forgetting things! Nice todo list app.
 - `io.github.mrvladus.List`: Manage your tasks.
 - `com.vixalien.sticky`: A sticky note application.
 - `org.gnome.World.Iotas`: Simple note taking.
@@ -117,12 +119,14 @@ flatpak install flathub re.sonny.Workbench
 flatpak install flathub io.github.ronniedroid.concessio
 flatpak install flathub io.github.david_swift.Flashcards
 flatpak install flathub com.github.hugolabe.Wike
+flatpak install flathub org.gnome.gitlab.cheywood.Pulp
 ```
 
 - `re.sonny.Workbench`: Workbench is for learning and prototyping with GNOME technologies.
 - `io.github.ronniedroid.concessio`: Understand file permissions.
 - `io.github.david_swift.Flashcards`: Study flashcards.
 - `com.github.hugolabe.Wike`: Wike is a simple Wikipedia reader.
+- `org.gnome.gitlab.cheywood.Pulp`: Pulp provides a workflow focused on reading through an excessive number of RSS feeds with the goal of regularly marking all read, resting in a state akin to an empty inbox.
 
 ### Graphs and data
 
@@ -209,7 +213,7 @@ flatpak install flathub be.alexandervanhee.gradia
 - `dev.bragefuglseth.Keypunch`: Practice your typing skills.
 - `io.github.andreibachim.shortcut`: Make app shortcuts.
 - `garden.jamie.Morphosis`: Use Morphosis to easily convert your text documents to other formats.
-- `io.github.nozwock.Packet`: Packet is a simple and fast file transfer tool with Android devices. 
+- `io.github.nozwock.Packet`: Packet is a simple and fast file transfer tool with Android devices.
 -`io.github.hamza_algohary.Coulomb`: Coulomb is a simple and elegant circuit simulator.
   Activate Nautilus plugin in its preferences. It has two pre-requirements:
 
