@@ -964,3 +964,47 @@ hyprpm reload
 **References:**
 
 - <https://github.com/horriblename/hyprgrass?tab=readme-ov-file>
+
+### Touchpad gestures
+
+Use `libinput-gstures` to customize touchpad gestures:
+
+```sh
+sudo pacman -S wmctrl xdotool
+sudo gpasswd -a $USER input
+paru -S libinput-gestures
+```
+
+We must add the current user to the input group. Reboot if you're not already in input group.
+
+Then start it:
+
+```sh
+libinput-gestures-setup autostart start
+```
+
+You can add your config to `~/.config/libinput-gestures.conf`. Add the config like this:
+
+```conf
+gesture swipe up 3 hyprctl dispatch fullscreen 1
+gesture swipe down 3 hyprctl dispatch fullscreen 1
+gesture swipe up 4 hyprctl dispatch fullscreen 0
+gesture swipe down 4 hyprctl dispatch fullscreen 0
+
+gesture swipe right 4 hyprctl dispatch cyclenext
+gesture swipe left 4 hyprctl dispatch cyclenext prev
+
+```
+
+Then restart the `libinput-gestures` like this:
+
+```sh
+libinput-gestures-setup restart
+```
+
+**References:**
+
+- <https://github.com/bulletmark/libinput-gestures>
+- <https://wayland.freedesktop.org/libinput/doc/latest/gestures.html>
+- <https://wiki.hypr.land/Configuring/Keywords/#gestures>
+- <https://www.reddit.com/r/hyprland/comments/12qjea7/additional_gestures/>
