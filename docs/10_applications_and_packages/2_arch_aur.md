@@ -1231,3 +1231,15 @@ To perform the setup completely stick with the usage dialog from app menu.
 **References:**
 
 - <https://github.com/AlynxZhou/showmethekey>
+
+## flameshot
+
+Powerful, yet simple to use open-source screenshot software.
+
+```sh
+sudo pacman -S flameshot
+```
+
+**References:**
+
+- <https://flameshot.org/>
