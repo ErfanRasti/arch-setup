@@ -83,18 +83,23 @@ paru -S skeuowaita-git
 - <https://github.com/RusticBard/Skeuowaita>
 
 ### Fluent Icon Theme
+
 ```bash
 paru -S fluent-icon-theme-git
+```
 
 **References:**
 
 - <https://github.com/vinceliuice/Fluent-icon-theme>
 
+### MoreWaita
+
+```sh
+paru morewaita-icon-theme
 ```
-```
-```
-```
-```
+
+- <https://github.com/somepaulo/MoreWaita>
+
 ### Troubleshooting
 
 #### Application icon appearing in the corner of window
