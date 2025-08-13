@@ -1021,3 +1021,15 @@ hyprpm enable Hyprspace
 **References:**
 
 - <https://github.com/KZDKM/Hyprspace>
+
+### Control center
+
+There is nice app with some basic controls and settings named better-control:
+
+```sh
+paru -S better-control
+```
+
+**References:**
+
+- <https://github.com/better-ecosystem/better-control>
