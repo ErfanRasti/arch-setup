@@ -1033,3 +1033,13 @@ paru -S better-control
 **References:**
 
 - <https://github.com/better-ecosystem/better-control>
+
+### Tools
+
+Linux and Hyprland are cannot be used for daily use without some simple and amazing tools.
+I've covered lots of tools in different parts of these documentations and
+also there are some nice resources that recommend some tools.
+
+**References:**
+
+- <https://wearewaylandnow.com/>
