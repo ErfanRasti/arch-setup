@@ -57,6 +57,14 @@ To automate the `wireplumber.service` restart using `udev`:
 
 - <https://wiki.archlinux.org/title/WirePlumber#Delete_corrupt_settings>
 
+
+### helvum
+Nice app to figure out what's going on my sound system:
+
+```sh
+sudo pacman -S helvum
+```
+
 ### Troubleshooting
 
 #### Audio is distorted
