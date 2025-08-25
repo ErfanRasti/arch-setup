@@ -574,7 +574,7 @@ sudo pacman -S zellij
 ## Modern Unix tools
 
 ```bash
-sudo pacman -S duf exa eza git-delta zoxide glow yazi aichat trash-cli tree superfile television
+sudo pacman -S duf exa eza git-delta zoxide glow yazi aichat trash-cli tree superfile television wiremix
 paru -S lazydocker-bin ascii-image-converter-bin gitbutler-bin
 ```
 
@@ -636,6 +636,7 @@ paru -S lazydocker-bin ascii-image-converter-bin gitbutler-bin
 - `gitbutler` - Git branch management tool, built from the ground up for modern workflows.
 - `superfile` - `superfile` is a modern terminal file manager crafted with a strong focus on user interface, functionality, and ease of use. After installation open it using `spf`.
 - `television` - A cross-platform, fast and extensible general purpose fuzzy finder for the terminal.
+- `wiremix` -  A simple TUI audio mixer for PipeWire.
 
 **References:**
 
