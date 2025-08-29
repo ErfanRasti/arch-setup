@@ -100,6 +100,15 @@ paru morewaita-icon-theme
 
 - <https://github.com/somepaulo/MoreWaita>
 
+### Flat-Remix
+
+```sh
+paru -S flat-remix
+```
+
+- <https://github.com/daniruiz/flat-remix>
+- https://drasite.com/flat-remix-gnome
+
 ### Troubleshooting
 
 #### Application icon appearing in the corner of window
