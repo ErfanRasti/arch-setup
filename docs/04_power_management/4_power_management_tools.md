@@ -224,6 +224,25 @@ For more info check [this](https://maniacx.github.io/Battery-Health-Charging/pol
 - <https://extensions.gnome.org/extension/5724/battery-health-charging/>
 - <https://maniacx.github.io/Battery-Health-Charging/polkitbug>
 
+### batsignal
+
+`batsignal` is a lightweight battery daemon written in C that notifies the user about various battery states.
+
+```sh
+sudo pacman -S batsignal
+```
+
+Activate it via `systemctl`:
+
+```sh
+systemctl --user enable batsignal.service
+systemctl --user start batsignal.service
+```
+
+**References:**
+
+- <https://github.com/electrickite/batsignal>
+
 ### Monitoring
 
 #### Monitor power usage
