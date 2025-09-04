@@ -18,6 +18,7 @@ flatpak install flathub io.github.realmazharhussain.GdmSettings
 flatpak install flathub re.sonny.Junction
 flatpak install flathub org.gnome.seahorse.Application
 flatpak install flathub io.github.giantpinkrobots.flatsweep
+flatpak install flathub io.github.zingytomato.netpeek
 ```
 
 - `io.missioncenter.MissionCenter`: A task manager application.
@@ -31,6 +32,7 @@ flatpak install flathub io.github.giantpinkrobots.flatsweep
 - `re.sonny.Junction`: Junction pops up automatically when you open a file or link in another app.
 - `org.gnome.seahorse.Application`: Passwords and Keys is a GNOME application for managing encryption keys.
 - `io.github.giantpinkrobots.flatsweep`: Clean up your system by removing unused flatpak runtimes and extensions.
+- `io.github.zingytomato.netpeek`: See what's on your network.
 
 ### Sound
 

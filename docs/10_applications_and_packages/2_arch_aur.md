@@ -6,9 +6,17 @@ I personally prefer AUR helper installation to update applications using AUR hel
 paru -S spotify
 ```
 
+### High CPU usage
+
+These workarounds are for this issue:
+
+1. Clear spotify cache from its settings.
+2. Close the sidebar to the right.
+
 **References:**
 
 - <https://wiki.archlinux.org/title/Spotify>
+- <https://www.reddit.com/r/spotify/comments/ttpt41/spotify_using_3040_of_cpu_power/>
 
 ## Spicetify
 
