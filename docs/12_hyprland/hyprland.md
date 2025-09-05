@@ -356,7 +356,7 @@ stow -t ~ waybar
 ## Notification
 
 ```bash
-paru -S swaync
+sudo pacman -S swaync
 ```
 
 You can also add `swaync` to `hyprland.conf` to start at Hyprland login:
@@ -366,6 +366,14 @@ exec-once = waybar & swaync
 ```
 
 But for me that wasn't necessary.
+
+To customize `swaync` and `waybar` check the references.
+
+**References:**
+
+- <https://man.archlinux.org/man/swaync.5.en>
+- <https://github.com/ErikReider/SwayNotificationCenter>
+- <https://github.com/Alexays/Waybar/wiki>
 
 ## Screenshot
 
