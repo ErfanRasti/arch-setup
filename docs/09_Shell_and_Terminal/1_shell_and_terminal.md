@@ -194,7 +194,6 @@ I personally use `CaskaydiaCove Nerd Font` and it works fine for me. So I didn't
    ```
 
    I changed these:
-
    1. Anaconda colors:
 
       ```conf
@@ -242,12 +241,13 @@ I personally use `CaskaydiaCove Nerd Font` and it works fine for me. So I didn't
 
       `moderate`: For overlap (Usually non-monospace fonts)
       `none`: No overlap (Monospace fonts)
+
    7. Directory hyperlink:
 
       ```conf
       typeset -g POWERLEVEL9K_DIR_HYPERLINK=true
       ```
-  
+
 **References:**
 
 - <https://github.com/romkatv/powerlevel10k?tab=readme-ov-file#arch-linux>
@@ -287,11 +287,11 @@ Some amazing plugin resources:
 
 To support fish on neovim:
 
-```bash
+````bash
 
 ```fish
 sudo pacman -S shfmt stylua
-```
+````
 
 To setup `tree-sitter` on `npm`:
 
@@ -443,19 +443,19 @@ end
 
 1. Close the repo:
 
-    ```bash
-    git clone https://github.com/tmux-plugins/tpm ~/.config/plugins/tpm
-    ```
+   ```bash
+   git clone https://github.com/tmux-plugins/tpm ~/.config/plugins/tpm
+   ```
 
 2. Put these lines at your `~/.config/tmux/tmux.conf`:
 
-    ```conf
-    # List of plugins
-    set -g @plugin 'tmux-plugins/tpm'
-    set -g @plugin 'tmux-plugins/tmux-sensible'
+   ```conf
+   # List of plugins
+   set -g @plugin 'tmux-plugins/tpm'
+   set -g @plugin 'tmux-plugins/tmux-sensible'
 
-    run '~/.tmux/plugins/tpm/tpm'
-    ```
+   run '~/.tmux/plugins/tpm/tpm'
+   ```
 
 3. Open `tmux` and press `<prefix>+I`.
 
@@ -499,19 +499,19 @@ paru -S sesh-bin
 
 #### Window (Tab) Management
 
-| Shortcut       | Description                       |
-| -------------- | --------------------------------- |
-| `Prefix + c`   | Create new window                 |
-| `Prefix + &`   | Close current window              |
-| `Prefix + ,`   | Rename current window             |
-| `Prefix + p`   | Previous window                   |
-| `Prefix + n`   | Next window                       |
-| `Prefix + 0-9` | Jump to window by number          |
-| `Prefix + w`   | List windows interactively        |
-| `Prefix + .`   | Move window to new index          |
-| `Prefix + '`   | Prompt to jump to window by index |
-| `Prefix + m` | Move window to pane               |
-| `Prefix + :join-pane -h` | Paste the window here as a new pane horizontally|
+| Shortcut                 | Description                                      |
+| ------------------------ | ------------------------------------------------ |
+| `Prefix + c`             | Create new window                                |
+| `Prefix + &`             | Close current window                             |
+| `Prefix + ,`             | Rename current window                            |
+| `Prefix + p`             | Previous window                                  |
+| `Prefix + n`             | Next window                                      |
+| `Prefix + 0-9`           | Jump to window by number                         |
+| `Prefix + w`             | List windows interactively                       |
+| `Prefix + .`             | Move window to new index                         |
+| `Prefix + '`             | Prompt to jump to window by index                |
+| `Prefix + m`             | Move window to pane                              |
+| `Prefix + :join-pane -h` | Paste the window here as a new pane horizontally |
 
 **References:**
 
@@ -520,19 +520,23 @@ paru -S sesh-bin
 
 #### Pane Management
 
-| Shortcut             | Description                   |
-| -------------------- | ----------------------------- |
-| `Prefix + %`         | Split vertically              |
-| `Prefix + "`         | Split horizontally            |
-| `Prefix + x`         | Close current pane            |
-| `Prefix + z`         | Zoom pane (toggle fullscreen) |
-| `Prefix + Arrow`     | Switch between panes          |
-| `Prefix + Space`     | Cycle through pane layouts    |
-| `Prefix + Alt+Arrow` | Resize pane                   |
-| `Prefix + {`         | Move pane left                |
-| `Prefix + }`         | Move pane right               |
-| `Prefix + !`         | Convert pane to window        |
-| `Prefix + q`         | Show pane numbers             |
+| Shortcut             | Description                            |
+| -------------------- | -------------------------------------- |
+| `Prefix + %`         | Split vertically                       |
+| `Prefix + "`         | Split horizontally                     |
+| `Prefix + x`         | Close current pane                     |
+| `Prefix + z`         | Zoom pane (toggle fullscreen)          |
+| `Prefix + Arrow`     | Switch between panes                   |
+| `Prefix + Space`     | Cycle through pane layouts             |
+| `Prefix + Alt+Arrow` | Resize pane (Hold for multiple)        |
+| `Prefix + C-Up`      | Resize the pane up (Hold for multiple) |
+| `Prefix + C-Down`    | Resize the pane down                   |
+| `Prefix + C-Left`    | Resize the pane left                   |
+| `Prefix + C-Right`   | Resize the pane right                  |
+| `Prefix + {`         | Move pane left                         |
+| `Prefix + }`         | Move pane right                        |
+| `Prefix + !`         | Convert pane to window                 |
+| `Prefix + q`         | Show pane numbers                      |
 
 #### Copy Mode (Text Selection)
 
@@ -553,6 +557,7 @@ paru -S sesh-bin
 
 | Shortcut          | Description             |
 | ----------------- | ----------------------- |
+| `Prefix + ?`      | List key bindings       |
 | `Prefix + :`      | Enter command mode      |
 | `Prefix + t`      | Show clock              |
 | `Prefix + r`      | Reload tmux config      |
@@ -636,7 +641,7 @@ paru -S lazydocker-bin ascii-image-converter-bin gitbutler-bin
 - `gitbutler` - Git branch management tool, built from the ground up for modern workflows.
 - `superfile` - `superfile` is a modern terminal file manager crafted with a strong focus on user interface, functionality, and ease of use. After installation open it using `spf`.
 - `television` - A cross-platform, fast and extensible general purpose fuzzy finder for the terminal.
-- `wiremix` -  A simple TUI audio mixer for PipeWire.
+- `wiremix` - A simple TUI audio mixer for PipeWire.
 
 **References:**
 
@@ -854,7 +859,7 @@ There are some details in handling `dotfiles` using `stow`:
   To handle differently you should use `-t` or `--target`.
 - `stow */` - Looks under all directories under `./` and ignores files. It points to the next level of directory.
 - Running `stow` again and again don't raise any error and updates the files
-  (create symlink for new files under `dotfiles` directory  to the target directory);
+  (create symlink for new files under `dotfiles` directory to the target directory);
   But if the new files with the same name are exist previously on the
   target directory which aren't linked to the `dotfiles`, it will raise an error.
 - If you want to undo the created symbolic links use `-D` argument.
