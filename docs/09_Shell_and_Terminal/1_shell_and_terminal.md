@@ -815,6 +815,9 @@ bind -M default yy fish_clipboard_copy
 bind p fish_clipboard_paste
 ```
 
+### Bonus
+As a bonus when you press `ALT+V` you get the `$EDITOR`.
+
 **References:**
 
 - <https://wiki.archlinux.org/title/Fish>
