@@ -33,9 +33,7 @@ sudo chmod a+wr /opt/spotify
 sudo chmod a+wr /opt/spotify/Apps -R
 ```
 
--`a:` Stands for "all" (i.e., the file's owner, group, and others).
--`+:` Adds the specified permissions.
--`wr`: Grants both write (w) and read (r) permissions.
+-`a:` Stands for "all" (i.e., the file's owner, group, and others). -`+:` Adds the specified permissions. -`wr`: Grants both write (w) and read (r) permissions.
 
 `<ctrl_shift_r>` for apply in spotify SaveDesktop.
 
@@ -625,9 +623,9 @@ paru -S zen-browser-bin
 3. Also if you want a transparent URL bar set `browser.tabs.allow_transparent_browser` to `true`.
 4. To use the top bar for searching, go to `settings > Customize the URL bar to your liking` and change the behavior to `Normal`.
 5. To have a blank page on your new tabs, set `new tabs` and `home page and new windows` to `Blank Page`.
-    If you prefer some custom new tabs install your desired extensions and set it through this. My favourites:
-    - <https://addons.mozilla.org/en-US/firefox/addon/tabliss/>
-    - <https://addons.mozilla.org/en-US/firefox/addon/material-you-newtab/>
+   If you prefer some custom new tabs install your desired extensions and set it through this. My favourites:
+   - <https://addons.mozilla.org/en-US/firefox/addon/tabliss/>
+   - <https://addons.mozilla.org/en-US/firefox/addon/material-you-newtab/>
 
 #### Custom setup
 
@@ -998,49 +996,48 @@ This application is a nice way to mirror iPad or iPhone screen to the Linux mach
 
 1. Install it using this:
 
-    ```bash
-    paru -S uxplay
-    ```
+   ```bash
+   paru -S uxplay
+   ```
 
-    I chose the default one (not `uxplay-git`).
+   I chose the default one (not `uxplay-git`).
 
 2. to use it you need to start and `avahi-daemon` service:
 
-    ```bash
-    sudo systemctl start avahi-daemon.service
-    ```
+   ```bash
+   sudo systemctl start avahi-daemon.service
+   ```
 
-    Then open `uxplay` via its shortcut or the command-line.
+   Then open `uxplay` via its shortcut or the command-line.
 
 3. Connect your device (iPad or iPhone) to the same network.
 4. Open the `Screen Mirroring` section via control panel and choose your UxPlay device.
 5. If you don't want `gstreamer` and `uxplay` use your dedicated NVIDIA GPU, do this:
+   1. Locate the NVIDIA GStreamer plugins:
 
-    1. Locate the NVIDIA GStreamer plugins:
+      ```bash
+      find /usr/lib/gstreamer-1.0 -name "libgstnv\*.so"
+      ```
 
-        ```bash
-        find /usr/lib/gstreamer-1.0 -name "libgstnv\*.so"
-        ```
+   2. Move the NVIDIA plugins to a different directory (e.g., `~/.gstreamer-1.0/disabled-plugins`):
 
-    2. Move the NVIDIA plugins to a different directory (e.g., `~/.gstreamer-1.0/disabled-plugins`):
+      ```bash
+      mkdir -p ~/.gstreamer-1.0/disabled-plugins
+      sudo mv /usr/lib/gstreamer-1.0/libgstnv*.so ~/.gstreamer-1.0/disabled-plugins/
+      ```
 
-        ```bash
-        mkdir -p ~/.gstreamer-1.0/disabled-plugins
-        sudo mv /usr/lib/gstreamer-1.0/libgstnv*.so ~/.gstreamer-1.0/disabled-plugins/
-        ```
+   3. Check the `nvidia-smi`:
 
-    3. Check the `nvidia-smi`:
+      ```bash
+      watch -n 1 nvidia-smi
+      ```
 
-        ```bash
-        watch -n 1 nvidia-smi
-        ```
+   If you want to revert all these:
 
-    If you want to revert all these:
-
-    ```bash
-    sudo mv ~/.gstreamer-1.0/disabled-plugins/libgstnv*.so /usr/lib/gstreamer-1.0/
-    rm -rf ~/.gstreamer-1.0
-    ```
+   ```bash
+   sudo mv ~/.gstreamer-1.0/disabled-plugins/libgstnv*.so /usr/lib/gstreamer-1.0/
+   rm -rf ~/.gstreamer-1.0
+   ```
 
 6. Check extension called `uxplay-control@xxanqw` to control it on GNOME.
 
@@ -1125,6 +1122,7 @@ Desktop sharing suffers from unmatched screen resolutions.
    ```
 
    I personally made it work using this command (I'm on Intel Core i7 8th Gen) but for other cpus you should install something else. Check archiwiki in the references.
+
 2. To make GAPPS work you should register your device. First you should find your android id:
 
    Enter Waydroid shell:
@@ -1186,6 +1184,7 @@ Select the first option (not the git version).
    ```
 
    It should be active.
+
 3. Unlock your iOS device and trust your computer on it. Then run:
 
    ```bash
@@ -1251,3 +1250,51 @@ sudo pacman -S flameshot
 **References:**
 
 - <https://flameshot.org/>
+
+## ydotool
+
+The goal is to press any key from the terminal.
+
+1. Install it:
+
+   ```sh
+   sudo pacman -S ydotool
+   ```
+
+2. Add `ydotoold` service:
+   Add this:
+
+   ```sh
+   mkdir -p ~/.config/systemd/user/
+   nvim ~/.config/systemd/user/ydotoold.service
+   ```
+
+   ```service
+
+   Description=ydotool daemon
+   Documentation=man:ydotoold(1)
+
+   [Service]
+   ExecStart=/usr/bin/ydotoold --socket-path=%h/.ydotool_socket --socket-own=%U:%G
+   Restart=on-failure
+   RestartSec=1s
+
+   [Install]
+   WantedBy=multi-user.target
+   ```
+
+3. Add `ydotool` evnvar:
+
+   ```sh
+   mkdir -p ~/.config/environment.d
+   nvim ~/.config/environment.d/envvars.conf
+   ```
+
+   ```conf
+   YDOTOOL_SOCKET="$HOME/.ydotool_socket"
+   ```
+
+**References:**
+
+- <https://gabrielstaples.com/ydotool-tutorial/#gsc.tab=0>
+- <https://github.com/ReimuNotMoe/ydotool>

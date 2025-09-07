@@ -816,6 +816,7 @@ bind p fish_clipboard_paste
 ```
 
 ### Bonus
+
 As a bonus when you press `ALT+V` you get the `$EDITOR`.
 
 **References:**
