@@ -4,13 +4,13 @@
 
 I prefer `podman` over `docker`, because it is more secure and doesn't need `sudo` permission; So I use `podman` instead of `docker` in the installation process.
 
-1.  First install `podman` and `podman-compose`:
+1. First install `podman` and `podman-compose`:
 
     ```bash
     sudo pacman -S podman podman-compose
     ```
 
-2.  Clone the `winapps` repository:
+2. Clone the `winapps` repository:
 
     ```bash
     mkdir -p ~/Programs
@@ -18,7 +18,7 @@ I prefer `podman` over `docker`, because it is more secure and doesn't need `sud
     git clone https://github.com/winapps-org/winapps.git
     ```
 
-3.  Change the directory to `winapps` and start from scratch:
+3. Change the directory to `winapps` and start from scratch:
 
     ```bash
     podman-compose down --rmi=all --volumes
@@ -26,50 +26,54 @@ I prefer `podman` over `docker`, because it is more secure and doesn't need `sud
     podman-compose --file ./compose.yaml up
     ```
 
-    You can then access the Windows virtual machine via a VNC connection to complete the Windows setup by navigating to http://127.0.0.1:8006 in your web browser.
+    You can then access the Windows virtual machine via a VNC connection to complete the Windows setup by navigating to <http://127.0.0.1:8006> in your web browser.
 
-4.  Comment out these lines on `compose.yaml`:
+4. Comment out these lines on `compose.yaml`:
 
     ```bash
     code ./compose.yaml
     ```
 
     Comment out these:
-
     - `./oem:/oem`
     - `/path/to/windows/install/media.iso:/custom.iso`
 
     Add your personal user and password instead of `MyWindowsUser` and `MyWindowsPassword`.
 
-5.  Copy this new configuration to your config files:
+5. Copy this new configuration to your config files:
+
     ```bash
     mkdir -p ~/.config/winapps/
     cp ./compose.yaml ~/.config/winapps/compose.yaml
     ```
-6.  Ensure the new configuration is applied by running the following:
+
+6. Ensure the new configuration is applied by running the following:
 
     ```bash
     podman-compose --file ./compose.yaml down
     podman-compose --file ~/.config/winapps/compose.yaml up
     ```
 
-    Open browser and go to http://127.0.0.1:8006. Access your files and folder on the network drive host name and install your applications through there.
+    Open browser and go to <http://127.0.0.1:8006>. Access your files and folder on the network drive host name and install your applications through there.
 
-7.  If you changed something:
+7. If you changed something:
+
     ```bash
     podman-compose -f ~/.config/winapps/compose.yaml down
     rm ~/.config/freerdp/server/127.0.0.1_3389.pem
     podman-compose -f ~/.config/winapps/compose.yaml up -d
     ```
+
     - `-f` is for the file path.
     - `-d` is for the detached mode.
-8.  Install dependencies on Arch Linux:
+
+8. Install dependencies on Arch Linux:
 
     ```bash
     sudo pacman -Syu --needed -y curl dialog freerdp git iproute2 libnotify gnu-netcat
     ```
 
-9.  Make `winapps` configuration file:
+9. Make `winapps` configuration file:
 
     ```bash
     nano ~/.config/winapps/winapps.conf
@@ -199,7 +203,6 @@ I prefer `podman` over `docker`, because it is more secure and doesn't need `sud
     ```
 
     I personally use this setup:
-
     - Current User Installation
     - Manual Installation
     - All officially supported apps
@@ -265,3 +268,46 @@ I prefer `podman` over `docker`, because it is more secure and doesn't need `sud
 - <https://github.com/winapps-org/winapps/blob/main/docs/docker.md>
 - <https://github.com/winapps-org/winapps?tab=readme-ov-file>
 - <https://github.com/dockur/windows>
+
+## winboat
+
+`winboat` is a modern way to run windows apps under linux.
+
+1. Install it using AUR:
+
+   ```sh
+   paru -S winboat-bin
+   ```
+
+2. Add your user to the `docker` group and start docker daemon:
+
+   ```sh
+   sudo usermod -aG docker $USER
+   docker context use default
+   sudo systemctl enable docker.service
+   sudo systemctl start docker.service
+   ```
+
+3. You must enable the `iptables` and `iptable_nat` kernel modules for file sharing to work correctly within Windows.
+
+   To do this, simply run
+
+   ```sh
+   echo -e "ip_tables\niptable_nat" | sudo tee /etc/modules-load.d/iptables.conf
+   ```
+
+   and restart your computer.
+
+4. Follow the guide to make it work.
+
+5. There is a nice workaround, to source user folders with `linux` folders:
+
+   ```
+   Desktop > Properties > Location > Move: \\host.lan\Data\Desktop
+   ```
+
+**References:**
+
+- <https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user>
+- <https://docs.docker.com/engine/daemon/start/>
+- <https://docs.docker.com/engine/install/linux-postinstall/#configure-docker-to-start-on-boot-with-systemd>
