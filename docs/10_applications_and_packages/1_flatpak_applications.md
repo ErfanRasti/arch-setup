@@ -255,3 +255,7 @@ flatpak install flathub io.github.qwersyk.Newelle
 
 - `com.jeffser.Alpaca`: Chat with local AI models.
 - `io.github.qwersyk.Newelle`: Train Newelle to do more with custom extensions and new AI modules, giving your chatbot endless possibilities.
+
+**References:**
+
+- <https://github.com/qwersyk/Newelle/wiki/User-guide-to-the-available-LLMs>
