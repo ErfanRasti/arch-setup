@@ -875,8 +875,8 @@ paru -S waypaper
 ### Losing Browser Session when Switching DE
 
 **Note:** I think that the problem is solved in the newer versions of `hyprland` and
-  if you use `hyprpolkitagent` properly (see [this](#must-have)) you won't have a problem.
-  Even GNOME online accounts work completely okay for me.
+if you use `hyprpolkitagent` properly (see [this](#must-have)) you won't have a problem.
+Even GNOME online accounts work completely okay for me.
 
 This is an annoying problem. Thanks to Reddit explanation:
 
@@ -1050,4 +1050,23 @@ also there are some nice resources that recommend some tools.
 
 **References:**
 
+- <https://arewewaylandyet.com/>
 - <https://wearewaylandnow.com/>
+
+### Automatically Mounting
+
+`udiskie` is a great toll to manage USB storage devices. Instsall it:
+
+```sh
+sudo pacman -S udiskie
+```
+
+Add it to your Hyprland config:
+
+```conf
+exec-once = udiskie &
+```
+
+**References:**
+
+- <https://wiki.hypr.land/0.42.0/Useful-Utilities/Other/#automatically-mounting-using-udiskie>
