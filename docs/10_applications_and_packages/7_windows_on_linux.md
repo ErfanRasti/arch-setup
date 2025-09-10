@@ -300,7 +300,7 @@ I prefer `podman` over `docker`, because it is more secure and doesn't need `sud
 
 4. Follow the guide to make it work.
 
-5. There is a nice workaround, to source user folders with `linux` folders:
+5. There is a nice workaround to source user folders with `linux` folders:
 
    ```
    Desktop > Properties > Location > Move: \\host.lan\Data\Desktop
