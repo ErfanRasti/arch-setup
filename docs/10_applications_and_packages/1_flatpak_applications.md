@@ -150,7 +150,6 @@ flatpak install flathub org.gnome.design.Emblem
 flatpak install flathub io.github.lo2dev.Echo
 flatpak install flathub io.github.idevecore.Valuta
 flatpak install flathub com.github.unrud.VideoDownloader
-flatpak install flathub com.jeffser.Alpaca
 flatpak install flathub app.drey.Warp
 flatpak install flathub com.github.finefindus.eyedropper
 flatpak install flathub app.devsuite.Ptyxis
@@ -180,7 +179,6 @@ flatpak install flathub be.alexandervanhee.gradia
 - `io.github.lo2dev.Echo`: Utility to ping websites.
 - `io.github.idevecore.Valuta`: A currency converter.
 - `com.github.unrud.VideoDownloader`: Download videos from the internet.
-- `com.jeffser.Alpaca`: Chat with local AI models.
 - `app.drey.Warp`: Fast and secure file transfer.
 - `com.github.finefindus.eyedropper`: Pick and format colors.
 - `app.devsuite.Ptyxis`: Container-oriented terminal.
@@ -194,7 +192,6 @@ flatpak install flathub be.alexandervanhee.gradia
   `gnome-tweaks > Startup Applications > Select Application > Kando`
 
   **References:**
-
   - <https://kando.menu/installation-on-linux/>
   - <https://github.com/kando-menu/kando>
 
@@ -216,13 +213,13 @@ flatpak install flathub be.alexandervanhee.gradia
 - `io.github.andreibachim.shortcut`: Make app shortcuts.
 - `garden.jamie.Morphosis`: Use Morphosis to easily convert your text documents to other formats.
 - `io.github.nozwock.Packet`: Packet is a simple and fast file transfer tool with Android devices.
--`io.github.hamza_algohary.Coulomb`: Coulomb is a simple and elegant circuit simulator.
   Activate Nautilus plugin in its preferences. It has two pre-requirements:
 
   ```bash
   sudo pacman -S nautilus-python python-dbus
   ```
 
+- `io.github.hamza_algohary.Coulomb`: Coulomb is a simple and elegant circuit simulator.
 - `flathub be.alexandervanhee.gradia`: Gradia helps you quickly prepare your screenshots for sharing by fixing common issues like transparency and awkward sizing.
 
 ### Security
@@ -248,3 +245,13 @@ flatpak install flathub com.github.sixpounder.GameOfLife
 ```
 
 - `com.github.sixpounder.GameOfLife`: Play Conway's Game of Life.
+
+### AI Tools
+
+```sh
+flatpak install flathub com.jeffser.Alpaca
+flatpak install flathub io.github.qwersyk.Newelle
+```
+
+- `com.jeffser.Alpaca`: Chat with local AI models.
+- `io.github.qwersyk.Newelle`: Train Newelle to do more with custom extensions and new AI modules, giving your chatbot endless possibilities.
