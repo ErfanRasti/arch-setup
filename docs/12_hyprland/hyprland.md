@@ -1118,3 +1118,60 @@ exec-once = udiskie &
 **References:**
 
 - <https://wiki.hypr.land/0.42.0/Useful-Utilities/Other/#automatically-mounting-using-udiskie>
+
+### pyprland
+
+It's a software that extends the functionality of the great Hyprland window manager, adding new features and improving the existing ones.
+
+Set it up like this:
+
+1. Install it:
+
+   ```sh
+   paru -S pyprland
+   ```
+
+2. Add this to your `hyprland.conf`:
+
+   ```conf
+   exec-once = /usr/bin/pypr
+   ```
+
+3. Add your configuration to `~/.config/hypr/pyprland.toml`:
+
+   ```toml
+
+   [pyprland]
+   plugins = [
+   "expose",
+   "fetch_client_menu",
+   "lost_windows",
+   "magnify",
+   "scratchpads",
+   "shift_monitors",
+   "toggle_special",
+   "workspaces_follow_focus",
+   ]
+
+    # using variables for demonstration purposes (not needed)
+
+   [pyprland.variables]
+   term_classed = "kitty --class"
+
+   [scratchpads.term]
+   animation = "fromTop"
+   command = "[term_classed] main-dropterm"
+   class = "main-dropterm"
+   size = "75% 60%"
+   max_size = "1920px 100%"
+   ```
+
+**References:**
+
+- <https://hyprland-community.github.io/pyprland/Getting-started.html>
+- <https://hyprland-community.github.io/pyprland/>
+- <https://toml.io/en/>
+- <https://hyprland-community.github.io/pyprland/Plugins.html>
+- <https://hyprland-community.github.io/pyprland/scratchpads.html>
+- <https://hyprland-community.github.io/pyprland/scratchpads_advanced.html>
+- <https://hyprland-community.github.io/pyprland/scratchpads_nonstandard.html>
