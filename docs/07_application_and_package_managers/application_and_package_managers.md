@@ -331,7 +331,7 @@ sudo pacman -Syuu
 
 ## Upgrading mirrors
 
-Mirrors indicate the servers that `pacman` uses to upgrade and install its packages from. Due to different geographical regions, we can use different mirrors. To update them according to our internet condition I personally recommend  `rate-mirrors` which is one of the most active projects for this purpose. Before installation ensure to disable system services related to `reflector` (default `mirrorlist` manager on Arch which is used the first time you installed Arch):
+Mirrors indicate the servers that `pacman` uses to upgrade and install its packages from. Due to different geographical regions, we can use different mirrors. To update them according to our internet condition I personally recommend `rate-mirrors` which is one of the most active projects for this purpose. Before installation ensure to disable system services related to `reflector` (default `mirrorlist` manager on Arch which is used the first time you installed Arch):
 
 ```bash
 sudo systemctl disable reflector.service
@@ -374,6 +374,17 @@ You can easily use `downgrade`:
 
 ```bash
 paru -S downgrade
+```
+
+Select your version on the list:
+
+```bash
+sudo downgrade <PACKAGE_NAME>
+```
+
+To return to the normal state:
+```bash
+sudo downgrade --unignore <PACKAGE_NAME>
 ```
 
 **References:**
