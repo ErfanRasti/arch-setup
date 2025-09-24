@@ -149,15 +149,33 @@ If you ever messed up `mkinitcpio` or `PAM` or anything that lead to a ruined Ar
 cryptsetup luksOpen /dev/sda2 btrfs-drv
 mount /dev/mapper/btrfs-drv -o subvolid=5 /mnt
 mount /dev/sda1 /mnt/@/boot
-chroot /mnt/@
+arch-chroot /mnt/@
 ```
+
+### `chroot` vs `arch-chroot`
+
+`chroot`:
+
+- Generic tool in Linux/Unix.
+- Stands for change root.
+- It changes the apparent root directory (/) for the current process and its children.
+- Common use: testing environments, build environments, debugging, or recovery.
+
+`arch-chroot`:
+
+- A wrapper script provided by Arch Linux (arch-install-scripts package).
+- Built specifically to make chrooting into an Arch system easier and fully functional.
+- It automatically:
+  - Mounts `/proc`, `/sys`, `/dev`, and `/run` into the `chroot` environment.
+  - Copies DNS config so networking works.
+  - Sets up a proper environment for package management, system repair, or installation.
 
 ## Fix corrupted Linux files
 
 There is a more complete method for recovery. If you accidentally deleted `/etc` `/usr` or `/var` or any critical directory you need full access to the mount points:
 
 ```bash
-cryptsetep luksOpen /dev/sda2 btrfs-dev
+cryptsetup luksOpen /dev/sda2 btrfs-dev
 mount /dev/mapper/btrfs-dev -o subvol='@' /mnt
 mount /dev/mapper/btrfs-dev -o subvol='@home' /mnt/home
 mount /dev/mapper/btrfs-dev -o subvol='@pkg' /mnt/var/cache/pacman/pkg
