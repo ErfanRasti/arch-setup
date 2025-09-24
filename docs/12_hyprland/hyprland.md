@@ -352,9 +352,21 @@ cd  ~/Programs/typecraft-dotfiles
 stow -t ~ waybar
 ```
 
+Key definitions:
+
+- **Padding**: The space inside an element, between its content and its border.
+- **Margin**: The space outside an element, between its border and neighboring elements.
+- **Spacing**: A broader design term that usually refers to the gaps between
+  elements or text.
+
+The order of settings of each of these value are up, left, down, and right.
+
+For the transitions check [this](https://easings.net/).
+
 **References:**
 
 - <https://github.com/Alexays/Waybar/wiki/Configuration>
+- <https://easings.net/>
 
 ## Notification
 
