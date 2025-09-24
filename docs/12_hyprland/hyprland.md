@@ -1029,12 +1029,27 @@ Then restart the `libinput-gestures` like this:
 libinput-gestures-setup restart
 ```
 
+In recent versions of Hyprland (0.51.1 or later) gestures are supported natively.
+You can add them through your `hyprland.conf`:
+
+```conf
+
+    gesture = 3, horizontal,workspace
+    gesture = 3, up, mod: SUPER, resize
+    gesture = 3, down, mod: SUPER, move
+    gesture = 4, vertical, fullscreen
+    gesture = 4, left, dispatcher, cyclenext
+    gesture = 4, right, dispatcher, cyclenext, prev
+
+```
+
 **References:**
 
 - <https://github.com/bulletmark/libinput-gestures>
 - <https://wayland.freedesktop.org/libinput/doc/latest/gestures.html>
 - <https://wiki.hypr.land/Configuring/Keywords/#gestures>
 - <https://www.reddit.com/r/hyprland/comments/12qjea7/additional_gestures/>
+- <https://wiki.hypr.land/Configuring/Gestures/>
 
 ### Overview menu
 
