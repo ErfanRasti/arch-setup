@@ -34,6 +34,7 @@ The point of `linux-lts` is that every time the `linux` kernel has been crashed 
    ```
 
    This is according to my configuration.
+
 3. Run:
 
    ```bash
@@ -184,6 +185,29 @@ mount /dev/mapper/btrfs-dev -o subvol='@log' /mnt/var/log
 mount /dev/sda1 /mnt/boot
 ```
 
+**Note**: For full system control you need to mount some other critical folders and bind them to the live USB:
+
+```sh
+for dir in /dev /dev/pts /proc /sys /run; done
+  sudo mount --bind $dir /mnt$dir
+done
+```
+
+Sometimes you should hold `/run`. If anything related to `/run` happened unmount it:
+
+```sh
+sudo umount /mnt/run
+```
+
+To unmount all of the above and anything else at the end use these lines:
+
+```sh
+for dir in /run /sys /proc /dev/pts /dev; do sudo umount /mnt$dir; done
+sudo umount -R /mnt
+```
+
+Check `mount -h` for all flags.
+
 Then `chroot`:
 
 ```bash
@@ -256,7 +280,6 @@ flatpak install flathub $(ls ~/.var/app)
 
 - <https://wiki.archlinux.org/title/Pacman/Tips_and_tricks>
 - <https://superuser.com/questions/271925/where-is-the-home-environment-variable-set>
-
 
 ### TTY
 
@@ -376,7 +399,6 @@ sudo mkinitcpio -P
     ```
 
     This line:
-
     - Extracts the GPG key ID used to sign a file.
     - Retrieves the corresponding public key from a keyserver.
     - Allows you to later verify the file's signature with `gpg --verify`.
