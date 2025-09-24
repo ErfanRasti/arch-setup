@@ -242,7 +242,8 @@ bind = $mainMod SHIFT, Q, exit,
 bind = $mainMod SHIFT, Q, exec, uwsm stop
 ```
 
-To switch between different worksapces using `SUPER+ALT+ARROWS` I used the following keybingds:
+To switch between different workspaces using `SUPER+ALT+ARROWS`
+I used the following keybindings:
 
 ```conf
 # Switch workspaces using $mainMod+Alt+Arrow keys
@@ -259,7 +260,8 @@ To make brightness control shortcuts work, install this package:
 sudo pacman -S brightnessctl
 ```
 
-I use intel in conjunction with nvidia. It should be specified to work corretly. I also chagned the percent:
+I use Intel in conjunction with NVIDIA. It should be specified to work correctly.
+I also changed the percent:
 
 ```conf
 bindel = ,XF86MonBrightnessUp, exec, brightnessctl -d intel_backlight s 5%+
@@ -273,6 +275,7 @@ bindel = ,XF86MonBrightnessDown, exec, brightnessctl -d intel_backlight s 5%-
 - <https://www.reddit.com/r/hyprland/comments/1f23gdd/shortcut_for_changing_workspaces/>
 - <https://wiki.hyprland.org/Configuring/Dispatchers/>
 - <https://www.reddit.com/r/hyprland/comments/1heh8zi/launchers/>
+- <https://www.reddit.com/r/i3wm/comments/ebf9t8/rofi_single_click_accept/>
 
 ## Touchpad
 
