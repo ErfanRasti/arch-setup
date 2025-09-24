@@ -1082,14 +1082,28 @@ Linux and Hyprland are cannot be used for daily use without some simple and amaz
 I've covered lots of tools in different parts of these documentations and
 also there are some nice resources that recommend some tools.
 
+Hyprland doesn't have lots of desktop environment tools built in.
+If you want to use it as a DE, you should install some of them by your own:
+
+```sh
+paru -S pwvucontrol nmgui overskride-bin
+```
+
+- `pwvucontrol`: Sound Control
+- `nmgui`: network manager
+- `overskride-bin`: Bluetooth manager
+
 **References:**
 
 - <https://arewewaylandyet.com/>
 - <https://wearewaylandnow.com/>
+- <https://github.com/saivert/pwvucontrol>
+- <https://github.com/s-adi-dev/nmgui>
+- <https://github.com/kaii-lb/overskride>
 
 ### Automatically Mounting
 
-`udiskie` is a great toll to manage USB storage devices. Instsall it:
+`udiskie` is a great toll to manage USB storage devices. Install it:
 
 ```sh
 sudo pacman -S udiskie
