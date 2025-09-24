@@ -88,6 +88,44 @@ sudo btrfs subvolume create /mnt/@.snapshots
 sudo nano /mnt/etc/fstab
 ```
 
+Finally you can use `timeshift` to restore or turn back to a previous snapshot using this:
+
+```sh
+sudo timeshift --restore
+```
+
+##### Swapfile got removed after restoring a snapshot on btrfs
+
+They are actually present in this directory:
+`/run/timeshift/<NUMBER>/backup/@/swap`
+
+Normally, this isn’t visible under your root mount (`/`) because your root
+is mounted from the `@` (or similar) subvolume, not from the top-level.
+
+Timeshift itself makes them accessible for browsing under
+`/run/timeshift/backup/timeshift-btrfs/snapshots/`.
+
+- Device: `/dev/dm-0`
+- On-disk location: top-level subvolume → `timeshift-btrfs/snapshots/`
+- Accessible path while Timeshift is running: `/run/timeshift/backup/timeshift-btrfs/snapshots/`
+
+If you want to confirm manually, try:
+
+```sh
+# Mount the Btrfs top-level (not the @ subvolume)
+sudo mount -o subvolid=5 /dev/dm-0 /mnt
+
+# List snapshots
+ls /mnt/timeshift-btrfs/snapshots
+```
+
+If you wanna use the swap file move it to the dedicated directory under root
+and remember to add it to `fstab`.
+
+**References:**
+
+- <https://forum.endeavouros.com/t/swapfile-got-removed-after-restoring-a-snapshot-on-btrfs/47443>
+
 #### Snapper
 
 `snapper` uses separate `btrfs` volume. You should remove any other subvolume with its format.
@@ -112,79 +150,79 @@ If you ever messed up your `timeshift` backup and even mount points like `@` and
 
 1. Decrypt your drive:
 
-  ```bash
-  cryptsetep luksOpen /dev/sda2 btrfs-dev
-  ```
+   ```bash
+   cryptsetep luksOpen /dev/sda2 btrfs-dev
+   ```
 
 2. Mount the whole drive to `/mnt`:
 
-  ```bash
-  mount /dev/mapper/btrfs-dev /mnt
-  ```
+   ```bash
+   mount /dev/mapper/btrfs-dev /mnt
+   ```
 
 3. Check your sub-volumes:
 
-  ```bash
-  btrfs subvolume list /mnt
-  ```
+   ```bash
+   btrfs subvolume list /mnt
+   ```
 
-  If `@` is missing, check for `timeshift` snapshots or other sub-volumes.
-  
-  The `timeshift` sub-volumes are like `timeshift-btrfs/snapshots/<DATE>`.
+   If `@` is missing, check for `timeshift` snapshots or other sub-volumes.
+
+   The `timeshift` sub-volumes are like `timeshift-btrfs/snapshots/<DATE>`.
 
 4. If there exists some broken `@` or `@home` delete them using these:
 
-  ```bash
-  # Only run if @ or @home exist but are corrupted
-  btrfs subvolume delete /mnt/@      # Delete broken root
-  btrfs subvolume delete /mnt/@home  # Delete broken home (if separate)
-  ```
+   ```bash
+   # Only run if @ or @home exist but are corrupted
+   btrfs subvolume delete /mnt/@      # Delete broken root
+   btrfs subvolume delete /mnt/@home  # Delete broken home (if separate)
+   ```
 
 5. Restore your desired snapshots `@` and `@home`:
 
-  ```bash
-  btrfs subvolume snapshot /mnt/timeshift-btrfs/snapshots/[SNAPSHOT_DATE]/@ /mnt/@
-  btrfs subvolume snapshot /mnt/timeshift-btrfs/snapshots/[SNAPSHOT_DATE]/@home /mnt/@home
-  ```
+   ```bash
+   btrfs subvolume snapshot /mnt/timeshift-btrfs/snapshots/[SNAPSHOT_DATE]/@ /mnt/@
+   btrfs subvolume snapshot /mnt/timeshift-btrfs/snapshots/[SNAPSHOT_DATE]/@home /mnt/@home
+   ```
 
 6. If your system fails to boot, the default sub-volume might be wrong. Set it to `@`:
 
-  ```bash
-  # Find the subvolume ID of /mnt/@
-  btrfs subvolume list /mnt | grep "@/"
+   ```bash
+   # Find the subvolume ID of /mnt/@
+   btrfs subvolume list /mnt | grep "@/"
 
-  # Set it as default (replace "256" with the actual ID)
-  btrfs subvolume set-default 256 /mnt
-  ```
+   # Set it as default (replace "256" with the actual ID)
+   btrfs subvolume set-default 256 /mnt
+   ```
 
 7. Ensure `/mnt/etc/fstab` points to the correct sub-volumes (`subvol=@`, `subvol=@home`).
-If missing, regenerate it:
+   If missing, regenerate it:
 
-  Check the `fstab` first:
+   Check the `fstab` first:
 
-  ```bash
-  genfstab -U /mnt
-  ```
+   ```bash
+   genfstab -U /mnt
+   ```
 
-  Then:
+   Then:
 
-  ```bash
-  genfstab -U /mnt >> /mnt/etc/@/fstab
-  ```
+   ```bash
+   genfstab -U /mnt >> /mnt/etc/@/fstab
+   ```
 
 8. If your bootloader is corrupted too:
 
-  ```bash
-  bootctl install
-  ```
+   ```bash
+   bootctl install
+   ```
 
 9. You're good to go:
 
-  ```bash
-  exit
-  umount -R /mnt
-  reboot
-  ```
+   ```bash
+   exit
+   umount -R /mnt
+   reboot
+   ```
 
 #### Selected snapshot device is not a system disk
 
@@ -207,7 +245,6 @@ This means, when the system boots, it will automatically mount sub-volume ID `5`
 - In Btrfs, ID 5 is special; it refers to the top-level/root subvolume of the filesystem (the parent of all other sub-volumes like `@`, `@home`, or `timeshift-btrfs`).
 
 - Setting ID 5 as default is often done to:
-
   - Recover from boot failures (if the default was pointing to a deleted/corrupted sub-volume).
 
   - Simplify mounting (since you won’t need to specify `subvol=` for basic access).
