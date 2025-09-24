@@ -237,6 +237,11 @@ flatpak install flathub org.gnome.Fractal
 ```
 
 - `org.gnome.Fractal`: Fractal is a Matrix messaging app for GNOME written in Rust.
+  Use this to allow secure connection:
+
+  ```sh
+  flatpak --user override --talk-name=org.freedesktop.secrets org.gnome.Fractal
+  ```
 
 ### Games
 
