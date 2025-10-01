@@ -363,6 +363,9 @@ The order of settings of each of these value are up, left, down, and right.
 
 For the transitions check [this](https://easings.net/).
 
+**Note:** If you wanna use `linear-gradient` you should use `background`
+instead of `background-color`.
+
 **References:**
 
 - <https://github.com/Alexays/Waybar/wiki/Configuration>
@@ -383,6 +386,8 @@ exec-once = waybar & swaync
 But for me that wasn't necessary.
 
 To customize `swaync` and `waybar` check the references.
+
+The template and default conifg files related to `swaync` are under `/etc/xdg/swaync/`.
 
 **References:**
 
