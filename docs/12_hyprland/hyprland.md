@@ -1106,6 +1106,16 @@ paru -S pwvucontrol nmgui overskride-bin
 - <https://github.com/s-adi-dev/nmgui>
 - <https://github.com/kaii-lb/overskride>
 
+### Essentials
+
+There are some esential resources that helps you design your own DE. These are ones that I've used:
+
+- <https://www.nerdfonts.com/cheat-sheet>
+- <https://github.com/InioX/matugen/wiki/Configuration>
+- <https://github.com/Alexays/Waybar/wiki/Module:-Hyprland>
+- <https://man.archlinux.org/man/swaync.5.en>
+- <https://wiki.hypr.land/Useful-Utilities/Must-have/>
+
 ### Automatically Mounting
 
 `udiskie` is a great toll to manage USB storage devices. Install it:
