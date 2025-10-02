@@ -19,6 +19,20 @@ gh auth login
 Choose according to this:
 `GitHub.com > HTTPS > Y > Login with a web browser > Copy the code and continue`.
 
+### Git Pull Force
+
+Take a look at the references. I go with the first method.
+
+```sh
+git fetch origin
+git reset --hard origin/<branch-name>
+git pull
+```
+
+**References:**
+
+- <https://www.geeksforgeeks.org/git/git-pull-force/>
+
 ## bash
 
 There is not much to say about `bash` but if you want to restore the default `bash` configuration:
