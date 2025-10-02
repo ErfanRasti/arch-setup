@@ -444,3 +444,9 @@ sudo mkinitcpio -P
 
 - <https://wiki.archlinux.org/title/Kernel/Arch_build_system>
 - <https://wiki.archlinux.org/title/Kernel/Traditional_compilation>
+
+## Services
+
+**Note:** The `systemd` services under `~/.config/systemd/user` gets removed
+when got disabled. It should be under `~/.local/share/systemd/user`
+to don't get removed.
