@@ -576,7 +576,7 @@ sudo pacman -S zellij
 
 - <https://github.com/zellij-org/zellij>
 
-## Modern Unix tools
+## Modern Linux Tools
 
 ```bash
 sudo pacman -S duf exa eza git-delta zoxide glow yazi aichat trash-cli tree superfile television wiremix feh git-filter-repo
@@ -644,6 +644,18 @@ paru -S lazydocker-bin ascii-image-converter-bin gitbutler-bin
 - `wiremix` - A simple TUI audio mixer for PipeWire.
 - `feh` - A light-weight, configurable and versatile image viewer.
 - `git-filter-repo` - Nice tool to filter your repo.
+  If you ever want to replace anything in the whole repository across all your commits you can use this tool.
+  Check `git filter-repo -h` first.
+
+  ```bash
+  git filter-repo --replace-text <(echo "user==>USERNAME") --force
+  sudo git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO.git
+  git push --force origin main
+  ```
+
+  Using the above commands you can replace a `user` with `USERNAME` in all of your commits,
+  then add the remote again (because probably during the filter operations previous remote is removed.), and
+  finally forcefully push to the GitHub.
 
 **References:**
 
