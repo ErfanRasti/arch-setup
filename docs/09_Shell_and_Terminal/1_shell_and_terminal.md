@@ -579,7 +579,7 @@ sudo pacman -S zellij
 ## Modern Unix tools
 
 ```bash
-sudo pacman -S duf exa eza git-delta zoxide glow yazi aichat trash-cli tree superfile television wiremix
+sudo pacman -S duf exa eza git-delta zoxide glow yazi aichat trash-cli tree superfile television wiremix feh git-filter-repo
 paru -S lazydocker-bin ascii-image-converter-bin gitbutler-bin
 ```
 
@@ -642,6 +642,8 @@ paru -S lazydocker-bin ascii-image-converter-bin gitbutler-bin
 - `superfile` - `superfile` is a modern terminal file manager crafted with a strong focus on user interface, functionality, and ease of use. After installation open it using `spf`.
 - `television` - A cross-platform, fast and extensible general purpose fuzzy finder for the terminal.
 - `wiremix` - A simple TUI audio mixer for PipeWire.
+- `feh` - A light-weight, configurable and versatile image viewer.
+- `git-filter-repo` - Nice tool to filter your repo.
 
 **References:**
 
@@ -658,6 +660,7 @@ paru -S lazydocker-bin ascii-image-converter-bin gitbutler-bin
 - <https://github.com/yorukot/superfile?tab=readme-ov-file>
 - <https://superfile.netlify.app/overview/>
 - <https://alexpasmantier.github.io/television/docs/Users/quickstart>
+- <https://github.com/derf/feh>
 
 ## Fish
 

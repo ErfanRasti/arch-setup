@@ -209,11 +209,13 @@ I prefer `podman` over `docker`, because it is more secure and doesn't need `sud
     - Choose ome other applications.
       If you couldn't establish a Remote Desktop connection with RDP, return to part 7.
 
-      To shut the system down:
+    You may try multiple times to make it work.
 
-      ```bash
-      podman-compose -f ~/.config/winapps/compose.yaml stop
-      ```
+    To shut the system down:
+
+    ```bash
+    podman-compose -f ~/.config/winapps/compose.yaml stop
+    ```
 
 11. If an icon is not as beauty as you thought or if you want to add new icon you can easily add your icon using some custom `*.desktop`. In the following I add a custom icon:
 

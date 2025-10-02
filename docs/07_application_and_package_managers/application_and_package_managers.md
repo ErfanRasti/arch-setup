@@ -59,8 +59,8 @@ yay -Yc
 One of my favorite AUR helpers is `paru`. I usually use `paru` to utilize AUR. In this document I use `paru` a lot. It is very secure way to use `AUR` because it always shows you the build information. To install it:
 
 ```bash
-mkdir -p ~/Programs
-cd ~/Programs
+mkdir -p ~/programs
+cd ~/programs
 
 sudo pacman -S --needed base-devel
 git clone https://aur.archlinux.org/paru.git
@@ -383,6 +383,7 @@ sudo downgrade <PACKAGE_NAME>
 ```
 
 To return to the normal state:
+
 ```bash
 sudo downgrade --unignore <PACKAGE_NAME>
 ```
