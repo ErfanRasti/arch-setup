@@ -268,6 +268,20 @@ bindel = ,XF86MonBrightnessUp, exec, brightnessctl -d intel_backlight s 5%+
 bindel = ,XF86MonBrightnessDown, exec, brightnessctl -d intel_backlight s 5%-
 ```
 
+Use `wev` package to figure out what is the name of your keys.
+
+```sh
+sudo pacman -S wev
+```
+
+Run:
+
+```sh
+wev
+```
+
+Check `sym` and `locked`.
+
 **References:**
 
 - <https://wiki.hyprland.org/Configuring/Keywords/>
@@ -276,6 +290,7 @@ bindel = ,XF86MonBrightnessDown, exec, brightnessctl -d intel_backlight s 5%-
 - <https://wiki.hyprland.org/Configuring/Dispatchers/>
 - <https://www.reddit.com/r/hyprland/comments/1heh8zi/launchers/>
 - <https://www.reddit.com/r/i3wm/comments/ebf9t8/rofi_single_click_accept/>
+- <https://github.com/jwrdegoede/wev>
 
 ## Touchpad
 
