@@ -619,8 +619,9 @@ sudo pacman -S zellij
 ## Modern Linux Tools
 
 ```bash
-sudo pacman -S duf exa eza git-delta zoxide glow yazi aichat trash-cli tree superfile television wiremix feh git-filter-repo
-paru -S lazydocker-bin ascii-image-converter-bin gitbutler-bin
+sudo pacman -S duf exa eza git-delta zoxide glow yazi aichat trash-cli \
+  tree superfile television wiremix feh git-filter-repo cava
+paru -S lazydocker-bin ascii-image-converter-bin gitbutler-bin fum-bin
 ```
 
 - `duf` – A modern, user-friendly alternative to df for checking disk usage.
@@ -696,6 +697,9 @@ paru -S lazydocker-bin ascii-image-converter-bin gitbutler-bin
   Using the above commands you can replace a `user` with `USERNAME` in all of your commits,
   then add the remote again (because probably during the filter operations previous remote is removed.), and
   finally forcefully push to the GitHub.
+
+- `cava` - `cava` is a bar spectrum audio visualizer for terminal or desktop (SDL).
+- `fum` - A fully customizable tui-based mpris music client.
 
 **References:**
 
