@@ -363,6 +363,14 @@ Check tutor at `:Tutor` to learn Neovim.
 - `dd`: cut current line
 - `"+dd`: cut line to system clipboard
 
+**Note:** It's probably safest, if you want to paste something over and over again,
+to yank it into a "named" register.
+`"aY` yanks a line into the `"a` register. Paste it with `"ap`.
+
+Use `<leader>cd` to jump into diagnoses on the current code and you can select the diagnose message too.
+Also you can use `]d` to go to the next diagnose or `[d` to go to the previous one.
+You can use `<leader>xx` to open the window including all diagnoses.
+
 **References:**
 
 - <https://dotfyle.com/neovim/colorscheme/trending>
@@ -381,6 +389,7 @@ Check tutor at `:Tutor` to learn Neovim.
 - <https://github.com/jay-babu/mason-null-ls.nvim>
 - <https://yobibyte.github.io/vim.html>
 - <https://www.reddit.com/r/LazyVim/comments/1io24kf/how_do_i_check_lazyvim_version/>
+- <https://stackoverflow.com/questions/3638542/any-way-to-delete-in-vim-without-overwriting-your-last-yank>
 
 ## tmux
 
