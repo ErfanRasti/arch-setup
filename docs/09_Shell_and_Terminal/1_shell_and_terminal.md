@@ -33,6 +33,23 @@ git pull
 
 - <https://www.geeksforgeeks.org/git/git-pull-force/>
 
+### Git merge
+
+To activate merge without re-base:
+
+```sh
+git config pull.rebase false
+```
+
+If you wanna undo it:
+
+```sh
+git config --unset pull.rebase
+```
+
+Check it using `git config --get pull.rebase`.
+Exit merge using `git merge --abort`.
+
 ## bash
 
 There is not much to say about `bash` but if you want to restore the default `bash` configuration:
