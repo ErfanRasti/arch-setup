@@ -50,6 +50,15 @@ git config --unset pull.rebase
 Check it using `git config --get pull.rebase`.
 Exit merge using `git merge --abort`.
 
+### Git ignore pushed file
+
+If you previously pushed a file to the repo and you want to ignore it:
+
+```sh
+git rm --cached path/to/yourfile
+
+```
+
 ## bash
 
 There is not much to say about `bash` but if you want to restore the default `bash` configuration:
