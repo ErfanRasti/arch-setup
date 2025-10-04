@@ -4,6 +4,8 @@ Some of my common highly used `flatpak` applications can be installed as bellow.
 
 **Note:** If you completely remove the per-system installation and replace it with user-system installation, all of the flatpak applications are installed per-user and there is no need to explicitly write `--user`.
 
+A great resource for `flatpak` apps is [GNOME circle](https://circle.gnome.org/). Check it out!
+
 ### System management
 
 ```bash
@@ -42,6 +44,8 @@ flatpak install flathub org.gnome.Decibels
 flatpak install flathub com.github.neithern.g4music
 flatpak install flathub de.haeckerfelix.Shortwave
 flatpak install flathub io.github.seadve.Mousai
+flatpak install flathub de.haeckerfelix.AudioSharing
+flatpak install flathub io.bassi.Amberol
 ```
 
 - `org.gnome.SoundRecorder`: A sound recorder application.
@@ -49,6 +53,8 @@ flatpak install flathub io.github.seadve.Mousai
 - `com.github.neithern.g4music`: Gapless (AKA: G4Music) is a light weight music player written in GTK4, focuses on large music collection.
 - `de.haeckerfelix.Shortwave`: Listen to internet radio.
 - `io.github.seadve.Mousai`: Discover songs you are aching to know with an easy-to-use interface.
+- `de.haeckerfelix.AudioSharing`: Share your computer audio
+- `io.bassi.Amberol`: Amberol is a music player with no delusions of grandeur. If you just want to play music available on your local system then Amberol is the music player you are looking for. 
 
 ### Photo
 
