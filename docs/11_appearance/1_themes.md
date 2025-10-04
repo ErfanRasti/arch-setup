@@ -56,6 +56,16 @@ If you don't get themes on flatpak applications, run this:
 flatpak --user override --filesystem=xdg-config/gtk-3.0 && flatpak --user override --filesystem=xdg-config/gtk-4.0
 ```
 
+For more general approach give read-only access to all gtk config files using:
+
+```sh
+flatpak override --user \
+    --filesystem=xdg-config/gtk-3.0:ro \
+    --filesystem=xdg-config/gtkrc-2.0:ro \
+    --filesystem=xdg-config/gtk-4.0:ro \
+    --filesystem=xdg-config/gtkrc:ro
+```
+
 Since I installed `flatpak` applications on user, I user `--user` option and I don't need `sudo`.
 
 After all relogin to get the theme availiable on all apps.
@@ -65,6 +75,7 @@ After all relogin to get the theme availiable on all apps.
 - <https://github.com/vinceliuice/WhiteSur-gtk-theme>
 - <https://github.com/vinceliuice/WhiteSur-gtk-theme?tab=readme-ov-file#--fix-for-flatpak-->
 - <https://itsfoss.com/flatpak-app-apply-theme/>
+- <https://www.reddit.com/r/hyprland/comments/1k8e8fy/exposing_gtk_themes_to_flatpak_apps_with_matugen/>
 
 ### Catppuccin
 
