@@ -77,6 +77,14 @@ spicetify apply
 
 This setting conflicts with the previous marketplace setting. Stick to the marketplace it is more user-friendly.
 
+### Restore
+
+To go back to the default `spotify` theme:
+
+```sh
+spicetify restore
+```
+
 **References:**
 
 - <https://github.com/spicetify/spicetify-themes>
