@@ -56,16 +56,6 @@ If you don't get themes on flatpak applications, run this:
 flatpak --user override --filesystem=xdg-config/gtk-3.0 && flatpak --user override --filesystem=xdg-config/gtk-4.0
 ```
 
-For more general approach give read-only access to all gtk config files using:
-
-```sh
-flatpak override --user \
-    --filesystem=xdg-config/gtk-3.0:ro \
-    --filesystem=xdg-config/gtkrc-2.0:ro \
-    --filesystem=xdg-config/gtk-4.0:ro \
-    --filesystem=xdg-config/gtkrc:ro
-```
-
 Since I installed `flatpak` applications on user, I user `--user` option and I don't need `sudo`.
 
 After all relogin to get the theme availiable on all apps.
@@ -232,6 +222,54 @@ sudo flatpak override --env=GTK_THEME=<MY_THEME>
 sudo flatpak override --env=ICON_THEME=<MY_ICON_THEME>
 ```
 
+For more general approach give read-only access to all gtk config files using:
+
+```sh
+flatpak override --user \
+    --filesystem=xdg-config/gtk-3.0:ro \
+    --filesystem=xdg-config/gtkrc-2.0:ro \
+    --filesystem=xdg-config/gtk-4.0:ro \
+    --filesystem=xdg-config/gtkrc:ro
+```
+
+Or for system installation:
+
+```sh
+sudo flatpak override --system \
+    --filesystem=xdg-config/gtk-3.0:ro \
+    --filesystem=xdg-config/gtkrc-2.0:ro \
+    --filesystem=xdg-config/gtk-4.0:ro \
+    --filesystem=xdg-config/gtkrc:ro
+```
+
+Actually better checking your directories (`xdg-config` is `$HOME/.config`)
+to see if you have these paths or not.
+
+I had these:
+
+```sh
+sudo flatpak override --system \
+  --filesystem=xdg-config/gtk-2.0:ro \
+  --filesystem=xdg-config/gtk-3.0:ro \
+  --filesystem=xdg-config/gtk-4.0:ro \
+  --filesystem=~/.gtkrc-2.0:ro
+```
+
+Also for QT apps:
+
+```sh
+sudo flatpak override --system \
+  --filesystem=xdg-config/qt5ct:ro \
+  --filesystem=xdg-config/qt6ct:ro \
+  --env=QT_QPA_PLATFORMTHEME=qt6ct
+```
+
+`QT_QPA_PLATFORMTHEME` environment variable tells `flatpak` when you start,
+load your platform theme plugin from `qt6ct`.
+
 **References:**
 
 - <https://itsfoss.com/flatpak-app-apply-theme/>
+- <https://gist.github.com/lmintmate/b512680c0d1ee8f41b8f43cd2c81dc2c>
+- <https://www.reddit.com/r/hyprland/comments/1k8e8fy/comment/mp5gckm/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button>
+- <https://www.reddit.com/r/flatpak/comments/y9jmqj/the_general_flatpak_qt_and_gtk_theming_guide/>
