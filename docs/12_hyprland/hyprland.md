@@ -385,6 +385,7 @@ instead of `background-color`.
 
 - <https://github.com/Alexays/Waybar/wiki/Configuration>
 - <https://easings.net/>
+- <https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient>
 
 ## Notification
 
@@ -1053,14 +1054,12 @@ In recent versions of Hyprland (0.51.1 or later) gestures are supported natively
 You can add them through your `hyprland.conf`:
 
 ```conf
-
     gesture = 3, horizontal,workspace
     gesture = 3, up, mod: SUPER, resize
     gesture = 3, down, mod: SUPER, move
     gesture = 4, vertical, fullscreen
     gesture = 4, left, dispatcher, cyclenext
     gesture = 4, right, dispatcher, cyclenext, prev
-
 ```
 
 **References:**
