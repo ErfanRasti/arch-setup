@@ -110,6 +110,12 @@ sudo pacman -S fuse less bat dconf-editor neofetch fastfetch gparted ntfs-3g uge
 - `rsync`: A fast, versatile, remote (and local) file-copying tool.
 - `glxinfo`: A command that can be used to display information about the OpenGL and GLX implementations.
 - `unrar`: A command-line utility to extract, test and view the contents of archives created with the RAR archiver.
+  To use it:
+
+  ```sh
+  unrar x -ad "yourfile.rar"
+  ```
+
 - `gnome-usage`: A system monitor.
 - `tldr`: A collection of simplified man pages.
 - `man`: An interface to the system reference manuals.

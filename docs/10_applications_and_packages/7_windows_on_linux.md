@@ -300,7 +300,7 @@ I prefer `podman` over `docker`, because it is more secure and doesn't need `sud
 
    and restart your computer.
 
-4. Follow the guide to make it work.
+4. Follow the UI guide to make it work.
 
 5. There is a nice workaround to source user folders with `linux` folders:
 
