@@ -232,7 +232,7 @@ flatpak override --user \
     --filesystem=xdg-config/gtkrc:ro
 ```
 
-Or for system installation:
+Or for system version:
 
 ```sh
 sudo flatpak override --system \
@@ -242,13 +242,16 @@ sudo flatpak override --system \
     --filesystem=xdg-config/gtkrc:ro
 ```
 
+**Note:** The user version works even for system installation apps,
+but it is only set for the current user.
+
 Actually better checking your directories (`xdg-config` is `$HOME/.config`)
 to see if you have these paths or not.
 
 I had these:
 
 ```sh
-sudo flatpak override --system \
+flatpak override --user \
   --filesystem=xdg-config/gtk-2.0:ro \
   --filesystem=xdg-config/gtk-3.0:ro \
   --filesystem=xdg-config/gtk-4.0:ro \
@@ -258,7 +261,7 @@ sudo flatpak override --system \
 Also for QT apps:
 
 ```sh
-sudo flatpak override --system \
+flatpak override --user \
   --filesystem=xdg-config/qt5ct:ro \
   --filesystem=xdg-config/qt6ct:ro \
   --env=QT_QPA_PLATFORMTHEME=qt6ct
