@@ -1337,3 +1337,21 @@ The goal is to press any key from the terminal.
 
 - <https://gabrielstaples.com/ydotool-tutorial/#gsc.tab=0>
 - <https://github.com/ReimuNotMoe/ydotool>
+
+## Octave
+
+Octave is a great MATLAB replacement. Install it using this:
+
+```sh
+sudo pacman -S octave
+```
+
+Run `*.m` files using this command:
+
+```sh
+QT_QPA_PLATFORM=xcb octave --persist hello.m
+```
+
+**References:**
+
+- <https://wiki.archlinux.org/title/Octave>
