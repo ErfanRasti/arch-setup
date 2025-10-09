@@ -397,6 +397,8 @@ Use `<leader>cd` to jump into diagnoses on the current code and you can select t
 Also you can use `]d` to go to the next diagnose or `[d` to go to the previous one.
 You can use `<leader>xx` to open the window including all diagnoses.
 
+To open a hyperlink in the browser use `gx`.
+
 **References:**
 
 - <https://dotfyle.com/neovim/colorscheme/trending>
