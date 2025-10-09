@@ -963,7 +963,25 @@ rfkill unblock bluetooth
 - <https://gist.github.com/brunoanc/2dea6ddf6974ba4e5d26c3139ffb7580>
 - <https://wiki.hypr.land/Useful-Utilities/Screen-Sharing/>
 
-### Plugins
+### Hyprland received signal 11(SEGV)
+
+Probably some hyprland plugin goes wrong, but updating hyprland is a nice workaround:
+
+```sh
+sudo pacman -S hyprland
+```
+
+But if the problem exists:
+
+```sh
+hyprpm update
+```
+
+**References:**
+
+- <https://github.com/hyprwm/Hyprland/discussions/11885>
+
+## Plugins
 
 To install plugins you first need to install these:
 
