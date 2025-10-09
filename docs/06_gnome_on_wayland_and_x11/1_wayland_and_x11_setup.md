@@ -121,3 +121,11 @@ Finally:
 ```sh
 dconf load /org/gnome/ < dconf.conf
 ```
+
+### Authentication error on GDM
+
+Open `tty` using `CTRL+SHIFT+F2/F3`. Then login to your user and run:
+
+```sh
+sudo systemctl restart gdm.service
+```
