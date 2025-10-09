@@ -338,6 +338,12 @@ paru -S tabby-bin
 To open `kitty.conf` press `ctrl+shift+f2`.
 To save and exit first press `esc` to exit insert mode, then press `:x`. Also if you want to just exit without saving press `:q`.
 
+**References:**
+
+- <https://wiki.archlinux.org/title/Kitty>
+- <https://man.archlinux.org/man/extra/kitty/kitty.1.en>
+- <https://sw.kovidgoyal.net/kitty/conf/#the-color-table>
+
 #### Search in Kitty
 
 `kitty` has a `vim` like utility for doing tasks. To search in `kitty`:
@@ -359,6 +365,25 @@ For custom user themes put your themes on `~/.config/kitty/themes/`.
 **References:**
 
 - <https://sw.kovidgoyal.net/kitty/kittens/themes/>
+
+### Open new tab in same folder
+
+Add these to your `kitty.conf`:
+
+```sh
+shell_integration enabled
+
+# kitty_mod is ctrl+shift
+map kitty_mod+t new_tab_with_cwd
+map kitty_mod+n new_os_window_with_cwd
+map kitty_mod+enter new_window_with_cwd
+# It can be done using launch --cwd=current --type=tab
+# See https://sw.kovidgoyal.net/kitty/launch/
+```
+
+**References:**
+
+- <https://github.com/kovidgoyal/kitty/issues/692>
 
 #### Proxy in Kitty
 
