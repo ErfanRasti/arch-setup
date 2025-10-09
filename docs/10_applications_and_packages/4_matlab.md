@@ -14,7 +14,7 @@ Your probably get some other errors related to permission denial. Mine has been 
 
 ```bash
 chmod +x ./bin/glnxa64/MATLABWindow
-chmod +x ~/bin/glnxa64/MathWorksProductInstaller
+chmod +x ./bin/glnxa64/MathWorksProductInstaller
 ```
 
 During the `MATLAB` installation from the official `.iso` file you may face some issues:
@@ -25,9 +25,8 @@ If the `./install` file raise some errors first check this command in the `.iso`
 ./bin/glnxa64/MATLABWindow
 ```
 
-Then check this [this](https://wiki.archlinux.org/title/MATLAB#Unable_to_launch_the_MATLABWindow_application)
-.
-To fix this, put aside MATLAB's libfreetype.so\*:
+Then check [this](https://wiki.archlinux.org/title/MATLAB#Unable_to_launch_the_MATLABWindow_application).
+To fix this, put aside MATLAB's `libfreetype.so*`:
 
 ```bash
 sudo rm ./bin/glnxa64/libfreetype.so*
