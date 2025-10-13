@@ -30,8 +30,8 @@ For me it wasn't activated.
    `Security > Reset to Setup Mode`
 
    Save and exit by pressing `f10` key (yours can be different).
-  
-  **Hint:** If you cannot reset to setup mode due to some error messages like _Secure Variable Update is locked down Try again after System reboot_ you should downgrade or upgrade your BIOS to fix it. In my case BIOS get sensitive due to rapid changing the keys. I shutdown my computer for some minutes. After some minutes it get fixed by itself (probably due to capacitors discharge). Another faster workaround is to disconnect the battery from the motherboard and reconnect it after a couple of seconds. Also some systems have some timeouts and you cannot change the secure boot keys consecutively.
+
+   **Hint:** If you cannot reset to setup mode due to some error messages like _Secure Variable Update is locked down Try again after System reboot_ you should downgrade or upgrade your BIOS to fix it. In my case BIOS get sensitive due to rapid changing the keys. I shutdown my computer for some minutes. After some minutes it get fixed by itself (probably due to capacitors discharge). Another faster workaround is to disconnect the battery from the motherboard and reconnect it after a couple of seconds. Also some systems have some timeouts and you cannot change the secure boot keys consecutively.
 
 2. Install `sbctl` using `pacman`:
 
@@ -55,6 +55,7 @@ For me it wasn't activated.
    1. `sbctl` is not installed.
    2. Setup mode is enabled.
    3. Secure boot disabled.
+
 5. Create your custom secure boot keys:
 
    ```bash
@@ -103,17 +104,17 @@ For me it wasn't activated.
 
    It is possible that there are lots of other files to verify under your boot directory. To verify them:
 
-  ```bash
-  sbctl verify | sed 's/✗ /sbctl sign -s /e'
-  ```
+```bash
+sbctl verify | sed 's/✗ /sbctl sign -s /e'
+```
 
-  To be agnostic of the file-path, and independent of the '✗' character:
+To be agnostic of the file-path, and independent of the '✗' character:
 
-  ```bash
-  sbctl verify | sed -E 's|^.* (/.+) is not signed$|sbctl sign -s "\1"|e'
-  ```
+```bash
+sbctl verify | sed -E 's|^.* (/.+) is not signed$|sbctl sign -s "\1"|e'
+```
 
-  Also if you faced `failed reading PE file: unrecognized PE machine: 0x3730`, delete any unnecessary signed files from `/var/lib/sbctl/files.json`.
+Also if you faced `failed reading PE file: unrecognized PE machine: 0x3730`, delete any unnecessary signed files from `/var/lib/sbctl/files.json`.
 
 8. Now lets reinstall our boot loader:
 
@@ -121,15 +122,15 @@ For me it wasn't activated.
    bootctl install
    ```
 
-  If you get some warnings about security hole in permissions of `/boot` you should change the permissions of this drive like this:
+If you get some warnings about security hole in permissions of `/boot` you should change the permissions of this drive like this:
 
-  ```bash
-  sudo nano /etc/fstab
-  ```
+```bash
+sudo nano /etc/fstab
+```
 
-  Change these two at `/boot` entry:
+Change these two at `/boot` entry:
 
-- `fmask=0177`:  Directories will act like 700 (only root can access including read/write/execute).
+- `fmask=0177`: Directories will act like 700 (only root can access including read/write/execute).
 - `dmask=0077`: Files will act like 600 (only root can read/write).
 - The first 0 prefix explicitly tells the system that the following digits are in octal (though most systems assume it anyway).  
   After restart your can run `bootctl install` again or check the permissions of `/boot` using `ls -ld /boot`.
@@ -141,6 +142,7 @@ For me it wasn't activated.
    ```
 
    If everything is OK you can go to `firmware-setup` and activate secure boot. Now arch can boot properly with activated secure boot.
+
 10. To double check everything make sure secure boot is enabled:
 
     ```bash
@@ -171,23 +173,23 @@ For me it wasn't activated.
 1. Enter BIOS and reset secure boot keys to default. Then disable secure boot.
 2. Run these:
 
-  ```bash
-  sudo -i
-  sbctl remove-file /boot/vmlinuz-linux
-  sbctl remove-file /boot/vmlinuz-linux-lts
-  sbctl remove-file /boot/EFI/BOOT/BOOTX64.EFI
-  sbctl remove-file /boot/EFI/systemd/systemd-bootx64.efi
-  sbctl remove-file /usr/lib/systemd/boot/efi/systemd-bootx64.efi
-  rm /usr/lib/systemd/boot/efi/systemd-bootx64.efi.signed
-  sbctl list-files
-  sbctl reset
-  rm -rf /var/lib/sbctl/keys
-  sbctl status
-  pacman -Rsucn sbctl
-  rm -rf /var/lib/sbctl
-  bootctl install
-  exit
-  ```
+```bash
+sudo -i
+sbctl remove-file /boot/vmlinuz-linux
+sbctl remove-file /boot/vmlinuz-linux-lts
+sbctl remove-file /boot/EFI/BOOT/BOOTX64.EFI
+sbctl remove-file /boot/EFI/systemd/systemd-bootx64.efi
+sbctl remove-file /usr/lib/systemd/boot/efi/systemd-bootx64.efi
+rm /usr/lib/systemd/boot/efi/systemd-bootx64.efi.signed
+sbctl list-files
+sbctl reset
+rm -rf /var/lib/sbctl/keys
+sbctl status
+pacman -Rsucn sbctl
+rm -rf /var/lib/sbctl
+bootctl install
+exit
+```
 
 ## Activate Secure Boot for `systemd-boot` Systems
 
@@ -201,63 +203,63 @@ Then enter setup mode exactly like the method used in `sbctl` instruction. Then 
 
 1. Install and setup your `ukify` configuration file:
 
-  ```bash
-  sudo pacman -S systemd-ukify
-  ```
-
-  ```bash
-  sudo nano /etc/kernel/uki.conf
+```bash
+sudo pacman -S systemd-ukify
 ```
 
-  Add:
+```bash
+sudo nano /etc/kernel/uki.conf
+```
 
-  ```conf
-  [UKI]
-  SecureBootSigningTool=systemd-sbsign
-  SignKernel=true
-  SecureBootPrivateKey=/etc/kernel/secure-boot-private-key.pem
-  SecureBootCertificate=/etc/kernel/secure-boot-certificate.pem
-  ```
+Add:
+
+```conf
+[UKI]
+SecureBootSigningTool=systemd-sbsign
+SignKernel=true
+SecureBootPrivateKey=/etc/kernel/secure-boot-private-key.pem
+SecureBootCertificate=/etc/kernel/secure-boot-certificate.pem
+```
 
 2. Generate your keys using `ukify`:
 
-  ```bash
-  sudo ukify genkey --config /etc/kernel/uki.conf
-  ```
+```bash
+sudo ukify genkey --config /etc/kernel/uki.conf
+```
 
 3. Sign bootloader with newly created keys:
 
-  ```bash
-  sudo /usr/lib/systemd/systemd-sbsign sign \
+```bash
+sudo /usr/lib/systemd/systemd-sbsign sign \
 --private-key /etc/kernel/secure-boot-private-key.pem \
 --certificate /etc/kernel/secure-boot-certificate.pem \
 --output /usr/lib/systemd/boot/efi/systemd-bootx64.efi.signed \
 /usr/lib/systemd/boot/efi/systemd-bootx64.efi
-  ```
+```
 
 3. Configure EFI system partition (ESP) for auto-enrollment:
 
-  ```bash
-  sudo bootctl install --secure-boot-auto-enroll yes \
+```bash
+sudo bootctl install --secure-boot-auto-enroll yes \
 --certificate /etc/kernel/secure-boot-certificate.pem \
 --private-key /etc/kernel/secure-boot-private-key.pem
-  ```
+```
 
-  This installs (or updates) the signed `systemd-boot`` bootloader to the ESP, and creates three files`PK.auth`,`KEK.auth` and `db.auth` in `/boot/loader/keys/auto/`.
+This installs (or updates) the signed `systemd-boot`` bootloader to the ESP, and creates three files`PK.auth`,`KEK.auth`and`db.auth`in`/boot/loader/keys/auto/`.
 
 4. Add`secure-boot-enroll force` in `/boot/loader/loader.conf`:
 
-  ```bash
-  sudo nano /boot/loader/loader.conf
-  ```
+```bash
+sudo nano /boot/loader/loader.conf
+```
 
-  Add:
+Add:
 
-  ```conf
-  secure-boot-enroll force
-  ```
+```conf
+secure-boot-enroll force
+```
 
-  Then restart and in list of `systemd-boot` click on enroll-keys. Sometimes enrollment automatically applied after reboot.
+Then restart and in list of `systemd-boot` click on enroll-keys. Sometimes enrollment automatically applied after reboot.
 
 5. Now remove `secure-boot-enroll force` from `/boot/loader/loader.conf` and reboot again. Then check the secure boot keys and enable secure boot.
 
