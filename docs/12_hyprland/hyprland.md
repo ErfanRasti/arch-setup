@@ -1222,3 +1222,57 @@ Set it up like this:
 - <https://hyprland-community.github.io/pyprland/scratchpads.html>
 - <https://hyprland-community.github.io/pyprland/scratchpads_advanced.html>
 - <https://hyprland-community.github.io/pyprland/scratchpads_nonstandard.html>
+
+## System boot sounds
+
+To play sound at system bootup you can use these:
+
+```sh
+sudo pacman -S libcanberra sound-theme-freedesktop
+```
+
+And then enable and start the service:
+
+```sh
+sudo systemctl enable canberra-system-bootup.service
+sudo systemctl start canberra-system-bootup.service
+```
+
+If you've faced some errors like this at `systemctl` status:
+
+```
+Play Bootup Sound was skipped because of an unmet condition check (ConditionPathExists=/usr/share/sounds/freedesktop/stereo/system-bootup.oga).
+```
+
+Then check this folder:
+
+```sh
+ls -al /usr/share/sounds/freedesktop/stereo/
+```
+
+If there is no `system-bootup.oga` install `ocean-sound-theme`:
+
+```sh
+sudo pacman -S ocean-sound-theme
+```
+
+Then hyperlink the `freeedesktop/stereo` to `ocean/stereo`:
+
+```sh
+sudo ln -s /usr/share/sounds/ocean/stereo/desktop-login.oga /usr/share/sounds/freedesktop/stereo/system-bootup.oga
+```
+
+You can also start the song on system login in Hyprland:
+
+```sh
+# Welcome sound
+exec-once = paplay /usr/share/sounds/ocean/stereo/desktop-login.oga
+exec-shutdown = paplay /usr/share/sounds/ocean/stereo/desktop-logout.oga
+execr = paplay  /usr/share/sounds/ocean/stereo/completion-rotation.oga
+```
+
+I prefer this method and I don't use `systemctl`.
+
+**References:**
+
+- <https://wiki.archlinux.org/title/Libcanberra>
