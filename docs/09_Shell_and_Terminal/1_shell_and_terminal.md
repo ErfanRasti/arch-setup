@@ -631,7 +631,7 @@ sudo pacman -S zellij
 
 ```bash
 sudo pacman -S duf exa eza git-delta zoxide glow yazi aichat trash-cli \
-  tree superfile television wiremix feh git-filter-repo cava
+  tree superfile television wiremix feh git-filter-repo cava libcanberra
 paru -S lazydocker-bin ascii-image-converter-bin gitbutler-bin fum-bin
 ```
 
@@ -711,6 +711,25 @@ paru -S lazydocker-bin ascii-image-converter-bin gitbutler-bin fum-bin
 
 - `cava` - `cava` is a bar spectrum audio visualizer for terminal or desktop (SDL).
 - `fum` - A fully customizable tui-based mpris music client.
+- `libcanberra` - I use `canberra-gtk-play` to play sound events. To list all of your sounds:
+
+  ```sh
+  # List all sound IDs from system and user themes
+  find /usr/share/sounds ~/.local/share/sounds -type f \( -iname '*.oga' -o -iname '*.ogg' -o -iname '*.wav' \) \
+  -printf '%f\n' | sed 's/\..*$//' | sort -u
+  ```
+
+  And play it like this:
+
+  ```sh
+  canberra-gtk-play -i message
+  ```
+
+  To enable boot sounds:
+
+  ```sh
+  sudo systemctl enable canberra-system-bootup.service
+  ```
 
 **References:**
 
@@ -728,6 +747,7 @@ paru -S lazydocker-bin ascii-image-converter-bin gitbutler-bin fum-bin
 - <https://superfile.netlify.app/overview/>
 - <https://alexpasmantier.github.io/television/docs/Users/quickstart>
 - <https://github.com/derf/feh>
+- <https://wiki.archlinux.org/title/Libcanberra>
 
 ## Fish
 
