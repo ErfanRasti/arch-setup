@@ -54,7 +54,7 @@ flatpak install flathub io.bassi.Amberol
 - `de.haeckerfelix.Shortwave`: Listen to internet radio.
 - `io.github.seadve.Mousai`: Discover songs you are aching to know with an easy-to-use interface.
 - `de.haeckerfelix.AudioSharing`: Share your computer audio
-- `io.bassi.Amberol`: Amberol is a music player with no delusions of grandeur. If you just want to play music available on your local system then Amberol is the music player you are looking for. 
+- `io.bassi.Amberol`: Amberol is a music player with no delusions of grandeur. If you just want to play music available on your local system then Amberol is the music player you are looking for.
 
 ### Photo
 
@@ -155,7 +155,6 @@ flatpak install flathub io.gitlab.adhami3310.Impression
 flatpak install flathub org.gnome.design.Emblem
 flatpak install flathub io.github.lo2dev.Echo
 flatpak install flathub io.github.idevecore.Valuta
-flatpak install flathub com.github.unrud.VideoDownloader
 flatpak install flathub app.drey.Warp
 flatpak install flathub com.github.finefindus.eyedropper
 flatpak install flathub app.devsuite.Ptyxis
@@ -184,7 +183,6 @@ flatpak install flathub be.alexandervanhee.gradia
 - `org.gnome.design.Emblem`: Generate projects avatars for your Matrix rooms and git forges from a symbolic icon.
 - `io.github.lo2dev.Echo`: Utility to ping websites.
 - `io.github.idevecore.Valuta`: A currency converter.
-- `com.github.unrud.VideoDownloader`: Download videos from the internet.
 - `app.drey.Warp`: Fast and secure file transfer.
 - `com.github.finefindus.eyedropper`: Pick and format colors.
 - `app.devsuite.Ptyxis`: Container-oriented terminal.

@@ -93,7 +93,7 @@ spicetify restore
 ## Essential `pacman` applications
 
 ```bash
-sudo pacman -S fuse less bat dconf-editor neofetch fastfetch gparted ntfs-3g uget wget wireplumber rsync glxinfo unrar gnome-usage tldr man nmap
+sudo pacman -S fuse less bat dconf-editor neofetch fastfetch gparted ntfs-3g uget wget wireplumber rsync glxinfo unrar gnome-usage tldr man nmap p7zip
 ```
 
 - `fuse`: Filesystem in Userspace.
@@ -120,6 +120,11 @@ sudo pacman -S fuse less bat dconf-editor neofetch fastfetch gparted ntfs-3g uge
 - `tldr`: A collection of simplified man pages.
 - `man`: An interface to the system reference manuals.
 - `nmap`: A network exploration tool and security/port scanner.
+- `p7zip`: Extract files using `p7zip`. To extract `.iso` files:
+
+  ```sh
+  7z x file.iso
+  ```
 
 ## Useful Tools for System Management
 
@@ -277,7 +282,7 @@ I also use some extensions for `nuatilus`:
 
 ```bash
 sudo pacman -S sushi nautilus-image-converter nautilus-share
-paru -S nautilus-admin-gtk4 nautilus-open-any-terminal code-nautilus-git
+paru -S nautilus-admin-gtk4 nautilus-checksums nautilus-open-any-terminal code-nautilus-git
 ```
 
 - `sushi`: Quick file previewer for Nautilus. Part of `gnome`.
@@ -285,6 +290,19 @@ paru -S nautilus-admin-gtk4 nautilus-open-any-terminal code-nautilus-git
 - `nautilus-share`: Nautilus extension to share folder using Samba (written in C).
 - `nautilus-admin-gtk4`: Add to menu: "Open as administrator" or "Edit as administrator" (written in Python).
 - `nautilus-open-any-terminal`: Nautilus extension which adds an context-entry for opening other terminal emulators.
+  Set your terminal like this:
+
+  ```sh
+  gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal alacritty
+  ```
+
+  If you want to reset it:
+
+  ```sh
+  gsettings reset com.github.stunkymonkey.nautilus-open-any-terminal terminal
+  ```
+
+- `nautilus-checksums`: Add checksums to Nautilus' properties window (written in C).
 - `code-nautilus-git`: Nautilus extension to open files and directories in Visual Studio Code (written in Python).
 
 Follow [this](https://github.com/bassmanitram/actions-for-nautilus?tab=readme-ov-file#configuration-ui).
