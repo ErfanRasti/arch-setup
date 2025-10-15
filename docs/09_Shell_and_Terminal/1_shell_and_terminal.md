@@ -971,6 +971,26 @@ git submodule add  https://github.com/ErfanRasti/tmux tmux/.config/tmux/
 Use `git submodule status` to check sub-module commits.
 To update sub-modules use `git submodule update --init --recursive`.
 
+### Restow
+
+If you ever wanna change the path of your dotfiles follow these steps:
+
+```sh
+# Unstow old path (old path: ~/dotfiles/)
+cd ~/dotfiles/
+stow -D */
+# Move your files
+# Restow from new location
+stow --restow */
+```
+
+If you ever had git submodules change their paths in `.gitmodules` and them again:
+
+```sh
+git submodule add https://github.com/ErfanRasti/nvim dotfiles/nvim/.config/nvim
+git submodule add https://github.com/ErfanRasti/tmux dotfiles/tmux/.config/tmux
+```
+
 **References:**
 
 - <https://wiki.archlinux.org/title/Dotfiles>
