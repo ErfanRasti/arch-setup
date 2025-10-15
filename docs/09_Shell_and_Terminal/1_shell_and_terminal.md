@@ -805,7 +805,15 @@ To install it and check the checksum:
 ```fish
 sudo pacman -S perl
 curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
-curl -sL https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install.sha256 | shasum -a 256 --check
+
+# 1. Download the installer
+curl -sL https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install -o install
+
+# 2. Download the checksum
+curl -sL https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install.sha256 -o install.sha256
+
+# 3. Verify integrity
+sha256sum --check install.sha256
 ```
 
 Check list of plugins:
@@ -820,6 +828,13 @@ omf install archlinux agnoster
 ```fish
 sudo pacman -S svn
 svn export https://github.com/folke/tokyonight.nvim/trunk/extras/fish ~/.config/fish/themes/tokyonight
+```
+
+Or use `fisher`:
+
+```fish
+fisher install vitallium/tokyonight-fish
+fish_config theme save "TokyoNight Moon"
 ```
 
 ### starship
