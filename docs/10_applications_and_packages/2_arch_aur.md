@@ -429,16 +429,27 @@ These are some examples:
 I personally also use `nautilus-admin-gtk4`, `nautilus-checksums`, `nautilus-image-converter`,
 and `nautilus-share` in combined with `io.github.nozwock.Packet` from `flathub`.
 
-You should also check these directories to remove redundancies after removing nautilus extensions:
+Note that `Open in Terminal` in the context menu is related to `gnome-terminal`
+and cannot get changed unless you uninstall `gnome-terminal`.
+
+You should also check these directories to remove redundancies after removing
+nautilus extensions:
 
 ```sh
 ls ~/.local/share/nautilus-python/extensions/
 ls /usr/share/nautilus-python/extensions/
 ```
 
+After your changes restart `nautilus` using:
+
+```sh
+nautilus -q
+```
+
 **References:**
 
 - <https://wiki.archlinux.org/title/GNOME/Files>
+- <https://github.com/bassmanitram/actions-for-nautilus/wiki/Configuration-Examples>
 
 ### Create link to a file or folder
 
@@ -469,11 +480,31 @@ cp /usr/share/applications/nvim.desktop  ~/.local/share/applications/
 nvim ~/.local/share/applications/nvim.desktop
 ```
 
-And change exec lines to these:
+And change the lines to these:
+
+```desktop
+[Desktop Entry]
+Name=Neovim
+GenericName=Text Editor
+TryExec=nvim
+Exec=kitty --class nvim -e nvim %F
+Terminal=false
+Type=Application
+Keywords=Text;editor;
+Icon=nvim
+Categories=Utility;TextEditor;
+StartupNotify=false
+MimeType=text/english;text/plain;text/x-makefile;text/x-c++hdr;text/x-c++src;text/x-chdr;text/x-csrc;text/x-java;text/x-moc;text/x-pascal;text/x-tcl;text/x-tex;application/x-shellscript;text/x-c;text/x-c++;
+```
+
+Note that kitty class should be `nvim` and `Terminal` should be `false`.
+
+Test the final app using one of these:
 
 ```sh
-TryExec=kitty --class nvim nvim
-Exec=kitty --class nvim nvim %F
+gtk-launch nvim
+
+gio launch ~/.local/share/applications/nvim.desktop
 ```
 
 **References:**
