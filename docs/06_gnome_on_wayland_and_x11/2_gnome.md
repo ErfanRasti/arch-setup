@@ -33,6 +33,20 @@ dconf load / < dconf-system-backup.conf
 
 - <https://man.archlinux.org/man/dconf.1.en>
 
+### Default terminal
+
+Get the current default terminal:
+
+```sh
+gsettings get org.gnome.desktop.default-applications.terminal exec
+```
+
+Set it using:
+
+```sh
+gsettings set org.gnome.desktop.default-applications.terminal exec 'kitty'
+```
+
 ### Troubleshooting
 
 #### No animation and Software Rendering
@@ -68,16 +82,23 @@ mousekeys-enable=true
 If you messed something on gnome configurations:
 
 1. Backup your current configurations:
+
    ```bash
    dconf dump /org/gnome/ > ~/dconf-backup.conf
    ```
+
 2. Reset your configurations:
+
    ```bash
    dconf reset -f /org/gnome/
    ```
+
    Now login and check if everything is working. If the problem still exsits, do the previous commands with `/` instead of `/org/gnome/`.
+
 3. Now you should search in your `~/dconf-backup.conf` for a bad configurations. Comment out half of the configurations with `#` and load them using:
+
    ```bash
    dconf load /org/gnome/ < ~/dconf-backup.conf
    ```
+
    Hold the nonproblematic half and do it again and again for sub partitions untill you found th problem.
