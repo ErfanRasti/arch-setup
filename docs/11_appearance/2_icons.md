@@ -1,5 +1,19 @@
 ## Icons
 
+In general set your icon theme using:
+
+```sh
+gsettings set org.gnome.desktop.interface icon-theme "Papirus-Dark"
+```
+
+And get it using:
+
+```sh
+gsettings get org.gnome.desktop.interface icon-theme
+```
+
+Or check it through `gnome-tweaks > Appearnce > Icons`.
+
 ### Papirus
 
 ```bash
@@ -107,7 +121,7 @@ paru -S flat-remix
 ```
 
 - <https://github.com/daniruiz/flat-remix>
-- https://drasite.com/flat-remix-gnome
+- <https://drasite.com/flat-remix-gnome>
 
 ### Troubleshooting
 
