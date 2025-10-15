@@ -330,6 +330,112 @@ Or if you want to open it in the home directory:
 nautilus admin://$HOME
 ```
 
+My persional recommendation is using `actions-for-nautilus-git`
+which provides high customizability for `nautilus` context menu:
+
+```sh
+paru -S actions-for-nautilus-git
+```
+
+You can add your menus in this path:
+
+```sh
+nvim ~/.local/share/actions-for-nautilus/config.json
+```
+
+These are some examples:
+
+```sh
+{
+  "actions": [
+    {
+      "type": "menu",
+      "label": "Open in editor",
+      "actions": [
+        {
+          "type": "command",
+          "label": "Neovim",
+          "command_line": "kitty --class Neovim nvim %f"
+        },
+        {
+          "type": "command",
+          "label": "VS Code",
+          "command_line": "code %f"
+        },
+        {
+          "type": "command",
+          "label": "gnome-text-editor",
+          "command_line": "gnome-text-editor %F",
+          "filetypes": ["!directory", "standard"]
+        },
+        {
+          "type": "command",
+          "label": "bat",
+          "command_line": "kitty --class bat bat --paging=always %F",
+          "filetypes": ["!directory", "standard"]
+        }
+      ]
+    },
+    {
+      "type": "menu",
+      "label": "Open in terminal",
+      "actions": [
+        {
+          "type": "command",
+          "label": "Kitty",
+          "command_line": "kitty --directory %f",
+          "cwd": "%f",
+          "max_items": 1,
+          "filetypes": ["directory"]
+        },
+        {
+          "type": "command",
+          "label": "Ghostty",
+          "command_line": "ghostty --working-directory=%f",
+          "cwd": "%f",
+          "max_items": 1,
+          "filetypes": ["directory"]
+        },
+        {
+          "type": "command",
+          "label": "Ptyxis (Flatpak)",
+          "command_line": "flatpak run app.devsuite.Ptyxis --tab -d %f",
+          "cwd": "%f",
+          "max_items": 1,
+          "filetypes": ["directory"]
+        },
+        {
+          "type": "command",
+          "label": "GNOME Terminal",
+          "command_line": "gnome-terminal --working-directory=%f",
+          "cwd": "%f",
+          "max_items": 1,
+          "filetypes": ["directory"]
+        },
+        {
+          "type": "command",
+          "label": "GNOME Console",
+          "command_line": "kgx --working-directory %f",
+          "cwd": "%f",
+          "max_items": 1,
+          "filetypes": ["directory"]
+        }
+      ]
+    }
+  ]
+}
+```
+
+I personally also use `nautilus-admin-gtk4`, `nautilus-checksums`, `nautilus-image-converter`,
+and `nautilus-share` in combined with `io.github.nozwock.Packet` from `flathub`.
+
+You should also check these directories to remove redundancies after removing nautilus extensions:
+
+```sh
+ls ~/.local/share/nautilus-python/extensions/
+ls /usr/share/nautilus-python/extensions/
+```
+
 **References:**
 
 - <https://wiki.archlinux.org/title/GNOME/Files>
@@ -355,6 +461,20 @@ paru -S tabby-bin
 
 To open `kitty.conf` press `ctrl+shift+f2`.
 To save and exit first press `esc` to exit insert mode, then press `:x`. Also if you want to just exit without saving press `:q`.
+
+Change the class of the nvim and set it correctly using these:
+
+```sh
+cp /usr/share/applications/nvim.desktop  ~/.local/share/applications/
+nvim ~/.local/share/applications/nvim.desktop
+```
+
+And change exec lines to these:
+
+```sh
+TryExec=kitty --class nvim nvim
+Exec=kitty --class nvim nvim %F
+```
 
 **References:**
 
@@ -664,6 +784,15 @@ In firefox search section type `dom.w3c_touch_events.enabled`. Then select boole
 **References:**
 
 - <https://askubuntu.com/questions/1122332/one-finger-scrolling-touchscreen-in-firefox?noredirect=1&lq=1>
+
+#### Vim keybindings
+
+Install [this](https://addons.mozilla.org/en-US/firefox/addon/tridactyl-vim/) extension.
+It works for all firefox based browsers like `zen-browser` too.
+
+**References:**
+
+- <https://www.reddit.com/r/firefox/comments/1d3hfza/best_vim_extension/>
 
 ### Zen Browser
 
