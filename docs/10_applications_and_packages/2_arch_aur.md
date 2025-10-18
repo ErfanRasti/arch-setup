@@ -1092,12 +1092,14 @@ paru -S stacer
 
 - <https://github.com/oguzhaninan/Stacer>
 
-## Matrix
+## Matrix and animations
 
 ```bash
 sudo pacman -S cmatrix
-paru -S unimatrix-git
+paru -S unimatrix-git pipes.sh
 ```
+
+`pipes.sh` provides animated pipes terminal screen-saver.
 
 Run:
 
