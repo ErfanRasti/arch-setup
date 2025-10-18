@@ -392,12 +392,20 @@ Check tutor at `:Tutor` to learn Neovim.
 **Note:** It's probably safest, if you want to paste something over and over again,
 to yank it into a "named" register.
 `"aY` yanks a line into the `"a` register. Paste it with `"ap`.
+`"ay` yanks the selected into the `"a` register. Paste it with `"ap`.
 
 Use `<leader>cd` to jump into diagnoses on the current code and you can select the diagnose message too.
 Also you can use `]d` to go to the next diagnose or `[d` to go to the previous one.
 You can use `<leader>xx` to open the window including all diagnoses.
 
 To open a hyperlink in the browser use `gx`.
+
+Jumpt to the previous cursor position using `` and
+jump to the beginning of the previous line where the cursor was using`''`.
+
+If you used commands like `gg`, `G`, `/search`, `:tag`, or `:edit`, Neovim records these in the jump list.
+Go back in jump list using `<C-o>` and go forward again using `<C-i>`.
+View jumps using `:jumps`.
 
 **References:**
 
