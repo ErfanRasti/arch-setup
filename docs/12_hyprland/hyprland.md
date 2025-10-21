@@ -873,9 +873,13 @@ exec-once = systemctl --user start hyprpolkitagent
 sudo pacman -S hyprsunset
 ```
 
+If `hyprsunset` doesn't work on full-screen apps for you install `hyprland-git` from AUR instead.
+Check [this](https://github.com/basecamp/omarchy/issues/2306).
+
 **References:**
 
 - <https://wiki.hypr.land/Hypr-Ecosystem/hyprsunset/>
+- <https://github.com/basecamp/omarchy/issues/2306>
 
 ## Emoji
 
