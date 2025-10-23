@@ -1,11 +1,11 @@
 # arch-setup
 
-This Repository includes the configuration I use to setup my Arch Linux.
+This repository includes the configuration I use to setup my Arch Linux.
 
-- It includes lots of customizations to make pure `arch` being fully functional for a daily desktop or laptop user.
-- This documentation is mainly developed for Arch Linux but lots of these configurations can also be widely utilized for any Linux distro.
-- All of these setup commands has been tested and used by my main system; So they are reasonably safe to use.
-- You can jump into your desired topic using navigation menu.
+- It includes many customizations to make pure Arch fully functional for a daily desktop or laptop user.
+- This documentation is primarily for Arch Linux, but many of these configurations can also be widely used with other Linux distros.
+- All of these setup commands have been tested and used on my primary system, so they are reasonably safe to use.
+- You can jump into your desired topic using the navigation menu.
 
 # Installation config (before we start)
 
