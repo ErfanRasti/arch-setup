@@ -86,6 +86,10 @@ spicetify config extensions keyboardShortcut.js                                 
 spicetify apply
 ```
 
+**References:**
+
+- <https://spicetify.app/docs/advanced-usage/extensions/#keyboard-shortcut>
+
 ### Restore
 
 To go back to the default `spotify` theme:
@@ -877,6 +881,69 @@ If you want custom CSS theme take a loot at [this](https://github.com/TheBigWazz
 **References:**
 
 - <https://www.reddit.com/r/zen_browser/comments/1i132l2/tab_groups_finally_here/>
+
+#### Sine Mods
+
+There is a major customization option and a greate marketplace named Sine for zen browser. Install it like this:
+
+1. Download the latest release of Sine from [this](https://github.com/CosmoCreeper/Sine/releases).
+2. Then:
+
+   ```sh
+   chmod +x ./sine-linux-x64
+   ./sine-linux-x64
+   ```
+
+   In installation steps select the profile that matches
+   `Profile Directory` from `about:support`. (Usually ends in `(release)`).
+   To see all profiles see `about:profiles`.
+
+3. Go to `about:support` and click on Clear Startup Cache.
+4. Restart manually by closing and opening the browser.
+5. Go to `settings > Sine Mods`.
+6. Try to install Nebula. If it don't install run these:
+
+   ```sh
+   sudo chown $(whoami):$(whoami) -R ~/.zen/*/chrome/
+   ```
+
+7. Go to `about:config` and change `browser.tabs.allow_transparent_browser` to `true`.
+8. If you wanna see the true transparency, right click on the browser empty section and got to `Edit Theme`.
+   Then make the contrast to zero.
+9. To make everything neat you can hide the minimize/maxmimize/close buttons using:
+
+   ```sh
+   nvim ~/.zen/<YOUR_PROFILE>.Default (release)/chrome/sine-mods/Nebula/userChrome.css
+   ```
+
+   and add these:
+
+   ```css
+   .titlebar-min,
+   .titlebar-max,
+   .titlebar-restore,
+   .titlebar-close {
+     display: none !important;
+   }
+   ```
+
+   It removes the title bar from the menu and adds it to the WM
+   (Maximize button has two functionality: maximie and restore).
+
+10. Another nice `Mods` that I use:
+    - Advanced Tab Groups: Tab Groups for Zen Browser
+      You can disable `browser.tabs.groups.enabled` if you use this `Mods`,
+      but if you don't there is no problem or conflict. Actually you can turn it
+      on or off using the settings of this `Mod`.
+    - Tidy Tabs: The script sorts the temporary tabs into tabgroups.
+
+**References:**
+
+- <https://github.com/CosmoCreeper/Sine/wiki/Installation>
+- <https://www.youtube.com/watch?v=5g8sgDNOYaQ>
+- <https://github.com/JustAdumbPrsn/Zen-Nebula/issues/295>
+- <https://github.com/JustAdumbPrsn/Zen-Nebula>
+- <https://www.reddit.com/r/zen_browser/comments/1jjgg9c/how_can_i_remove_the_minimize_and_maximize_button/>
 
 ### Microsoft Edge
 
