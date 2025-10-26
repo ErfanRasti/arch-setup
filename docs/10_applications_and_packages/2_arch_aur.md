@@ -77,6 +77,15 @@ spicetify apply
 
 This setting conflicts with the previous marketplace setting. Stick to the marketplace it is more user-friendly.
 
+### Keyboard Shortcuts
+
+Add keyboard shortcuts using these:
+
+```sh
+spicetify config extensions keyboardShortcut.js                                                                                 31s 18:29:38
+spicetify apply
+```
+
 ### Restore
 
 To go back to the default `spotify` theme:
