@@ -548,7 +548,7 @@ For custom user themes put your themes on `~/.config/kitty/themes/`.
 
 - <https://sw.kovidgoyal.net/kitty/kittens/themes/>
 
-### Open new tab in same folder
+#### Open new tab in same folder
 
 Add these to your `kitty.conf`:
 
@@ -566,6 +566,11 @@ map kitty_mod+enter new_window_with_cwd
 **References:**
 
 - <https://github.com/kovidgoyal/kitty/issues/692>
+
+#### Some important shortcuts
+
+- `Ctrl+Shift+,` → move the current tab one position to the left
+- `Ctrl+Shift+.` → move the current tab one position to the right
 
 #### Proxy in Kitty
 
