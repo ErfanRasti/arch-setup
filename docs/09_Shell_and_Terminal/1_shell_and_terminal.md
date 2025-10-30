@@ -56,8 +56,22 @@ If you previously pushed a file to the repo and you want to ignore it:
 
 ```sh
 git rm --cached path/to/yourfile
-
 ```
+
+### First commit
+
+If you don't want to clone the repo and you want just to add an existing repo to your current git use these:
+
+```sh
+git init
+gid add <YOUR_FILE>
+git branch -M main
+git remote add origin https://github.com/<YOUR_USERNAME>/<YOUR_REPO>.git
+git push -u origin main
+```
+
+- `git branch -M` main renames your current branch to `main`.
+- `git remote add origin ...` adds a remote URL alias called `origin`.
 
 ## bash
 
@@ -845,6 +859,15 @@ fisher install vitallium/tokyonight-fish
 fish_config theme save "TokyoNight Moon"
 ```
 
+If you want the default theme:
+
+```sh
+fish_config theme save "fish default"
+set_color normal
+```
+
+This will inherit the terminal colors
+
 ### starship
 
 Install starship:
@@ -860,6 +883,14 @@ sudo pacman -S fisher
 rm ~/.config/fish/functions/fish_prompt.fish
 fisher install IlanCosman/tide@v6
 ```
+
+You can configure tide interactively using `tide configure` or pass all the items like this:
+
+```sh
+tide configure --auto --style=Lean --prompt_colors='16 colors' --show_time='24-hour format' --lean_prompt_height='One line' --prompt_spacing=Compact --icons='Many icons' --transient=No
+```
+
+If you want tide to use terminal colors set the prompt colors to `16 colors`.
 
 ### fzf
 
@@ -987,8 +1018,8 @@ There are some details in handling `dotfiles` using `stow`:
 If you want to add another repo as a sub-module to your `dotfiles` repository:
 
 ```sh
-git submodule add  https://github.com/ErfanRasti/nvim nvim/.config/nvim/
-git submodule add  https://github.com/ErfanRasti/tmux tmux/.config/tmux/
+git submodule add  https://github.com/<USERNAME>/nvim nvim/.config/nvim/
+git submodule add  https://github.com/<USERNAME>/tmux tmux/.config/tmux/
 ```
 
 Use `git submodule status` to check sub-module commits.
