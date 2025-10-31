@@ -243,6 +243,27 @@ systemctl --user start batsignal.service
 
 - <https://github.com/electrickite/batsignal>
 
+### `supergfxctl`
+
+Nice tool for ASUS laptops to switch graphics mode without restart (just relogin).
+
+```sh
+paru -S supergfxctl
+```
+
+```sh
+# Supported modes
+supergfxctl -m
+
+# Current mode
+supergfxctl -g
+```
+
+**References:**
+
+- <https://wiki.archlinux.org/title/Supergfxctl>
+- <https://wiki.archlinux.org/title/ASUS_Linux>
+
 ### Monitoring
 
 #### Monitor power usage
