@@ -479,13 +479,13 @@ Also check the list of generations:
 nix-env --list-generations
 ```
 
-For zsh integration:
+For `zsh` integration:
 
 ```bash
 paru -S zsh-nix-shell
 ```
 
-For zsh autocompletion:
+For `zsh` autocompletion:
 
 ```bash
 paru -S nix-zsh-completions
