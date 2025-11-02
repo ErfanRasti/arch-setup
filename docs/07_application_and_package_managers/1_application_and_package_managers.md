@@ -392,6 +392,22 @@ sudo downgrade --unignore <PACKAGE_NAME>
 
 - <https://wiki.archlinux.org/title/Downgrading_packages>
 
+## I love candy style on `pacman` and `AUR` helpers
+
+You can easily activate `ILoveCandy` style and colorize `pacman` using:
+
+```sh
+sudo nvim /etc/pacman.conf
+```
+
+and uncomment `Color` under `[options]` and add `ILoveCandy`:
+
+```conf
+[options]
+Color
+ILoveCandy
+```
+
 ## Troubleshooting
 
 ### Possibly missing hardware
