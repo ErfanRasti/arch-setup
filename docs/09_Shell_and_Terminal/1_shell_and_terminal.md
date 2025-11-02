@@ -155,7 +155,7 @@ sudo chsh -s $(which zsh) <username>
 sudo nano /etc/pacman.conf
 ```
 
-Uncomment `Color` line.
+Uncomment `Color` line under `[options]`.
 
 ## Colorize `nano`
 
@@ -1041,8 +1041,8 @@ stow --restow */
 If you ever had git submodules change their paths in `.gitmodules` and them again:
 
 ```sh
-git submodule add https://github.com/ErfanRasti/nvim dotfiles/nvim/.config/nvim
-git submodule add https://github.com/ErfanRasti/tmux dotfiles/tmux/.config/tmux
+git submodule add https://github.com/<USER>/nvim dotfiles/nvim/.config/nvim
+git submodule add https://github.com/<USER>/tmux dotfiles/tmux/.config/tmux
 ```
 
 **References:**

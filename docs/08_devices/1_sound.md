@@ -36,7 +36,7 @@ To automate the `wireplumber.service` restart using `udev`:
    bluetoothctl
 
    [bluetooth]#devices
-   Device XX:XX:XX:XX:XX:XX Erfan’s AirPods Pro
+   Device XX:XX:XX:XX:XX:XX AirPods Pro
    ```
 
 2. Run:

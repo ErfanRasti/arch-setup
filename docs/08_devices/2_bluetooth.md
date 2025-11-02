@@ -390,6 +390,10 @@ sudo dmesg | grep -iE 'btusb|rtl|firmware'
    `/usr/local/lib/usb-nosuspend.sh` is the best path for this script.
    `/usr/local/lib` is a standard place for local system scripts used by services.
 
+   **Note:** Difference between `/usr/share/` and `/usr/local/share`:
+   `/usr/share` is managed by package manager but `/usr/local/share` is managed by
+   locally installed software and system administrator.
+
 3. Now you should add a `systemd` service that gets triggered after `powertop` functions.
    To do it:
 
@@ -494,9 +498,78 @@ sudo dmesg | grep -iE 'btusb|rtl|firmware'
    paru -S rtl8761b-firmware
    ```
 
+### Awake the system using Bluetooth device
+
+Find your Bluetooth device using `lsusb` and `/sys/bus/usb/devices`; then do these:
+
+```sh
+sudo nvim /usr/local/lib/enable-usb-wakeup.sh
+```
+
+```sh
+#!/bin/bash
+# Wake the device using Bluetooth devices on TP-Link Bluetooth device
+
+log() { echo "[usb-nosuspend] $*"; }
+
+if [[ -w "/sys/bus/usb/devices/<BLUETOOTH_DEVICE>/power/wakeup" ]]; then
+    log "Enabling wakeup for USB device <BLUETOOTH_DEVICE>"
+    echo 'enabled' | sudo tee '/sys/bus/usb/devices/<BLUETOOTH_DEVICE>/power/wakeup' >/dev/null
+fi
+
+log "Wakeup parameter is set to enabled"
+```
+
+```sh
+sudo nvim /etc/systemd/system/enable-usb-wakeup.service
+```
+
+```service
+[Unit]
+Description=Awake system using the usb device
+# Make sure this runs after powertop, and that powertop is started if we are.
+After=powertop.service
+Requires=powertop.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/lib/enable-usb-wakeup.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+
+```
+
+```sh
+sudo systemctl edit systemd-suspend.service
+```
+
+And add this inside the `###`:
+
+```service
+[Service]
+ExecStartPost=systemctl restart enable-usb-wakeup.service
+ExecStartPre=systemctl restart enable-usb-wakeup.service
+```
+
+Then:
+
+```sh
+sudo systemctl daemon-reload
+sudo systemctl enable enable-usb-wakeup.service
+sudo systemctl start enable-usb-wakeup.service
+```
+
+Finally check it using:
+
+```sh
+sudo systemctl status enable-usb-wakeup.service
+```
+
 ### Chinese Bluetooth dongle
 
-If you want to make chinese bluetooth dongle work:
+If you want to make Chinese Bluetooth dongle work:
 
 1. follow [this](../02_linux_kernels/1_linux_kernels.md#custom-kernels) until step 7.
 2. Make your customizations:
