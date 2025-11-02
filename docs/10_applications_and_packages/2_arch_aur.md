@@ -235,6 +235,8 @@ paru -S pdfsam
 sudo pacman -S zathura zathura-pdf-poppler
 ```
 
+To open a pdf in `zathura` press `o` in the app and type the path.
+
 ## Photo and Video
 
 ```bash
@@ -762,6 +764,36 @@ sudo pacman -S micro
 ```
 
 Press `<C-g>` to open help documentations. To open help menu related to a topic press `<C-e>` and type `> help colors`. I personally prefer matching the text editor color with my terminal. So I set it simple using this command `> set colorscheme simple`.
+
+To use the system clipboard:
+For user-wide:
+
+```sh
+nvim ~/.config/micro/settings.json
+```
+
+and add:
+
+```json
+{
+  "clipboard": "external"
+}
+```
+
+On system-wide:
+
+```sh
+sudo mkdir -p /root/.config/micro
+sudo cp -r ~/.config/micro/* /root/.config/micro/
+```
+
+and add:
+
+```json
+{
+  "clipboard": "external"
+}
+```
 
 ## Zed
 
@@ -1616,3 +1648,31 @@ QT_QPA_PLATFORM=xcb octave --persist hello.m
 **References:**
 
 - <https://wiki.archlinux.org/title/Octave>
+
+## vert
+
+VERT is a file conversion utility that uses `WebAssembly` to convert files
+on your device instead of a cloud. Check out the live instance at vert.sh.
+
+Install it:
+
+```sh
+paru -S bun
+z ~/projects/
+git clone https://github.com/VERT-sh/VERT
+cd VERT/
+bun i
+```
+
+Run it:
+
+```sh
+bun dev
+
+```
+
+Open <http://localhost:5173> to see it.
+
+**References:**
+
+- <https://github.com/VERT-sh/VERT/blob/main/docs/GETTING_STARTED.md>
