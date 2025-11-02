@@ -251,6 +251,13 @@ Nice tool for ASUS laptops to switch graphics mode without restart (just relogin
 paru -S supergfxctl
 ```
 
+Enable and start its service then use it:
+
+```sh
+sudo systemctl enable supergfxd.service
+sudo systemctl start supergfxd.service
+```
+
 ```sh
 # Supported modes
 supergfxctl -m
