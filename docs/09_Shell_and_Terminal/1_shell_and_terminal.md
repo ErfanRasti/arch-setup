@@ -654,7 +654,7 @@ sudo pacman -S zellij
 ```bash
 sudo pacman -S duf exa eza git-delta zoxide glow yazi aichat trash-cli \
   tree superfile television wiremix feh git-filter-repo cava libcanberra
-paru -S lazydocker-bin ascii-image-converter-bin gitbutler-bin fum-bin
+paru -S lazydocker-bin ascii-image-converter-bin gitbutler-bin fum-bin gitfetch-python
 ```
 
 - `duf` – A modern, user-friendly alternative to df for checking disk usage.
@@ -753,6 +753,9 @@ paru -S lazydocker-bin ascii-image-converter-bin gitbutler-bin fum-bin
   sudo systemctl enable canberra-system-bootup.service
   ```
 
+- `gitfetch-python` - A neofetch-style CLI tool for GitHub, GitLab, Gitea, Forgejo, Codeberg,
+  and Sourcehut statistics.
+
 **References:**
 
 - <https://github.com/ibraheemdev/modern-unix>
@@ -770,6 +773,7 @@ paru -S lazydocker-bin ascii-image-converter-bin gitbutler-bin fum-bin
 - <https://alexpasmantier.github.io/television/docs/Users/quickstart>
 - <https://github.com/derf/feh>
 - <https://wiki.archlinux.org/title/Libcanberra>
+- <https://github.com/Matars/gitfetch>
 
 ## Fish
 
