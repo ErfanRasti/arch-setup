@@ -116,6 +116,18 @@ env = GDK_SCALE,2
 env = XCURSOR_SIZE,32
 ```
 
+Use `wdisplays` as a GUI for editing monitors.
+
+```sh
+wdisplays
+```
+
+Also to make `$HDMI` the mirror of `EDP` use:
+
+```sh
+hyprctl keyword monitor "$HDMI,preferred,auto,1,mirror,$EDP" >/dev/null
+```
+
 #### `uwsm`
 
 **Note:** `uwsm` should avoid using `env` in `hyprland.conf`. Instead:
