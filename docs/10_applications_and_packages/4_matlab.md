@@ -107,6 +107,43 @@ with the following line:
 - <https://wiki.archlinux.org/title/MATLAB>
 - <https://wiki.archlinux.org/title/MATLAB#OpenGL_acceleration>
 
+### Graphics Driver: Uninitialized software (Segmentation violation detected)
+
+Recent `gnutls` 3.8.10+ breaks MATLAB R2024–R2025 at startup. The reliable
+fix is to give MATLAB an older GnuTLS (e.g., 3.8.9) just for itself.
+
+Here’s the quickest, safe workaround (keeps your system fully updated; only MATLAB uses the older libs):
+
+```sh
+# 1) Check your system gnutls version (likely 3.8.10 or newer)
+pacman -Q gnutls
+
+# 2) Grab the older package from the Arch archive
+cd /tmp
+wget https://archive.archlinux.org/packages/g/gnutls/gnutls-3.8.9-1-x86_64.pkg.tar.zst
+
+# 3) Unpack it to a temp dir
+mkdir gnutls-3.8.9 && tar -xvf gnutls-3.8.9-1-x86_64.pkg.tar.zst -C gnutls-3.8.9
+
+# 4) Copy only the libraries into MATLAB’s bin dir (R2024a path shown)
+sudo mkdir -p /usr/local/MATLAB/R2024a/bin/glnxa64/gnutls
+sudo cp -a /tmp/gnutls-3.8.9/usr/lib/libgnutls*.so* /usr/local/MATLAB/R2024a/bin/glnxa64/gnutls/
+
+# 5) Add convenient symlinks so MATLAB finds them first (next to its executables)
+cd /usr/local/MATLAB/R2024a/bin/glnxa64
+sudo ln -s gnutls/* .  # creates libgnutls.so.30 etc. in glnxa64
+```
+
+Then try launching `matlab`:
+
+```sh
+matlab -softwareopengl
+```
+
+**References:**
+
+- <https://bbs.archlinux.org/viewtopic.php?id=306939>
+
 ### Sound Check
 
 To confirm that MATLAB is able to use the default soundcard to present sounds run:
