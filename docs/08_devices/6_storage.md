@@ -17,6 +17,8 @@ sudo smartctl -A /dev/sda \
  | awk '$1==230 {printf("Wear used: %d%%  →  Life left: %d%%\n",$4,100-$4)}'
 ```
 
+You should check smart attribute `230` for your specific SSD.
+
 Or using this:
 
 ```bash
@@ -25,6 +27,22 @@ host_written=$(sudo smartctl -A /dev/sda | awk '$1==241{print $10}')
 printf "Endurance used: %.2f%%\n" \
         "$(echo "$host_written/1024/$tbw_rated*100" | bc -l)"
 ```
+
+You should Find your manufacturer-rated lifetime write capacity which
+is indicated as `tbw_rated` (Terabytes Written). Also `241` is
+total LBAs written and you can find it on `sudo smartctl -A /dev/sda`.
+
+| Variable / Field                   | Meaning                                  | Where it comes from                    | Example for **WDC WDS100T2B0B-00YS70** (WD Blue 3D NAND 1 TB SATA) | What to change for another SSD                                                           |
+| ---------------------------------- | ---------------------------------------- | -------------------------------------- | ------------------------------------------------------------------ | ---------------------------------------------------------------------------------------- |
+| **`dev`**                          | Linux device path to the SSD             | `lsblk` or `sudo smartctl -i /dev/...` | `/dev/sda`                                                         | Set to your actual device (`/dev/nvme0n1`, `/dev/sdb`, etc.)                             |
+| **SMART ID 230**                   | Attribute reporting “wear used %”        | WD Blue/Green/Red SATA drives only     | Present → counts **wear used**                                     | May not exist or may use ID 177 / 233 on other brands                                    |
+| **SMART ID 241**                   | Attribute reporting “Total LBAs Written” | All SATA/NVMe SSDs                     | Present                                                            | Always keep; occasionally also check ID 242 for “read LBAs”                              |
+| **Sector size**                    | Bytes per LBA (used for conversion)      | `smartctl -i /dev/...` → “Sector Size” | 512 bytes                                                          | 4096 on some NVMe models → update conversion math                                        |
+| **`tbw_rated`**                    | Manufacturer-rated endurance (in TBW)    | Drive datasheet                        | `400` TBW                                                          | Replace with spec for your capacity/model (e.g., 250 GB = 100, 500 GB = 200, 2 TB = 500) |
+| **`awk` field number ($4 or $10)** | Column position in `smartctl -A` output  | Depends on smartctl version & drive    | Works for WD Blue output shown                                     | Adjust if output format differs (e.g., RAW VALUE column shifts)                          |
+
+> ⚠️ Always confirm SMART attribute IDs and sector size for your specific SSD model.
+> The two calculation methods are identical in logic but rely on these hardware-specific parameters.
 
 To check the left space on your disk or drive use this command:
 
