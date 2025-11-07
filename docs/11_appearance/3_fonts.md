@@ -97,8 +97,9 @@ The 'ttf-font-awesome' package has therefore been replaced by the 'woff2-font-aw
 If your project(s) or configuration(s) still depend on '.ttf' files, please update
 them to use the '.woff2' format instead.
 
-See <https://fontawesome.com/changelog> for more details.**
+See <https://fontawesome.com/changelog> for more details.
 </i>
+
 **References:**
 
 - <https://www.reddit.com/r/gnome/comments/9c8a07/what_fonts_do_you_use_with_your_gnome/>
@@ -196,6 +197,16 @@ rm -rf ~/.config/fontconfig
 - <https://wiki.archlinux.org/title/Font_configuration>
 - <https://wiki.archlinux.org/title/Font_configuration/Examples>
 - <https://www.reddit.com/r/linuxquestions/comments/qniaxn/persian_fonts_looks_ugly/>
+
+### Writing fonts
+
+```sh
+sudo pacman -S otf-libertinus
+```
+
+**References:**
+
+- <https://wiki.archlinux.org/title/Fonts#Families>
 
 ### Chinese and Japanese
 
