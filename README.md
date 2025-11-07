@@ -13,10 +13,10 @@ The installation configuration can be described as follows:
 
 - File system: `btrfs`
 - Disk encryption: `LUKS`
-- Bootloader: `systemd-boot`
+- Boot loader: `systemd-boot`
 - Swap: `zram`
 - Desktop environment: GNOME
-- Tiling window manager: Hyprland
-- Windowing system: Wayland, X11
+- Tiling window manager: `Hyprland`
+- Windowing system: Wayland, `X11`
 
-I also use 11th Gen Intel® Core™ i7 processor alongside NVIDIA GeForce RTX 3060. So the drivers installation instruction would be based on these hardware components.
+I also use 11th Gen Intel® Core™ i7 processor alongside NVIDIA GeForce RTX 3060 on my primary system but I've used this setup for other hardware too.

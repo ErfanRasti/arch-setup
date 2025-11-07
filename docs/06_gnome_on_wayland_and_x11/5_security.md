@@ -19,7 +19,8 @@ sudo fwupdmgr refresh --force
 sudo fwupdmgr update
 ```
 
-Also consider activating `Secure Boot` in your firmware settings. Check the [Secure Boot](../05_secure_boot/secure_boot.md) section for more information.
+Also consider activating `Secure Boot` in your firmware settings.
+Check the [Secure Boot](../05_secure_boot/secure_boot.md#secure-boot) section for more information.
 
 **References:**
 
