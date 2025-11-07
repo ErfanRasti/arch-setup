@@ -26,6 +26,12 @@ sudo pacman -S ttf-cascadia-code-nerd
 sudo pacman -S ttf-jetbrains-mono-nerd
 ```
 
+For icons and symbols:
+
+```sh
+sudo pacman -S ttf-nerd-fonts-symbols ttf-nerd-fonts-symbols-mono
+```
+
 ### Apple Fonts
 
 ```bash
