@@ -41,7 +41,7 @@ total LBAs written and you can find it on `sudo smartctl -A /dev/sda`.
 | **`tbw_rated`**                    | Manufacturer-rated endurance (in TBW)    | Drive datasheet                        | `400` TBW                                                          | Replace with spec for your capacity/model (e.g., 250 GB = 100, 500 GB = 200, 2 TB = 500) |
 | **`awk` field number ($4 or $10)** | Column position in `smartctl -A` output  | Depends on smartctl version & drive    | Works for WD Blue output shown                                     | Adjust if output format differs (e.g., RAW VALUE column shifts)                          |
 
-> ⚠️ Always confirm SMART attribute IDs and sector size for your specific SSD model.
+> **Note:** Always confirm SMART attribute IDs and sector size for your specific SSD model.
 > The two calculation methods are identical in logic but rely on these hardware-specific parameters.
 
 To check the left space on your disk or drive use this command:

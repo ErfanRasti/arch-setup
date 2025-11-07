@@ -240,7 +240,7 @@ In this section I try to explain how can we put a repo on `AUR` package.
          image: archlinux:base
 
        outputs:
-         status: ${{ steps.update.outputs.status }} # 👈 expose step output to other jobs
+         status: ${{ steps.update.outputs.status }} # <- expose step output to other jobs
 
        steps:
          - name: Checkout repository
@@ -515,7 +515,7 @@ In this section I try to explain how can we put a repo on `AUR` package.
    cp PKGBUILD ../PKGBUILD
    cp .SRCINFO ../.SRCINFO
 
-   log "✅ Done. Review changes, then run:"
+   log " Done. Review changes, then run:"
    echo "  git add $PKGFILE .SRCINFO"
    echo "  git commit -m \"update to ${latest_ver}\""
    ```

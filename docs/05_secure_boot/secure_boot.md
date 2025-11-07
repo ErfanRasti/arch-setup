@@ -105,7 +105,7 @@ For me it wasn't activated.
    It is possible that there are lots of other files to verify under your boot directory. To verify them:
 
 ```bash
-sbctl verify | sed 's/✗ /sbctl sign -s /e'
+sudo sbctl verify | sed 's/✗ /sbctl sign -s /e'
 ```
 
 To be agnostic of the file-path, and independent of the '✗' character:

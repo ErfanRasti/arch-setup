@@ -63,7 +63,7 @@ glxinfo | grep "direct rendering"
 
 If "direct rendering" is not "yes", then there is likely a problem with your system configuration.
 
-If glxinfo works but not matlab, you can try to run:
+If `glxinfo` works but not matlab, you can try to run:
 
 ```bash
  export LD_PRELOAD=/usr/lib/libstdc++.so; export LD_LIBRARY_PATH=/usr/lib/xorg/modules/dri/; matlab -nodesktop -nosplash -r "opengl info; exit" | grep Software
@@ -94,6 +94,12 @@ After these changes, you may see low-level graphics errors in the MATLAB console
 
 ```bash
 sudo nano ~/matlab/R<version>/bin/glnxa64/java.opts
+```
+
+or:
+
+```bash
+sudo nano /usr/local/MATLAB/R<version>/bin/glnxa64/java.opts
 ```
 
 with the following line:
