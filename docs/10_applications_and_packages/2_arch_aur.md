@@ -1031,6 +1031,13 @@ The add following flags to `Exec` lines:
 ```
 
 Remember adding these flags before `%U` or `%F`.
+
+If title bar including minimize, maximize and close buttons is so ugly do this:
+
+```
+Settings > Appearance > Themes > Use Chrome Colors
+```
+
 **References:**
 
 - <https://wiki.archlinux.org/title/Chromium#Touchpad_Gestures_for_Navigation>
@@ -1676,3 +1683,15 @@ Open <http://localhost:5173> to see it.
 **References:**
 
 - <https://github.com/VERT-sh/VERT/blob/main/docs/GETTING_STARTED.md>
+
+### pandoc
+
+Nice tool to convert markdown files to `pdf`.
+
+```sh
+sudo pacman -S pandoc
+```
+
+**References:**
+
+- <https://wiki.archlinux.org/title/List_of_applications/Documents>
