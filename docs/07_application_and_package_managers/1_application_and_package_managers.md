@@ -1,6 +1,12 @@
 # Application and package managers
 
-**Warning:** Always read package build (PKGBUILD) before installing a package from AUR. There is a small chance to get malicious software. But by checking package build you can detect it. Also you should read package build during updates. `paru` always show you the package build anway so I recommend using `paru` instead of `yay`.
+**Warning:** Always read package build (`PKGBUILD`) before installing a package from AUR. There is a small chance to get malicious software. But by checking package build you can detect it. Also you should read package build during updates. `paru` always show you the package build anyway so I recommend using `paru` instead of `yay`.
+
+**Note:** An "orphaned package" in the context of the
+Arch User Repository (AUR) can mean two things:
+
+- The package is no longer maintained by a user
+- It was installed as a dependency for another package and is no longer required by any other installed package.
 
 **References:**
 

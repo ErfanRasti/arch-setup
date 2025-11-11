@@ -530,8 +530,8 @@ In this section I try to explain how can we put a repo on `AUR` package.
        --container-options "-v $HOME/.cache/act-pacman:/var/cache/pacman/pkg"
    ```
 
-   Put your secrets under .secrets folder in the root of the repo.
-   The `container-options` make it save the pacman cache.
+   Put your secrets under `.secrets` folder in the root of the repo.
+   The `container-options` make it save the `pacman` cache.
 
 **References:**
 
