@@ -18,6 +18,37 @@ These workarounds are for this issue:
 - <https://wiki.archlinux.org/title/Spotify>
 - <https://www.reddit.com/r/spotify/comments/ttpt41/spotify_using_3040_of_cpu_power/>
 
+### Spotify on Wayland
+
+```sh
+cp /usr/share/applications/spotify.desktop  ~/.local/share/applications/
+```
+
+Then:
+
+```sh
+nvim ~/.local/share/applications/spotify.desktop
+```
+
+Then change `Exec` like to this:
+
+```desktop
+Exec=spotify --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime --uri=%u
+```
+
+| **Part**                             | **Meaning**                                                                                                                                                                                                                    |
+| ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `Exec=`                              | The key in `.desktop` files that defines what command should be executed when the app is launched.                                                                                                                             |
+| `spotify`                            | The actual executable — in this case, the Spotify client.                                                                                                                                                                      |
+| `--enable-features=UseOzonePlatform` | Enables a Chromium feature flag (`UseOzonePlatform`). Spotify’s Linux client is built on Chromium, and this tells it to use **Ozone**, which is Chromium’s abstraction layer for window systems. It enables Wayland, X11, etc. |
+| `--ozone-platform=wayland`           | Specifies **Wayland** as the Ozone backend, instead of X11. This makes Spotify use native Wayland rendering (smoother scaling, better HiDPI, etc.).                                                                            |
+| `--enable-wayland-ime`               | Enables **Wayland Input Method Editor (IME)** support, which is necessary for input methods like Fcitx or IBus (used for non-Latin scripts or complex input).                                                                  |
+| `--uri=%u`                           | Placeholder for a **Spotify URI or URL**. When you click a Spotify link (like `spotify:track:...` or a web link), the system replaces `%u` with that URI. Without this, clicking a Spotify link might not open correctly.      |
+
+**References:**
+
+- <https://wiki.archlinux.org/title/Spotify#Running_under_Wayland>
+
 ## Spicetify
 
 `spicetify` is a nice package to customize s`potify` and add custom apps and themes to it. To install it:
