@@ -928,8 +928,11 @@ There is a major customization option and a greate marketplace named Sine for ze
 
    ```sh
    chmod +x ./sine-linux-x64
-   ./sine-linux-x64
+   sudo ./sine-linux-x64
    ```
+
+   When it asks for installation path `/opt/zen-browser-bin/` accept it.
+   Then enter your username that includes `.zen` folder and your profiles.
 
    In installation steps select the profile that matches
    `Profile Directory` from `about:support`. (Usually ends in `(release)`).
@@ -938,7 +941,7 @@ There is a major customization option and a greate marketplace named Sine for ze
 3. Go to `about:support` and click on Clear Startup Cache.
 4. Restart manually by closing and opening the browser.
 5. Go to `settings > Sine Mods`.
-6. Try to install Nebula. If it don't install run these:
+6. Try to install `Nebula`. If it don't install run these:
 
    ```sh
    sudo chown $(whoami):$(whoami) -R ~/.zen/*/chrome/
@@ -947,7 +950,7 @@ There is a major customization option and a greate marketplace named Sine for ze
 7. Go to `about:config` and change `browser.tabs.allow_transparent_browser` to `true`.
 8. If you wanna see the true transparency, right click on the browser empty section and got to `Edit Theme`.
    Then make the contrast to zero.
-9. To make everything neat you can hide the minimize/maxmimize/close buttons using:
+9. To make everything neat you can hide the minimize/maximize/close buttons using:
 
    ```sh
    nvim ~/.zen/<YOUR_PROFILE>.Default (release)/chrome/sine-mods/Nebula/userChrome.css
@@ -964,15 +967,26 @@ There is a major customization option and a greate marketplace named Sine for ze
    }
    ```
 
-   It removes the title bar from the menu and adds it to the WM
-   (Maximize button has two functionality: maximie and restore).
+   It removes the title bar from the menu and adds it to the `WM`
+   (Maximize button has two functionality: maximize and restore).
 
 10. Another nice `Mods` that I use:
-    - Advanced Tab Groups: Tab Groups for Zen Browser
+    - `Advanced Tab Groups`: Tab Groups for Zen Browser
       You can disable `browser.tabs.groups.enabled` if you use this `Mods`,
       but if you don't there is no problem or conflict. Actually you can turn it
       on or off using the settings of this `Mod`.
-    - Tidy Tabs: The script sorts the temporary tabs into tabgroups.
+    - `Tidy Tabs`: The script sorts the temporary tabs into tab-groups.
+      There is a built-in `Clear all unpinned tabs` feature in Zen browser.
+      It can conflict with `Tidy Tabs` and can get a little bit ugly.
+      Disable it using:
+
+      ```
+      about:config > zen.view.show-clear-tabs-button > false
+      ```
+
+    - Some websites have a transparency background which in some cases
+      they become unreadable because of `Nebula` Sine Mode.
+      To fix this, I recommend using [`Dark Reader`](https://darkreader.org/) extension.
 
 **References:**
 
@@ -981,6 +995,7 @@ There is a major customization option and a greate marketplace named Sine for ze
 - <https://github.com/JustAdumbPrsn/Zen-Nebula/issues/295>
 - <https://github.com/JustAdumbPrsn/Zen-Nebula>
 - <https://www.reddit.com/r/zen_browser/comments/1jjgg9c/how_can_i_remove_the_minimize_and_maximize_button/>
+- <https://www.reddit.com/r/zen_browser/comments/1otr3u1/remove_clear_tabs_button/>
 
 ### Microsoft Edge
 
