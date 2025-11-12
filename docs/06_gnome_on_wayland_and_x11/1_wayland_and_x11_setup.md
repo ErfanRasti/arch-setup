@@ -129,3 +129,14 @@ Open `tty` using `CTRL+SHIFT+F2/F3`. Then login to your user and run:
 ```sh
 sudo systemctl restart gdm.service
 ```
+
+## Xwayland
+
+Xwayland is the compatibility layer that lets you run old X11 apps inside a Wayland session.
+
+Normally, a compositor (like Sway, Hyprland, or GNOME’s Mutter) launches one big Xwayland server that manages all X11 windows.
+
+| Type                                       | Description                                                                                             | Pros                                                                                                                    | Cons                                                                                   |
+| ------------------------------------------ | ------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| **Classic Xwayland (rootful or rootless)** | The compositor runs a single Xwayland process that all X11 apps share.                                  | Simpler setup, stable, mature.                                                                                          | Tied to the compositor’s lifecycle; all X11 apps die if it crashes; more global state. |
+| **Xwayland-Satellite (per-client model)**  | Each X11 app gets its **own** lightweight Xwayland instance (“satellite”) instead of one global server. | Better isolation, lower latency per window, smoother focus/stacking integration with Wayland; avoids some scaling bugs. | Slightly higher per-window resource cost; newer (still being refined).                 |
