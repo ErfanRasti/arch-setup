@@ -720,9 +720,17 @@ paru -S lazydocker-bin ascii-image-converter-bin gitbutler-bin fum-bin gitfetch-
 - `git-filter-repo` - Nice tool to filter your repo.
   If you ever want to replace anything in the whole repository across all your commits you can use this tool.
   Check `git filter-repo -h` first.
+  Check which commits contain `user` or any other string using:
+
+  ```sh
+  git log -S "user" --all --name-only
+  ```
+
+  Replace them using:
 
   ```bash
-  git filter-repo --replace-text <(echo "user==>USERNAME") --force
+  echo "user==>USERNAME" > replace.txt
+  git filter-repo --replace-text replace.txt --force
   sudo git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO.git
   git push --force origin main
   ```
