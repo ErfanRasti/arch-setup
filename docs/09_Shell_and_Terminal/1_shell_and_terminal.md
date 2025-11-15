@@ -73,6 +73,124 @@ git push -u origin main
 - `git branch -M` main renames your current branch to `main`.
 - `git remote add origin ...` adds a remote URL alias called `origin`.
 
+### pre-commits
+
+Pre-commits are nice for performing some validation before committing something.
+To use them:
+
+1. First create your pre-commit hook file:
+
+   ```sh
+   mkdir -p .git/hooks
+   nvim .git/hooks/pre-commit
+   chmod +x .git/hooks/pre-commit
+   ```
+
+2. Add your script:
+
+   ```bash
+   #!/usr/bin/env bash
+   set -e
+
+   USERNAME="${USER}"
+   PATTERN="$USERNAME"
+   REPLACEMENT="user"
+
+   # Only process files that are currently staged for commit
+   STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM)
+
+   [ -z "$STAGED_FILES" ] && exit 0
+
+   for file in $STAGED_FILES; do
+     # Skip if file doesn’t exist (deleted, etc.)
+     [ -f "$file" ] || continue
+
+     # Optional: skip obvious binary files
+     if git check-attr --all "$file" | grep -qi 'binary'; then
+       continue
+     fi
+
+     # If the username appears in the file, replace and re-add
+     if grep -q "$PATTERN" "$file"; then
+       sed -i "s|$PATTERN|$REPLACEMENT|g" "$file"
+       git add "$file"
+     fi
+   done
+
+   exit 0
+   ```
+
+   This script finds all the `$USER` in the staged files and replaces them with `user`.
+
+If you want to share your hook you should first install `pre-commit`:
+
+```sh
+sudo pacman -S python-pre-commit
+```
+
+Then add something like this to your repo:
+
+```sh
+nvim .pre-commit-config.yaml
+```
+
+```yaml
+repos:
+  - repo: local
+    hooks:
+      - id: replace-username-paths
+        name: Replace $USER with user
+        entry: python3 scripts/replace_username.py
+        language: system
+        pass_filenames: true
+        types: [text]
+```
+
+Then your script:
+
+```sh
+mkdir -p hooks/scripts
+nvim hooks/scripts/replace_username.py
+```
+
+```python
+#!/usr/bin/env python3
+import os
+import sys
+
+username = os.getenv("USER")
+pattern = f"{username}"
+replacement = "user"
+
+for path in sys.argv[1:]:
+    if not os.path.isfile(path):
+        continue
+
+    with open(path, "r", encoding="utf-8", errors="ignore") as f:
+        content = f.read()
+
+    new_content = content.replace(pattern, replacement)
+
+    if new_content != content:
+        with open(path, "w", encoding="utf-8") as f:
+            f.write(new_content)
+```
+
+Or for any other pattern like this:
+
+```python
+pattern = f"/home/{username}/"
+replacement = "/home/user/"
+```
+
+Then install it:
+
+```sh
+pre-commit install
+```
+
+Then if your commit includes any `$USER` it doesn't allow to commit.
+
 ## bash
 
 There is not much to say about `bash` but if you want to restore the default `bash` configuration:
