@@ -13,9 +13,22 @@ Or use:
 setxkbmap -layout us,ir -variant ,winkeys -option grp:win_space_toggle
 ```
 
+You can also use:
+
+```sh
+sudo localectl set-x11-keymap us,ir pc105 ",winkeys" "grp:win_space_toggle"
+```
+
+To set keymap globally not only for `x11`:
+
+```sh
+localectl --no-convert set-keymap us
+```
+
 **References:**
 
 - <https://wiki.archlinux.org/title/Xorg/Keyboard_configuration#Using_localectl>
+- <https://bbs.archlinux.org/viewtopic.php?id=168810>
 
 ### Troubleshooting
 
