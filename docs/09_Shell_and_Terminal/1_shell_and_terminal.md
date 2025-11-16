@@ -199,7 +199,7 @@ There is not much to say about `bash` but if you want to restore the default `ba
 cp /etc/skel/.bashrc ~/
 ```
 
-## ZSH $ OhMyZsh
+## ZSH & OhMyZsh
 
 ## Installation
 

@@ -6,11 +6,11 @@ The `/sys/power/state` file in Linux is an interface that allows you to manage t
 
 The available power states can vary depending on your hardware and system configuration, but generally include:
 
-1.  `freeze`: The system's processes are frozen, and the CPU goes into a low-power state, but no state is lost. This is similar to a very low-power idle state.
-2.  `standby`: The system enters a low-power state, similar to freeze, but with deeper power savings. This mode usually affects more hardware components, and waking up from it is faster than suspend.
-3.  `mem`: This state corresponds to suspend-to-RAM. In this state, the system's state is saved in RAM, and most hardware components are powered down, but the system can wake up quickly. This is commonly known as "sleep" or "suspend."
-4.  `disk`: This is suspend-to-disk (hibernate). The system's state is saved to the disk, and the machine can be powered off. When the system is powered back on, the state is restored from the disk.
-5.  `on` (if supported): A fully operational state where the system is not in any power-saving mode.
+1. `freeze`: The system's processes are frozen, and the CPU goes into a low-power state, but no state is lost. This is similar to a very low-power idle state.
+2. `standby`: The system enters a low-power state, similar to freeze, but with deeper power savings. This mode usually affects more hardware components, and waking up from it is faster than suspend.
+3. `mem`: This state corresponds to suspend-to-RAM. In this state, the system's state is saved in RAM, and most hardware components are powered down, but the system can wake up quickly. This is commonly known as "sleep" or "suspend."
+4. `disk`: This is suspend-to-disk (hibernate). The system's state is saved to the disk, and the machine can be powered off. When the system is powered back on, the state is restored from the disk.
+5. `on` (if supported): A fully operational state where the system is not in any power-saving mode.
 
 You can view the available power states by reading the contents of `/sys/power/state`:
 
@@ -116,10 +116,11 @@ My default suspend mode is `deep` and there is no need to do any of this for me!
    ```
 
 2. Restart `systemd-logind`:
+
    ```bash
    sudo systemctl restart systemd-logind
    ```
 
 **References:**
 
-- https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/administering_the_system_using_the_gnome_desktop_environment/changing-the-power-button-behavior_administering-the-system-using-the-gnome-desktop-environment#changing-the-power-button-behavior-in-systemd_changing-the-power-button-behavior
+- <https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/administering_the_system_using_the_gnome_desktop_environment/changing-the-power-button-behavior_administering-the-system-using-the-gnome-desktop-environment#changing-the-power-button-behavior-in-systemd_changing-the-power-button-behavior>
