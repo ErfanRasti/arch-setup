@@ -90,7 +90,7 @@ export LD_PRELOAD=/usr/lib/libstdc++.so
 export LD_LIBRARY_PATH=/usr/lib/dri/
 ```
 
-After these changes, you may see low-level graphics errors in the MATLAB console such as `GLException` and `NullPointerException`. In that case, create a file with the name `java.opts` in the directory where MATLAB is executed (for example /usr/local/MATLAB/R\<version\>/bin/glnxa64):
+After these changes, you may see low-level graphics errors in the MATLAB console such as `GLException` and `NullPointerException`. In that case, create a file with the name `java.opts` in the directory where MATLAB is executed (for example `/usr/local/MATLAB/R\<version\>/bin/glnxa64`):
 
 ```bash
 sudo nano ~/matlab/R<version>/bin/glnxa64/java.opts
@@ -176,6 +176,12 @@ QT_QPA_PLATFORM=xcb matlab
 
 Mine was by default on `XWayland`.
 
+Some `matlab` apps needs this so it's better to add them to:
+
+```sh
+sudo nano /usr/local/MATLAB/R<version>/bin/matlab
+```
+
 **References:**
 
 - <https://wiki.archlinux.org/title/MATLAB#Running_on_Wayland>
@@ -246,14 +252,16 @@ update-desktop-database ~/.local/share/applications
 
 ### HiDPI scaling
 
-If everything is so small run the followin command in `matlab` to scale everything:
+If everything is so small run the following command in `matlab` to scale everything:
 
 ```matlab
 >> s = settings;s.matlab.desktop.DisplayScaleFactor
 >> s.matlab.desktop.DisplayScaleFactor.PersonalValue = 2
 ```
 
-You can change `2` to any number you desire. The settings take effect after MATLAB is restarted.
+You can change `2` to any number you desire. The settings take effect after `matlab` is restarted.
+It's better to set `DisplayScaleFactor` of `matlab` equal to the fractional scale of your window manager,
+to get a better look with less aliasing.
 
 Also activate anti-aliasing to smooth desktop fonts in the below path:
 
@@ -276,6 +284,22 @@ paru -S libselinux
 **References:**
 
 - <https://wiki.archlinux.org/title/MATLAB#Black_screen_in_help_browser_and_livescripts>
+
+### Blank screen on Xwayland
+
+Add this:
+
+```sh
+export _JAVA_AWT_WM_NONREPARENTING=1
+```
+
+You can add it to:
+
+```sh
+sudo nvim /usr/local/MATLAB/R<version>/bin/matlab
+```
+
+- <https://wiki.archlinux.org/title/MATLAB#Blank_screen_on_Xwayland>
 
 ### Font issues
 
