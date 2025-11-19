@@ -505,6 +505,23 @@ You Left-Click and drag the file to where you want it to go, but right before yo
 
 - <https://askubuntu.com/questions/941706/create-link-to-file-on-desktop-or-in-folder>
 
+### Change icon themes for nautilus
+
+Get the current icon theme using:
+
+```sh
+gsettings get org.gnome.desktop.interface icon-theme
+```
+
+Set it using:
+
+```sh
+gsettings set org.gnome.desktop.interface icon-theme "Papirus-Dark"
+```
+
+`"Papirus-Dark"` can be the name of your icon theme.
+Choose from `gnome-tweaks > Appearance > Icons`.
+
 ## Terminals
 
 ```bash
