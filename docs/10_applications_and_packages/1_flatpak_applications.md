@@ -161,7 +161,7 @@ flatpak install flathub app.devsuite.Ptyxis
 flatpak install flathub menu.kando.Kando
 flatpak install flathub dev.qwery.AddWater
 flatpak install flathub io.github.lainsce.Colorway
-flatpak install flathub com.github.johnfactotum.QuickLookup
+flatpak install flathub dev.mufeed.Wordbook
 flatpak install flathub com.github.johnfactotum.Foliate
 flatpak install flathub dev.geopjr.Collision
 flatpak install flathub org.gnome.design.IconLibrary
@@ -201,7 +201,7 @@ flatpak install flathub be.alexandervanhee.gradia
 
 - `dev.qwery.AddWater`: AddWater is a simple tool to customize `firefox` appearance.
 - `io.github.lainsce.Colorway`: Generate color pairings from selected color that follow certain color rules.
-- `com.github.johnfactotum.QuickLookup`: Look up words quickly with Quick Lookup, a dictionary application powered by Wiktionary™.
+- `dev.mufeed.Wordbook`: Wordbook is an offline English-English dictionary application powered by WordNet and eSpeak.
 - `com.github.johnfactotum.Foliate`: A simple and modern eBook viewer.
 - `dev.geopjr.Collision`: Check hashes for your files
 - `org.gnome.design.IconLibrary`: Icon Library is a simple tool to browse and search for icons.
