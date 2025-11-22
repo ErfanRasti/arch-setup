@@ -140,7 +140,7 @@ repos:
     hooks:
       - id: replace-username-paths
         name: Replace $USER with user
-        entry: python3 scripts/replace_username.py
+        entry: python3 hooks/scripts/replace_username.py
         language: system
         pass_filenames: true
         types: [text]

@@ -263,7 +263,7 @@ I prefer `podman` over `docker`, because it is more secure and doesn't need `sud
     ./setup.sh --user --uninstall
     ```
 
-    Also you can use the bash setup file to uninstall it in section 10.
+    Also you can use the bash setup file to uninstall it in step 10.
 
 **References:**
 
