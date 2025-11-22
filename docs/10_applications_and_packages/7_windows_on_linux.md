@@ -256,7 +256,7 @@ I prefer `podman` over `docker`, because it is more secure and doesn't need `sud
     update-desktop-database ~/.local/share/applications
     ```
 
-12. To uninstall winapps:
+12. To uninstall `winapps`:
 
     ```bash
     cd ~/Programs/winapps/
@@ -270,8 +270,9 @@ I prefer `podman` over `docker`, because it is more secure and doesn't need `sud
 - <https://github.com/winapps-org/winapps/blob/main/docs/docker.md>
 - <https://github.com/winapps-org/winapps?tab=readme-ov-file>
 - <https://github.com/dockur/windows>
+- <https://stackoverflow.com/questions/60907105/what-is-the-difference-between-qemu-kvm-libvirt-and-how-to-use-with-vagrant>
 
-## winboat
+## WinBoat
 
 `winboat` is a modern way to run windows apps under linux.
 

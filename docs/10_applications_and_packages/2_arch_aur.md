@@ -1556,10 +1556,17 @@ Desktop sharing suffers from unmatched screen resolutions.
     sudo waydroid session start
    ```
 
+4. To hide Waydroid icons:
+
+   ```sh
+   sed --in-place --separate '/Actions=app_settings/a NoDisplay=true' ~/.local/share/applications/waydroid.*.desktop
+   ```
+
 **References:**
 
 - <https://wiki.archlinux.org/title/Waydroid>
 - <https://docs.waydro.id/faq/google-play-certification>
+- <https://www.reddit.com/r/waydroid/comments/1977994/how_to_hide_waydroid_shorcut_app_on_fedora_or_any/>
 
 ## hardinfo
 
@@ -1607,7 +1614,9 @@ Select the first option (not the git version).
    sudo pacman -S gvfs-afc
    ```
 
-5. To see all of the files on your iOS device open `Documents on <YOUR_DEVICE>`, then press `<CTRL>+L` to edit the `nautilus` path. The remove the three last leters `3:/` and press enter. It will show you all of the files on your device.
+5. To see all of the files on your iOS device open `Documents on <YOUR_DEVICE>`,
+   then press `<CTRL>+L` to edit the `nautilus` path. The remove the three last
+   letters `3:/` and press enter. It will show you all of the files on your device.
 
 **References:**
 
