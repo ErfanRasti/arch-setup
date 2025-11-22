@@ -2,15 +2,15 @@
 
 1. First of all we should check that DRM(Direct Rendering Manager) kernel mode setting is working, because it is required by Wayland compositors. To check this:
 
-```bash
-sudo cat /sys/module/nvidia_drm/parameters/modeset
-```
+    ```bash
+    sudo cat /sys/module/nvidia_drm/parameters/modeset
+    ```
 
-If it returns `Y` everything is okay but if not you should set modes for nvidia via `modprobe`(Mine is `Y` and I didn't run the following line):
+    If it returns `Y` everything is okay but if not you should set modes for nvidia via `modprobe`(Mine is `Y` and I didn't run the following line):
 
-```bash
-sudo tee /etc/modprobe.d/nvidia-modeset.conf <<< 'options nvidia_drm modeset=1 fbdev=1'
-```
+    ```bash
+    sudo tee /etc/modprobe.d/nvidia-modeset.conf <<< 'options nvidia_drm modeset=1 fbdev=1'
+    ```
 
 2. Install some essential packages for wayland support:
 

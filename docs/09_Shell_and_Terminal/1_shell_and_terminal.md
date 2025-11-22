@@ -73,6 +73,19 @@ git push -u origin main
 - `git branch -M` main renames your current branch to `main`.
 - `git remote add origin ...` adds a remote URL alias called `origin`.
 
+### git pull force
+
+```sh
+git fetch origin
+git reset --hard origin/<your-branch>
+```
+
+See your remotes:
+
+```sh
+git remote show origin
+```
+
 ### pre-commits
 
 Pre-commits are nice for performing some validation before committing something.
@@ -190,6 +203,36 @@ pre-commit install
 ```
 
 Then if your commit includes any `$USER` it doesn't allow to commit.
+
+### Filter repo
+
+If you ever want to replace anything in the whole repository across all your commits you can use this tool.
+
+```sh
+sudo pacman -S git-filter-repo
+```
+
+`git-filter-repo` is a nice tool to filter your repo.
+
+Check `git filter-repo -h` first.
+Check which commits contain `user` or any other string using:
+
+```sh
+git log -S "user" --all --name-only
+```
+
+Replace them using:
+
+```bash
+echo "user==>USERNAME" > replace.txt
+git filter-repo --replace-text replace.txt --force
+git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO.git
+git push --force origin main
+```
+
+Using the above commands you can replace a `user` with `USERNAME` in all of your commits,
+then add the remote again (because probably during the filter operations previous remote is removed.), and
+finally forcefully push to the GitHub.
 
 ## bash
 
@@ -771,7 +814,7 @@ sudo pacman -S zellij
 
 ```bash
 sudo pacman -S duf exa eza git-delta zoxide glow yazi aichat trash-cli \
-  tree superfile television wiremix feh git-filter-repo cava libcanberra
+  tree superfile television wiremix feh cava libcanberra
 paru -S lazydocker-bin ascii-image-converter-bin gitbutler-bin fum-bin gitfetch-python
 ```
 
@@ -835,28 +878,6 @@ paru -S lazydocker-bin ascii-image-converter-bin gitbutler-bin fum-bin gitfetch-
 - `television` - A cross-platform, fast and extensible general purpose fuzzy finder for the terminal.
 - `wiremix` - A simple TUI audio mixer for PipeWire.
 - `feh` - A light-weight, configurable and versatile image viewer.
-- `git-filter-repo` - Nice tool to filter your repo.
-  If you ever want to replace anything in the whole repository across all your commits you can use this tool.
-  Check `git filter-repo -h` first.
-  Check which commits contain `user` or any other string using:
-
-  ```sh
-  git log -S "user" --all --name-only
-  ```
-
-  Replace them using:
-
-  ```bash
-  echo "user==>USERNAME" > replace.txt
-  git filter-repo --replace-text replace.txt --force
-  sudo git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO.git
-  git push --force origin main
-  ```
-
-  Using the above commands you can replace a `user` with `USERNAME` in all of your commits,
-  then add the remote again (because probably during the filter operations previous remote is removed.), and
-  finally forcefully push to the GitHub.
-
 - `cava` - `cava` is a bar spectrum audio visualizer for terminal or desktop (SDL).
 - `fum` - A fully customizable tui-based mpris music client.
 - `libcanberra` - I use `canberra-gtk-play` to play sound events. To list all of your sounds:
