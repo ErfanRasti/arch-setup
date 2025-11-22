@@ -76,9 +76,70 @@ Add `exec-once = systemctl --user start hyprpolkitagent` to `hyprland.conf`.
 - <https://wiki.hyprland.org/Hypr-Ecosystem/hyprpolkitagent/>
 - <https://wiki.hypr.land/Hypr-Ecosystem/xdg-desktop-portal-hyprland/>
 
+## Desktop Portal
+
+`xdg-desktop-portal` (usually just called “desktop portal”) is a system that lets sandboxed or unprivileged apps safely access desktop features without trusting the app directly. Simply, it's just the panel that is shown when you want to share your desktop.
+
+There are some options for this:
+
+- `xdg-desktop-portal-hyprland`: Hyprland uses this type of portal.
+- `xdg-desktop-portal-gnome`: `GNOME` and `niri` use this portal.
+
+You can check them using:
+
+```sh
+systemctl --user status xdg-desktop-portal-hyprland
+systemctl --user status xdg-desktop-portal-gnome
+systemctl --user status xdg-desktop-portal-gtk
+```
+
+Maybe you need to check it on your processes if you don't start them using `systemctl`.
+
+These are highly relies on the compositor. So, maybe you cannot change it by your own.
+
+**References:**
+
+- <https://wiki.archlinux.org/title/XDG_Desktop_Portal>
+- <https://wiki.hypr.land/Useful-Utilities/Screen-Sharing/>
+- <https://www.reddit.com/r/hyprland/comments/1g49k3q/run_xdgdesktopportalgnome_on_hyprland/>
+- <https://gist.github.com/brunoanc/2dea6ddf6974ba4e5d26c3139ffb7580>
+
+## Polkit
+
+`polkit` (Policy Kit) is an application-level toolkit for defining and handling the policy that allows
+unprivileged processes to speak to privileged processes; In other words it is the dialog
+that pops up when an application wants to access the root and needs password.
+
+These are some options:
+
+- `hyprpolkitagent`: Defaults for `Hyprland`. You can start it user-wide using `systemctl`.
+- `polkit-gnome`: `GNOME` like `polkit`.
+
+Check their status:
+
+```sh
+systemctl --user status hyprpolkitagent
+```
+
+`polkit-gnome` doesn't provide a `systemd` service so you should check the process on your system monitoring tool or using:
+
+```sh
+pgrep -fx 'polkit-gnome-authentication-agent-1'
+```
+
+They can get started using the `systemctl` or using:
+
+```sh
+/usr/lib/hyprpolkitagent/hyprpolkitagent
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+```
+
+- <https://wiki.archlinux.org/title/Polkit>
+- <https://wiki.hypr.land/Hypr-Ecosystem/hyprpolkitagent/>
+
 ## Display Settings
 
-After `kitty` has been launched you should edit `~/.config/hypr/hyprland.conf` to remove the warrning dialog at top of the display manager and also make everything work with your screen:
+After `kitty` has been launched you should edit `~/.config/hypr/hyprland.conf` to remove the warning dialog at top of the display manager and make everything work with your screen:
 
 ```bash
 nano ~/.config/hypr/hyprland.conf
