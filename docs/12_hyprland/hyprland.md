@@ -987,6 +987,48 @@ paru -S waypaper
 
 - <https://anufrievroman.gitbook.io/waypaper/configuration>
 
+## Plugins
+
+To install plugins you first need to install these:
+
+```sh
+sudo pacman -S cpio cmake git meson gcc
+```
+
+To list plugins use `hyprpm list`.
+Also run `hyprpm update` for the first time.
+
+Install a plugin:
+
+```sh
+hyprpm update
+hyprpm add https://github.com/hyprwm/hyprland-plugins
+hyprpm reload
+```
+
+You can add `exec-once = hyprpm reload -n` to your Hyprland config
+to have plugins loaded at startup.
+
+Other plugins at awesome-hyprland repo.
+
+If you ever faced with `Hyprpm update: headers mismatch`:
+
+```sh
+hyprpm purge-cache
+hyprpm update
+hyprpm add <needed repo>
+hyprpm enable <needed plugin>
+```
+
+Then add your
+
+**References:**
+
+- <https://wiki.hypr.land/Plugins/Using-Plugins/>
+- <https://github.com/hyprwm/hyprland-plugins>
+- <https://github.com/hyprland-community/awesome-hyprland#plugins>
+- <https://www.reddit.com/r/hyprland/comments/1p6birg/hyprpm_update_headers_mismatch_0521/>
+
 ## Troubleshooting
 
 ### Losing Browser Session when Switching DE
@@ -1057,36 +1099,6 @@ hyprpm update
 **References:**
 
 - <https://github.com/hyprwm/Hyprland/discussions/11885>
-
-## Plugins
-
-To install plugins you first need to install these:
-
-```sh
-sudo pacman -S cpio cmake git meson gcc
-```
-
-To list plugins use `hyprpm list`.
-Also run `hyprpm update` for the first time.
-
-Install a plugin:
-
-```sh
-hyprpm update
-hyprpm add https://github.com/hyprwm/hyprland-plugins
-hyprpm reload
-```
-
-You can add `exec-once = hyprpm reload -n` to your Hyprland config
-to have plugins loaded at startup.
-
-Other plugins at awesome-hyprland repo.
-
-**References:**
-
-- <https://wiki.hypr.land/Plugins/Using-Plugins/>
-- <https://github.com/hyprwm/hyprland-plugins>
-- <https://github.com/hyprland-community/awesome-hyprland#plugins>
 
 ### Touchscreen gestures
 
