@@ -843,11 +843,26 @@ paru -S lazydocker-bin ascii-image-converter-bin gitbutler-bin fum-bin gitfetch-
 - `lazydocker` - A terminal UI for managing Docker containers and images.
 - `yazi` - A blazing-fast terminal file manager with previews.
   For `yazi` press `<f1>` for help to the shortcuts.
+  It has also some plugins. Install them using:
+
+  ```sh
+  ya pkg add yazi-rs/plugins:toggle-pane
+  ```
+
+  Then create shortcuts for it in `~/.config/yazi/keymap.toml` using:
+
+  ```toml
+  [[mgr.prepend_keymap]]
+  on = "T"
+  run = "plugin toggle-pane max-preview"
+  desc = "Maximize or restore the preview pane"
+  ```
+
 - `ascii-image-converter` - A command-line tool that converts images.
 
   I use it like this:
 
-  ```shell
+  ```sh
   ascii-image-converter ~/Pictures/image.jpg -C -c --color-bg
   ```
 
@@ -912,6 +927,7 @@ paru -S lazydocker-bin ascii-image-converter-bin gitbutler-bin fum-bin gitfetch-
 - <https://github.com/muesli/duf>
 - <https://github.com/ajeetdsouza/zoxide>
 - <https://yazi-rs.github.io/docs/quick-start/>
+- <https://github.com/yazi-rs/plugins/tree/main/toggle-pane.yazi>
 - <https://github.com/andreafrancia/trash-cli/>
 - <https://github.com/gitbutlerapp/gitbutler>
 - <https://gitbutler.com/>
