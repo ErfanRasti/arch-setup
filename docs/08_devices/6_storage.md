@@ -289,3 +289,22 @@ usb-devices
 
 If the device appeared under `usb-devices`, but `Driver=(none)` maybe it is
 because of a kernel update. Make sure you've restarted system after kernel update.
+
+### Wrong fs type bad option bad superblock for NTFS disk
+
+Find your disk:
+
+```sh
+sudo fdisk -l
+```
+
+Then:
+
+```sh
+sudo pacman -S ntfs-3g
+sudo ntfsfix -d /dev/sdb1
+```
+
+**References:**
+
+- <https://askubuntu.com/questions/1512710/wrong-fs-type-bad-option-bad-superblock-just-installed-lubuntu-24-04>
