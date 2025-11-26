@@ -270,3 +270,22 @@ This means, when the system boots, it will automatically mount sub-volume ID `5`
 **References:**
 
 - <https://www.reddit.com/r/archlinux/comments/f0r10z/fix_timeshift_selected_snapshot_device_is_not_a/>
+
+### USB Devices
+
+You can easily mount and unmount them using:
+
+```sh
+sudo mount -t ntfs-3g /dev/sda /mnt
+
+sudo umount -t ntfs-3g /mnt
+```
+
+If your devices is not present under `lsblk` check:
+
+```sh
+usb-devices
+```
+
+If the device appeared under `usb-devices`, but `Driver=(none)` maybe it is
+because of a kernel update. Make sure you've restarted system after kernel update.
