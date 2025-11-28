@@ -14,6 +14,28 @@ gsettings get org.gnome.desktop.interface icon-theme
 
 Or check it through `gnome-tweaks > Appearnce > Icons`.
 
+### `.desktop` file
+
+To create an icon for your application you should create a `app.desktop` file under `/usr/share/applications/` or `~/.local/share/applications/`.
+
+To validate your `.desktop` icon:
+
+```sh
+desktop-file-validate /usr/share/applications/<YOUR_APP>.desktop
+```
+
+Or if you want to run your desktop app:
+
+```sh
+gtk-launch <YOUR_APP>.desktop
+```
+
+After changing `<APP>.desktop`, you should update the database:
+
+```sh
+update-desktop-database ~/.local/share/applications
+```
+
 ### Papirus
 
 ```bash
