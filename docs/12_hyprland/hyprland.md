@@ -476,13 +476,49 @@ But for me that wasn't necessary.
 
 To customize `swaync` and `waybar` check the references.
 
-The template and default conifg files related to `swaync` are under `/etc/xdg/swaync/`.
+The template and default config files related to `swaync` are under `/etc/xdg/swaync/`.
+
+**Note:** There is a problem with `swaync.service` that it gets started
+automatically when there is no other notification daemon running even if
+you disable and stop the service it returns after re-login.
+
+To fix this:
+
+```sh
+systemctl --user edit swaync.service
+```
+
+You should edit somewhere like this:
+
+```service
+### Anything between here and the comment below will become the contents of the drop-in file
+
+[Service]
+BusName=
+Type=simple
+
+### Edits below this comment will be discarded
+```
+
+Then:
+
+```sh
+systemctl --user daemon-reload
+systemctl --user stop swaync.service
+```
+
+To verify the changes run:
+
+```sh
+systemctl --user cat swaync.service
+```
 
 **References:**
 
 - <https://man.archlinux.org/man/swaync.5.en>
 - <https://github.com/ErikReider/SwayNotificationCenter>
 - <https://github.com/Alexays/Waybar/wiki>
+- <https://www.reddit.com/r/swaywm/comments/131n6kj/how_to_kill_swaync/>
 
 ## Screenshot
 
