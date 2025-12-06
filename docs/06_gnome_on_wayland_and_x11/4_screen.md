@@ -8,11 +8,18 @@ In the date of adding this instruction, `wayland` still hasn't released the frac
 3. Scale your XWayland applications using `gnome-tweask` in `Fonts` tab.
    Also, Activate Antialiasing equal to `Subpixel (for LCD screens)` if you have LCD monitor. I also prefer Hinting equal with `Full`.
 
+You can also use this instead:
+
+```sh
+gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer', 'xwayland-native-scaling']"
+```
+
 **References:**
 
 - <https://wiki.archlinux.org/title/HiDPI#Fractional_scaling>
 - <https://www.reddit.com/r/gnome/comments/xvc5oe/gnome_scaling/>
 - <https://www.youtube.com/watch?v=dZIfjbZN0H8>
+- <https://www.reddit.com/r/gnome/comments/1n8z47l/gnome_49_changes_fractional_scaling_to_scales/>
 
 ### Is it Wayland or XWayland?
 
