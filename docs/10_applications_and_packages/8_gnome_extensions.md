@@ -35,7 +35,6 @@ gext install blocker@pesader.dev
 gext install Bluetooth-Battery-Meter@maniacx.github.com
 gext install blur-my-shell@aunetx
 gext install caffeine@patapon.info
-gext install clipboard-indicator@tudmotu.com
 gext install dash-to-dock@micxgx.gmail.com
 gext install emoji-copy@felipeftn
 gext install GPU_profile_selector@lorenzo9904.gmail.com
@@ -51,9 +50,16 @@ gext install uxplay-control@xxanqw
 gext install Vitals@CoreCoding.com
 gext install weatheroclock@CleoMenezesJr.github.io
 gext install windowgestures@extension.amarullz.com
+gext install copyous@boerdereinar.dev
 ```
 
 SUPER+CONTROL and move window using mouse for tiling shell extension
+
+`copyous@boerdereinar.dev` is a nice clipboard extension. You need to install `libgda6` to use it:
+
+```sh
+sudo pacman -S libgda6
+```
 
 ### Reset settings of extensions to default
 
