@@ -1045,7 +1045,7 @@ hyprpm reload
 You can add `exec-once = hyprpm reload -n` to your Hyprland config
 to have plugins loaded at startup.
 
-Other plugins at awesome-hyprland repo.
+Other plugins at `awesome-hyprland` repo.
 
 If you ever faced with `Hyprpm update: headers mismatch`:
 

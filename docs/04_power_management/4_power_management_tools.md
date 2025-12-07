@@ -351,6 +351,33 @@ acpi -V
 
 Then divide full capacity on design capacity. `acpi` may not show health directly but can show charge level and status. For health, `upower` is better.
 
+#### Monitor charging status
+
+There is a possibility that your charger is corrupted.
+To check whether the charger is online or connected use:
+
+```sh
+upower -i $(upower -e | grep AC)
+```
+
+Then check `line-power` online status.
+
+To check its status and figure out is it healthy or not:
+
+```sh
+upower -i $(upower -e | grep BAT)
+```
+
+`energy-rate` should be around 45W during charging. Also battery health condition more than 80% is acceptable. Also when the laptop is charging below 60% capacity the charger gives higher wattage so the laptop warms out, but for above 80% it slows down the charging process.
+
+Also you can check the temperature using:
+
+```sh
+watch -n 1 sensors
+```
+
+60–75°C temperature for the CPU is normal while charging. Also ACPI temp around 80°C is normal.
+
 ### Troubleshooting
 
 #### Wireless usb mouse not working
