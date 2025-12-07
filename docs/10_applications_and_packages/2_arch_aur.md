@@ -1767,3 +1767,20 @@ sudo pacman -S pandoc
 **References:**
 
 - <https://wiki.archlinux.org/title/List_of_applications/Documents>
+
+### COSMIC
+
+COSMIC is a desktop environment developed in the Rust programming language.
+Install it using:
+
+```sh
+sudo pacman -S cosmic
+```
+
+That's a simple DE that can be used both floating and tiled.
+If you want some custom applets on your panel check the COSMIC
+store and install your desired applet.
+
+**References:**
+
+- <https://wiki.archlinux.org/title/COSMIC>
