@@ -1,6 +1,6 @@
 ## Power Management Tools
 
-For laptop users, power usage is one of the most critical things in linux.
+For laptop users, power usage is one of the most critical things in Linux.
 I personally prefer using `power-profiles-daemon` , `powertop`, and `thermald` together. But you can use `tlp` instead of `power-profiles-daemon` if you want.
 
 ### TLP
@@ -271,6 +271,70 @@ supergfxctl -g
 - <https://wiki.archlinux.org/title/Supergfxctl>
 - <https://wiki.archlinux.org/title/ASUS_Linux>
 
+### Undervolting CPU
+
+Undervolting is a process where voltage to CPU is reduced in order to reduce its energy consumption and heat without affecting performance. Note that most desktop motherboards allow tweaking CPU voltage settings in BIOS as well.
+
+**Warning:** _Misconfiguration of CPU voltage settings might result in permanently damaged hardware. You have been warned!_
+
+1. Read the current configuration:
+
+   ```sh
+   sudo pacman -S intel-undervolt
+   sudo intel-undervolt read
+   ```
+
+2. Then change the configuration using this:
+
+   ```sh
+   sudo nvim /etc/intel-undervolt.conf
+   ```
+
+   Change this line for example:
+
+   ```conf
+   ...
+   undervolt 2 'CPU Cache' -120
+   ...
+   ```
+
+   Decreasing Intel CPU and CPU Cache by 100 to 200 mV is usually (outwardly) stable. Going above 200 mV may result in a crash, or may not have any effect at all.
+
+3. Then apply the configuration:
+
+   ```sh
+   intel-undervolt apply
+   ```
+
+   Then check it using:
+
+   ```sh
+   sudo intel-undervolt read
+   ```
+
+4. To make the changes persistent:
+
+   ```sh
+   sudo systemctl enable intel-undervolt.service
+   sudo systemctl start intel-undervolt.service
+   ```
+
+5. Finally to check if the CPU is working properly:
+
+   ```sh
+   stress --cpu 8 --io 4 --vm 2 --vm-bytes 128M
+   ```
+
+   - `--cpu 8`: Start 8 CPU workers.
+   - `--io 4`: Start 4 I/O workers.
+   - `--vm 2`: Start 2 memory workers ("virtual memory" allocators).
+   - `--vm-bytes 128M`: For each `--vm` worker, allocate 128 megabytes of memory.
+
+**References:**
+
+- <https://wiki.archlinux.org/title/Undervolting_CPU>
+- <https://wiki.archlinux.org/title/Stress_testing>
+
 ### Monitoring
 
 #### Monitor power usage
@@ -283,7 +347,7 @@ There are many ways to check this.
    watch -n 1 cat /sys/class/power_supply/BAT0/power_now
    ```
 
-   It is very light and fast. You can see the power usage in real-time. The unit is `µW`.
+It is very light and fast. You can see the power usage in real-time. The unit is `µW`.
 
 2. You can user `powertop` to measure your power usage:
 
