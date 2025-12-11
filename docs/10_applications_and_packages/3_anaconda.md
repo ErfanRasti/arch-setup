@@ -3,9 +3,11 @@
 ### Installation
 
 1. First install pre-requirements:
+
    ```bash
    sudo pacman -Syu libxau libxi libxss libxtst libxcursor libxcomposite libxdamage libxfixes libxrandr libxrender mesa-libgl alsa-lib libglvnd
    ```
+
 2. Download it:
 
    ```bash
@@ -32,9 +34,11 @@
    ```
 
 4. Install it:
+
    ```bash
    bash ./Anaconda3-<YOUR_VERSION>.sh
    ```
+
 5. Press ENTER.
 6. Hold `pgdn` till the end of the license.
 7. Type `yes`.
@@ -109,3 +113,21 @@ Always check [this](https://pytorch.org/get-started/locally/) site to get sure a
 - <https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html>
 - <https://pytorch.org/>
 - <https://pytorch.org/get-started/locally/>
+
+### Update/Upgrade
+
+To update all packages in a `conda` environment:
+
+```sh
+conda update --all
+```
+
+Also if you've installed some packages using `pip`:
+
+```sh
+# List outdated packages
+pip list --outdated
+
+# Update all outdated packages
+pip list --outdated --format=freeze | cut -d= -f1 | xargs -n1 pip install -U
+```

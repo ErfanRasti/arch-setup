@@ -113,7 +113,7 @@ This setting conflicts with the previous marketplace setting. Stick to the marke
 Add keyboard shortcuts using these:
 
 ```sh
-spicetify config extensions keyboardShortcut.js                                                                                 31s 18:29:38
+spicetify config extensions keyboardShortcut.js
 spicetify apply
 ```
 
@@ -1777,7 +1777,7 @@ Install it using:
 sudo pacman -S cosmic
 ```
 
-That's a simple DE that can be used both floating and tiled.
+That's a simple DE that can be used both in floating and tiled modes.
 If you want some custom applets on your panel check the COSMIC
 store and install your desired applet.
 
