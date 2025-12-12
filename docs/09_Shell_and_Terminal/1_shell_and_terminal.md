@@ -9,7 +9,7 @@ sudo pacman -S git github-cli
 ### Configuration
 
 ```bash
-git config --global user.name <YOUR_COMPLETE_NAME>
+git config --global user.name "<YOUR_COMPLETE_NAME>"
 git config --global user.email "<ID_CODE>+<GITHUB_USERNAME>@users.noreply.github.com"
 git config --global core.editor nvim
 # git config --global core.editor nano
@@ -85,6 +85,18 @@ See your remotes:
 ```sh
 git remote show origin
 ```
+
+### Change author of the most recent commit
+
+To change the author of the most recent commit you can use this command:
+
+```sh
+git commit --amend --author="New Name <new@email.com>"
+```
+
+This opens your editor so you can keep or edit the commit message.
+
+This only works if the commit is not pushed yet.
 
 ### pre-commits
 
