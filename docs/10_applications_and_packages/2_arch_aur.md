@@ -286,6 +286,19 @@ sudo pacman -S kdenlive
 
 In the installation process choose `qt6-multimedia-ffmpeg` instead of `qt6-multimedia-gstreamer`; because it has more features.
 
+### ImageMagick
+
+Easily resize your images using `magick`:
+
+```sh
+sudo pacman -S imagemagick
+magick photo.jpg -resize 250 photo-resized.jpg
+```
+
+**References:**
+
+- <https://wiki.archlinux.org/title/ImageMagick>
+
 ### PhotoGIMP
 
 PhotoGIMP is like a UI for GIMP.
