@@ -288,11 +288,22 @@ In the installation process choose `qt6-multimedia-ffmpeg` instead of `qt6-multi
 
 ### ImageMagick
 
-Easily resize your images using `magick`:
+Install it using:
 
 ```sh
 sudo pacman -S imagemagick
+```
+
+Easily resize your images using `magick`:
+
+```sh
 magick photo.jpg -resize 250 photo-resized.jpg
+```
+
+To reduce image size you can decrease its quality using this package:
+
+```sh
+magick photo.jpg -quality 70 photo-compressed-lossy.jpg
 ```
 
 **References:**
