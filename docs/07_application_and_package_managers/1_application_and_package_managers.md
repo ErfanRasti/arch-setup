@@ -38,8 +38,8 @@ flatpak --user remote-add --if-not-exists flathub https://dl.flathub.org/repo/fl
 One of the most common AUR helpers is yay. You can find anything in this package manager. To install it:
 
 ```bash
-mkdir -p ~/Programs
-cd ~/Programs
+mkdir -p ~/programs
+cd ~/programs
 
 sudo pacman -S --needed git base-devel
 git clone https://aur.archlinux.org/yay.git
@@ -83,26 +83,6 @@ sudo nano /etc/paru.conf
 ```
 
 Then uncomment `BottomUp`.
-
-Sometimes in the first days of new `pacman` update, the `paru` is not compatible with the new version of `pacman`. To fix it you can use `paru-git`:
-
-```bash
-mkdir -p ~/Programs
-cd ~/Programs
-
-sudo pacman -S --needed base-devel
-git clone https://aur.archlinux.org/paru-git.git
-cd paru-git
-makepkg -si
-```
-
-You can also use `yay` to install `paru`:
-
-```bash
-yay -S paru
-```
-
-But I don't recommend that.
 
 To remove unwanted dependencies:
 
@@ -452,7 +432,7 @@ sudo rm /var/lib/pacman/db.lck
 
 -<https://wiki.archlinux.org/title/Pacman#.22Failed_to_init_transaction_.28unable_to_lock_database.29.22_error>
 
-## One or more files did not pass the validity check
+### One or more files did not pass the validity check
 
 If you faced this:
 
@@ -461,7 +441,69 @@ If you faced this:
 ==> ERROR: One or more files did not pass the validity check!
 ```
 
-go to your file manager (my case `nautilus`) in the home directory and search for `<PACKAGE_NAME>.zip`. If you found it, delete it and then run the installation again.
+Go to your file manager (my case `nautilus`) in the home directory and search for `<PACKAGE_NAME>.zip`. If you found it, delete it and then run the installation again.
+
+### paru: error while loading shared libraries: libalpm.so.*
+
+Sometimes in the first days of new `pacman` update, the `paru` is not compatible with the new version of `pacman`. To fix it you can use `paru-git`:
+
+```bash
+mkdir -p ~/programs
+cd ~/programs
+
+sudo pacman -S --needed base-devel
+git clone https://aur.archlinux.org/paru-git.git
+cd paru-git
+makepkg -si
+```
+
+Sometimes the main branch of `paru` is not updated based on new release of `pacman`.
+You can get some errors like this:
+
+```
+paru: error while loading shared libraries: libalpm.so.15: cannot open shared object file: No such file or directory
+```
+
+In this case you can also use `yay` to install `paru`:
+
+```bash
+yay -S paru
+```
+
+Or even `paru` on AUR doesn't work use:
+```sh
+yay -S paru-git
+```
+
+But I don't recommend that.
+
+If none of these methods works for you, you can do this, but it has high-risk and can break your system:
+
+First check your available `libalpm`s:
+
+```sh
+ls -l /usr/lib/libalpm.so*
+```
+
+Then
+
+```sh
+sudo ln -s /usr/lib/libalpm.so.16 /usr/lib/libalpm.so.15
+```
+
+Then try building `paru`. Remember to delete this symlink after `paru` got maintained based on new `pacman`:
+
+```sh
+sudo rm /usr/lib/libalpm.so.15
+```
+
+Note that 15 and 16 are arbitrary and should be set based on your specific error and installed version.
+However, you usually link older version to the new version that is installed by `pacman`.
+
+**References:**
+
+- <https://bbs.archlinux.org/viewtopic.php?id=299396>
+- <https://www.reddit.com/r/archlinux/comments/1fgs8ay/paru_stopped_working_libalpmso14_error/>
 
 ## Nix
 
