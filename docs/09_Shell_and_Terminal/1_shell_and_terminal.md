@@ -1234,3 +1234,40 @@ git submodule add https://github.com/<USER>/tmux dotfiles/tmux/.config/tmux
 - <https://www.gnu.org/software/stow/manual/html_node/Types-And-Syntax-Of-Ignore-Lists.html>
 - <https://stackoverflow.com/questions/64231650/why-doesnt-gnu-stow-ignore-single-files-in-main-directory>
 - <https://git-scm.com/book/en/v2/Git-Tools-Submodules>
+
+## nushell
+
+Nushell (short for Nu) is a modern command-line shell that treats data as structured tables instead of plain text.
+
+Install it using:
+
+```sh
+sudo pacman -S nushell
+```
+
+Start it using:
+
+```sh
+nu
+```
+
+Many built-ins are offered for querying and manipulating data, as data - not as text like in traditional shell, while still having a shell-like workflow. For example, the where builtin can filter the contents of an array or table:
+
+```nu
+ls | where type == file | where size > 10mb
+```
+
+Nushell follows the Unix philosophy where each command does one thing well and you can typically expect the output of one command to become the input of another.
+
+```nu
+ps
+```
+
+It will show your processes as a table.
+
+It has a table lens and sees everything as tables and datasets.
+
+**References:**
+
+- <https://wiki.archlinux.org/title/Nushell>
+- <https://www.nushell.sh/book/quick_tour.html>
