@@ -57,23 +57,37 @@ To automate the `wireplumber.service` restart using `udev`:
 
 - <https://wiki.archlinux.org/title/WirePlumber#Delete_corrupt_settings>
 
-
 ### helvum
+
 Nice app to figure out what's going on my sound system:
 
 ```sh
 sudo pacman -S helvum
 ```
 
+### Over-amplification
+
+You can allow over-amplification by running the command below:
+
+```sh
+gsettings set org.gnome.desktop.sound allow-volume-above-100-percent true
+```
+
+**References:**
+
+- <https://wiki.archlinux.org/title/GNOME/Tips_and_tricks#Increase_volume_above_and_beyond_100%>
+
 ### Troubleshooting
 
 #### Audio is distorted
 
 1. Copy `pipewire.conf` to `~/.config/pipewire/pipewire.conf`:
+
    ```bash
    mkdir -p ~/.config/pipewire
    cp /usr/share/pipewire/pipewire.conf ~/.config/pipewire/pipewire.conf
    ```
+
 2. Add clock rate configurations:
 
    ```bash
