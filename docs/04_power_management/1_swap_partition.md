@@ -63,7 +63,6 @@ I usually don't prefer this method because I have good amount of RAM. I use manu
    Check `gnome-system-monitor` to make sure that the swap file has been removed.
 
 2. In this step we want to create the swap partition. There are two methods to do this task:
-
    - **Old method:**
 
      If your disk is `btrfs`:
@@ -178,6 +177,21 @@ I usually don't prefer this method because I have good amount of RAM. I use manu
 - <https://www.howtogeek.com/449691/what-is-swapiness-on-linux-and-how-to-change-it/#swappiness>
 - <https://github.com/torvalds/linux/blob/v5.0/Documentation/sysctl/vm.txt#L809>
 - <https://askubuntu.com/questions/103915/how-do-i-configure-swappiness>
+
+### earlyoom
+
+`earlyoom` is a small Linux daemon that prevents system freezes when RAM is almost full by killing the right process before the kernel completely runs out of memory.
+
+Think of it as a panic button for low memory, especially useful on Arch.
+
+```sh
+sudo pacman -S earlyoom
+sudo systemctl enable --now earlyoom
+```
+
+**References:**
+
+- <https://github.com/rfjakob/earlyoom>
 
 ### Utilities
 
