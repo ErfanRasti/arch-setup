@@ -260,6 +260,14 @@ sudo pacman -S xournalpp
 paru -S pdfsam
 ```
 
+### Master PDF Editor
+
+This is a multi-functional PDF editor but it isn't open source.
+
+```sh
+paru -S masterpdfeditor
+```
+
 ### Zathura
 
 ```bash
