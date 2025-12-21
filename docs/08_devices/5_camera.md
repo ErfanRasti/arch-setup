@@ -14,6 +14,12 @@ For this we use `howdy`:
 paru -S howdy-git
 ```
 
+To get the version of `howdy`:
+
+```sh
+sudo howdy version
+```
+
 To get list of cameras and webcams:
 
 ```bash
@@ -49,23 +55,69 @@ device_path = /dev/video2
 To take affect the howdy on every verification apps you should change some `PAM` files:
 
 1. First take a backup:
+
    ```bash
    sudo cp -r /etc/pam.d /etc/pam.d.bak
    ```
+
 2. Change files (these are for `howdy` version 3.0.0 BETA and above):
+
    ```bash
    for file in /etc/pam.d/*; do
-   sudo sed -i "1i auth sufficient /lib/security/pam_howdy.so\nauth sufficient pam_unix.so try_first_pass likeauth nullok\n" "$file"
+      sudo sed -i "1i auth sufficient /lib/security/pam_howdy.so\nauth sufficient pam_unix.so try_first_pass likeauth nullok\n" "$file"
    done
    ```
+
 3. Check one of the files:
+
    ```bash
    head -n 10 /etc/pam.d/sudo
    ```
+
 4. If you messed up something rollback:
+
    ```bash
    sudo cp -r /etc/pam.d.bak/* /etc/pam.d
    ```
+
+   If you want to rollback after a long time make sure there isn't a new `pam` (created by installation of a new app).
+   To check it compare `/etc/pam.d` and `/etc/pam.d.bak`.
+   You can easily count the line numbers by:
+
+   ```sh
+   ls -al /etc/pam.d/ | wc -l
+   ```
+
+   or you can use:
+
+   ```sh
+   comm -3 <(ls /etc/pam.d | sort) <(ls /etc/pam.d.bak | sort)
+   ```
+
+   to compare side-by-side. The `/etc/pam.d/` is on the left and `/etc/pam.d.bak/` is on the right.
+
+   Also you can remove those two lines from all files using this:
+
+   ```sh
+   sudo cp -a /etc/pam.d /etc/pam.d.bak
+   for file in /etc/pam.d/*; do
+     sudo sed -i \
+     -e '\|^auth sufficient /lib/security/pam_howdy\.so$|d' \
+     -e '\|^auth sufficient pam_unix\.so try_first_pass likeauth nullok$|d' \
+    "$file"
+   done
+   ```
+
+   I also created a backup to prevent any corruption.
+
+**Note:** Sometimes `howdy` doesn't work properly with `pkexec` tools and `polkit`s.
+To solve this you should comment the authentication lines from `system-auth` `pam`:
+
+```sh
+sudo nvim /etc/pam.d/system-auth
+```
+
+Comment the two `auth` sufficient lines.
 
 There are some security flaws in `howdy` which you can solve them as below:
 
@@ -93,13 +145,13 @@ sudo howdy add
 
 Choose your model name and then look at the camera straightly. Add multiple models to make it more accurate. Notice each additional model slows down the face recognition engine slightly.
 
-**Note:** After using `howdy` and adding it to `PAM` you may disturb by `gnome-keyring` on some applications. To disable it you can remove keyrings:
+**Note:** After using `howdy` and adding it to `PAM` you may disturb by `gnome-keyring` on some applications. To disable it you can remove key-rings:
 
 ```bash
 rm -rf ~/.local/share/keyrings
 ```
 
-The next time you see the pop-up keyring window, choose an empty password on keyrings (press enter on passwords). It will remove all your signin passwords.
+The next time you see the pop-up keyring window, choose an empty password on keyrings (press enter on passwords). It will remove all your sign-in passwords.
 
 You can use `Passwords & Keys` application to choose and reset it to an empty password instead.
 
