@@ -1219,7 +1219,7 @@ To download from an specific website, which needs credentials or login you can u
 yt-dlp --cookies-from-browser edge <LINK>
 ```
 
-You can also extract the cookies from an specific website to a `.text` file using [this](https://chromewebstore.google.com/detail/get-cookiestxt-locally/cclelndahbckbenkjhflpdbgdldlbecc?hl=en) extension. After that you can use that specific cookies instead of whole cookies in the broswer:
+You can also extract the cookies from a specific website to a `.text` file using [this](https://chromewebstore.google.com/detail/get-cookiestxt-locally/cclelndahbckbenkjhflpdbgdldlbecc?hl=en) extension. After that you can use that specific cookies instead of whole cookies in the browser:
 
 ```bash
 yt-dlp --cookies <cookies.txt> <LINK>
@@ -1255,7 +1255,8 @@ The general form:
 yt-dlp --cookies-from-browser edge -f "best" -o "%(title)s.mp4" <VIDEO_URL>
 ```
 
-Some issues like this _ERROR: secretstorage not available as the `secretstorage` module is not installed._ require installing `python-secretestorage:
+Some issues like this _ERROR: `secretstorage` not available as the `secretstorage` module is not installed._
+require installing `python-secretestorage`:
 
 ```bash
 sudo pacman -S python-secretstorage
