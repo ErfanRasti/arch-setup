@@ -246,6 +246,105 @@ Using the above commands you can replace a `user` with `USERNAME` in all of your
 then add the remote again (because probably during the filter operations previous remote is removed.), and
 finally forcefully push to the GitHub.
 
+### Git change previous commits without changing the date
+
+1. I personally recommend to clone the repo fresh (to make it safe if you have previous changes):
+
+   ```sh
+   git clone git clone https://github.com/<USER-NAME>/<REPO-NAME>
+   cd ./<REPO-NAME>
+   ```
+
+2. Create a new branch to backup the current dates and data:
+
+   ```sh
+   # 0) safety backup
+   git branch backup-before-root-rewrite
+
+   # 1) edit the root commit
+   git rebase -i --root
+   ```
+
+   Your editor opens a list. Change the first line from pick to edit for the initial commit, save/close. You can also edit other commits too.
+
+3. Now you’re stopped at that commit:
+
+   ```sh
+   # 2) modify the file(s)
+   # (edit files however you want)
+   git add -A
+
+   # 3) amend the root commit WITHOUT changing its shown Date (author date)
+   git commit --amend --no-edit --reset-author --date "$(git show -s --format=%aI HEAD)"
+   ```
+
+4. Continue:
+
+   ```sh
+   git rebase --continue
+   ```
+
+5. Run this on the rewritten branch:
+
+   ```sh
+   git log --format=fuller --date=iso-strict --max-count=5
+   ```
+
+   Look at:
+   - AuthorDate: should be the old time (Good)
+   - CommitDate: will likely be “now” (Should be fixed)
+
+   If that’s what you see, the fix is to set CommitDate = AuthorDate (or restore original committer dates exactly).
+
+6. This makes the “dates” look like the old ones everywhere:
+
+   ```sh
+   git filter-branch -f --env-filter '
+   export GIT_COMMITTER_DATE="$GIT_AUTHOR_DATE"
+   ' -- --all
+   ```
+
+   After this check the `CommitDate` again:
+
+   ```sh
+   git log --format=fuller --date=iso-strict --max-count=5
+   ```
+
+7. Then push:
+
+   ```sh
+   git push --force origin main
+   ```
+
+   As you can see we don't push the backup branch. So you can remove the
+   `./<REPO-NAME>` folder and start fresh with re-cloning the repo.
+
+   You can also compare the branches and commits:
+
+   ```sh
+   git log backup-before-root-rewrite --reverse --format='%aI | %s' > /tmp/backup.txt
+   git log main   --reverse --format='%aI | %s' > /tmp/main.txt
+   ```
+
+   Then:
+
+   ```sh
+   comm -23 /tmp/backup.txt /tmp/main.txt
+   comm -13 /tmp/backup.txt /tmp/main.txt
+   ```
+
+   The first one shows the commits that exist in backup but do NOT exist in main.
+   The second one shows the commits that exist in main but did NOT exist in backup.
+
+8. Start fresh:
+
+   ```sh
+   cd ..
+   trash digital-signal-processing-lab
+   git clone git clone https://github.com/<USER-NAME>/<REPO-NAME>
+   cd ./<REPO-NAME>
+   ```
+
 ## bash
 
 There is not much to say about `bash` but if you want to restore the default `bash` configuration:
