@@ -1789,7 +1789,7 @@ Open <http://localhost:5173> to see it.
 
 - <https://github.com/VERT-sh/VERT/blob/main/docs/GETTING_STARTED.md>
 
-### pandoc
+## pandoc
 
 Nice tool to convert markdown files to `pdf`.
 
@@ -1801,7 +1801,7 @@ sudo pacman -S pandoc
 
 - <https://wiki.archlinux.org/title/List_of_applications/Documents>
 
-### COSMIC
+## COSMIC
 
 COSMIC is a desktop environment developed in the Rust programming language.
 Install it using:
@@ -1817,3 +1817,48 @@ store and install your desired applet.
 **References:**
 
 - <https://wiki.archlinux.org/title/COSMIC>
+
+## Steam
+
+To install steam on Arch you need to enable `multilib` repository:
+
+```sh
+sudo nvim /etc/pacman.conf
+```
+
+Then uncomment this:
+
+```conf
+[multilib]
+Include = /etc/pacman.d/mirrorlist
+```
+
+Then upgrade the system:
+
+```sh
+sudo pacman -Syu
+```
+
+Finally install steam:
+
+```sh
+sudo pacman -S steam
+```
+
+You may encounter some problems in window managers like `Hyprland` and `niri`. To solve this:
+
+1. Click the Steam application menu in the top left of the window (you can still click it on the black screen, just hunt around).
+
+2. Then go to `Settings -> Interface` and disable the option Enable GPU accelerated rendering in web views.
+
+3. Restart Steam and the black screen should be fixed.
+
+Also if you want to restore game backup, you should install Steam Linux Runtime first.
+
+**References:**
+
+- <https://wiki.archlinux.org/title/Steam#Troubleshooting>
+- <https://wiki.archlinux.org/title/Official_repositories#multilib>
+- <https://www.reddit.com/r/archlinux/comments/1oanb21/on_niri_steam_shows_up_as_a_black_window_but/>
+- <https://github.com/YaLTeR/niri/issues/1034>
+- <https://www.reddit.com/r/Steam/comments/17bxzi/does_anyone_know_what_update_suspended_means_and/>
