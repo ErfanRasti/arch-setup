@@ -1845,6 +1845,10 @@ Finally install steam:
 sudo pacman -S steam
 ```
 
+If you have an old hardware that `nvidia-open-dkms` doesn't support it (like Pascal GPU series),
+you should select the `lib32` library dedicated to your CPU instead.
+For example, select `lib32-vulkan-intel` instead of `lib32-nvidia-utils`.
+
 You may encounter some problems in window managers like `Hyprland` and `niri`. To solve this:
 
 1. Click the Steam application menu in the top left of the window (you can still click it on the black screen, just hunt around).
