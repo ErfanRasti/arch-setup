@@ -314,6 +314,21 @@ To reduce image size you can decrease its quality using this package:
 magick photo.jpg -quality 70 photo-compressed-lossy.jpg
 ```
 
+Also, if you want to convert a `pdf` file to some `jpg` images:
+
+```sh
+pdftoppm input.pdf output -jpeg
+```
+
+It will convert each page of the `pdf` file to a separate image like this:
+
+```
+output-1.jpg
+output-2.jpg
+output-3.jpg
+...
+```
+
 **References:**
 
 - <https://wiki.archlinux.org/title/ImageMagick>
