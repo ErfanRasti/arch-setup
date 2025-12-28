@@ -365,11 +365,53 @@ ffmpeg -i "<YOUR_VIDEO>.mp4" audio.mp3
 
 ## File managers
 
+### `yazi`
+
 ```bash
-sudo pacman -S nautilus yazi
+sudo pacman -S yazi
 ```
 
 `yazi` is a terminal based file manager.
+
+It has also some plugins. Install them using:
+
+```sh
+ya pkg add yazi-rs/plugins:toggle-pane
+```
+
+Then create shortcuts for it in `~/.config/yazi/keymap.toml` using:
+
+```toml
+[[mgr.prepend_keymap]]
+on = "T"
+run = "plugin toggle-pane max-preview"
+desc = "Maximize or restore the preview pane"
+```
+
+If the bulk rename feature doesn't work for you, add this:
+
+```toml
+# bulk-rename activation
+[[opener.bulk-rename]]
+run = 'nvim "$@"'
+block = true
+
+[[open.prepend_rules]]
+name = "bulk-rename.txt"
+use = "bulk-rename"
+```
+
+**References:**
+
+- <https://yazi-rs.github.io/features/>
+- <https://yazi-rs.github.io/docs/quick-start/>
+- <https://github.com/yazi-rs/plugins/tree/main/toggle-pane.yazi>
+
+### `nautilus`
+
+```bash
+sudo pacman -S nautilus
+```
 
 I also use some extensions for `nuatilus`:
 
@@ -423,7 +465,7 @@ Or if you want to open it in the home directory:
 nautilus admin://$HOME
 ```
 
-My persional recommendation is using `actions-for-nautilus-git`
+My personal recommendation is using `actions-for-nautilus-git`
 which provides high customizability for `nautilus` context menu:
 
 ```sh

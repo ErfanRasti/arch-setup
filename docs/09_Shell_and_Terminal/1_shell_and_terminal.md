@@ -929,7 +929,7 @@ sudo pacman -S duf exa eza git-delta zoxide glow yazi aichat trash-cli \
 paru -S lazydocker-bin ascii-image-converter-bin gitbutler-bin fum-bin gitfetch-python
 ```
 
-- `duf` – A modern, user-friendly alternative to df for checking disk usage.
+- `duf` – A modern, user-friendly alternative to `df` for checking disk usage.
 - `exa` – A modern replacement for ls with colors, icons, and better formatting.
 - `eza` – A fork of exa with continued development and extra features.
 - `git`-delta – A syntax-highlighting pager for git, improving diff output.
@@ -954,21 +954,7 @@ paru -S lazydocker-bin ascii-image-converter-bin gitbutler-bin fum-bin gitfetch-
 - `lazydocker` - A terminal UI for managing Docker containers and images.
 - `yazi` - A blazing-fast terminal file manager with previews.
   For `yazi` press `<f1>` for help to the shortcuts.
-  It has also some plugins. Install them using:
-
-  ```sh
-  ya pkg add yazi-rs/plugins:toggle-pane
-  ```
-
-  Then create shortcuts for it in `~/.config/yazi/keymap.toml` using:
-
-  ```toml
-  [[mgr.prepend_keymap]]
-  on = "T"
-  run = "plugin toggle-pane max-preview"
-  desc = "Maximize or restore the preview pane"
-  ```
-
+  For more info check [this](../10_applications_and_packages/2_arch_aur.md#file-managers).
 - `ascii-image-converter` - A command-line tool that converts images.
 
   I use it like this:
@@ -1037,8 +1023,6 @@ paru -S lazydocker-bin ascii-image-converter-bin gitbutler-bin fum-bin gitfetch-
 - <https://github.com/eza-community/eza>
 - <https://github.com/muesli/duf>
 - <https://github.com/ajeetdsouza/zoxide>
-- <https://yazi-rs.github.io/docs/quick-start/>
-- <https://github.com/yazi-rs/plugins/tree/main/toggle-pane.yazi>
 - <https://github.com/andreafrancia/trash-cli/>
 - <https://github.com/gitbutlerapp/gitbutler>
 - <https://gitbutler.com/>
