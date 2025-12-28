@@ -601,7 +601,7 @@ Make sure to change `monitor` and `path` according to your config.
 
 **Note:** If you set up `howdy` on your PAM, you should add it to your hyprlock too.
 To do this redo four step PAM section of
-[this](/docs/08_devices/5_camera.md#face-recognition).
+[this](../08_devices/5_camera.md#face-recognition).
 
 **References:**
 

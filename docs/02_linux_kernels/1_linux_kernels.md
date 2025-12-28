@@ -118,7 +118,7 @@ These parameters can be added at the end of the `options` line:
    sudo nano /etc/mkinitcpio.conf
    ```
 
-   If you are using the systemd hook, it must be before `plymouth`.
+   If you are using the `systemd` hook, it must be before `plymouth`.
 
    Furthermore, make sure you place `plymouth` before the `encrypt` or `sd-encrypt` hook.
 

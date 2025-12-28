@@ -2,11 +2,11 @@
 
 In the date of adding this instruction, `wayland` still hasn't released the fractional scaling, officially in the main release and it is presented as experimental features. I prefer activating it anyway.
 
-1. To activate it use `dconf`. I use `dconf-editor`. Go to `/org/gnome/mutter/experimental-features` and dsiable `Use default value`. then select these custom values:
+1. To activate it use `dconf`. I use `dconf-editor`. Go to `/org/gnome/mutter/experimental-features` and disable `Use default value`. then select these custom values:
    `scale-monitor-framebuffer`, `kms-modifier`, `variable-refresh-rate`, `xwayland-native-scaling`.
 2. Go to `gnome settings > Display > Scale` and select your desire value. Under refresh rate you can also select variable refresh rate.
 3. Scale your XWayland applications using `gnome-tweask` in `Fonts` tab.
-   Also, Activate Antialiasing equal to `Subpixel (for LCD screens)` if you have LCD monitor. I also prefer Hinting equal with `Full`.
+   Also, activate anti-aliasing equal to `Subpixel (for LCD screens)` if you have LCD monitor. I also prefer Hinting equal with `Full`.
 
 You can also use this instead:
 

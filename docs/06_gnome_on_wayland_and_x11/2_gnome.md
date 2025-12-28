@@ -101,4 +101,4 @@ If you messed something on gnome configurations:
    dconf load /org/gnome/ < ~/dconf-backup.conf
    ```
 
-   Hold the nonproblematic half and do it again and again for sub partitions untill you found th problem.
+   Hold the non-problematic half and do it again and again for sub partitions until you found the problem.

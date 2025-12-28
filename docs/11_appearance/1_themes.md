@@ -46,7 +46,7 @@ To customize some applications like firefox we can use `tweaks.sh`:
 
 Please go to [Firefox menu] > [Customize...], and customize your Firefox to make it work. Move your 'new tab' button to the titlebar instead of tab-switcher.
 
-You need install adaptive-tab-bar-colour plugin first for `adaptive` mode: <https://addons.mozilla.org/firefox/addon/adaptive-tab-bar-colour/>
+You need to install adaptive-tab-bar-color plugin first for `adaptive` mode: <https://addons.mozilla.org/firefox/addon/adaptive-tab-bar-colour/>
 
 **Note:** If you faced a misplaced searchbar on firefox, close firefox and reexecute the `./tweaks.sh` command.
 

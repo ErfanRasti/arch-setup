@@ -93,7 +93,7 @@ If some fonts (including persian fonts) are not rendered correctly this font wil
 sudo pacman -S woff2-font-awesome
 ```
 
-**New warnning:**
+**New warning:**
 <i>
 Starting from version 7.0.0, the Font Awesome upstream no longer includes '.ttf' webfonts
 and instead provides them in '.woff2' format, which is now the standard for webfont delivery.
@@ -103,7 +103,7 @@ The 'ttf-font-awesome' package has therefore been replaced by the 'woff2-font-aw
 If your project(s) or configuration(s) still depend on '.ttf' files, please update
 them to use the '.woff2' format instead.
 
-See <https://fontawesome.com/changelog> for more details.
+See [this](https://fontawesome.com/changelog) for more details.
 </i>
 
 **References:**

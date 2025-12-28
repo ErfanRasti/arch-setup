@@ -2,7 +2,7 @@
 
 **Warning:** I used the _New Method_ for `btrfs` swapfile. There are some differences for the _Old Method_.
 
-1. first make the hibernated image as small as possible. Edit the following file:
+1. First make the hibernated image as small as possible. Edit the following file:
 
    ```bash
    sudo nano /etc/tmpfiles.d/hibernation_image_size.conf

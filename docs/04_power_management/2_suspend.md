@@ -98,6 +98,7 @@ My default suspend mode is `deep` and there is no need to do any of this for me!
 - <https://docs.kernel.org/admin-guide/pm/sleep-states.html#basic-sysfs-interfaces-for-system-suspend-and-hibernation>
 - <https://wiki.archlinux.org/title/Kernel_parameters>
 - <https://web.archive.org/web/20230614200816/https://01.org/blogs/qwang59/2018/how-achieve-s0ix-states-linux>
+- <https://github.com/intel/S0ixSelftestTool>
 
 ### Changing the power button behavior in systemd
 

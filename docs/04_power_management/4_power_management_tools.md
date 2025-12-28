@@ -444,7 +444,7 @@ watch -n 1 sensors
 
 ### Troubleshooting
 
-#### Wireless usb mouse not working
+#### Wireless USB mouse not working
 
 I have a wireless mouse with USB dongle. It didn't work for me. I made it work using this command:
 
