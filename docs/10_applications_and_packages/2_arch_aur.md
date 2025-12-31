@@ -226,7 +226,7 @@ sudo pacman -S libreoffice-fresh-fa
 
 ### OnlyOffice
 
-Another proper option (and also open source) is onlyoffice:
+Another proper option (and also open source) is `onlyoffice`:
 
 ```bash
 paru -S onlyoffice-bin
@@ -276,6 +276,63 @@ sudo pacman -S zathura zathura-pdf-poppler
 
 To open a pdf in `zathura` press `o` in the app and type the path.
 
+### PDF Tips and Tricks
+
+If you want to convert a `pdf` file into some `jpg` images:
+
+```sh
+pdftoppm input.pdf output -jpeg
+```
+
+It will convert each page of the `pdf` file to a separate image like this:
+
+```
+output-1.jpg
+output-2.jpg
+output-3.jpg
+...
+```
+
+Compress `pdf` files using:
+
+```sh
+gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 \
+-dPDFSETTINGS=/ebook \
+-dNOPAUSE -dQUIET -dBATCH \
+-sOutputFile=compressed.pdf input.pdf
+```
+
+- `/screen` → smallest size (low quality)
+- `/ebook` → best balance (recommended)
+- `/printer` → high quality
+- `/prepress` → very high quality
+
+For maximum compression with no quality loss:
+
+```sh
+gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.7 \
+-dPDFSETTINGS=/prepress \
+-dDetectDuplicateImages=true \
+-dCompressFonts=true \
+-dSubsetFonts=true \
+-dNOPAUSE -dQUIET -dBATCH \
+-sOutputFile=compressed.pdf input.pdf
+```
+
+What this does (all lossless):
+
+- Removes duplicate images
+- Subsets fonts (keeps only used glyphs)
+- Compresses streams without re-compression
+- Keeps original image quality 100% intact
+
+You can also use `qpdf`:
+
+```sh
+sudo pacman -S qpdf
+qpdf --optimize-images --stream-data=compress input.pdf output.pdf
+```
+
 ## Photo and Video
 
 ```bash
@@ -312,21 +369,6 @@ To reduce image size you can decrease its quality using this package:
 
 ```sh
 magick photo.jpg -quality 70 photo-compressed-lossy.jpg
-```
-
-Also, if you want to convert a `pdf` file to some `jpg` images:
-
-```sh
-pdftoppm input.pdf output -jpeg
-```
-
-It will convert each page of the `pdf` file to a separate image like this:
-
-```
-output-1.jpg
-output-2.jpg
-output-3.jpg
-...
 ```
 
 **References:**
