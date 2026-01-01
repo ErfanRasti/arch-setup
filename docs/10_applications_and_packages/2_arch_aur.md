@@ -1361,6 +1361,12 @@ require installing `python-secretestorage`:
 sudo pacman -S python-secretstorage
 ```
 
+### Extract audio from YouTube
+
+```bash
+yt-dlp -x --audio-format mp3 "<YOUR_LINK>"
+```
+
 **References:**
 
 - <https://wiki.archlinux.org/title/Yt-dlp#Cookies>
@@ -1369,16 +1375,18 @@ sudo pacman -S python-secretstorage
 - <https://www.reddit.com/r/youtubedl/comments/iexk4j/comment/g3002y8/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button>
 - <https://www.reddit.com/r/youtubedl/comments/1beiy6w/comment/lgxfhkm/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button>
 
+## Audio
+
+One of the best tools to trim audio songs:
+
+```sh
+sudo pacman -S audacity
+```
+
 ## Subtitle downloader
 
 ```bash
 paru -S bazarr
-```
-
-## Extract audio from YouTube
-
-```bash
-yt-dlp -x --audio-format mp3 "<YOUR_LINK>"
 ```
 
 ## Speedtest
