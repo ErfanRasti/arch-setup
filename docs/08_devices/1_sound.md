@@ -8,7 +8,7 @@ I had an issue in a while that my Bluetooth headphone connects to the system, bu
 systemctl --user restart wireplumber.service
 ```
 
-I tried to automate this process by a `bash` script but one day by accident I figured out that the problem is by `wireplumber` settings. Thanks to legendary `arch-wiki` I removed all `wireplumber` settings and everything works fine untill now:
+I tried to automate this process by a `bash` script but one day by accident I figured out that the problem is by `wireplumber` settings. Thanks to legendary `arch-wiki` I removed all `wireplumber` settings and everything works fine until now:
 
 ```bash
 systemctl --user stop wireplumber.service
@@ -143,7 +143,7 @@ gsettings set org.gnome.desktop.sound allow-volume-above-100-percent true
    diff /usr/share/pipewire/pipewire.conf /etc/pipewire/
    ```
 
-2. Reset `wireplumber` `alsa` related configs:
+2. Reset `wireplumber` and `alsa` related configs:
 
    ```bash
    mkdir -p ~/.config/wireplumber/wireplumber.conf.d/
