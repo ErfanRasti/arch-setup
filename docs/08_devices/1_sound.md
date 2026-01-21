@@ -77,6 +77,56 @@ gsettings set org.gnome.desktop.sound allow-volume-above-100-percent true
 
 - <https://wiki.archlinux.org/title/GNOME/Tips_and_tricks#Increase_volume_above_and_beyond_100%>
 
+### Set Latency Offset for an Audio Device
+
+1. Find your device using:
+
+   ```sh
+   pactl list sinks | grep -Eo 'bluez_card[^>]*'
+   ```
+
+   Find something like `bluez_output.XX_XX_XX_XX_XX_XX`.
+
+2. Set latency offset (in microseconds):
+
+   ```sh
+   pactl set-port-latency-offset bluez_card.XX_XX_XX_XX_XX_XX headphone-output 125000
+   ```
+
+   It can also be negative:
+
+   ```sh
+   pactl set-port-latency-offset bluez_card.XX_XX_XX_XX_XX_XX headphone-output -100000
+   ```
+
+   For autocompletes use `zsh` with the configurations explained in [../09_Shell_and_Terminal/1_shell_and_terminal.md#zsh-&-ohmyzsh](this).
+
+3. Finally verify it using:
+
+   ```sh
+   pactl list cards | grep -A 10 -B 5 'headphone-output'
+   ```
+
+   or:
+
+   ```sh
+   pw-dump | grep -i -E 'bluez|node.name|latency'
+   ```
+
+There is another workaround to solve radio frequency interference:
+
+```sh
+pw-metadata -n settings 0 clock.force-quantum 1024
+```
+
+**References:**
+
+- <https://wiki.archlinux.org/title/Bluetooth_headset#Connecting_works,_but_there_are_sound_glitches_all_the_time>
+- <https://man.archlinux.org/man/pactl.1.en#set_port_latency_offset>
+- <https://www.reddit.com/r/archlinux/comments/1jul1vw/comment/mm3q63l/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button>
+- <https://askubuntu.com/questions/145935/get-rid-of-0-5s-latency-when-playing-audio-over-bluetooth-with-a2dp>
+- <https://man.archlinux.org/man/pipewire.conf.5.en>
+
 ### Troubleshooting
 
 #### Audio is distorted
