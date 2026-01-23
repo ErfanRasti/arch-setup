@@ -123,7 +123,7 @@ man pacman
 
 or take a look at [this](https://wiki.archlinux.org/title/Pacman#Removing_packages).
 
-**Note:** Always consider checking `/var/log/pacman.log` to remove unneeded dependencies. Maybe some branched packages installed by installing the script of another package weren't removed by -Rsucn.
+**Note:** Always consider checking `/var/log/pacman.log` to remove unneeded dependencies. Maybe some branched packages installed by installing the script of another package weren't removed by `-Rsucn`.
 
 To remove the list of packages and don't get stopped by some _not found_ packages use the following:
 
@@ -164,7 +164,20 @@ sudo pacman -Syu
 - `y`: Download fresh package databases
 - `u`: Upgrade all out-of-date packages
 
-This processure has been automated in `yay` and `paru`. You can simply run `yay` or `paru` to do all of that for AUR packages and official repositories together(They made simple aliases to `-Syu` flag).
+This procedure has been automated in `yay` and `paru`. You can simply run `yay` or `paru` to do all of that for AUR packages and official repositories together(They made simple aliases to `-Syu` flag).
+
+If you only want to update `AUR` packages using `paru` or `yay` run:
+
+```sh
+paru -Sua
+yay -Sua
+```
+
+and if you want to clean the cloned `paru` packages:
+
+```sh
+trash ~/.cache/paru/clone/*
+```
 
 In `flatpak` it is more user-friendly:
 
@@ -443,7 +456,7 @@ If you faced this:
 
 Go to your file manager (my case `nautilus`) in the home directory and search for `<PACKAGE_NAME>.zip`. If you found it, delete it and then run the installation again.
 
-### paru: error while loading shared libraries: libalpm.so.*
+### paru: error while loading shared libraries: libalpm.so.\*
 
 Sometimes in the first days of new `pacman` update, the `paru` is not compatible with the new version of `pacman`. To fix it you can use `paru-git`:
 
@@ -471,6 +484,7 @@ yay -S paru
 ```
 
 Or even `paru` on AUR doesn't work use:
+
 ```sh
 yay -S paru-git
 ```
