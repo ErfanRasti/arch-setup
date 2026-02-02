@@ -693,6 +693,14 @@ If you used commands like `gg`, `G`, `/search`, `:tag`, or `:edit`, Neovim recor
 Go back in jump list using `<C-o>` and go forward again using `<C-i>`.
 View jumps using `:jumps`.
 
+### Troubleshooting
+
+If you get some wired errors at the start of `neovim` run this:
+
+```sh
+trash ~/.local/share/nvim/site/queries/vim
+```
+
 **References:**
 
 - <https://dotfyle.com/neovim/colorscheme/trending>
