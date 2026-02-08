@@ -761,25 +761,24 @@ map kitty_mod+enter new_window_with_cwd
 2. Press `i` to enter insert mode.
 3. set your environment variables:
 
-```conf
-env HTTP_PROXY="${DESIRED_VALUE}"
-env HTTPS_PROXY="${DESIRED_VALUE}"
-env https_proxy="${DESIRED_VALUE}"
-env ALL_PROXY="${DESIRED_VALUE}"
-env all_proxy="${DESIRED_VALUE}"
-env NO_PROXY="${DESIRED_VALUE}"
-env no_proxy="${DESIRED_VALUE}"
-env http_proxy="${DESIRED_VALUE}"
-env ftp_proxy="${DESIRED_VALUE}"
-env FTP_PROXY="${DESIRED_VALUE}"
-
-```
+   ```conf
+   env HTTP_PROXY="${DESIRED_VALUE}"
+   env HTTPS_PROXY="${DESIRED_VALUE}"
+   env https_proxy="${DESIRED_VALUE}"
+   env ALL_PROXY="${DESIRED_VALUE}"
+   env all_proxy="${DESIRED_VALUE}"
+   env NO_PROXY="${DESIRED_VALUE}"
+   env no_proxy="${DESIRED_VALUE}"
+   env http_proxy="${DESIRED_VALUE}"
+   env ftp_proxy="${DESIRED_VALUE}"
+   env FTP_PROXY="${DESIRED_VALUE}"
+   ```
 
 4. To check proxy environment variables:
 
-```bash
-env | grep -i proxy
-```
+   ```bash
+   env | grep -i proxy
+   ```
 
 You can also use VPN instead.
 
@@ -1120,7 +1119,7 @@ There is a major customization option and a greate marketplace named Sine for ze
 3. Go to `about:support` and click on Clear Startup Cache.
 4. Restart manually by closing and opening the browser.
 5. Go to `settings > Sine Mods`.
-6. Try to install `Nebula`. If it don't install run these:
+6. Try to install `Nebula`. If it doesn't install run these:
 
    ```sh
    sudo chown $(whoami):$(whoami) -R ~/.zen/*/chrome/
