@@ -1,5 +1,18 @@
 ## Fonts
 
+You can manually install fonts using this:
+
+```sh
+mkdir -p ~/.local/share/fonts
+cp MyFont.ttf ~/.local/share/fonts/
+# or
+mkdir -p ~/.local/share/fonts/custom
+cp MyFont.ttf ~/.local/share/fonts/custom/
+
+# Refresh the font cache
+fc-cache -fv
+```
+
 Some extra fonts are available here:
 
 - <https://www.reddit.com/r/archlinux/comments/rm3kch/comment/hpkd7cp/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button>
