@@ -333,6 +333,12 @@ sudo pacman -S qpdf
 qpdf --optimize-images --stream-data=compress input.pdf output.pdf
 ```
 
+To combine some pdf files you can use `pdfunite`:
+
+```sh
+pdfunite file1.pdf file2.pdf merged.pdf
+```
+
 ## Photo and Video
 
 ```bash
