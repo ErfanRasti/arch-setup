@@ -217,6 +217,8 @@ Add:
 export HYPRCURSOR_SIZE=32
 ```
 
+Check [`app2unit` section](../10_applications_and_packages/2_arch_aur.md#app2unit). It is a nice tool to launch applications.
+
 **References:**
 
 - <https://wiki.hyprland.org/Configuring/XWayland/#hidpi-xwayland>
@@ -703,24 +705,24 @@ Some gtk cursors need separate config files on `gtk-3.0` and `gtk-4.0` folders.
 
 1. Install `acpid` and enable `systemd-logind`:
 
-```bash
-sudo pacman -S acpid
-sudo systemctl enable --now systemd-logind
-```
+   ```bash
+   sudo pacman -S acpid
+   sudo systemctl enable --now systemd-logind
+   ```
 
 2. Edit `logind.conf`:
 
-```bash
-sudo mkdir -p /etc/systemd/logind.conf.d/
-sudo cp /etc/systemd/logind.conf /etc/systemd/logind.conf.d/
-sudo nano /etc/systemd/logind.conf.d/logind.conf
-```
+   ```bash
+   sudo mkdir -p /etc/systemd/logind.conf.d/
+   sudo cp /etc/systemd/logind.conf /etc/systemd/logind.conf.d/
+   sudo nano /etc/systemd/logind.conf.d/logind.conf
+   ```
 
-Change:
+   Change:
 
-```conf
-HandlePowerKey=suspend
-```
+   ```conf
+   HandlePowerKey=suspend
+   ```
 
 3. Restart `systemd-logind`:
 
@@ -742,24 +744,24 @@ This instruction also remapped closing the lid for me.
 sudo pacman -S hyprpaper
 ```
 
-2. Configure it and pass your desired wallpaper to it:
+1. Configure it and pass your desired wallpaper to it:
 
-```conf
-nano ~/.config/hypr/hyprpaper.conf
-```
+   ```conf
+   nano ~/.config/hypr/hyprpaper.conf
+   ```
 
-For me:
+   For me:
 
-```conf
-preload = ~/Pictures/Wallpapers/MatrixWallpapers/trinity-matrix.png
-wallpaper = eDP-1, ~/Pictures/Wallpapers/MatrixWallpapers/trinity-matrix.png
-```
+   ```conf
+   preload = ~/Pictures/Wallpapers/MatrixWallpapers/trinity-matrix.png
+   wallpaper = eDP-1, ~/Pictures/Wallpapers/MatrixWallpapers/trinity-matrix.png
+   ```
 
-3. Add this at the first of your `hyprland.conf`:
+1. Add this at the first of your `hyprland.conf`:
 
-```conf
-exec-once = hyprpaper
-```
+   ```conf
+   exec-once = hyprpaper
+   ```
 
 **References:**
 
@@ -1081,13 +1083,13 @@ This is an annoying problem. Thanks to Reddit explanation:
 sudo pacman -S gnome-keyring
 ```
 
-2. Add following to `hyprland.conf`:
+1. Add following to `hyprland.conf`:
 
 ```conf
 exec-once = gnome-keyring-daemon --start --components=secrets
 ```
 
-3. Remove `~/.local/share/keyrings` or use `Passwords & Keys` application to choose and reset it to an empty password:
+1. Remove `~/.local/share/keyrings` or use `Passwords & Keys` application to choose and reset it to an empty password:
 
 ```bash
 rm -rf ~/.local/share/keyrings
@@ -1387,7 +1389,7 @@ Then hyperlink the `freeedesktop/stereo` to `ocean/stereo`:
 sudo ln -s /usr/share/sounds/ocean/stereo/desktop-login.oga /usr/share/sounds/freedesktop/stereo/system-bootup.oga
 ```
 
-You can also start the song on system login in Hyprland:
+You can also start the song on system login in `Hyprland`:
 
 ```sh
 # Welcome sound
