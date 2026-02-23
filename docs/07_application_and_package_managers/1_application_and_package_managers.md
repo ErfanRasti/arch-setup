@@ -574,3 +574,11 @@ paru -S nix-zsh-completions
 - <https://wiki.archlinux.org/title/Nix>
 - <https://wiki.archlinux.org/title/Users_and_groups#Group_management>
 - <https://dev.to/sleeyax/why-i-stopped-using-nixos-and-went-back-to-arch-4070>
+
+## Trees
+
+Trees gives you the understanding about what's really going on in the system and how dependencies are managed.
+
+Use `pstree` to see the tree of all the processes on the system.
+
+Use `pactree <PACKAGE_NAME>` to see the dependencies of a package.
