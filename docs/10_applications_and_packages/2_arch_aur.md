@@ -1105,7 +1105,7 @@ If you want custom CSS theme take a loot at [this](https://github.com/TheBigWazz
 
 #### Sine Mods
 
-There is a major customization option and a greate marketplace named Sine for zen browser. Install it like this:
+There is a major customization option and a great marketplace named Sine for zen browser. Install it like this:
 
 1. Download the latest release of Sine from [this](https://github.com/CosmoCreeper/Sine/releases).
 2. Then:
@@ -1132,7 +1132,7 @@ There is a major customization option and a greate marketplace named Sine for ze
    ```
 
 7. Go to `about:config` and change `browser.tabs.allow_transparent_browser` to `true`.
-8. If you wanna see the true transparency, right click on the browser empty section and got to `Edit Theme`.
+8. If you wanna see the true transparency, right-click on the browser empty section and got to `Edit Theme`.
    Then make the contrast to zero.
 9. To make everything neat you can hide the minimize/maximize/close buttons using:
 
@@ -1346,6 +1346,12 @@ yt-dlp --cookies-from-browser edge -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]" <L
 ```
 
 In this case I merged best video quality with `.mp4` format and best audio with `.m4a` format. This is my recommended option.
+
+This is also very helpful:
+
+```sh
+yt-dlp --cookies-from-browser firefox -t mp4 <VIDEO_URL>
+```
 
 To force custom extension with the name:
 
