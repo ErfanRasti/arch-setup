@@ -1984,3 +1984,72 @@ Also if you want to restore game backup, you should install Steam Linux Runtime 
 - <https://www.reddit.com/r/archlinux/comments/1oanb21/on_niri_steam_shows_up_as_a_black_window_but/>
 - <https://github.com/YaLTeR/niri/issues/1034>
 - <https://www.reddit.com/r/Steam/comments/17bxzi/does_anyone_know_what_update_suspended_means_and/>
+
+## `app2unit`
+
+If you’re happy just launching apps and don’t care about crashes, restarts, or session structure, you don’t need `app2unit`.
+
+If you do care about those things, `app2unit` gives you real, tangible wins with almost no downside.
+
+When you launch an app the “normal” way (keybind, launcher, terminal):
+
+- It’s just a loose process
+- If it crashes → it’s gone
+- If your WM restarts → state is weird
+- Logs are scattered (or nonexistent)
+- No clear parent/child relationship
+- No automatic restart
+- No clean shutdown ordering
+
+That’s fine… until it’s not.
+
+`app2unit` does NOT introduce a daemon, framework, or philosophy.
+It’s basically:
+
+> _“Hey `systemd`, please babysit this app.”_
+
+That’s it.
+
+You still:
+
+- press your usual keybind
+- use your usual launcher
+- run your usual command
+
+But now the app runs as:
+
+- a systemd user service
+- in its own cgroup
+- with proper lifecycle management
+
+Install it using:
+
+```sh
+paru -S app2unit
+```
+
+Some usage commands:
+
+1. Apps restart themselves when they crash:
+
+```sh
+app2unit firefox
+```
+
+2. Real logging:
+
+   Instead of:
+
+   > “It froze… I think?”
+
+   You get:
+
+   ```sh
+   journalctl --user -u app-firefox
+   ```
+
+   Now you actually know why something died.
+
+**References:**
+
+- <https://www.reddit.com/r/hyprland/comments/1j91f9h/uwsm_is_kinda_confusing/>
