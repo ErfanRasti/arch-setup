@@ -1051,6 +1051,8 @@ The configuration file is `~/.config/fish/config.fish`. Run `fish_config` to con
 
 For manual page completions run `fish_update_completions`.
 
+Note that the history of commands for fish is in `~/.local/share/fish/fish_history`.
+
 ### Setting fish as interactive shell only
 
 I personally take bash as pure as possible, and I rather add fish to the top of the `~/bashrc` and make it my default terminal instead of `~/.zshrc`:
