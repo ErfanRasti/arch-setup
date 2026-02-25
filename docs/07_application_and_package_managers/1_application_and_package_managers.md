@@ -433,9 +433,22 @@ paru
 - <https://www.reddit.com/r/archlinux/comments/v2zyad/pacman_invalid_or_corrupted_database_pgp_signature/>
 - <https://bbs.archlinux.org/viewtopic.php?id=268087>
 
+### File `/var/cache/pacman/pkg/<PACKAGE_NAME>.tar.zst` is corrupted (invalid or corrupted package (PGP signature))
+
+It usually occurs when you didn't update your system in a long time. Solve it using:
+
+```sh
+sudo pacman -S archlinux-keyring
+sudo pacman -Syu
+```
+
+**References:**
+
+- <https://bbs.archlinux.org/viewtopic.php?id=282170>
+
 ### Failed to init transaction (unable to lock database)
 
-If pacman is interrupted while changing the database, this stale lock file can remain. If you are certain that no instances of pacman are running then delete the lock file:
+If `pacman` is interrupted while changing the database, this stale lock file can remain. If you are certain that no instances of pacman are running then delete the lock file:
 
 ```bash
 sudo rm /var/lib/pacman/db.lck
@@ -443,7 +456,7 @@ sudo rm /var/lib/pacman/db.lck
 
 **References:**
 
--<https://wiki.archlinux.org/title/Pacman#.22Failed_to_init_transaction_.28unable_to_lock_database.29.22_error>
+- <https://wiki.archlinux.org/title/Pacman#.22Failed_to_init_transaction_.28unable_to_lock_database.29.22_error>
 
 ### One or more files did not pass the validity check
 
