@@ -29,6 +29,12 @@ git reset --hard origin/<branch-name>
 git pull
 ```
 
+and also for submodules:
+
+```sh
+git pull --recurse-submodules
+```
+
 **References:**
 
 - <https://www.geeksforgeeks.org/git/git-pull-force/>

@@ -512,7 +512,7 @@ First check your available `libalpm`s:
 ls -l /usr/lib/libalpm.so*
 ```
 
-Then
+Then:
 
 ```sh
 sudo ln -s /usr/lib/libalpm.so.16 /usr/lib/libalpm.so.15
