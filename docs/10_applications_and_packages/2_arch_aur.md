@@ -673,7 +673,19 @@ paru -S tabby-bin
 To open `kitty.conf` press `ctrl+shift+f2`.
 To save and exit first press `esc` to exit insert mode, then press `:x`. Also if you want to just exit without saving press `:q`.
 
-Change the class of the nvim and set it correctly using these:
+To add search functionality to kitty:
+
+```sh
+nvim ~/.config/kitty/kitty.conf
+```
+
+Add:
+
+```conf
+map ctrl+shift+f show_scrollback
+```
+
+To make `nvim` display the class name correctly under `kitty`, change the class of the `nvim` and set it correctly using these:
 
 ```sh
 cp /usr/share/applications/nvim.desktop  ~/.local/share/applications/
@@ -712,6 +724,7 @@ gio launch ~/.local/share/applications/nvim.desktop
 - <https://wiki.archlinux.org/title/Kitty>
 - <https://man.archlinux.org/man/extra/kitty/kitty.1.en>
 - <https://sw.kovidgoyal.net/kitty/conf/#the-color-table>
+- <https://sw.kovidgoyal.net/kitty/conf/#shortcut-kitty.Browse-scrollback-buffer-in-pager>
 
 #### Search in Kitty
 
@@ -2032,11 +2045,11 @@ Some usage commands:
 
 1. Apps restart themselves when they crash:
 
-```sh
-app2unit firefox
-```
+   ```sh
+   app2unit firefox
+   ```
 
-2. Real logging:
+1. Real logging:
 
    Instead of:
 
