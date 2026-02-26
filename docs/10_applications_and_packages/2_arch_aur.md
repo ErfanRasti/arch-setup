@@ -349,6 +349,8 @@ If you had a problem with playing some formats, change the following setting:
 
 Tools > Preferences > Input/Codecs/ > Hardware-accelerated decoding > Change it to VA-API video decoder
 
+If you want `vlc` to follow the global theming, go to `Tools > Preferences > Interface > Force window style` and set it to `qt5ct-style`.
+
 For video editing I recommend `kdenlive`:
 
 ```bash
