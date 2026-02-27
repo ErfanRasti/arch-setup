@@ -51,7 +51,7 @@ Exec=spotify --enable-features=UseOzonePlatform --ozone-platform=wayland --enabl
 
 ## Spicetify
 
-`spicetify` is a nice package to customize s`potify` and add custom apps and themes to it. To install it:
+`spicetify` is a nice package to customize `spotify` and add custom apps and themes to it. To install it:
 
 ```sh
 paru -S spicetify-cli
@@ -64,9 +64,11 @@ sudo chmod a+wr /opt/spotify
 sudo chmod a+wr /opt/spotify/Apps -R
 ```
 
--`a:` Stands for "all" (i.e., the file's owner, group, and others). -`+:` Adds the specified permissions. -`wr`: Grants both write (w) and read (r) permissions.
+- `a:` Stands for "all" (i.e., the file's owner, group, and others).
+- `+:` Adds the specified permissions.
+- `wr`: Grants both write (w) and read (r) permissions.
 
-`<ctrl_shift_r>` for apply in spotify SaveDesktop.
+`<ctrl_shift_r>` to apply in Spotify application.
 
 Then upgrade and apply to see the `spicetify` config on your `spotify`:
 

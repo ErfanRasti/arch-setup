@@ -707,6 +707,14 @@ If you get some wired errors at the start of `neovim` run this:
 trash ~/.local/share/nvim/site/queries/vim
 ```
 
+Also if you had some issues with `LazyVim` updates and packages use this:
+
+```sh
+rm -rf ~/.local/share/nvim
+rm -rf ~/.local/state/nvim
+rm -rf ~/.cache/nvim
+```
+
 **References:**
 
 - <https://dotfyle.com/neovim/colorscheme/trending>
