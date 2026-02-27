@@ -281,9 +281,10 @@ I prefer `podman` over `docker`, because it is more secure and doesn't need `sud
    paru -S winboat-bin
    ```
 
-2. Add your user to the `docker` group and start docker daemon:
+2. Install docker and add your user to the `docker` group and start docker daemon:
 
    ```sh
+   sudo pacman -S docker docker-compose
    sudo usermod -aG docker $USER
    docker context use default
    sudo systemctl enable docker.service

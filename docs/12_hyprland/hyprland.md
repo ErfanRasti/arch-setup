@@ -60,7 +60,7 @@ See it using `hyprpanel explain`.
 
 ```bash
 sudo pacman -S xdg-desktop-portal-hyprland
-sudo -S hyprpolkitagent
+sudo pacman -S hyprpolkitagent
 sudo pacman -S qt5-wayland qt6-wayland
 sudo pacman -S pipewire wireplumber
 ```
@@ -68,6 +68,13 @@ sudo pacman -S pipewire wireplumber
 Add `exec-once = systemctl --user start hyprpolkitagent` to `hyprland.conf`.
 
 `xdg-desktop-portal-hyprland` is for handling some `flatpak` apps and their functionality.
+
+**Note:** If you want to use some other policy kit like gnome `polkit-gnome` you should disable and stop `hyprpolkitagent`:
+
+```sh
+systemctl --user {stop,disable} hyprpolkitagent.service
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & disown
+```
 
 **References:**
 
