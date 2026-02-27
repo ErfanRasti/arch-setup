@@ -136,6 +136,20 @@ spicetify restore
 - <https://github.com/spicetify/spicetify-themes>
 - <https://spicetify.app/docs/advanced-usage/themes>
 
+### Dynamic spotify theme
+
+To have a dynamic `spotify` theme, first you should apply your theme and then you should watch the theme files to adjust the `spotify` color if the theme changed:
+
+```sh
+spicetify apply
+```
+
+Run `spotify` using this:
+
+```sh
+spicetify watch -s
+```
+
 ## Essential `pacman` applications
 
 ```bash
@@ -1480,7 +1494,9 @@ sudo pacman -S telegram-desktop discord skypeforlinux-bin element-desktop
 
 Disable Skype startup from startup applications on `gnome-tweaks`.
 
-`element-desktop` is a matrix client
+`element-desktop` is a matrix client.
+
+To apply themes to `telegram-desktop` go to `Settings > Chat Settings > Create new theme > Import existing theme` and choose your desired theme from path `~/.config/telegram-desktop/themes/`. For example you can choose `~/.config/telegram-desktop/themes/noctalia.tdesktop-theme` if you use `noctalia-shell`.
 
 ## VPS apps
 
