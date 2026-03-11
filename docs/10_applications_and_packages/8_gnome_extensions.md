@@ -6,6 +6,12 @@ I personally use a great CLI application to manage GNOME apps:
 paru -S gnome-extensions-cli
 ```
 
+but there is a graphical solution named Extension Manager which you can install using:
+
+```sh
+paru -S extension-manager
+```
+
 Search your desired extension:
 
 ```bash

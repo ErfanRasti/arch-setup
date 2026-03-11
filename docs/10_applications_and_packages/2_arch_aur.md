@@ -2003,9 +2003,7 @@ For example, select `lib32-vulkan-intel` instead of `lib32-nvidia-utils`.
 You may encounter some problems in window managers like `Hyprland` and `niri`. To solve this:
 
 1. Click the Steam application menu in the top left of the window (you can still click it on the black screen, just hunt around).
-
 2. Then go to `Settings -> Interface` and disable the option Enable GPU accelerated rendering in web views.
-
 3. Restart Steam and the black screen should be fixed.
 
 Also if you want to restore game backup, you should install Steam Linux Runtime first.
@@ -2086,3 +2084,34 @@ Some usage commands:
 **References:**
 
 - <https://www.reddit.com/r/hyprland/comments/1j91f9h/uwsm_is_kinda_confusing/>
+
+## Android Debug Bridge
+
+The Android Debug Bridge—`adb(1)`—is a command-line tool, that can be used to install, uninstall and debug applications, transfer files and access a device shell.
+
+Install it using:
+
+```sh
+sudo pacman -S android-tools
+```
+
+### Proxify Linux system from Android phone
+
+You can use ADB (Android Debug Bridge) to forward a proxy from your phone to your Linux system:
+
+1. First install `Proxoid` from [here](https://apkpure.net/proxoid/com.proxoid).
+2. Enable Developer Tools by `About phone > Software information > Build number` and pressing it 7 times; then enable `USB debugging`.
+3. Connect your phone to your PC.
+4. Start the proxy server on your phone (usually on port 8080) using `Proxoid`.
+5. Run this command:
+
+   ```sh
+   ./adb forward tcp:8080 tcp:8080
+   ```
+
+6. Configure your Linux system to use `localhost:8080` as an HTTP proxy.
+
+**References:**
+
+- <https://wiki.archlinux.org/title/Android_Debug_Bridge>
+- <https://github.com/ProxidBean/RProxid>

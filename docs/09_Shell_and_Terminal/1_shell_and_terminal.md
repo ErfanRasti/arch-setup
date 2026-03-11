@@ -29,7 +29,7 @@ git reset --hard origin/<branch-name>
 git pull
 ```
 
-and also for submodules:
+and also for sub-modules:
 
 ```sh
 git pull --recurse-submodules
