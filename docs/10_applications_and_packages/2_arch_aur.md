@@ -168,6 +168,19 @@ sudo pacman -S fuse less bat dconf-editor neofetch fastfetch gparted ntfs-3g uge
 - `wget`: A command-line downloader.
 - `wireplumber`: A session manager for PipeWire.
 - `rsync`: A fast, versatile, remote (and local) file-copying tool.
+  The most reliable and standard way to merge directories on the command line is using `rsync`. It gives you more control and is safer.
+  Use this command:
+
+  ```sh
+  rsync -av --remove-source-files source_folder/ destination_folder/
+  ```
+
+  - `-a`: Archive mode (preserves permissions, times, and symbolic links).
+  - `-v`: Verbose (shows you what is happening).
+  - `--remove-source-files`: This deletes files from the source folder after they are successfully copied to the destination, effectively acting like a move.
+
+  After running this command, your `source_folder` will be empty (or contain only files that failed to copy), and you can simply delete it with `rmdir source_folder`.
+
 - `glxinfo`: A command that can be used to display information about the OpenGL and GLX implementations.
 - `unrar`: A command-line utility to extract, test and view the contents of archives created with the RAR archiver.
   To use it:
