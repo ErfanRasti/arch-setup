@@ -86,11 +86,13 @@ flatpak install flathub page.kramo.Sly
 
 ```bash
 flatpak install flathub io.gitlab.adhami3310.Footage
+flatpak install flathub io.github.wartybix.Constrict
 flatpak install flathub org.gnome.gitlab.YaLTeR.VideoTrimmer
 flatpak install flathub org.gnome.Showtime
 ```
 
 - `io.gitlab.adhami3310.Footage`: Trim, flip, rotate and crop individual clips.
+- `io.github.wartybix.Constrict`: Constrict compresses your videos to your chosen file size — useful for uploading to services with specific file size limits.
 - `org.gnome.gitlab.YaLTeR.VideoTrimmer`: Trim videos.
 - `org.gnome.Showtime`: A video player application.
 
@@ -174,6 +176,7 @@ flatpak install flathub io.github.andreibachim.shortcut
 flatpak install flathub garden.jamie.Morphosis
 flatpak install flathub io.github.nozwock.Packet
 flatpak install flathub io.github.hamza_algohary.Coulomb
+flatpak install flathub com.pojtinger.felicitas.Sessions
 flatpak install flathub be.alexandervanhee.gradia
 ```
 
@@ -224,6 +227,7 @@ flatpak install flathub be.alexandervanhee.gradia
   ```
 
 - `io.github.hamza_algohary.Coulomb`: Coulomb is a simple and elegant circuit simulator.
+- `com.pojtinger.felicitas.Sessions`: Focus with timed work intervals.
 - `flathub be.alexandervanhee.gradia`: Gradia helps you quickly prepare your screenshots for sharing by fixing common issues like transparency and awkward sizing.
 
 ### Security
