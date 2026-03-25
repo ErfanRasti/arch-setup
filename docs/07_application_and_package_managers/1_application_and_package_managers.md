@@ -407,6 +407,15 @@ Color
 ILoveCandy
 ```
 
+## Manual installation of AUR packages
+
+If you want to download the package source binary file from `GitHub` or anywhere else and install it using `paru` you can do this trick:
+
+1. Run `paru -S BINARY_PACKAGE_NAME` and stop it when the download begins.
+2. Look the path `~/.cache/paru/clone/BINARY_PACKAGE_NAME` and look for some files with name `SOME_NAME.part`.
+3. Download the source from releases section and paste it in the mentioned path and replace its name with `SOME_NAME.zip` if completed (Maintain the file type name).
+4. Run `paru -S BINARY_PACKAGE_NAME` again and you will see that the package installation doesn't need downloading anymore.
+
 ## Troubleshooting
 
 ### Possibly missing hardware
