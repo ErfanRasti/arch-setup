@@ -391,7 +391,9 @@ sudo downgrade --unignore <PACKAGE_NAME>
 
 - <https://wiki.archlinux.org/title/Downgrading_packages>
 
-## I love candy style on `pacman` and `AUR` helpers
+## Tips & Tricks
+
+### I love candy style on `pacman` and `AUR` helpers
 
 You can easily activate `ILoveCandy` style and colorize `pacman` using:
 
@@ -407,7 +409,7 @@ Color
 ILoveCandy
 ```
 
-## Manual installation of AUR packages
+### Manual installation of AUR packages
 
 If you want to download the package source binary file from `GitHub` or anywhere else and install it using `paru` you can do this trick:
 
@@ -415,6 +417,68 @@ If you want to download the package source binary file from `GitHub` or anywhere
 2. Look the path `~/.cache/paru/clone/BINARY_PACKAGE_NAME` and look for some files with name `SOME_NAME.part`.
 3. Download the source from releases section and paste it in the mentioned path and replace its name with `SOME_NAME.zip` if completed (Maintain the file type name).
 4. Run `paru -S BINARY_PACKAGE_NAME` again and you will see that the package installation doesn't need downloading anymore.
+
+### System proxy on `pacman` and `paru`
+
+To apply system proxy on `pacman` network:
+
+```sh
+sudo -E http_proxy="http://127.0.0.1:DESIRED_PORT" https_proxy="http://127.0.0.1:DESIRED_PORT" pacman -Syu
+```
+
+`paru` is smart enough to detect your current shell environment variables. To set them you need to export them before.
+You can use the following script to detect the system proxy from `GNOME` settings and export them as environment variables on the shell:
+
+```sh
+local proxy_mode
+proxy_mode=$(gsettings get org.gnome.system.proxy mode)
+if [[ "$proxy_mode" == "'manual'" ]]; then
+  local proxy_host
+  proxy_host=$(gsettings get org.gnome.system.proxy.http host | tr -d "'")
+  local proxy_port
+  proxy_port=$(gsettings get org.gnome.system.proxy.http port)
+  local url="socks5h://$proxy_host:$proxy_port"
+
+  export ALL_PROXY="$url"
+  export http_proxy="$url"
+  export https_proxy="$url"
+  export ftp_proxy="$url"
+  export socks_proxy="$url"
+  export no_proxy=""
+elif [[ "$proxy_mode" == "'none'" ]]; then
+  unset http_proxy https_proxy ftp_proxy socks_proxy no_proxy
+fi
+```
+
+You can add this script to `.zshrc` or add it to a file named `~/set_proxy.sh` and source it in the `.zshrc`:
+
+```zsh
+source ~/set_proxy.sh
+```
+
+Finally you can use `paru` after executing the previous script.
+
+**Note:** To utilize system proxy use `bash` or `zsh`. `fish` usually don't detect the previous script environment variables by its own.
+
+Sometimes AUR helpers use `sudo pacman ...` under the hood. To force it to use your system proxy:
+
+```sh
+sudo visudo
+```
+
+This command is actually editing `/etc/sudoers.tmp`.
+
+Then add the following line at the bottom of the file:
+
+```tmp
+Defaults env_keep += "http_proxy https_proxy ftp_proxy no_proxy"
+```
+
+Finally save and exit using `:wqa`.
+
+Now if you use `paru`, it uses your system proxy completely.
+
+For safety remember to delete the added line after you've done your installation.
 
 ## Troubleshooting
 
