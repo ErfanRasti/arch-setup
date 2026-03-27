@@ -70,8 +70,8 @@ sudo systemctl start bluetooth-autoconnect
    sudo reboot
    ```
 
-   If you want to keep the kernel module or if you have two bluetooth devices and
-   you want to disable just one of them and keep the other one you can use `udev` rules.
+   If you want to keep the kernel module or if you have two Bluetooth devices and
+   you want to disable just one of them and keep the other one, you can use `udev` rules.
    First find your device from `lsusb`. See the `<ID-VENDOR>:<ID-PRODUCT>`.
    Then create a `udev` rule:
 
@@ -173,7 +173,7 @@ sudo dmesg | grep -iE 'btusb|rtl|firmware'
    - `enable_autosuspend`:Enable USB autosuspend by default (bool)
    - `reset`:Send HCI reset command on initialization (bool)
 
-   After these re add the `btusb` kernel module using:
+   After these re-add the `btusb` kernel module using:
 
    ```sh
    sudo modprobe -r btusb; sudo modprobe btusb
@@ -229,9 +229,9 @@ sudo dmesg | grep -iE 'btusb|rtl|firmware'
 
      They represent the host controllers on your motherboard that manage USB ports,
      for example, your system might have:
-     - usb1 → the first USB controller (often USB 2.0),
-     - usb2 → the second controller (could be USB 3.0 or another bus),
-     - usb3, usb4, etc. → additional root hubs (e.g., from different chipsets).
+     - `usb1` → the first USB controller (often USB 2.0),
+     - `usb2` → the second controller (could be USB 3.0 or another bus),
+     - `usb3`, `usb4`, etc. → additional root hubs (e.g., from different chipsets).
 
      They are not physical devices like your Bluetooth dongle, mouse, or keyboard
      — rather, they are the entry points through which those devices connect.
@@ -275,7 +275,7 @@ sudo dmesg | grep -iE 'btusb|rtl|firmware'
 
    - PCI Devices
 
-     `/sys/bus/pci/devices/` is part of the Linux sysfs virtual filesystem that represents
+     `/sys/bus/pci/devices/` is part of the Linux `sysfs` virtual file-system that represents
      all devices managed by the PCI (Peripheral Component Interconnect) bus.
      Each entry inside corresponds to a PCI device detected by the kernel — that
      means anything connected via the PCI or PCI Express (PCIe) bus.
@@ -500,7 +500,7 @@ sudo dmesg | grep -iE 'btusb|rtl|firmware'
 
 ### Awake the system using Bluetooth device
 
-Find your Bluetooth device using `lsusb` and `/sys/bus/usb/devices`; then do these:
+Find your Bluetooth device using `lsusb` and `/sys/bus/usb/devices`. Also `sudo powertop` and `WakeUp` tab is a proper place to find the actual bus and device numbers; then do these:
 
 ```sh
 sudo nvim /usr/local/lib/enable-usb-wakeup.sh
@@ -508,7 +508,7 @@ sudo nvim /usr/local/lib/enable-usb-wakeup.sh
 
 ```sh
 #!/bin/bash
-# Wake the device using Bluetooth devices on TP-Link Bluetooth device
+# Wake the device using Bluetooth devices on <TP-Link> Bluetooth device
 
 log() { echo "[usb-nosuspend] $*"; }
 
@@ -519,6 +519,32 @@ fi
 
 log "Wakeup parameter is set to enabled"
 ```
+
+> [!NOTE]
+> `<BLUETOOTH_DEVICE>` is a number including bus and the device numbers. For example if you see `Bus 001 Device 002` you should insert `1-2`.
+> Note that it only includes the Bluetooth module or chip not the Bluetooth mouse or keyboard.
+>
+> Sometimes the device number is changed under `/sys/bus/usb/devices` and is not the same number you see under `lsusb`. To detect it you can check `lsusb -t` or:
+>
+> ```sh
+> grep -l "<BUS_NUMBER>" /sys/bus/usb/devices/*/busnum # gives you devices with the desired bus number
+> grep -l "<DEVICE_NUMBER>" /sys/bus/usb/devices/*/devnum # gives you devices with the desired device number
+> ```
+>
+> These numbers are usually unchanged after `reboot`, unless:
+>
+> - you plug the device into a different USB port
+> - a hub is added/removed
+> - device enumeration order changes
+> - BIOS/firmware enumerates USB buses differently after reboot (rare but happens)
+
+Don't forget to add executable mod to this file:
+
+```sh
+sudo chmod +x /usr/local/lib/enable-usb-wakeup.sh
+```
+
+Now create a `systemd` service for it:
 
 ```sh
 sudo nvim /etc/systemd/system/enable-usb-wakeup.service

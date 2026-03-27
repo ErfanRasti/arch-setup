@@ -362,6 +362,14 @@ rate-mirrors arch | sudo tee /etc/pacman.d/mirrorlist
 ```
 
 See the [`rate-mirror` repository](https://github.com/westandskif/rate-mirrors) for more information about some automations and aliases.
+
+Sometimes some mirrors are not synced and doesn't work with previous official mirrors.
+To make them work you need to remove the package database using the following command:
+
+```sh
+sudo rm -rf /var/lib/pacman/sync/*
+```
+
 **References:**
 
 - <https://wiki.archlinux.org/title/Mirrors>
@@ -492,7 +500,7 @@ These warnings at `pacman` update are not that serious. You can ignoore it or yo
 
 ### failed to synchronize all databases (invalid or corrupted database (PGP signature))
 
-You should remove `sync` folder related to `pacman` and then everything works fine:
+You should remove `sync` folder related to `pacman` database and then everything works fine:
 
 ```bash
 sudo rm -R /var/lib/pacman/sync
