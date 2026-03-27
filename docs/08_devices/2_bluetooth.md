@@ -642,7 +642,7 @@ sudo modprobe btusb
 
 ### Troubleshooting
 
-For noise problems on bluetooth headphones shutdown the computer and hold the power key for 50 seconds. Remember connecting the device to power during the process.
+For noise problems on Bluetooth headphones shutdown the computer and hold the power key for 50 seconds. Remember connecting the device to power during the process.
 
 **References:**
 

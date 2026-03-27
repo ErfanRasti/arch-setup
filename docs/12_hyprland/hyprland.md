@@ -26,22 +26,22 @@ sudo pacman -S hyprland
 
 paru -S hyprland-qtutils
 
-`hyprland-qtutils` is a package that provides some useful utilities for `hyprland`. It is recommended as a warning after openning `hyprland`. If you don't install it you get this warning:
+`hyprland-qtutils` is a package that provides some useful utilities for `hyprland`. It is recommended as a warning after opening `hyprland`. If you don't install it you get this warning:
 
-_Your system does not have hyprland-qtutils installed. This is runtime dependency for some dialogs. Consider installing it._
+_Your system does not have `hyprland-qtutils` installed. This is runtime dependency for some `dialogs`. Consider installing it._
 
-It is recommended to launch hyprland on `uwsm` to make it compatible with systemd distros. So we should Install it:
+It is recommended to launch `Hyprland` on `uwsm` to make it compatible with `systemd` distros. So we should Install it:
 
 ```bash
 paru -S uwsm
 ```
 
-Now you can start `hyprland` by relogin to the systemd and choose `hyprland (uwsm-managed)` at list of your display managers and start!
-In my experiance `uwsm` was so buggy and I personally prefer sticking with the default version.
+Now you can start `hyprland` by re-login to the `systemd` and choose `hyprland (uwsm-managed)` at list of your display managers and start!
+In my experience `uwsm` was so buggy and I personally prefer sticking with the default version.
 
 At first login, you have a naive desktop manager without anything. You can launch `kitty` by pressing `<super>+Q`. Usually the resolution doesn't fit and everything is so small for `HiDPI` displays.
 
-**Note:** Hyperland is based on wayland. Remember removing `linux_display_server x11` from `~/.config/kitty/kitty.conf`. It can cause misbehavior of `kitty` terminal.
+**Note:** Hyprland is based on Wayland. Remember removing `linux_display_server x11` from `~/.config/kitty/kitty.conf`. It can cause misbehavior of `kitty` terminal.
 
 **References:**
 
@@ -72,9 +72,17 @@ Add `exec-once = systemctl --user start hyprpolkitagent` to `hyprland.conf`.
 **Note:** If you want to use some other policy kit like gnome `polkit-gnome` you should disable and stop `hyprpolkitagent`:
 
 ```sh
-systemctl --user {stop,disable} hyprpolkitagent.service
+systemctl --user disable --now hyprpolkitagent.service
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & disown
 ```
+
+> [!NOTE]
+> `--now`: When used with `enable`, `disable`, `mask`, or `reenable`, also `start`/`stop`/`try-restart` the units after the specified unit file operations succeed.
+> Added in version 220.
+>
+> **References:**
+>
+> - <https://www.freedesktop.org/software/systemd/man/latest/systemctl.html#--now>
 
 **References:**
 
