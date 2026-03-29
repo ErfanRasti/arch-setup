@@ -153,7 +153,7 @@ spicetify watch -s
 ## Essential `pacman` applications
 
 ```bash
-sudo pacman -S fuse less bat dconf-editor neofetch fastfetch gparted ntfs-3g uget wget wireplumber rsync glxinfo unrar gnome-usage tldr man nmap p7zip
+sudo pacman -S fuse less bat dconf-editor neofetch fastfetch gparted ntfs-3g uget wget wireplumber rsync glxinfo unrar cdrtools gnome-usage tldr man nmap p7zip
 ```
 
 - `fuse`: Filesystem in Userspace.
@@ -188,6 +188,16 @@ sudo pacman -S fuse less bat dconf-editor neofetch fastfetch gparted ntfs-3g uge
   ```sh
   unrar x -ad "yourfile.rar"
   ```
+
+- `cdrtools`: Highly portable CD/DVD/BluRay command line recording software. You can use it to generate `.iso` files in Linux:
+
+  ```sh
+  genisoimage -o myfolder.iso -R -J /path/to/myfolder
+  ```
+
+  - `-o`: Set output file name
+  - `-R`: Generate Rock Ridge directory information
+  - `-J`: Generate Joliet directory information
 
 - `gnome-usage`: A system monitor.
 - `tldr`: A collection of simplified man pages.

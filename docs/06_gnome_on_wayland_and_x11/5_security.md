@@ -49,7 +49,7 @@ There are some alternatives for it like `SELinux` and `TOMOYO Linux` but `AppArm
    sudo systemctl enable --now apparmor.service
    ```
 
-3. To enable AppArmor as the default security model on every boot for `systemd-boot`, set the kernel parameter:
+3. To enable `AppArmor` as the default security model on every boot for `systemd-boot`, set the kernel parameter:
 
    ```sh
    sudo nvim /boot/loader/entries/linux.conf
@@ -76,7 +76,7 @@ There are some alternatives for it like `SELinux` and `TOMOYO Linux` but `AppArm
     reboot
    ```
 
-   To test if AppArmor has been correctly enabled:
+   To test if `AppArmor` has been correctly enabled:
 
    ```sh
    aa-enabled
@@ -95,3 +95,5 @@ There are some alternatives for it like `SELinux` and `TOMOYO Linux` but `AppArm
 - <https://wiki.archlinux.org/title/SELinux>
 - <https://wiki.archlinux.org/title/TOMOYO_Linux>
 - <https://bbs.archlinux.org/viewtopic.php?id=251807>
+- <https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/security/Kconfig>
+- <https://wiki.archlinux.org/title/Kernel_parameters#systemd-boot>
