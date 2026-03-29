@@ -396,7 +396,7 @@ To do this follow these steps:
 
 7. Open `virt-manager`.
 
-8. Navigate to `Edit → Preferences`. Ensure `Enable XML editing` is enabled, then click the `Close` button.
+8. Navigate to `Edit > Preferences`. Ensure `Enable XML editing` is enabled, then click the `Close` button.
 
 9. Create a new virtual machine by clicking the `+` button.
 
@@ -664,7 +664,7 @@ To do this follow these steps:
 30. The next hurdle will be bypassing the network selection screen.
     As the `VirtIO` drivers for networking have not yet been loaded, the virtual machine will not be able to be connected to the internet.
     - For Windows 11: When prompted to select your country or region, press "Shift + F10" to open the command prompt.
-      Enter OOBE\BYPASSNRO and press Enter. The system will restart, allowing you to select "I don't have internet" later on.
+      Enter `OOBE\BYPASSNRO` and press Enter. The system will restart, allowing you to select "I don't have internet" later on.
       It is crucial to run this command as soon as possible, as doing so later in the installation process will not work,
       and you may be required to create a Microsoft account despite not having an internet connection.
     - For Windows 10: Simply click "I don't have internet". Then, choose to "Continue with limited setup".
@@ -813,14 +813,17 @@ To do this follow these steps:
     - `net-dhcp-leases`: prints lease info for a given network. Look for `IP address` which is a `ipv4` protocol.
 
     > [!HINT]
+    >
     > I choose these options during the installation:
     > `Install > Current User > Automatic`
     > It finds and creates the shortcut of installed apps automatically.
 
     > [!NOTE]
+    >
     > `FreeRDP` 3.23 partially breaks RAIL. Do not upgrade, stay on 3.22 or install 3.24.
 
     > [!IMPORTANT]
+    >
     > Sometimes `freerdp` doesn't work properly. To fix it:
     >
     > ```sh
@@ -831,6 +834,7 @@ To do this follow these steps:
     > The `winapps` logs are presented in `~/.local/share/winapps/`.
 
     > [!IMPORTANT]
+    >
     > Make sure to disable any proxy setting or VPS during `winapps` installation. It usually conflicts with the `winapps` network configuration.
 
 40. To conclude, these are the important paths:
@@ -843,6 +847,7 @@ To do this follow these steps:
 ### Troubleshooting
 
 > [!IMPORTANT]
+>
 > Sometimes `xfeerdp3` doesn't work because of security issues. To fix it you need to change the security method using `/sec` flag.
 >
 > - `/sec:ext` tells FreeRDP to use Extended Security (TLS‑based RDP) instead of negotiating security methods automatically.

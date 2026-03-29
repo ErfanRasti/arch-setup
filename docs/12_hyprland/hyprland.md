@@ -77,6 +77,7 @@ systemctl --user disable --now hyprpolkitagent.service
 ```
 
 > [!NOTE]
+>
 > `--now`: When used with `enable`, `disable`, `mask`, or `reenable`, also `start`/`stop`/`try-restart` the units after the specified unit file operations succeed.
 > Added in version 220.
 >
