@@ -68,7 +68,9 @@ For me it wasn't activated.
    sbctl enroll-keys -m
    ```
 
-6. The boot loader is only updated after a reboot in `systemd-boot`, and the `sbctl` pacman hook won't sign the new file. As a workaround, it can be useful to sign the boot loader directly in `/usr/lib/`, as `bootctl` install and update will automatically recognize and copy `.efi.signed` files to the ESP if present, instead of the normal `.efi` file.
+6. The boot loader is only updated after a reboot in `systemd-boot`, and the `sbctl` pacman hook won't sign the new file.
+   As a workaround, it can be useful to sign the boot loader directly in `/usr/lib/`, as `bootctl` install and update
+   will automatically recognize and copy `.efi.signed` files to the ESP if present, instead of the normal `.efi` file.
 
    ```bash
    sbctl sign -s -o /usr/lib/systemd/boot/efi/systemd-bootx64.efi.signed /usr/lib/systemd/boot/efi/systemd-bootx64.efi
@@ -104,17 +106,17 @@ For me it wasn't activated.
 
    It is possible that there are lots of other files to verify under your boot directory. To verify them:
 
-```bash
-sudo sbctl verify | sed 's/✗ /sbctl sign -s /e'
-```
+   ```bash
+   sudo sbctl verify | sed 's/✗ /sbctl sign -s /e'
+   ```
 
-To be agnostic of the file-path, and independent of the '✗' character:
+   To be agnostic of the file-path, and independent of the '✗' character:
 
-```bash
-sbctl verify | sed -E 's|^.* (/.+) is not signed$|sbctl sign -s "\1"|e'
-```
+   ```bash
+   sbctl verify | sed -E 's|^.* (/.+) is not signed$|sbctl sign -s "\1"|e'
+   ```
 
-Also if you faced `failed reading PE file: unrecognized PE machine: 0x3730`, delete any unnecessary signed files from `/var/lib/sbctl/files.json`.
+   Also if you faced `failed reading PE file: unrecognized PE machine: 0x3730`, delete any unnecessary signed files from `/var/lib/sbctl/files.json`.
 
 8. Now lets reinstall our boot loader:
 
@@ -122,18 +124,18 @@ Also if you faced `failed reading PE file: unrecognized PE machine: 0x3730`, del
    bootctl install
    ```
 
-If you get some warnings about security hole in permissions of `/boot` you should change the permissions of this drive like this:
+   If you get some warnings about security hole in permissions of `/boot` you should change the permissions of this drive like this:
 
-```bash
-sudo nano /etc/fstab
-```
+   ```bash
+   sudo nano /etc/fstab
+   ```
 
-Change these two at `/boot` entry:
+   Change these two at `/boot` entry:
+   - `fmask=0177`: Directories will act like 700 (only root can access including read/write/execute).
+   - `dmask=0077`: Files will act like 600 (only root can read/write).
+   - The first 0 prefix explicitly tells the system that the following digits are in octal (though most systems assume it anyway).
 
-- `fmask=0177`: Directories will act like 700 (only root can access including read/write/execute).
-- `dmask=0077`: Files will act like 600 (only root can read/write).
-- The first 0 prefix explicitly tells the system that the following digits are in octal (though most systems assume it anyway).  
-  After restart your can run `bootctl install` again or check the permissions of `/boot` using `ls -ld /boot`.
+   After restar your can run `bootctl install` again or check the permissions of `/boot` using `ls -ld /boot`.
 
 9. `reboot` and run:
 
@@ -221,13 +223,13 @@ SecureBootPrivateKey=/etc/kernel/secure-boot-private-key.pem
 SecureBootCertificate=/etc/kernel/secure-boot-certificate.pem
 ```
 
-2. Generate your keys using `ukify`:
+1. Generate your keys using `ukify`:
 
 ```bash
 sudo ukify genkey --config /etc/kernel/uki.conf
 ```
 
-3. Sign bootloader with newly created keys:
+1. Sign bootloader with newly created keys:
 
 ```bash
 sudo /usr/lib/systemd/systemd-sbsign sign \
@@ -237,7 +239,7 @@ sudo /usr/lib/systemd/systemd-sbsign sign \
 /usr/lib/systemd/boot/efi/systemd-bootx64.efi
 ```
 
-3. Configure EFI system partition (ESP) for auto-enrollment:
+1. Configure EFI system partition (ESP) for auto-enrollment:
 
 ```bash
 sudo bootctl install --secure-boot-auto-enroll yes \
@@ -247,7 +249,7 @@ sudo bootctl install --secure-boot-auto-enroll yes \
 
 This installs (or updates) the signed `systemd-boot`` bootloader to the ESP, and creates three files`PK.auth`,`KEK.auth`and`db.auth`in`/boot/loader/keys/auto/`.
 
-4. Add`secure-boot-enroll force` in `/boot/loader/loader.conf`:
+1. Add`secure-boot-enroll force` in `/boot/loader/loader.conf`:
 
 ```bash
 sudo nano /boot/loader/loader.conf
@@ -261,7 +263,7 @@ secure-boot-enroll force
 
 Then restart and in list of `systemd-boot` click on enroll-keys. Sometimes enrollment automatically applied after reboot.
 
-5. Now remove `secure-boot-enroll force` from `/boot/loader/loader.conf` and reboot again. Then check the secure boot keys and enable secure boot.
+1. Now remove `secure-boot-enroll force` from `/boot/loader/loader.conf` and reboot again. Then check the secure boot keys and enable secure boot.
 
 ### Uninstall `systemd-ukify`
 
