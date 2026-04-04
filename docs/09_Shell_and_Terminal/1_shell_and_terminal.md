@@ -641,9 +641,10 @@ source ~/.bashrc
 # For fish shell
 set -U fish_user_paths ~/.npm-global/bin $fish_user_paths
 
-# 4. Now install without sudo
 npm install -g tree-sitter-cli
 ```
+
+# 4. Now install without `sudo`
 
 Press `esc` to enter normal mode and then write down `:wq`.
 
@@ -680,6 +681,7 @@ Check tutor at `:Tutor` to learn Neovim.
 - `"+p`: paste from system clipboard
 - `dd`: cut current line
 - `"+dd`: cut line to system clipboard
+- `%`: While the cursor is on a bracket/brace, this jumps to its matching pair.
 
 **Note:** It's probably safest, if you want to paste something over and over again,
 to yank it into a "named" register.
@@ -692,12 +694,36 @@ You can use `<leader>xx` to open the window including all diagnoses.
 
 To open a hyperlink in the browser use `gx`.
 
-Jumpt to the previous cursor position using `` and
-jump to the beginning of the previous line where the cursor was using`''`.
+- Jump to the previous cursor position using `` and
+- Jump to the beginning of the previous line where the cursor was using`''`.
 
 If you used commands like `gg`, `G`, `/search`, `:tag`, or `:edit`, Neovim records these in the jump list.
-Go back in jump list using `<C-o>` and go forward again using `<C-i>`.
+
+- Jump back to your previous location using `<C-o>`
+- Jump forward in your jump list `<C-i>`.
+
 View jumps using `:jumps`.
+
+> [!HINT]
+>
+> Neovim defines a “paragraph” as a block of text preceded and followed by at least one empty line.
+>
+> - `{` : Jump to the beginning of the current or previous paragraph.
+> - `}` : Jump to the end of the current or next paragraph.
+>
+> In many filetypes (like C, Python, or Markdown), you can jump between major sections or function definitions:
+>
+> - `[[` : Jump to the previous section or beginning of the function.
+> - `]]` : Jump to the next section or end of the function.
+>
+> If you want to quickly select or delete the entire block you are currently in:
+>
+> - `vip` : Visually select Inside the Paragraph.
+> - `vap` : Visually select Around the Paragraph (includes the trailing empty line).
+> - `vi{` : Visually select Inside the curly `{` braces.
+> - `va{` : Visually select Around the curly `{` braces (includes the trailing empty line).
+> - `vi[` : Visually select Inside the square `[` braces.
+> - `va[` : Visually select Around the square `[` braces (includes the trailing empty line).
 
 ### Troubleshooting
 
