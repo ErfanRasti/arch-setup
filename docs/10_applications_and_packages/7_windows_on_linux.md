@@ -958,7 +958,7 @@ If you got stuck on `podman` installation you probably didn't download the `dock
 podman pull ghcr.io/dockur/windows:5.14
 ```
 
-Sometimes it takes to long to open `winboat`. To fix it you can use the following start command and even make a shortcut of it:
+Sometimes it takes too long to open `winboat`. To fix it you can use the following start command and even make a shortcut of it:
 
 ```sh
 /opt/winboat/winboat %U --no-sandbox
@@ -970,7 +970,7 @@ Like this:
 sudo cp /usr/share/applications/winboat.desktop ~/.local/share/applications
 ```
 
-And then add the previous openning command to `Exec` line.
+And then add the previous opening command to `Exec` line.
 
 **References:**
 

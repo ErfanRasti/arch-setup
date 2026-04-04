@@ -370,6 +370,12 @@ To make them work you need to remove the package database using the following co
 sudo rm -rf /var/lib/pacman/sync/*
 ```
 
+Also you can do this to download fresh package databases:
+
+```sh
+sudo pacman -Syy
+```
+
 **References:**
 
 - <https://wiki.archlinux.org/title/Mirrors>
@@ -417,7 +423,7 @@ Color
 ILoveCandy
 ```
 
-### Manual installation of AUR packages
+### Manual installation of packages
 
 If you want to download the package source binary file from `GitHub` or anywhere else and install it using `paru` you can do this trick:
 
@@ -425,6 +431,11 @@ If you want to download the package source binary file from `GitHub` or anywhere
 2. Look the path `~/.cache/paru/clone/BINARY_PACKAGE_NAME` and look for some files with name `SOME_NAME.part`.
 3. Download the source from releases section and paste it in the mentioned path and replace its name with `SOME_NAME.zip` if completed (Maintain the file type name).
 4. Run `paru -S BINARY_PACKAGE_NAME` again and you will see that the package installation doesn't need downloading anymore.
+
+> [!NOTE]
+>
+> Path of `pacman` packages is `/var/cache/pacman/pkg/` and it usually includes `*.sig` and `*.zst` files.
+> If you want to manually download `pacman` packages consider this path.
 
 ### System proxy on `pacman` and `paru`
 
