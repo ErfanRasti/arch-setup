@@ -477,27 +477,39 @@ source ~/set_proxy.sh
 
 Finally you can use `paru` after executing the previous script.
 
-**Note:** To utilize system proxy use `bash` or `zsh`. `fish` usually don't detect the previous script environment variables by its own.
+> [!HINT]
+>
+> To temporary unset the proxy fro the current shell session use:
+>
+> ```sh
+> unset ALL_PROXY HTTP_PROXY HTTPS_PROXY  http_proxy https_proxy ftp_proxy socks_proxy no_proxy
+> ```
 
-Sometimes AUR helpers use `sudo pacman ...` under the hood. To force it to use your system proxy:
+> [!NOTE]
+>
+> To utilize system proxy use `bash` or `zsh`. `fish` usually doesn't detect the previous script environment variables by its own.
 
-```sh
-sudo visudo
-```
-
-This command is actually editing `/etc/sudoers.tmp`.
-
-Then add the following line at the bottom of the file:
-
-```tmp
-Defaults env_keep += "http_proxy https_proxy ftp_proxy no_proxy"
-```
-
-Finally save and exit using `:wqa`.
-
-Now if you use `paru`, it uses your system proxy completely.
-
-For safety remember to delete the added line after you've done your installation.
+> [!IMPORTANT]
+>
+> Sometimes AUR helpers use `sudo pacman ...` under the hood. To force it to use your system proxy:
+>
+> ```sh
+> sudo visudo
+> ```
+>
+> This command is actually editing `/etc/sudoers.tmp`.
+>
+> Then add the following line at the bottom of the file:
+>
+> ```tmp
+> Defaults env_keep += "http_proxy https_proxy ftp_proxy no_proxy"
+> ```
+>
+> Finally save and exit using `:wqa`.
+>
+> Now if you use `paru`, it uses your system proxy completely.
+>
+> For safety remember to delete the added line after you've done your installation.
 
 ## Troubleshooting
 
