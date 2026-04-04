@@ -317,6 +317,8 @@ To open a pdf in `zathura` press `o` in the app and type the path.
 
 ### PDF Tips and Tricks
 
+#### Convert `pdf` to image
+
 If you want to convert a `pdf` file into some `jpg` images:
 
 ```sh
@@ -331,6 +333,12 @@ output-2.jpg
 output-3.jpg
 ...
 ```
+
+**References:**
+
+- <https://askubuntu.com/questions/50170/how-to-convert-pdf-to-image>
+
+#### Compress `pdf` files
 
 Compress `pdf` files using:
 
@@ -371,6 +379,8 @@ You can also use `qpdf`:
 sudo pacman -S qpdf
 qpdf --optimize-images --stream-data=compress input.pdf output.pdf
 ```
+
+#### Combine `pdf` files
 
 To combine some pdf files you can use `pdfunite`:
 
