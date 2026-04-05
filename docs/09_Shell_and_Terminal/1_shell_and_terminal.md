@@ -641,10 +641,9 @@ source ~/.bashrc
 # For fish shell
 set -U fish_user_paths ~/.npm-global/bin $fish_user_paths
 
+# 4. Now install without `sudo`
 npm install -g tree-sitter-cli
 ```
-
-# 4. Now install without `sudo`
 
 Press `esc` to enter normal mode and then write down `:wq`.
 

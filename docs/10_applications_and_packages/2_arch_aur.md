@@ -396,7 +396,9 @@ sudo pacman -S krita vlc vlc-plugins-all mpv
 
 If you had a problem with playing some formats, change the following setting:
 
-Tools > Preferences > Input/Codecs/ > Hardware-accelerated decoding > Change it to VA-API video decoder
+`Tools` > `Preferences` > `Input / Codecs` > `Hardware-accelerated decoding` > Change it to `VA-API video decoder`
+
+Sometimes it should be set on `VA-API video decoder via DRM`.
 
 If you want `vlc` to follow the global theming, go to `Tools > Preferences > Interface > Force window style` and set it to `qt5ct-style`.
 
@@ -1417,13 +1419,7 @@ This is also very helpful:
 yt-dlp --cookies-from-browser firefox -t mp4 <VIDEO_URL>
 ```
 
-To force custom extension with the name:
-
-```bash
-yt-dlp --cookies-from-browser edge -f "best" -o "%(title)s.mp4" <VIDEO_URL>
-```
-
-The general form:
+To force a specific extension in the output filename:
 
 ```bash
 yt-dlp --cookies-from-browser edge -f "best" -o "%(title)s.mp4" <VIDEO_URL>

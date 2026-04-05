@@ -50,6 +50,19 @@ To check the left space on your disk or drive use this command:
 df -h
 ```
 
+> [!NOTE]
+>
+> To eject your USB device safely:
+>
+> ```sh
+> udisksctl unmount -b /dev/sda1
+> udisksctl power-off -b /dev/sda
+> ```
+>
+> **References:**
+>
+> - <https://unix.stackexchange.com/questions/178638/eject-safely-remove-vs-umount>
+
 ### Backup
 
 #### Timeshift
