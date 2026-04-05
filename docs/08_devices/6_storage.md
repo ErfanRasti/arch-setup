@@ -305,6 +305,15 @@ sudo pacman -S ntfs-3g
 sudo ntfsfix -d /dev/sdb1
 ```
 
+Also there is a GUI workaround:
+
+1. Open `disks` app.
+2. Select your disk with wrong partition.
+3. Select `Edit Mount Options`.
+4. Disable `User Session Defaults`.
+5. Click OK.
+
 **References:**
 
 - <https://askubuntu.com/questions/1512710/wrong-fs-type-bad-option-bad-superblock-just-installed-lubuntu-24-04>
+- <https://linuxconfig.org/how-to-mount-partition-with-ntfs-file-system-and-read-write-access>
