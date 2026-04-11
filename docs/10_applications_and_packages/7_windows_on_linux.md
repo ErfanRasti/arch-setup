@@ -857,6 +857,7 @@ To do this follow these steps:
 
 - <https://www.reddit.com/r/linuxquestions/comments/phlekm/how_to_mount_ntfs_drives_to_a_win10_vm_on/>
 - <https://linuxconfig.org/how-to-mount-a-host-directory-inside-a-kvm-virtual-machine>
+- <https://forum.manjaro.org/t/how-to-setting-up-shared-folders-auto-resize-vm-and-clipboard-share-with-virt-manger/127490>
 
 ### Troubleshooting
 

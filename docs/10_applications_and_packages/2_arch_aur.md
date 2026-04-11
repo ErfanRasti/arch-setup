@@ -237,8 +237,42 @@ Remember these commands:
 ## Manuals and Documentations
 
 ```bash
-sudo pacman -S man arch-wiki-lite
+sudo pacman -S man arch-wiki-docs arch-wiki-lite wikiman w3m
 ```
+
+- To find `arch-wiki-docs` `html` files, use this command to find where are the related files:
+
+  ```sh
+  pacman -Ql arch-wiki-docs
+  ```
+
+  > [!NOTE]
+  > Using `pacman -Ql <PACKAGE_NAME>` you can list package contents.
+
+  You can easily open these `html` files in the terminal using `w3m`:
+
+  ```sh
+  w3m /usr/share/doc/arch-wiki/html/en/Help:Reading.html
+  ```
+
+- The existing `arch-wiki-docs` package is a simple unorganized dump of html files,
+  while `arch-wiki-lite` goes a few steps further. Using `arch-wiki-lite` you can search within these files using this commands:
+
+  ```sh
+  # Open the page within the terminal
+  wiki-search suspend
+
+  # Open the html in the browser
+  wiki-search-html suspend
+  ```
+
+- `wikiman` is an offline search engine for manual pages, Arch Wiki, Gentoo Wiki and other documentation. It is completely usable from terminal.
+
+**References:**
+
+- <https://wiki.archlinux.org/title/Help:Browsing>
+- <https://gitlab.archlinux.org/grawlinson/arch-wiki-lite>
+- <https://www.reddit.com/r/archlinux/comments/hqmrmd/dumb_question_how_do_i_open_archwikidocs/>
 
 ## Office
 
@@ -257,7 +291,7 @@ To make `libreoffice` more functional I highly recommend you to watch the follow
 - <https://www.youtube.com/watch?v=x44bda1dz84>
 - <https://www.youtube.com/watch?v=G0che2Az9hw>
 
-To support persian language you can install the persian language pack for `libreoffice`:
+To support Persian language you can install the Persian language pack for `libreoffice`:
 
 ```bash
 sudo pacman -S libreoffice-fresh-fa
