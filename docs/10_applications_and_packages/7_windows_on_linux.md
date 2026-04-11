@@ -719,7 +719,7 @@ To do this follow these steps:
     However, this sharing setup does not apply when using Windows via `virt-manager`. To configure a fallback shared folder, follow these steps:
     1. Navigate to "Virtual Hardware Details", then "Memory" and then check the box for "Enable shared memory".
     2. Add filesystem hardware by going to "Virtual Hardware Details" and selecting "Add Hardware" followed by "Filesystem".
-       Choose `virtiofs` as the driver, enter the path to the shared folder, and provide a name for the shared folder in the target path (e.g., "Windows Shared Folder").
+       Choose `virtiofs` as the driver, enter the path to the shared folder, and provide a name for the shared folder in the target path (e.g., "Shared Folder").
 
     3. Install [WinFSP](https://github.com/winfsp/winfsp/releases/) on Windows.
 
@@ -730,7 +730,7 @@ To do this follow these steps:
        sc.exe start VirtioFsSvc
        ```
 
-    5. Reboot Windows.
+    5. Reboot Windows. After it, go to `Services > VirtIO-FS Service > Properties` and select startup type as `Automatic` and then start it if it isn't started yet.
 
 35. **(Optional) Configuring a Static IP Address:**
     1. Identify the Windows MAC address.
@@ -844,6 +844,20 @@ To do this follow these steps:
     - `~/.local/bin/winapps-src/`: WinApps source files and scripts.
     - `~/.local/bin/winapps-src/setup.sh`: Installation script.
 
+#### Mount NTFS drives
+
+0. Run `lsblk` on your host and find your desired device name which is under `/dev/`.
+1. Open the `Virtual Machine Details` in `virt-manager`.
+2. Click `Add Hardware > Storage`.
+3. Select `Select or create custom storage` and choose the block device (`/dev/sd*` or `/dev/nvme*`) file.
+4. Set `Device type` to `"Disk device"` and `Bus type` to `"VirtIO"` (and `Cache mode` to `"None"` but it usually selects this automatically).
+5. Click `Finish` and after the next boot you can see your new volume.
+
+**References:**
+
+- <https://www.reddit.com/r/linuxquestions/comments/phlekm/how_to_mount_ntfs_drives_to_a_win10_vm_on/>
+- <https://linuxconfig.org/how-to-mount-a-host-directory-inside-a-kvm-virtual-machine>
+
 ### Troubleshooting
 
 > [!IMPORTANT]
@@ -912,6 +926,7 @@ To do this follow these steps:
 - <https://www.freerdp.com/>
 - <https://github.com/winapps-org/winapps/issues/894>
 - <https://github.com/awakecoding/FreeRDP-Manuals/blob/master/User/FreeRDP-User-Manual.markdown>
+- <https://nowsci.com/winapps/kvm/>
 
 ## WinBoat
 
