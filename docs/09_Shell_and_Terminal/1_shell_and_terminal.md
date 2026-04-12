@@ -724,6 +724,13 @@ View jumps using `:jumps`.
 > - `vi[` : Visually select Inside the square `[` braces.
 > - `va[` : Visually select Around the square `[` braces (includes the trailing empty line).
 
+> [!IMPORTANT] Lowercase vs Uppercase Motions
+>
+> - `b`: Move cursor back to the beginning of the previous word (word = sequence of letters, digits, underscore)
+> - `B`: Move cursor back to the beginning of the previous WORD (WORD = sequence of **non‑whitespace characters**)
+> - `e`: Move cursor forward to the end of the current/next word
+> - `E`: Move cursor forward to the end of the current/next WORD
+
 ### Troubleshooting
 
 If you get some wired errors at the start of `neovim` run this:
