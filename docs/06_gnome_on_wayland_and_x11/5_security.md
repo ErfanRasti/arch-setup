@@ -94,6 +94,159 @@ There are some alternatives for it like `SELinux` and `TOMOYO Linux` but `AppArm
 - <https://wiki.archlinux.org/title/AppArmor>
 - <https://wiki.archlinux.org/title/SELinux>
 - <https://wiki.archlinux.org/title/TOMOYO_Linux>
-- <https://bbs.archlinux.org/viewtopic.php?id=251807>
 - <https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/security/Kconfig>
+- <https://bbs.archlinux.org/viewtopic.php?id=251807>
 - <https://wiki.archlinux.org/title/Kernel_parameters#systemd-boot>
+
+### MAC Address Spoofing
+
+MAC stands for Media Access Control, and every network device has a MAC address. A MAC address uniquely identifies a network chipset to the world.
+
+There are many ways to spoof your MAC address. `macchanger` is a great tool to completely randomize your MAC address.
+
+```sh
+sudo pacman -S macchanger
+```
+
+To dynamically change your MAC address follow these steps:
+
+1. Run:
+
+   ```sh
+   ip addr show
+   ```
+
+   It shows your different network interfaces. Find the one that its state is `UP`.
+
+2. The MAC address can be spoofed with a fully random address:
+
+   ```sh
+   sudo macchanger -r <interface>
+   ```
+
+   To randomize only device-specific bytes of current MAC Address
+   (that is, so that if the MAC address was checked it would still register as being from the same vendor),
+   you would run the command:
+
+   ```sh
+   sudo macchanger -e <interface>
+   ```
+
+   Finally, to return the MAC address to its original, permanent hardware value:
+
+   ```sh
+   sudo macchanger -p <interface>
+   ```
+
+3. Create a `systemd` service for it:
+
+   ```sh
+   sudo nvim /etc/systemd/system/macspoof@.service
+   ```
+
+   and add this:
+
+   ```service
+   [Unit]
+   Description=macchanger on %I
+   Wants=network-pre.target
+   Before=network-pre.target
+   BindsTo=sys-subsystem-net-devices-%i.device
+   After=sys-subsystem-net-devices-%i.device
+
+   [Service]
+   ExecStart=/usr/bin/macchanger -r %I
+   Type=oneshot
+
+   [Install]
+   WantedBy=multi-user.target
+   ```
+
+   Replace `%I` and `%i` by the name of your network interface.
+
+   Append the desired network interface to the service name (e.g. `eth0`) and enable the service (e.g. `macspoof@eth0.service`).
+
+#### Configuring MAC address randomization for `NetworkManager`
+
+To setup MAC address randomization for `NetworkManager`:
+
+`NetworkManager` supports two types MAC Address Randomization:
+
+1. Randomization during scanning,
+2. Randomization for network connections.
+
+Both modes can be configured by modifying `/etc/NetworkManager/NetworkManager.conf` or by creating
+a separate configuration file in `/etc/NetworkManager/conf.d/` which is recommended since
+the aforementioned configuration file may be overwritten by `NetworkManager`.
+
+Randomization during Wi-Fi scanning is enabled by default, but it may be disabled by adding
+the changing the `wifi.scan-rand-mac-address` value in `/etc/NetworkManager/NetworkManager.conf`
+or a dedicated configuration file under`/etc/NetworkManager/conf.d`:
+
+```sh
+sudo nvim /etc/NetworkManager/conf.d/wifi_rand_mac.conf
+```
+
+```conf
+[device]
+wifi.scan-rand-mac-address=no
+```
+
+In terms of MAC randomization the most important modes are `stable` and `random`.
+
+- `stable` generates a random MAC address when you connect to a new network and associates the two permanently.
+  This means that you will use the same MAC address every time you connect to that network.
+- In contrast, `random` will generate a new MAC address every time you connect to a network, new or previously known.
+
+**Instruction:**
+
+1. You can configure the MAC randomization by adding the desired configuration under `/etc/NetworkManager/conf.d`:
+
+   ```sh
+   sudo nvim /etc/NetworkManager/conf.d/wifi_rand_mac.conf
+   ```
+
+   ```conf
+   [device-mac-randomization]
+   # "yes" is already the default for scanning
+   wifi.scan-rand-mac-address=yes
+
+   [connection-mac-randomization]
+   # Randomize MAC for every ethernet connection
+   ethernet.cloned-mac-address=random
+   # Generate a new MAC address every time you connect to a network, new or previously known.
+   wifi.cloned-mac-address=random
+   ```
+
+   - `wifi.scan-rand-mac-address=yes`: When Wi‑Fi scans for networks, it uses a random MAC (prevents passive tracking).
+   - `wifi.cloned-mac-address=random`: Each Wi‑Fi connection uses a random MAC instead of your hardware MAC.
+   - `ethernet.cloned-mac-address=random`: Each Ethernet connection uses a random MAC instead of your hardware MAC.
+
+1. Restart `NetworkManager`:
+
+   ```sh
+   sudo systemctl restart NetworkManager.service
+   ```
+
+1. Verify that MAC addresses are dynamic:
+
+   ```sh
+   ip link
+   ```
+
+   Look for `wlp...` or `wlan0` or your desires network interface.
+
+   You can check them using:
+
+   ```sh
+   ip link show <INTERFACE>
+   ```
+
+**References:**
+
+- <https://wiki.archlinux.org/title/MAC_address_spoofing>
+- <https://wiki.archlinux.org/title/NetworkManager#Configuring_MAC_address_randomization>
+- <https://wiki.archlinux.org/title/NetworkManager/Privacy#MAC_Randomization>
+- <https://wiki.archlinux.org/title/Network_configuration#Network_interfaces>
+- <https://bbs.archlinux.org/viewtopic.php?id=217310>
+- <https://blogs.gnome.org/thaller/2016/08/26/mac-address-spoofing-in-networkmanager-1-4-0/>
