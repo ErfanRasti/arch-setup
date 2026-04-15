@@ -1,4 +1,4 @@
-## Wi-Fi
+## Network
 
 ### Delete WiFi on-board module
 
@@ -319,7 +319,7 @@ Then reboot your system.
 - <https://community.tp-link.com/en/home/forum/topic/670858?replyId=1368738>
 - <https://www.youtube.com/watch?v=L-4TpV2n5So>
 
-### Waiting for IWD to start...
+### Waiting for IWD to start
 
 **Warning:** Don't use `iwctl` on GNOME. Stick to `NetworkManager`. So you can easily ignore this problem.
 
@@ -338,3 +338,91 @@ sudo systemctl stop iwd
 **References:**
 
 - <https://www.reddit.com/r/archlinux/comments/irk5mz/waiting_for_iwd_to_start/>
+
+### SOCKS Setup
+
+There is a great workaround if you want to connect to `socks5` on your `linux` system. (The server side can be set up using `microsocks`.)
+
+1. First you should setup `proxychains` on your system:
+
+   ```sh
+   sudo pacman -S proxychains-ng
+   ```
+
+1. Then add your `socks` IP and port to its config. Add it at the end of the config file and delete any other ip address and `socks5` profiles:
+
+   ```sh
+   sudo nano /etc/proxychains.conf
+   ```
+
+   ```conf
+   socks5 <IP_ADDRESS> <PORT>
+   ```
+
+1. Now you can use it on the terminal on any command you want:
+
+   ```sh
+   proxychains firefox
+   proxychains sudo pacman -Sy
+   proxychains discord
+   ```
+
+Now if you want to go a step further and proxify your whole system without typing `proxychains` for each time you want to use it:
+
+1. Install it
+
+   ```sh
+   sudo pacman -S privoxy
+   ```
+
+2. Then:
+
+   ```sh
+   sudo nvim /etc/privoxy/config
+   ```
+
+   Then add this at the bottom of the file:
+
+   ```config
+   forward-socks5   /   <IP_ADDRESS>:<PORT> .
+   ```
+
+3. Then enable and start the `systemd` service related to it:
+
+   ```sh
+   sudo systemctl enable --now privoxy
+   ```
+
+   `privoxy` listens on:
+
+   ```
+   127.0.0.1:8118
+   ```
+
+   Then set it up on your GNOME settings:
+
+   ```
+   Settings > Network > Network Proxy > Manual
+   ```
+
+   Set:
+
+   ```
+   HTTP Proxy: 127.0.0.1:8118
+   HTTPS Proxy: 127.0.0.1:8118
+   ```
+
+   Leave SOCKS blank (GNOME’s SOCKS support is unreliable, so we avoid it entirely).
+
+   Apply system‑wide.
+
+4. Finally you can test it using `curl`:
+
+   ```sh
+   curl -x 127.0.0.1:8118 https://ifconfig.me
+   ```
+
+**References:**
+
+- <https://wiki.archlinux.org/title/Proxy_server>
+- <https://wiki.archlinux.org/title/NetworkManager#Proxy_settings>

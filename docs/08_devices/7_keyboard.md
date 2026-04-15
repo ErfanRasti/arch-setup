@@ -39,6 +39,9 @@ To prevent it first you should find your keyboard id:
 
 ```sh
 libinput list-devices
+
+# or
+libinput list-devices | grep -A6 "Keyboard"
 ```
 
 Look for keyboard options. Raw set keyboards are kernel controlled ones. So ignore them.
@@ -72,7 +75,7 @@ sudo udevadm control --reload-rules
 sudo udevadm trigger
 ```
 
-If this method didn't work for you you can use a systemd service:
+If this method didn't work for you you can use a `systemd` service:
 
 ```sh
 sudo nano /etc/systemd/system/usb-no-suspend.service
@@ -95,6 +98,7 @@ ExecStart=/bin/bash -c '\
       fi; \
     fi; \
   done'
+RemainAfterExit=yes
 
 [Install]
 WantedBy=multi-user.target
@@ -113,3 +117,5 @@ Finally check your keyboard power status:
 ```sh
 cat /sys/bus/usb/devices/*/power/control
 ```
+
+For another example of `powertop` conflict check [this](/docs/08_devices/2_bluetooth.md#awake-the-system-using-bluetooth-device).
