@@ -4,7 +4,18 @@ Some of my common highly used `flatpak` applications can be installed as bellow.
 
 **Note:** If you completely remove the per-system installation and replace it with user-system installation, all of the flatpak applications are installed per-user and there is no need to explicitly write `--user`.
 
-A great resource for `flatpak` apps is [GNOME circle](https://circle.gnome.org/). Check it out!
+A great resource for `flatpak` apps is [GNOME circle](https://circle.gnome.org/).
+Check it out! You can also install them easily using `gnome-circle` package from official repository:
+
+```sh
+sudo pacman -S gnome-circle
+```
+
+You can also install one of them too. For example:
+
+```sh
+sudo pacman -S amberol
+```
 
 ### System management
 
@@ -25,15 +36,15 @@ flatpak install flathub io.github.zingytomato.netpeek
 
 - `io.missioncenter.MissionCenter`: A task manager application.
 - `net.nokyan.Resources`: Keep an eye on system resources.font
-- `com.github.tchx84.Flatseal`: A flatpak permissions manager.
-- `io.github.nokse22.inspector`: View information about: Usb devices, Disk, Memory, PCI devices, Network, CPU, Motherboard and bios, System and distro.
+- `com.github.tchx84.Flatseal`: A `flatpak` permissions manager.
+- `io.github.nokse22.inspector`: View information about: USB devices, Disk, Memory, PCI devices, Network, CPU, Motherboard and bios, System and distro.
 - `page.tesk.Refine`: Refine helps discover advanced and experimental features in GNOME.
-- `io.github.flattool.Warehouse`: Warehouse provides a simple UI to control complex Flatpak options, all without resorting to the command line.
+- `io.github.flattool.Warehouse`: Warehouse provides a simple UI to control complex `flatpak` options, all without resorting to the command line.
 - `com.github.d4nj1.tlpui`: Change TLP settings easily and provide a basic overview of all the valid configuration values.
 - `io.github.realmazharhussain.GdmSettings`: Customize your login screen.
 - `re.sonny.Junction`: Junction pops up automatically when you open a file or link in another app.
 - `org.gnome.seahorse.Application`: Passwords and Keys is a GNOME application for managing encryption keys.
-- `io.github.giantpinkrobots.flatsweep`: Clean up your system by removing unused flatpak runtimes and extensions.
+- `io.github.giantpinkrobots.flatsweep`: Clean up your system by removing unused `flatpak` runtimes and extensions.
 - `io.github.zingytomato.netpeek`: See what's on your network.
 
 ### Sound
@@ -55,6 +66,7 @@ flatpak install flathub io.bassi.Amberol
 - `io.github.seadve.Mousai`: Discover songs you are aching to know with an easy-to-use interface.
 - `de.haeckerfelix.AudioSharing`: Share your computer audio
 - `io.bassi.Amberol`: Amberol is a music player with no delusions of grandeur. If you just want to play music available on your local system then Amberol is the music player you are looking for.
+  Also the `Background Playback` option can be a little annoying. You can disable it easily under three parallel lines on the application.
 
 ### Photo
 
