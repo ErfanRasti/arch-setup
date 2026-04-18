@@ -428,11 +428,29 @@ pdfunite file1.pdf file2.pdf merged.pdf
 sudo pacman -S krita vlc vlc-plugins-all mpv
 ```
 
-If you had a problem with playing some formats, change the following setting:
+> [!NOTE]
+>
+> If you had a problem with playing some formats, change the following setting:
+>
+> ```
+> Tools > Preferences > Input / Codecs > Hardware-accelerated decoding
+> ```
+>
+> Change it to `VA-API video decoder`. Sometimes it should be set on `VA-API video decoder via DRM`.
 
-`Tools` > `Preferences` > `Input / Codecs` > `Hardware-accelerated decoding` > Change it to `VA-API video decoder`
-
-Sometimes it should be set on `VA-API video decoder via DRM`.
+> [!HINT]
+>
+> If you want `vlc` to open each new file in a new window:
+>
+> ```
+> Tools > Preferences > Interface > "Allow only one instance" off.
+> ```
+>
+> or:
+>
+> ```
+> Tools > Preferences > Interface > "Use only one instance when started from file manager" off.
+> ```
 
 If you want `vlc` to follow the global theming, go to `Tools > Preferences > Interface > Force window style` and set it to `qt5ct-style`.
 
@@ -1572,20 +1590,6 @@ paru -S hiddify-next-bin
 
 - <https://github.com/hiddify/hiddify-app>
 - <https://github.com/MatsuriDayo/nekoray>
-
-## OVPN
-
-To install it:
-
-```bash
-sudo pacman -S networkmanager-openvpn
-```
-
-Now on your GNOME network section you can see it and import your configuration.
-
-**References:**
-
-- <https://wiki.archlinux.org/title/OpenVPN>
 
 ## Some AUR apps
 
