@@ -339,94 +339,6 @@ sudo systemctl stop iwd
 
 - <https://www.reddit.com/r/archlinux/comments/irk5mz/waiting_for_iwd_to_start/>
 
-### SOCKS Setup
-
-There is a great workaround if you want to connect to `socks5` on your `linux` system. (The server side can be set up using `microsocks`.)
-
-1. First you should setup `proxychains` on your system:
-
-   ```sh
-   sudo pacman -S proxychains-ng
-   ```
-
-1. Then add your `socks` IP and port to its config. Add it at the end of the config file and delete any other ip address and `socks5` profiles:
-
-   ```sh
-   sudo nano /etc/proxychains.conf
-   ```
-
-   ```conf
-   socks5 <IP_ADDRESS> <PORT>
-   ```
-
-1. Now you can use it on the terminal on any command you want:
-
-   ```sh
-   proxychains firefox
-   proxychains sudo pacman -Sy
-   proxychains discord
-   ```
-
-Now if you want to go a step further and proxify your whole system without typing `proxychains` for each time you want to use it:
-
-1. Install it
-
-   ```sh
-   sudo pacman -S privoxy
-   ```
-
-2. Then:
-
-   ```sh
-   sudo nvim /etc/privoxy/config
-   ```
-
-   Then add this at the bottom of the file:
-
-   ```config
-   forward-socks5   /   <IP_ADDRESS>:<PORT> .
-   ```
-
-3. Then enable and start the `systemd` service related to it:
-
-   ```sh
-   sudo systemctl enable --now privoxy
-   ```
-
-   `privoxy` listens on:
-
-   ```
-   127.0.0.1:8118
-   ```
-
-   Then set it up on your GNOME settings:
-
-   ```
-   Settings > Network > Network Proxy > Manual
-   ```
-
-   Set:
-
-   ```
-   HTTP Proxy: 127.0.0.1:8118
-   HTTPS Proxy: 127.0.0.1:8118
-   ```
-
-   Leave SOCKS blank (GNOME’s SOCKS support is unreliable, so we avoid it entirely).
-
-   Apply system‑wide.
-
-4. Finally you can test it using `curl`:
-
-   ```sh
-   curl -x 127.0.0.1:8118 https://ifconfig.me
-   ```
-
-**References:**
-
-- <https://wiki.archlinux.org/title/Proxy_server>
-- <https://wiki.archlinux.org/title/NetworkManager#Proxy_settings>
-
 ### OpenVPN
 
 There are multiple ways to use `openvpn` on Linux.
@@ -711,3 +623,210 @@ sudo systemctl enable --now openvpn-client@<CONFIGURATION-NAME>.service
 - <https://community.openvpn.net/Pages/UnprivilegedUser>
 - <https://www.reddit.com/r/archlinux/comments/14xvj53/nmcli_asking_for_password_to_vpn_even_though_its/>
 - <https://bbs.archlinux.org/viewtopic.php?id=285845>
+
+### `microsocks`
+
+Consider you have a VPN running on your computer (For example consider setting up an `openvpn` using [the previous mentioned method](#openvpn3));
+Then you want to create a SOCKS5 proxy server and share it through your modem/router.
+
+You can easily do it using `microsocks`:
+
+1. Install it using:
+
+   ```sh
+   sudo pacman -S microsocks
+   ```
+
+2. Run it:
+
+   ```sh
+   microsocks -i <IP> -p <PORT>
+   ```
+
+   - `-i <IP>`: Bind the server to this specific IP address.
+     In this case you usually use`-i 0.0.0.0`: listen on all interfaces (LAN included). Your proxy will accept connections from ANY network your PC is connected to.
+     - `-i 127.0.0.1`: listen only on localhost
+     - `-i 192.168.x.x`: listen only on LAN interface
+     - `-i 0.0.0.0`: listen on all IPv4 interfaces
+   - `-p <PORT>`: listen on port `<PORT>`. It can be set to `1080` but it is better to set it to another port.
+
+   > [!CAUTION]
+   >
+   > If your machine is exposed to the internet (public IP), then, `-i 0.0.0.0` could potentially expose your SOCKS proxy to the entire world if the router forwards traffic.
+   > But if you are inside a private LAN (`192.168.x.x`) AND your router is not port-forwarding `1080`, then you're safe.
+
+   If you want authentication:
+
+   ```sh
+   microsocks -i <IP> -p <PORT> -u myuser -P mypass
+   ```
+
+3. Open firewall so local area network (LAN) devices can access:
+
+   ```sh
+   sudo ufw allow <PORT>/tcp
+   ```
+
+4. Check your local network and find from which IP is your system connected to your LAN:
+
+   ```sh
+   ip a
+   ```
+
+   Find which device is actually `UP`; then checkout the `inet 192.168.x.x`.
+
+   You can also use:
+
+   ```sh
+   ip route
+   ```
+
+   You will see a line like this:
+
+   ```
+   default via 192.168.1.1 dev <DEVICE-NAME> proto dhcp src <LOCAL-IP>
+   ```
+
+   Your LAN devices should connect to `<LOCAL-IP>:<PORT>`.
+
+   > [!NOTE]
+   >
+   > Note that the `<LOCAL-IP>` changes each time you connect to your modem/router.
+
+5. You can test it from another Linux system using:
+
+   ```sh
+   curl --socks5 <IP>:<PORT> https://ifconfig.me
+   ```
+
+   Use it as a system proxy (environment variables):
+
+   ```sh
+   export ALL_PROXY=socks5://<IP>:<PORT>
+   ```
+
+   or:
+
+   ```sh
+   export ALL_PROXY=socks5h://<IP>:<PORT>
+   ```
+
+   Quick connectivity check:
+
+   ```sh
+   nc -vz <IP> <PORT>
+   ```
+
+   `nc` stands for netcat. It is a small networking tool that can connect to TCP/UDP ports, listen on ports, send and receive raw text/data, test if a service is reachable, and debug network connections
+   - `-v` means verbose.
+   - `-z` means zero-I/O mode. That means connect to the port, do not send data ,do not wait for interactive input ,and just check if the port is open or not;then exit.
+
+   > [!IMPORTANT]
+   >
+   > - `socks5`: This means This means DNS lookup happens on the client (your machine), not through the proxy.
+   >   This leaks DNS to your local network or ISP. DNS resolved locally, traffic to proxy goes to an IP.
+   > - `socks5h`: The `h` stands for hostname resolution via the proxy meaning DNS lookup happens through the proxy, not on your machine.
+   >   DNS resolved remotely through the proxy, avoids leaks.
+   >
+   > Use `socks5h` when:
+   >
+   > - You want privacy (e.g., avoid DNS leaks)
+   > - You want to use DNS servers on the proxy side
+   > - The local machine or network blocks DNS
+   >
+   > Use `socks5` when:
+   >
+   > - You want to resolve DNS locally deliberately.
+
+   > [!NOTE]
+   >
+   > If you want to use the SOCKS5 proxy on your device (i.e. Android device), the _private DNS_ should be set as `Automatic`,
+   > not `Off` or a pre-defined pivate DNS provider hostname.
+
+### SOCKS Setup
+
+There is a great workaround if you want to connect to `socks5` on your `linux` system. (The server side can be set up using `microsocks`.)
+
+1. First you should setup `proxychains` on your system:
+
+   ```sh
+   sudo pacman -S proxychains-ng
+   ```
+
+1. Then add your `socks` IP and port to its config. Add it at the end of the config file and delete any other ip address and `socks5` profiles:
+
+   ```sh
+   sudo nano /etc/proxychains.conf
+   ```
+
+   ```conf
+   socks5 <IP_ADDRESS> <PORT>
+   ```
+
+1. Now you can use it on the terminal on any command you want:
+
+   ```sh
+   proxychains firefox
+   proxychains sudo pacman -Sy
+   proxychains discord
+   ```
+
+Now if you want to go a step further and proxify your whole system without typing `proxychains` everytime you want to use your proxy, use `privoxy`:
+
+1. Install it
+
+   ```sh
+   sudo pacman -S privoxy
+   ```
+
+2. Then:
+
+   ```sh
+   sudo nvim /etc/privoxy/config
+   ```
+
+   Then add this at the bottom of the file:
+
+   ```config
+   forward-socks5   /   <IP_ADDRESS>:<PORT> .
+   ```
+
+3. Then enable and start the `systemd` service related to it:
+
+   ```sh
+   sudo systemctl enable --now privoxy
+   ```
+
+   `privoxy` listens on:
+
+   ```
+   127.0.0.1:8118
+   ```
+
+   Then set it up on your GNOME settings:
+
+   ```
+   Settings > Network > Network Proxy > Manual
+   ```
+
+   Set:
+
+   ```
+   HTTP Proxy: 127.0.0.1:8118
+   HTTPS Proxy: 127.0.0.1:8118
+   ```
+
+   Leave SOCKS blank (GNOME’s SOCKS support is unreliable, so we avoid it entirely).
+
+   Apply system‑wide.
+
+4. Finally you can test it using `curl`:
+
+   ```sh
+   curl -x 127.0.0.1:8118 https://ifconfig.me
+   ```
+
+**References:**
+
+- <https://wiki.archlinux.org/title/Proxy_server>
+- <https://wiki.archlinux.org/title/NetworkManager#Proxy_settings>
