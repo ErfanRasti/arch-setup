@@ -426,3 +426,288 @@ Now if you want to go a step further and proxify your whole system without typin
 
 - <https://wiki.archlinux.org/title/Proxy_server>
 - <https://wiki.archlinux.org/title/NetworkManager#Proxy_settings>
+
+### OpenVPN
+
+There are multiple ways to use `openvpn` on Linux.
+
+A `.ovpn` connection usually looks like this:
+
+```conf
+client
+dev tun
+remote elmer.acmecorp.org 1194 tcp-client
+connect-retry 5 5
+connect-timeout 15
+keepalive 10 30
+```
+
+#### `openvpn`
+
+Another simple workaround is using `openvpn` directly:
+
+```sh
+sudo pacman -S openvpn
+
+# Start a connection with an auto-login profile manually:
+openvpn --config /path/to/client.ovpn
+
+# Start a connection with a user-locked profile manually:
+openvpn --config /path/to/client.ovpn --auth-user-pass
+
+# Start a connection with the auth-retry parameter for multi-factor authentication:
+openvpn --config client.ovpn --auth-user-pass --auth-retry interact
+```
+
+You can also create a `systemd` service for it. To do it first you should copy your `.ovpn` config under `/etc/openvpn/client`:
+
+```sh
+sudo cp /path/to/config.ovpn /etc/openvpn/client/<CONFIGURATION-NAME>.conf
+```
+
+Remember to include `*.conf` in the destination file.
+
+Then enable and start the service using:
+
+```sh
+sudo systemctl enable --now openvpn-client@<CONFIGURATION-NAME>.service
+
+```
+
+#### NetworkManager-native VPN configuration
+
+1. To install it:
+
+   ```bash
+   sudo pacman -S networkmanager-openvpn
+   ```
+
+   Now on your GNOME network section you can see it and import your configuration.
+
+   You can also use `nm-connection-editor` to add your config instead of GNOME setting:
+
+   ```sh
+   sudo pacman -S nm-connection-editor
+   ```
+
+2. Then, click the plus sign to add a new connection and choose `OpenVPN` and manually enter the settings.
+   You also can optionally import the client configuration profile by selecting `Import a saved VPN configuration...`
+   and selecting the appropriate file (It usually supports only files ending in `.ovpn`).
+
+   > [!IMPORTANAT]
+   >
+   > The selected file shouldn't have any other HTML tags except `<ca></ca>`, `<cert></cert>`, and `<key></key>`.
+   > For example if there is a `<connection></connection>` in your `.ovpn` config file, you should comment it out.
+   > If not you get `configuration error: unsupported blob/xml element`.
+
+   You can also use `nmcli` to import your configuration from CLI:
+
+   ```sh
+   nmcli connection import type openvpn file file.ovpn
+   ```
+
+   If you want to setup login and password, check that there is no `auth-user-pass` line in the `openvpn` file or remove it.
+   Then after the import:
+
+   ```sh
+   nmcli connection modify <CONNECTION-NAME> \
+     +vpn.data "connection-type=password-tls, username=<USERNAME>" \
+     vpn.user-name <USERNAME> \
+     +vpn.secrets "password=<PASS>"
+   ```
+
+3. Then finally run:
+
+   ```sh
+   nmcli connection up <CONNECTION-NAME>
+   ```
+
+   > [!NOTE]
+   >
+   > Note that toggling the VPN connection in Network section under `gnome-control-center` only works in a GNOME desktop not anywhere else.
+   > On other desktop environments you should use `nmcli`.
+
+4. You can change the `vpn` timeout using:
+
+   ```sh
+   nmcli connection modify "client" vpn.timeout 180
+   ```
+
+   Then reconnect:
+
+   ```sh
+   nmcli connection down "client"
+   nmcli connection up "client"
+   ```
+
+   Verify it:
+
+   ```sh
+   nmcli connection show "client" | grep timeout
+   ```
+
+   If you want `NetworkManager` to never abort the connection attempt (unlimited timeout):
+
+   ```sh
+   nmcli connection modify "client" vpn.timeout 0
+   ```
+
+#### `openvpn3`
+
+1. You can also use `openvpn3` easily:
+
+   ```sh
+   paru -S openvpn3
+   ```
+
+   Start a connection using:
+
+   ```sh
+   openvpn3 session-start --config /path/to/client.ovpn
+   ```
+
+   Then you need to cast this connection to your primary connection (probably a WiFi or Ethernet one).
+
+1. For this, first check that which device `openvpn3` is using:
+
+   ```sh
+   openvpn3 sessions-list
+   ```
+
+   You can see it under `Device` for example it can be `tun0.
+
+   Then check the active route using:
+
+   ```sh
+   ip route
+   ```
+
+   Check that your device (i.e. `tun0`) is not `linkdown`.
+   You can also here that your system is not routing traffis through the VPN,
+   because the default route is either `Ethernet` or `Wifi` devices.
+
+   Finally you can also check the `nmcli` connection too (but not very helpful here):
+
+   ```sh
+   nmcli connection
+   ```
+
+1. Replace the default route to use the `opevpn3` tunnel:
+
+   ```sh
+
+   sudo ip route replace default dev tun0
+   ```
+
+1. Finally verify the routing change using:
+
+   ```sh
+   ip route
+   ip route get 8.8.8.8
+   curl ifconfig.me
+   ```
+
+   - `ip route` should return default route as `dev <TUNNEL_DEVICE>` (i.e. `dev tun0`).
+   - `ip route get 8.8.8.8` should show: `dev <TUNNEL_DEVICE>` (i.e. `dev tun0`).
+   - `curl ifconfig.me` should show the VPN’s public IP.
+
+   Now your whole traffic goes through the `openvpn3`.
+
+1. To reverse it, you can use:
+
+   ```sh
+   sudo ip route replace default dev <DEFAULT-DEVICE> via 192.168.1.1
+   ```
+
+   - `<DEFAULT-DEVICE>` is the default Ethernet or WiFi device.
+   - `192.168.1.1` is a private IP address assigned as the default gateway for many routers.
+
+   or more safely:
+
+   ```sh
+   sudo ip route delete default
+   ```
+
+1. You can also disconnect your `openvpn3` using:
+
+   ```sh
+   openvpn3 session-manage --disconnect --config /path/to/client.ovpn
+   ```
+
+   Or you can import your configuration to use it permanently using:
+
+   ```sh
+   openvpn3 config-import --config /path/to/client.ovpn --name <CONFIG-NAME>
+   ```
+
+   > [!NOTE]
+   >
+   > If you don't assign a name for it the absolute path of the config will be considered as its name.
+
+   > [!IMPORTANT]
+   >
+   > There are different types of paths in Linux. I explain them briefly using some examples:
+   >
+   > 1. **Absolute Path:** An absolute path starts from the root directory `/` and describes the full location of a file or folder.
+   >    `/home/user/Documents/report.txt`
+   > 2. **Relative Path:** A relative path is defined relative to your current working directory (the folder you’re currently in).
+   >    - `Documents/report.txt` points to `/home/user/Documents/report.txt`
+   >    - `../` moves one directory up: `/home`
+   >    - `./script.sh` refers to `script.sh` in current folder.
+   >    - `.`: current directory
+   >    - `..`: parent directory
+   > 3. **Home Directory Shortcuts (`~`):** Linux provides shortcuts for user home directories.
+   >    - `~` means your home directory
+   >    - `~username` means another user’s home directory: `cd ~john -> /home/john`
+   > 4. **Root-relative paths (`/`):** These are effectively the same as absolute paths, because they start at the root `/`.
+   >    Note that they are kinda different when dealing with differnet roots and using `chroot`.
+   > 5. **Environment Variable Paths:** `$HOME/Documents`, `$PATH`
+   > 6. **Symlink Paths:** A path might point to a symbolic link rather than an actual file.
+   >    They behave like regular path, but point to another location.
+   >    Example: `/usr/bin/python -> /usr/bin/python3.10`
+
+   Check them using:
+
+   ```sh
+   openvpn3 configs-list
+   ```
+
+   And remove them using:
+
+   ```sh
+   openvpn3 config-remove --config <CONFIG-NAME>
+   ```
+
+   You can use the imported configs by calling their names:
+
+   ```sh
+   # Connect
+   openvpn3 session-start --config client
+
+   # Disconnect
+   openvpn3 session-manage --disconnect --config client
+   ```
+
+**References:**
+
+- <https://wiki.archlinux.org/title/OpenVPN>
+- <https://wiki.archlinux.org/title/OpenVPN#The_client_configuration_profile>
+- <https://wiki.archlinux.org/title/OpenVPN#NetworkManager-native_VPN_configuration>
+- <https://www.reddit.com/r/archlinux/comments/edoc01/openvpn_graphical_client_for_arch/>
+- <https://askubuntu.com/questions/460871/how-to-setup-openvpn-client>
+- <https://openvpn.net/community-docs/openvpn-client-for-linux.html>
+- <https://openvpn.net/community-docs/how-to.html#security>
+- <https://openvpn.net/as-docs/tutorials/tutorial--connect-with-linux.html>
+- <https://openvpn.net/connect-docs/linux-clients.html>
+- <https://unix.stackexchange.com/questions/665560/simplifying-how-i-connect-to-a-openvpn-client>
+- <https://bbs.archlinux.org/viewtopic.php?id=253111>
+- <https://gist.github.com/fmartins-andre/343dbacca4e4b242a12e9fcccd5e85e5>
+- <https://askubuntu.com/questions/187511/how-can-i-use-a-ovpn-file-with-network-manager>
+- <https://askubuntu.com/questions/150244/how-do-i-set-up-an-ssh-socks-proxy-with-gnome-ssh-tunnel-manager>
+- <https://man.archlinux.org/man/nm-settings-nmcli.5>
+- <https://www.youtube.com/watch?v=GB5qZWVnkD4>
+- <https://github.com/nm-l2tp/NetworkManager-l2tp/issues/220>
+- <https://web.archive.org/web/20220724145449/sites.inka.de/bigred/devel/tcp-tcp.html>
+- <https://community.openvpn.net/Pages/UnprivilegedUser>
+- <https://www.reddit.com/r/archlinux/comments/14xvj53/nmcli_asking_for_password_to_vpn_even_though_its/>
+- <https://bbs.archlinux.org/viewtopic.php?id=285845>
