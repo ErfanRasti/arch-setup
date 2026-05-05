@@ -767,7 +767,7 @@ rm -rf ~/.cache/nvim
 - <https://www.reddit.com/r/LazyVim/comments/1io24kf/how_do_i_check_lazyvim_version/>
 - <https://stackoverflow.com/questions/3638542/any-way-to-delete-in-vim-without-overwriting-your-last-yank>
 
-## tmux
+## `tmux`
 
 ```bash
 sudo pacman -S tmux

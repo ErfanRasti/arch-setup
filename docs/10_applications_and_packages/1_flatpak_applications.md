@@ -62,6 +62,18 @@ flatpak install flathub io.bassi.Amberol
 - `org.gnome.SoundRecorder`: A sound recorder application.
 - `org.gnome.Decibels`: A sound player application.
 - `com.github.neithern.g4music`: Gapless (AKA: G4Music) is a light weight music player written in GTK4, focuses on large music collection.
+  You can also install it using `paru`:
+
+  ```sh
+  paru -S gapless
+  ```
+
+  You can use it from terminal using:
+
+  ```sh
+  g4music
+  ```
+
 - `de.haeckerfelix.Shortwave`: Listen to internet radio.
 - `io.github.seadve.Mousai`: Discover songs you are aching to know with an easy-to-use interface.
 - `de.haeckerfelix.AudioSharing`: Share your computer audio

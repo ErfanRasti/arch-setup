@@ -108,6 +108,15 @@ True
 
 Always check [this](https://pytorch.org/get-started/locally/) site to get sure all the drivers are updated.
 
+Also if you don't want a `conda` environment, you can use `pip` to create a virtual environment:
+
+```sh
+python -m venv path/to/venv
+source path/to/venv
+```
+
+which `path/to/venv` is the desired path to create a Python environment. I usually use `.venv` and put it inside the project folder.
+
 **References:**
 
 - <https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html>

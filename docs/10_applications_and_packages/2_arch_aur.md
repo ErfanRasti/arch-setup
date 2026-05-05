@@ -425,7 +425,7 @@ pdfunite file1.pdf file2.pdf merged.pdf
 ## Photo and Video
 
 ```bash
-sudo pacman -S krita vlc vlc-plugins-all mpv
+sudo pacman -S krita vlc vlc-plugins-all mpv dragon
 ```
 
 > [!NOTE]
@@ -453,6 +453,8 @@ sudo pacman -S krita vlc vlc-plugins-all mpv
 > ```
 
 If you want `vlc` to follow the global theming, go to `Tools > Preferences > Interface > Force window style` and set it to `qt5ct-style`.
+
+`dragon` s a multimedia player where the focus is on simplicity, instead of features.
 
 For video editing I recommend `kdenlive`:
 
@@ -1541,7 +1543,7 @@ paru -S stacer
 ## Matrix and animations
 
 ```bash
-sudo pacman -S cmatrix
+sudo pacman -S cmatrix sl
 paru -S unimatrix-git pipes.sh
 ```
 
@@ -1560,6 +1562,14 @@ unimatrix -s 95
 ```
 
 Welcome to the Matrix!
+
+`sl` is a nice train btw:
+
+```sh
+sl
+```
+
+Drive safe and sound!
 
 **References:**
 
