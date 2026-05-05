@@ -1154,7 +1154,19 @@ hyprpm update
 
 - <https://github.com/hyprwm/Hyprland/discussions/11885>
 
-### Touchscreen gestures
+### QML Language failure
+
+If you've ever seen a QML package fails to perform properly after a system update (`sudo pacman -Syu`) you should rebuild the package:
+
+```sh
+paru -S --rebuild --noconfirm noctalia-qs
+```
+
+**References:**
+
+- <https://github.com/noctalia-dev/noctalia-shell/issues/2452>
+
+## Touchscreen gestures
 
 `hyprgrass` is a nice option for this. To use it:
 
@@ -1174,7 +1186,7 @@ hyprpm reload
 
 - <https://github.com/horriblename/hyprgrass?tab=readme-ov-file>
 
-### Touchpad gestures
+## Touchpad gestures
 
 Use `libinput-gstures` to customize touchpad gestures:
 
@@ -1231,7 +1243,7 @@ You can add them through your `hyprland.conf`:
 - <https://www.reddit.com/r/hyprland/comments/12qjea7/additional_gestures/>
 - <https://wiki.hypr.land/Configuring/Gestures/>
 
-### Overview menu
+## Overview menu
 
 `Hyprspace` is a great plugin to add overview menu to Hyprland.
 
@@ -1244,7 +1256,7 @@ hyprpm enable Hyprspace
 
 - <https://github.com/KZDKM/Hyprspace>
 
-### Control center
+## Control center
 
 There is nice app with some basic controls and settings named better-control:
 
@@ -1256,7 +1268,7 @@ paru -S better-control
 
 - <https://github.com/better-ecosystem/better-control>
 
-### Tools
+## Tools
 
 Linux and Hyprland are cannot be used for daily use without some simple and amazing tools.
 I've covered lots of tools in different parts of these documentations and
@@ -1281,7 +1293,7 @@ paru -S pwvucontrol nmgui overskride-bin
 - <https://github.com/s-adi-dev/nmgui>
 - <https://github.com/kaii-lb/overskride>
 
-### Essentials
+## Essentials
 
 There are some esential resources that helps you design your own DE. These are ones that I've used:
 
@@ -1291,7 +1303,7 @@ There are some esential resources that helps you design your own DE. These are o
 - <https://man.archlinux.org/man/swaync.5.en>
 - <https://wiki.hypr.land/Useful-Utilities/Must-have/>
 
-### Automatically Mounting
+## Automatically Mounting
 
 `udiskie` is a great toll to manage USB storage devices. Install it:
 
@@ -1309,7 +1321,7 @@ exec-once = udiskie &
 
 - <https://wiki.hypr.land/0.42.0/Useful-Utilities/Other/#automatically-mounting-using-udiskie>
 
-### pyprland
+## pyprland
 
 It's a software that extends the functionality of the great Hyprland window manager, adding new features and improving the existing ones.
 
