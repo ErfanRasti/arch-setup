@@ -250,3 +250,45 @@ In terms of MAC randomization the most important modes are `stable` and `random`
 - <https://wiki.archlinux.org/title/Network_configuration#Network_interfaces>
 - <https://bbs.archlinux.org/viewtopic.php?id=217310>
 - <https://blogs.gnome.org/thaller/2016/08/26/mac-address-spoofing-in-networkmanager-1-4-0/>
+
+### `ufw`
+
+Ufw stands for Uncomplicated Firewall, and is a program for managing a netfilter firewall. It provides a command line interface and aims to be uncomplicated and easy to use.
+
+Install the `ufw` package.
+
+```sh
+sudo pacman -S ufw
+```
+
+Start and enable `ufw.service` to make it available at boot. Note that this will not work if `iptables.service` is also enabled (and same for its ipv6 counterpart):
+
+```sh
+sudo systemctl enable --now ufw.service
+sudo ufw enable
+```
+
+You can allow some ports through it using:
+
+```sh
+sudo ufw allow 1234/tcp
+```
+
+or deny it using:
+
+```sh
+sudo ufw deny 1234/tcp
+```
+
+or delete the rule completely:
+
+```sh
+
+sudo ufw delete allow 1234/tcp
+sudo ufw delete deny 1234/tcp
+```
+
+**References:**
+
+- <https://launchpad.net/ufw>
+- <https://wiki.archlinux.org/title/Uncomplicated_Firewall>
