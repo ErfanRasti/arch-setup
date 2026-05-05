@@ -54,7 +54,7 @@ I usually don't prefer this method because I have good amount of RAM. I use manu
    sudo pacman -Rsucn zram-generator
    ```
 
-   Then check `/etc/fstab` to see if there is a reference to the swap file or not if there is such a reference delete the whole line. This will prevent boot error on fstab:
+   Then check `/etc/fstab` to see if there is a reference to the swap file or not if there is such a reference delete the whole line. This will prevent boot error on `fstab`:
 
    ```bash
    sudo nano /etc/fstab

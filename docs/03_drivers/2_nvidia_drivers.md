@@ -23,7 +23,30 @@ To watch NVIDIA running apps:
 watch -n 1 nvidia-smi
 ```
 
-Some useful variables to ckec:
+> [!IMPORTANT]
+>
+> If you get this when you run `nvidia-smi`:
+>
+> ```
+> NVIDIA-SMI has failed because it couldn't communicate with the NVIDIA driver. Make sure that the latest NVIDIA driver is installed and running.
+> ```
+>
+> Check this command and make sure you have `/dev/nvidia<NUMBER>` and `/dev/nvidiactl` are listed in it:
+>
+> ```sh
+> ls /dev/nvidia*
+> ```
+>
+> if now make sure you have `libxnvctrl` installed by checking:
+>
+> ```sh
+> pacman -Q | grep libxnvctrl
+> ```
+>
+> This package should be automatically installed when you run `sudo pacman -S nvidia-dkms nvidia-utils nvidia-settings`,
+> but if not install it using `sudo pacman -S libxnvctrl`.
+
+Some useful variables to check:
 
 1. To check the power state (D0 D3, ...):
 
@@ -55,9 +78,9 @@ Some useful variables to ckec:
 - <https://nouveau.freedesktop.org/CodeNames.html>
 - <https://github.com/NVIDIA/open-gpu-kernel-modules>
 
-### Nvidia state management
+### NVIDIA state management
 
-We can activate nvidia service modes using `systemctl`:
+We can activate `nvidia` service modes using `systemctl`:
 
 ```bash
 sudo systemctl enable nvidia-hibernate.service nvidia-suspend.service nvidia-resume.service nvidia-powerd.service nvidia-persistenced.service
@@ -132,27 +155,42 @@ sudo envycontrol -s hybrid --rtd3
 cat /sys/bus/pci/devices/0000\:01\:00.0/power/runtime_status
 ```
 
-**Note:** If you get `No such file or directory` check your pci devices and find nvidia using `lspci` command. for example it can be as below:
+> [!NOTE]
+> If you get `No such file or directory` check your pci devices and find the `nvidia` device using `lspci` command:
+>
+> ```sh
+> lspci -k | grep -A 2 -E "(VGA|3D)"
+> ```
+>
+> or:
+>
+> ```sh
+> lspci -d ::03xx
+> ```
+>
+> For example the `cat` command can be like this:
+>
+> ```bash
+> cat /sys/bus/pci/devices/0000\:02\:00\.0/power/runtime_status
+> ```
 
-```bash
-cat /sys/bus/pci/devices/0000\:02\:00\.0/power/runtime_status
-```
-
-**Note:** If you faced that gnome apps as `gjs` and `gnome-control-center` prevent nvidia from going to sleep take a look at [this](../06_gnome_on_wayland_and_x11/3_gtk.md#gtk-4-applications-are-slow). Also to prevent `gnome-shell` using the `nvidia` and remove it from `nvidia-smi` use this:
-
-```bash
-sudo nano /etc/modprobe.d/blacklist-nvidia.conf
-```
-
-Then add this:
-
-```conf
-blacklist nvidia
-blacklist nvidia-drm
-blacklist nvidia-modeset
-```
-
-That's not necessary because `gnome-shell` only uses the dPUG when you call `nvidia-smi` command.
+> [!HINT]
+>
+> If you faced that gnome apps as `gjs` and `gnome-control-center` prevent nvidia from going to sleep take a look at [this](../06_gnome_on_wayland_and_x11/3_gtk.md#gtk-4-applications-are-slow). Also to prevent `gnome-shell` using the `nvidia` and remove it from `nvidia-smi` use this:
+>
+> ```bash
+> sudo nano /etc/modprobe.d/blacklist-nvidia.conf
+> ```
+>
+> Then add this:
+>
+> ```conf
+> blacklist nvidia
+> blacklist nvidia-drm
+> blacklist nvidia-modeset
+> ```
+>
+> That's not necessary because `gnome-shell` only uses the dPUG when you call `nvidia-smi` command (After a couple of seconds after running `nvidia-smi` usually it the `gnome-shell` task disappears.).
 
 Finally you can disable and enable persistence mode on NVIDIA using this:
 
@@ -189,31 +227,11 @@ prime-run nautilus
 
 - <https://wiki.archlinux.org/title/PRIME>
 
-## DKMS and KMS
-
-Remove `kms` from `HOOKS` in `/etc/mkinitcpio.conf` and regenerate the `initramfs`. This will prevent the `initramfs` from containing the `nouveau` module making sure the kernel cannot load it during early boot. The `nvidia-utils` package contains a file which blacklists the `nouveau` module once you reboot.
-
-After changing `/etc/mkinitcpio.conf` you need to regenerate the `initramfs`:
-
-```bash
-sudo mkinitcpio -P linux
-sudo mkinitcpio -P linux-lts
-```
-
-I've installed `nvidia-dkms` which automatically regenerate the `initramfs` after updates, but if the drivers break, check [this](https://wiki.archlinux.org/title/NVIDIA#pacman_hook) to make a `pacman` hook for NVIDIA.
-
-**References:**
-
-- <https://wiki.archlinux.org/title/NVIDIA#Installation>
-- <https://wiki.archlinux.org/title/Dynamic_Kernel_Module_Support#Installation>
-- <https://wiki.archlinux.org/title/NVIDIA#pacman_hook>
-- <https://wiki.archlinux.org/title/Mkinitcpio#Manual_generation>
-
 ### Troubleshooting
 
 Here I give you an overview of all of the problems that I've faced:
 
-1. If you faced that gnome apps as `gjs` and `gnome-control-center` prevent nvidia from going to sleep take a look at [this](../06_gnome_on_wayland_and_x11/3_gtk.md#gtk-4-applications-are-slow).
+1. If you faced that gnome apps as `gjs` and `gnome-control-center` prevent `nvidia` from going to sleep take a look at [this](../06_gnome_on_wayland_and_x11/3_gtk.md#gtk-4-applications-are-slow).
 2. Also to prevent `/usr/bin/gnome-shell` using the `nvidia` and remove it from `nvidia-smi` use this:
 
    ```bash
@@ -226,9 +244,15 @@ Here I give you an overview of all of the problems that I've faced:
    __EGL_VENDOR_LIBRARY_FILENAMES=/usr/share/glvnd/egl_vendor.d/50_mesa.json
    ```
 
+   > [!WARNING]
+   >
+   > This prevents GNOME from loading the NVIDIA modules which can led to some misbehaviour on some systems
+   > (i.e. laptops with hybrid Intel CPU including integrated GPU with dedicated NVIDIA GPU).
+   > These systems usually support HDMI which is directly connected to the dedicated NVIDIA GPU.
+   > So the NVIDIA modules should be loaded to make screen operations (mirroring and joining) possible.
+   > If this line is added as an environment variable, connecting a new HDMI screen cause blank screen or even system crash.
+
    **References:**
-   - <https://wiki.archlinux.org/title/Wayland#Avoid_loading_NVIDIA_modules>
-   - <https://wiki.archlinux.org/title/Wayland#Avoid_loading_NVIDIA_modules>
    - <https://wiki.archlinux.org/title/Wayland#Avoid_loading_NVIDIA_modules>
 
 3. Add this to your `/etc/modprobe.d/nvidia.conf` to support `rtd3` on your graphic card:
@@ -256,3 +280,23 @@ Here I give you an overview of all of the problems that I've faced:
    - <https://www.reddit.com/r/Fedora/comments/1irhbus/enabling_d3_power_management_in_hybrid_laptops/>
    - <https://download.nvidia.com/XFree86/Linux-x86_64/510.47.03/README/dynamicpowermanagement.html>
    - <https://nouveau.freedesktop.org/CodeNames.html>
+
+## DKMS and KMS
+
+Remove `kms` from `HOOKS` in `/etc/mkinitcpio.conf` and regenerate the `initramfs`. This will prevent the `initramfs` from containing the `nouveau` module making sure the kernel cannot load it during early boot. The `nvidia-utils` package contains a file which blacklists the `nouveau` module once you reboot.
+
+After changing `/etc/mkinitcpio.conf` you need to regenerate the `initramfs`:
+
+```bash
+sudo mkinitcpio -P linux
+sudo mkinitcpio -P linux-lts
+```
+
+I've installed `nvidia-dkms` which automatically regenerate the `initramfs` after updates, but if the drivers break, check [this](https://wiki.archlinux.org/title/NVIDIA#pacman_hook) to make a `pacman` hook for NVIDIA.
+
+**References:**
+
+- <https://wiki.archlinux.org/title/NVIDIA#Installation>
+- <https://wiki.archlinux.org/title/Dynamic_Kernel_Module_Support#Installation>
+- <https://wiki.archlinux.org/title/NVIDIA#pacman_hook>
+- <https://wiki.archlinux.org/title/Mkinitcpio#Manual_generation>
