@@ -20,6 +20,12 @@ One of the best GUI apps manager is `Flatpak`. To install it:
 sudo pacman -S flatpak
 ```
 
+> [!HINT]
+>
+> When using `pacman -S` you will face with some `[Y/n]` question. The uppercase letter indicates the selected letter (the default letter)
+> and if you click enter the uppercase letter get selected automatically. `y` stands for yes and `n` stands for no.
+> So if you saw `[y/N]`, if you press enter it selects no by default and if you want to proceed with yes you should type `y` or `yes` or `n` or any other letter combinations to don't proceed.
+
 If you installed gnome, `flatpak` is installed by default. Default behavior is system-wide installation which is proper for personal usage but if you prefer adjusting it:
 
 ```bash
@@ -401,6 +407,8 @@ To return to the normal state:
 sudo downgrade --unignore <PACKAGE_NAME>
 ```
 
+You can use `downgrade` on AUR packages too.
+
 **References:**
 
 - <https://wiki.archlinux.org/title/Downgrading_packages>
@@ -436,6 +444,12 @@ If you want to download the package source binary file from `GitHub` or anywhere
 >
 > Path of `pacman` packages is `/var/cache/pacman/pkg/` and it usually includes `*.sig` and `*.zst` files.
 > If you want to manually download `pacman` packages consider this path.
+>
+> Also to remove your packages cache run:
+>
+> ```sh
+> sudo rm -rf /var/cache/pacman/pkg/*
+> ```
 
 ### System proxy on `pacman` and `paru`
 
@@ -506,6 +520,17 @@ Finally you can use `paru` after executing the previous script.
 > ```
 >
 > Finally save and exit using `:wqa`.
+> Also there is a better workaround:
+>
+> ```sh
+> sudo nvim /etc/sudoers.d/05_proxy
+> ```
+>
+> and then add this:
+>
+> ```
+> Defaults env_keep += "*_proxy *_PROXY"
+> ```
 >
 > Now if you use `paru`, it uses your system proxy completely.
 >
