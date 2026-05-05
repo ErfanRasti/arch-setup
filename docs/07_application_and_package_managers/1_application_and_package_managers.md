@@ -863,3 +863,95 @@ Trees gives you the understanding about what's really going on in the system and
 Use `pstree` to see the tree of all the processes on the system.
 
 Use `pactree <PACKAGE_NAME>` to see the dependencies of a package.
+
+Also to see all the related files of a `pacman` (or AUR helper) package:
+
+```sh
+pacman -Ql <package-name>
+```
+
+and to see the tree of these files:
+
+```sh
+pacman -Ql <package-name> | awk '{print $2}' | tree --fromfile
+```
+
+## Install `.deb` package on Arch Linux
+
+First of all, check [AUR](https://aur.archlinux.org/) to see if the package exists.
+If not use the following methods.
+There are several ways of installing `.deb` files on Arch Linux.
+
+### Manual Installation
+
+One of the simplest methods is using`dpkg`:
+
+1. Install it:
+
+   ```sh
+   sudo pacman -S dpkg
+   ```
+
+2. Extract the `.deb` file:
+
+   ```sh
+   dpkg -x package.deb package-extracted/
+   ```
+
+3. Manually copy the related files under the related directories. For example:
+
+   ```sh
+   sudo cp -r package-extracted/usr/* /usr/
+   ```
+
+### Using `debtap`
+
+This method is more reliable and safer than the previous one.
+
+1. Install it:
+
+   ```sh
+   paru -S debtap
+   ```
+
+2. Initialize it:
+
+   ```sh
+   sudo debtap -u
+   ```
+
+3. Convert the `.deb` package to a `pacman` package:
+
+   ```sh
+   debtap package.deb
+   ```
+
+4. After converting, inspect the package before installing:
+
+   ```sh
+   bsdtar -tf package.pkg.tar.zst
+   ```
+
+   This command shows the raw file contents inside the package. Basically, what files will be copied where.
+   - `-t`: list archive contents
+   - `-f`: specify file name
+
+   and:
+
+   ```sh
+   pacman -Qip package.pkg.tar.zst
+   ```
+
+   This command asks `pacman` to display package metadata (info); not contents.
+
+5. Install the generated package:
+
+   ```sh
+   sudo pacman -U package-name.pkg.tar.zst
+   ```
+
+**References:**
+
+- <https://bbs.archlinux.org/viewtopic.php?id=110035>
+- <https://www.reddit.com/r/archlinux/comments/njz980/installing_deb_files_on_arch/>
+- <https://unix.stackexchange.com/questions/83540/installing-a-deb-package-on-arch-is-it-possible>
