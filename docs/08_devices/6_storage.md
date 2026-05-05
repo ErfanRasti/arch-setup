@@ -79,7 +79,7 @@ Then run `sudo timeshift-launcher` and follow to wizard. My setup:
 2. Snapshot location: under luks `btrfs` > `/dev/dm-0/`
 3. Mountly: `4`, Weekly: `4`, Daily: `5`, Boot: `5`
 4. Uncheck _Stop crone emails for scheduled tasks_.
-5. Uncheck _Include @home subvolume in backups_.
+5. Uncheck _Include `@home` subvolume in backups_.
 
 The saving path of `timeshift` can be verified using `Browse` on `timeshift-launcher` or using:
 
@@ -182,7 +182,7 @@ If you ever messed up your `timeshift` backup and even mount points like `@` and
 1. Decrypt your drive:
 
    ```bash
-   cryptsetep luksOpen /dev/sda2 btrfs-dev
+   cryptsetup luksOpen /dev/sda2 btrfs-dev
    ```
 
 2. Mount the whole drive to `/mnt`:
@@ -330,3 +330,111 @@ Also there is a GUI workaround:
 
 - <https://askubuntu.com/questions/1512710/wrong-fs-type-bad-option-bad-superblock-just-installed-lubuntu-24-04>
 - <https://linuxconfig.org/how-to-mount-partition-with-ntfs-file-system-and-read-write-access>
+
+### File Recovery
+
+Suppose you've accidentally removed a file completely from your system (Not trashing it in `~/.local/share/Trash/`) and you have no backup (`btrfs` snapshot or `timeshift`). There are still some methods to recover your files. In this section I'm gonna explain the method of using a tool called `photorec` to recover your files.
+
+Better to check simpler methods for `btrfs` like these commands before start using `photorec`:
+
+1. First check this simple command:
+
+   ```sh
+   sudo btrfs restore -v /dev/mapper/btrfs-drv "/path/to/recover/dest"
+   ```
+
+2. `btrfs` keeps many "superblock roots". Many of them contain older filesystem versions even without snapshots. You can list them using:
+
+   ```sh
+   sudo btrfs-find-root /dev/mapper/btrfs-drv
+   ```
+
+   You will get lines like:
+
+   ```
+   found tree root at bytenr 123456789
+   found tree root at bytenr 987654321
+   ```
+
+   Pick a root older than deletion time and try to restore:
+
+   ```sh
+   sudo btrfs restore -r <bytenr> /dev/mapper/btrfs-drv /path/to/recover/dest/restore_output/root_<bytenr>
+   ```
+
+   This often brings back entire older versions of the `subvolume`.
+
+If none of the above methods works for you go with this:
+
+1. Install the application:
+
+   ```sh
+   sudo pacman -S testdisk
+   ```
+
+   `testdisk` includes `photorec` too.
+
+2. If you have an encrypted drive you should decrypt it first:
+
+   ```sh
+   sudo cryptsetup luksOpen /dev/sda2 btrfs-drv
+   ```
+
+   Make sure you select the correct device using `lsblk`.
+
+3. First you can mount your drive and see what's inside:
+
+   ```sh
+   sudo mount -o ro /dev/mapper/btrfs-drv /mnt/drive
+   ```
+
+   or you can just mount a special sub-volume using:
+
+   ```sh
+   sudo mount -o ro,subvol=/ /dev/mapper/btrfs-drv /mnt/drive
+   ```
+
+   Then unmount your drive:
+
+   ```sh
+   sudo umount /mnt/drive
+   ```
+
+4. Finally recover using:
+
+   ```sh
+   sudo photorec /log \\
+   /d "/path/to/recover/photorec" \\
+   /dev/mapper/btrfs-dev
+   ```
+
+   It takes too long to recover.
+
+5. The previous command creates lots of `photorec.xxx` ( i.e. `photorec.122` ) and your recovered file are distributed in different folders. To gather the format you want use `find` command. For example if you find all the video type files and copies them into the `recovered` directory:
+
+   ```sh
+   mkdir -p /path/to/recovered
+   find "/path/to/recover/photorec" -type f \( -iname "*.mp4" -o -iname "*.mkv" -o -iname "*.mov" -o -iname "*.avi" -o -iname "*.webm" -o -iname "*.m4v" \) -exec sudo cp -t "/path/to/recovered" {} +
+   ```
+
+6. If none of these methods works for you, you should user a alternative professional tools for `btrfs`. For example you can used UFS Explorer which is one of the best recovery softwares for `btrfs` file format, but it needs a Windows operating system to install it.
+
+> [!HINT]
+>
+> If the drive you're recovering your files from is an SSD hard drive you don't need to worry about disk health reduction.
+> Reads do NOT consume write cycles, SSD health reduction is caused by writes, not reads.
+> Using `btrfs` restore, PhotoRec, or UFS Explorer (In general recovery) does NOT damage or reduce disk health as long as you are only reading from the disk and not writing to it.
+
+> [!WARNING]
+> If you recover to the same drive, it may overwrite deleted data and destroys remaining recovery chances.
+> Also, there are lots of redundant files in the recovered folders, so I recommend to set the recovery path to an HDD drive, which its health doesn't reduce by writing.
+
+> [!CAUTION]
+> Note that If your disk has clicking sounds, slow reads, I/O errors, andSMART errors heavy scanning can accelerate failure;
+> because weak sectors require repeated retries, so the head keeps recalibrating and the drive temperature increases.
+> In that case, imaging with `ddrescue` first is safer.
+
+**References:**
+
+- <https://wiki.archlinux.org/title/File_recovery>
+- <https://wiki.archlinux.org/title/Disk_cloning>

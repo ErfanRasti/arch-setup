@@ -20,7 +20,7 @@ bluetoothctl
 
 - `default-agent`: Set agent as the default one
 
-I use `bluez` to manage my bluetooth devices:
+I use `bluez` to manage my Bluetooth devices:
 
 ```bash
 sudo pacman -S bluez bluez-utils blueman

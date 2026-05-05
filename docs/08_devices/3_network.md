@@ -486,7 +486,7 @@ sudo systemctl enable --now openvpn-client@<CONFIGURATION-NAME>.service
    openvpn3 sessions-list
    ```
 
-   You can see it under `Device` for example it can be `tun0.
+   You can see it under `Device` for example it can be `tun0`.
 
    Then check the active route using:
 
@@ -508,7 +508,7 @@ sudo systemctl enable --now openvpn-client@<CONFIGURATION-NAME>.service
 
    ```sh
 
-   sudo ip route replace default dev tun0
+   sudo ip route replace default dev tun1
    ```
 
 1. Finally verify the routing change using:
@@ -551,6 +551,8 @@ sudo systemctl enable --now openvpn-client@<CONFIGURATION-NAME>.service
    ```sh
    openvpn3 config-import --config /path/to/client.ovpn --name <CONFIG-NAME>
    ```
+
+   But the imported configurations usually get removed after system reboot.
 
    > [!NOTE]
    >
