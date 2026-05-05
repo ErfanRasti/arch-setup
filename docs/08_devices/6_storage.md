@@ -50,6 +50,13 @@ To check the left space on your disk or drive use this command:
 df -h
 ```
 
+To analyze what is on your different folder of a directory use `ncfu`. It is a great tool to analyze your storage:
+
+```sh
+sudo pacman -S ncdu
+ncdu /
+```
+
 > [!NOTE]
 >
 > To eject your USB device safely:
@@ -426,10 +433,12 @@ If none of the above methods works for you go with this:
 > Using `btrfs` restore, PhotoRec, or UFS Explorer (In general recovery) does NOT damage or reduce disk health as long as you are only reading from the disk and not writing to it.
 
 > [!WARNING]
+>
 > If you recover to the same drive, it may overwrite deleted data and destroys remaining recovery chances.
 > Also, there are lots of redundant files in the recovered folders, so I recommend to set the recovery path to an HDD drive, which its health doesn't reduce by writing.
 
 > [!CAUTION]
+>
 > Note that If your disk has clicking sounds, slow reads, I/O errors, andSMART errors heavy scanning can accelerate failure;
 > because weak sectors require repeated retries, so the head keeps recalibrating and the drive temperature increases.
 > In that case, imaging with `ddrescue` first is safer.

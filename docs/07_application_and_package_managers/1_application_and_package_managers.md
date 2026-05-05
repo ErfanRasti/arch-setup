@@ -702,6 +702,7 @@ You should change the permissions manually for each folder:
 > ```
 
 > [!HINT]
+>
 > Permissions are defined as a 3 octagonal digits. Each digit controls all the combinations of read write and execute, respectively.
 > You can check the permissions using `ls -l /path/to/directory`. You can see a complete explanation of all different permissions [here](https://wiki.archlinux.org/title/File_permissions_and_attributes).
 > As an overview usually permissions are like this:
