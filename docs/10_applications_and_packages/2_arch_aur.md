@@ -153,7 +153,7 @@ spicetify watch -s
 ## Essential `pacman` applications
 
 ```bash
-sudo pacman -S fuse less bat dconf-editor neofetch fastfetch gparted ntfs-3g uget wget wireplumber rsync glxinfo unrar cdrtools gnome-usage tldr man nmap p7zip
+sudo pacman -S fuse less bat dconf-editor neofetch fastfetch gparted ntfs-3g uget wget wireplumber rsync glxinfo unrar cdrtools gnome-usage tldr man nmap p7zip meld
 ```
 
 - `fuse`: Filesystem in Userspace.
@@ -208,6 +208,8 @@ sudo pacman -S fuse less bat dconf-editor neofetch fastfetch gparted ntfs-3g uge
   ```sh
   7z x file.iso
   ```
+
+- `meld`: Great too to compare files, directories and working copies.
 
 ## Useful Tools for System Management
 

@@ -928,6 +928,7 @@ To do this follow these steps:
 - <https://github.com/winapps-org/winapps/issues/894>
 - <https://github.com/awakecoding/FreeRDP-Manuals/blob/master/User/FreeRDP-User-Manual.markdown>
 - <https://nowsci.com/winapps/kvm/>
+- <https://wiki.archlinux.org/title/KVM>
 
 ## WinBoat
 
@@ -993,6 +994,7 @@ And then add the previous opening command to `Exec` line.
 - <https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user>
 - <https://docs.docker.com/engine/daemon/start/>
 - <https://docs.docker.com/engine/install/linux-postinstall/#configure-docker-to-start-on-boot-with-systemd>
+- <https://github.com/TibixDev/winboat/issues/250>
 
 ## Windows on Linux
 
