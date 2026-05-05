@@ -661,9 +661,148 @@ However, you usually link older version to the new version that is installed by 
 - <https://bbs.archlinux.org/viewtopic.php?id=299396>
 - <https://www.reddit.com/r/archlinux/comments/1fgs8ay/paru_stopped_working_libalpmso14_error/>
 
+### warning: directory permissions differ on `/usr/share/applications`
+
+You should change the permissions manually for each folder:
+
+```sh
+ sudo chmod 755 /path/to/folder
+```
+
+> [!CAUTION]
+> You can use it recursively but it can also create some critical issues.
+> For example if you change the permission of `sudo`, it doesn't work for you anymore.
+>
+> ```sh
+> sudo chmod 755 -R /usr/share/applications
+> ```
+>
+> So I recommend you to run these commands from `root` user:
+>
+> ```sh
+> sudo -i
+> sudo chmod 755 -R /usr/share/applications
+> ```
+>
+> So if you messed up something you could reverse it from inside the `root`. If you don't you need a Live Boot USB.
+
+> [!IMPORTANT]
+>
+> `755` is just an example. Pay attention to the exact warning and change your permissions based on it. For instance:
+>
+> ```
+> warning: directory permissions differ on /etc/sudoers.d/
+> filesystem: 755  package: 750
+> ```
+>
+> needs:
+>
+> ```sh
+> sudo chmod 750 /var/sudoers.d/
+> ```
+
+> [!HINT]
+> Permissions are defined as a 3 octagonal digits. Each digit controls all the combinations of read write and execute, respectively.
+> You can check the permissions using `ls -l /path/to/directory`. You can see a complete explanation of all different permissions [here](https://wiki.archlinux.org/title/File_permissions_and_attributes).
+> As an overview usually permissions are like this:
+>
+> ```
+> drwxr-xr-x 2 archie archie  4096 Jul  5 21:03 Desktop
+> ```
+>
+> - The first letter `d` indicates that this is a directory. This first letter defines the file type. For more info about it run `info ls -n "What information is listed"`.
+> - The next 3 letters after `d` (`rwx`) indicate the permission of the owner of the file or folder.
+> - The second 3 letters indicate the group permissions over the file or folder. For example if someone is added to the group of the owner user it have these permissions.
+> - The final 3 letters indicate the group permissions of all the other users over the file.
+>   There is a space character at the end too. The exact permissions are `drwxr-xr-x`. A single character that specifies whether an alternate access method applies to the file. When this character is a space, there is no alternate access method.
+>
+> Permission characters:
+>
+> - `r`: read
+> - `w`: write
+> - `x`: execute
+>
+> Also there are some other options for the third character too:
+>
+> - `s`: [`setuid`](https://en.wikipedia.org/wiki/Setuid) bit when found in the user triad; the `setgid` bit when found in the group triad; it is not found in the others triad; it also implies that `x` is set.
+> - `S`: Same as `s`, but `x` is not set; rare on regular files, and useless on directories.
+> - `t`: The [sticky bit](https://en.wikipedia.org/wiki/Sticky_bit); it can only be found in the others triad; it also implies that `x` is set.
+> - `T`: Same as `t`, but `x` is not set; rare on regular files.
+>
+>   You can change the permissions using `chmod`:
+>
+> - `u`: user permission
+> - `g`: group permission
+> - `o`: others permission
+> - `a`: all of the above; use this instead of typing `ugo`.
+>
+> The operations:
+>
+> - `=`: Set the permission to something
+> - `+`: add a permission
+>
+> For instance:
+>
+> - `-`: remove a permission
+>
+> ```sh
+> chmod ug+wx <filename>
+> ```
+>
+> or:
+>
+> ```sh
+> chmod go+rx <filename>
+> ```
+>
+> or:
+>
+> ```sh
+> chmod +rx <filename>
+> ```
+>
+> To set the read/executable permissions for everyone.
+>
+> You an also use numbers for it:
+>
+> ```sh
+> chmod 755 <filename>
+> ```
+>
+> In this example `-rwxr-xr-x -> 111101101 -> 755` (Each three letters are an orthogonal number except the first letter which is the file type indicator).
+>
+> You can also use the numeric method to set the `setuid`, `setgid`, and `sticky` bits by using four digits:
+>
+> ```
+> setuid=4
+> setgid=2
+> sticky=1
+> ```
+>
+> For instance, `chmod 2777 filename` will set read/write/executable bits for everyone and also enable the `setgid` bit.
+>
+> **References:**
+>
+> - <https://wiki.archlinux.org/title/File_permissions_and_attributes>
+> - <https://wiki.archlinux.org/title/Access_Control_Lists>
+
+**References:**
+
+- <https://bbs.archlinux.org/viewtopic.php?id=42314>
+- <https://bbs.archlinux.org/viewtopic.php?id=273635>
+- <https://forum.manjaro.org/t/directory-permissions-differ/168404>
+
+### A particular app crashes after system update
+
+If you've ever seen a package fails to perform properly after a system update (`sudo pacman -Syu`) you should rebuild the package:
+
+```sh
+paru -S --rebuild --noconfirm <PACKAGE_NAME>
+```
+
 ## Nix
 
-Nix is a nice package manager based on declarative programming. I used th following commands to set it up:
+Nix is a nice package manager based on declarative programming. I used the following commands to set it up:
 
 ```bash
 sudo pacman -S nix
