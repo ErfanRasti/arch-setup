@@ -2,15 +2,19 @@
 
 1. First of all we should check that DRM(Direct Rendering Manager) kernel mode setting is working, because it is required by Wayland compositors. To check this:
 
-    ```bash
-    sudo cat /sys/module/nvidia_drm/parameters/modeset
-    ```
+   ```bash
+   sudo cat /sys/module/nvidia_drm/parameters/modeset
+   ```
 
-    If it returns `Y` everything is okay but if not you should set modes for nvidia via `modprobe`(Mine is `Y` and I didn't run the following line):
+   If it returns `Y` everything is okay but if not you should set modes for nvidia via `modprobe`(Mine is `Y` and I didn't run the following line):
 
-    ```bash
-    sudo tee /etc/modprobe.d/nvidia-modeset.conf <<< 'options nvidia_drm modeset=1 fbdev=1'
-    ```
+   ```bash
+   sudo tee /etc/modprobe.d/nvidia-modeset.conf <<< 'options nvidia_drm modeset=1 fbdev=1'
+   ```
+
+   > [!HINT]
+   >
+   > According to [this](https://www.reddit.com/r/archlinux/comments/1fhd4pe/is_it_nvidiadrmmodeset_or_nvidia_drmmodeset/). Both `nvidia-drm` and `nvidia_drm` work fine.
 
 2. Install some essential packages for wayland support:
 
@@ -44,7 +48,7 @@
    options nvidia_drm modeset=1
    ```
 
-7. Build `initramfs`(Create an initial ramdisk environment):
+7. Build `initramfs` (Create an initial ramdisk environment):
 
    ```bash
    sudo mkinitcpio -P
@@ -60,6 +64,7 @@
 
    ```conf
    WaylandEnable=true
+
    ```
 
    Mine didn't need that.
