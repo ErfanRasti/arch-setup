@@ -176,19 +176,19 @@ arch-chroot /mnt/@
 There is a more complete method for recovery. If you accidentally deleted `/etc` `/usr` or `/var` or any critical directory you need full access to the mount points:
 
 ```bash
-cryptsetup luksOpen /dev/sda2 btrfs-dev
-mount /dev/mapper/btrfs-dev -o subvol='@' /mnt
-mount /dev/mapper/btrfs-dev -o subvol='@home' /mnt/home
-mount /dev/mapper/btrfs-dev -o subvol='@pkg' /mnt/var/cache/pacman/pkg
-mount /dev/mapper/btrfs-dev -o subvol='@.snapshots' /mnt/.snapshots
-mount /dev/mapper/btrfs-dev -o subvol='@log' /mnt/var/log
+cryptsetup luksOpen /dev/sda2 btrfs-drv
+mount /dev/mapper/btrfs-drv -o subvol='@' /mnt
+mount /dev/mapper/btrfs-drv -o subvol='@home' /mnt/home
+mount /dev/mapper/btrfs-drv -o subvol='@pkg' /mnt/var/cache/pacman/pkg
+mount /dev/mapper/btrfs-drv -o subvol='@.snapshots' /mnt/.snapshots
+mount /dev/mapper/btrfs-drv -o subvol='@log' /mnt/var/log
 mount /dev/sda1 /mnt/boot
 ```
 
 **Note**: For full system control you need to mount some other critical folders and bind them to the live USB:
 
 ```sh
-for dir in /dev /dev/pts /proc /sys /run; done
+for dir in /dev /dev/pts /proc /sys /run; do
   sudo mount --bind $dir /mnt$dir
 done
 ```
@@ -208,12 +208,6 @@ sudo umount -R /mnt
 
 Check `mount -h` for all flags.
 
-Then `chroot`:
-
-```bash
-chroot /mnt
-```
-
 According to the possible corruption of packages, install base packages using `pacstrap`:
 
 ```bash
@@ -232,10 +226,37 @@ To reinstall your `pacman` packages:
 pacman --root /mnt --cachedir /mnt/var/cache/pacman/pkg -Sy --overwrite='*' $(pacman --root /mnt -Qnq)
 ```
 
+Then `chroot`:
+
+```bash
+chroot /mnt
+```
+
+Also to check that your user works:
+
+```sh
+su -- <YOUR_USERNAME>
+```
+
 After login to your system reinstall all official packages using:
 
 ```bash
 sudo pacman -Sy $(pacman -Qqn)
+```
+
+If you've messed up the boot, don't forget to:
+
+```sh
+bootctl install
+bootctl update
+```
+
+Also if you get some errors related to `systemd` it can be related to the boot too. Because `systemd-boot` is in charge of boot managing.
+
+Also create `initramfs` finally:
+
+```sh
+sudo mkinitcpio -P
 ```
 
 To recover your AUR packages you should check the `~/.cache/` folder of your AUR helper:
@@ -280,6 +301,23 @@ flatpak install flathub $(ls ~/.var/app)
 
 - <https://wiki.archlinux.org/title/Pacman/Tips_and_tricks>
 - <https://superuser.com/questions/271925/where-is-the-home-environment-variable-set>
+- <https://askubuntu.com/questions/217912/login-as-non-root-user-in-terminal>
+
+### Troubleshooting
+
+#### sudo: `/usr/bin/sudo` must be owned by uid 0 and have the setuid bit set
+
+If you've faced this error you should try to login to your system using a `root` user
+or if you cannot use your `root` user you should try to login using a Live Boot USB
+and `chroot` to your system and then run:
+
+```sh
+chown root:root /usr/bin/sudo && chmod 4755 /usr/bin/sudo
+```
+
+**References:**
+
+- <https://askubuntu.com/questions/452860/usr-bin-sudo-must-be-owned-by-uid-0-and-have-the-setuid-bit-set>
 
 ### TTY
 
@@ -391,6 +429,8 @@ sudo mkinitcpio -P
 
     wget https://cdn.kernel.org/pub/linux/kernel/vA.x/linux-A.B.C.tar.sign
     ```
+
+    `A.B.C` should be replaced with your desired version.
 
 3. Run this:
 
