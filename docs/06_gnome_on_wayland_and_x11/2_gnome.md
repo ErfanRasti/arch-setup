@@ -26,8 +26,8 @@ Load them using:
 dconf load / < dconf-system-backup.conf
 ```
 
-- Use dconf dump / for a complete system configuration backup.
-- Use dconf dump /org/gnome/ for a targeted GNOME-specific configuration backup.
+- Use `dconf dump /` for a complete system configuration backup.
+- Use `dconf dump /org/gnome/` for a targeted GNOME-specific configuration backup.
 
 **References:**
 
@@ -102,3 +102,32 @@ If you messed something on gnome configurations:
    ```
 
    Hold the non-problematic half and do it again and again for sub partitions until you found the problem.
+
+#### GNOME Display Manager (GDM) freezes on login
+
+This is a common issue on `gnome` that sometimes `gdm` hangs after entering your password and doesn't open your session.
+These issues are usually caused by conflicts between NVIDIA and `gdm`.
+To fix it there are lots of options and I put all of them in the references section.
+
+**References:**
+
+- <https://bbs.archlinux.org/viewtopic.php?id=297300>
+- <https://www.reddit.com/r/pop_os/comments/txvyvj/gdm_hangs_before_login_after_last_update/>
+- <https://www.adamsdesk.com/posts/gdm-no-longer-starts-automatically/>
+- <https://bbs.archlinux.org/viewtopic.php?id=297300>
+
+#### Remove a user from GNOME login page
+
+Usually it doesn't show the `root` user but if it does or you've added the `root` manually (by following the `Not listed?`)
+you should remove your user from that section using this:
+
+```sh
+sudo rm /var/lib/AccountsService/users/USERNAME
+sudo systemctl restart accounts-daemon.service
+```
+
+**References:**
+
+- <https://bbs.archlinux.org/viewtopic.php?id=287231>
+- <https://wiki.archlinux.org/title/GDM#Hide_user_from_login_list>
+- <https://wiki.archlinux.org/title/Sudo#Disable_root_login>
