@@ -44,6 +44,12 @@ libinput list-devices
 libinput list-devices | grep -A6 "Keyboard"
 ```
 
+- `-A6` is a grep option that means:
+
+  Show the matching line and 6 lines After it.
+  - `-A`: after
+  - `6`: number of lines to include
+
 Look for keyboard options. Raw set keyboards are kernel controlled ones. So ignore them.
 Then when you've recognized the Id of your keyboard, look for those ids under `lsusb`.
 The full information of keyboard also can be find under:
@@ -118,4 +124,4 @@ Finally check your keyboard power status:
 cat /sys/bus/usb/devices/*/power/control
 ```
 
-For another example of `powertop` conflict check [this](/docs/08_devices/2_bluetooth.md#awake-the-system-using-bluetooth-device).
+For another example of `powertop` conflict check [this](../08_devices/2_bluetooth.md#awake-the-system-using-bluetooth-device) which also explains how can we make sure that these settings apply even after `powertop` tunes the system after system suspension.
