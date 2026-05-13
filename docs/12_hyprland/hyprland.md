@@ -1405,6 +1405,14 @@ Then check this folder:
 ls -al /usr/share/sounds/freedesktop/stereo/
 ```
 
+> [!NOTE]
+>
+> If you want to check the size of a file and humanize the output of `ls` use `-h`:
+>
+> ```sh
+> ls -lh /path/to/file
+> ```
+
 If there is no `system-bootup.oga` install `ocean-sound-theme`:
 
 ```sh

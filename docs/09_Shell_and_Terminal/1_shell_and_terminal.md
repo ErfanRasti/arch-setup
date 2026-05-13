@@ -16,6 +16,7 @@ git config --global core.editor nvim
 gh auth login
 ```
 
+Continue with the browser and login to your GitHub account.
 Choose according to this:
 `GitHub.com > HTTPS > Y > Login with a web browser > Copy the code and continue`.
 

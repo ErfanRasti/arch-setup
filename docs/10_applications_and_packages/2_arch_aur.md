@@ -520,6 +520,33 @@ Always check for new versions of PhotoGIMP at [this](https://github.com/Diolinux
 ffmpeg -i "<YOUR_VIDEO>.mp4" audio.mp3
 ```
 
+### Compress video files
+
+```sh
+sudo pacman -S ffmpeg
+ffmpeg -i input.mp4 -vcodec libx264 -crf 28 -preset medium output.mp4
+```
+
+- `-i input.mp4`: input video
+- `-vcodec libx264`: efficient H.264 encoding
+- `-crf 28`: compression level (higher = smaller file, lower quality)
+  - `18–23`: high quality
+  - `24–28`: good compression
+  - `29–35`: very small file but lower quality
+- `-preset`: in FFmpeg controls how much time the encoder spends compressing the video.
+  It does not change visual quality directly. Instead it changes the compression efficiency vs encoding speed.
+
+  With the same CRF value:
+  - slower presets: smaller file size
+  - faster presets: bigger file size
+  - quality stays roughly the same
+
+  Preset scale (fast to slow):
+
+  ```
+  ultrafast superfast veryfast faster fast medium (default) slow slower veryslow
+  ```
+
 ## File managers
 
 ### `yazi`
