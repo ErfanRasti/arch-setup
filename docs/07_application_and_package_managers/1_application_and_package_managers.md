@@ -956,3 +956,59 @@ This method is more reliable and safer than the previous one.
 - <https://bbs.archlinux.org/viewtopic.php?id=110035>
 - <https://www.reddit.com/r/archlinux/comments/njz980/installing_deb_files_on_arch/>
 - <https://unix.stackexchange.com/questions/83540/installing-a-deb-package-on-arch-is-it-possible>
+
+## Update system packages using another system
+
+Consider you have two Arch Linux systems and you want to update packages of one of the systems using the another one,
+to prevent re-downloading them again.
+To do this you have two options. Setting up the second system into an `ssh` connection and connect to it from the updated system.
+Another simple method is to copy the installation files of the updated packages to a USB flash or a hard drive,
+then connect it to the unupdated system and copy it to where it should be and then update your system. To follow this instruction:
+
+1. The `pacman` packages are existed under `/var/cache/pacman/pkg/`. To use the `ssh`:
+
+   ```sh
+   rsync -avz /var/cache/pacman/pkg/ user@second-laptop:/var/cache/pacman/pkg/
+   ```
+
+   or via external drive:
+
+   ```sh
+   sudo cp -r /var/cache/pacman/pkg/* /mnt/usb/pkg/
+   # or
+   sudo cp -r /var/cache/pacman/pkg/* /run/media/<USER_NAME>/<YOUR_DRIVE>/pkg/
+   ```
+
+2. To prevent different mirrors version conflicts copy the `mirrorlist` too:
+
+   ```sh
+   sudo cp /etc/pacman.d/mirrorlist /run/media/<USER_NAME>/<YOUR_DRIVE>/
+   ```
+
+3. For AUR packages copy this folder:
+
+   ```sh
+    sudo cp -r ~/.cache/paru/clone/* /run/media/<USER_NAME>/<YOUR_DRIVE>/clone/
+   ```
+
+4. Then disconnect the drive and connect it to the other system. Then:
+
+   ```sh
+   sudo cp -r  /run/media/<USER_NAME>/<YOUR_DRIVE>/pkg/* /var/cache/pacman/pkg/
+   sudo cp /run/media/<USER_NAME>/<YOUR_DRIVE>/mirrorlist /etc/pacman.d/mirrorlist
+   sudo cp -r /run/media/<USER_NAME>/<YOUR_DRIVE>/clone/* ~/.cache/paru/clone/
+   ```
+
+5. Finally update your system using:
+
+   ```sh
+   sudo pacman -Syyu
+   ```
+
+   The second `y` is to force download fresh package databases from the server.
+
+   Finally update AUR packages on your second system using:
+
+   ```sh
+   paru
+   ```
