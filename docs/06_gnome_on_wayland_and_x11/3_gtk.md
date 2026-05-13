@@ -1,5 +1,30 @@
 ## GTK
 
+> [!IMPORTANT]
+>
+> GTK 4 introduced GTK Scene graph Kit (GSK) which uses OpenGL and `vulkan` in the backends.
+> So make sure to install `vulkan`:
+>
+> ```sh
+> sudo pacman -S vulkan-tools vulkan-intel
+> ```
+>
+> Check `vulkan` using:
+>
+> ```sh
+> vulkaninfo | less
+> ```
+>
+> Check `opengl` using:
+>
+> ```sh
+> glxinfo | grep "OpenGL"
+> ```
+>
+> **References:**
+>
+> - <https://www.youtube.com/watch?v=KPdIBLk__tY>
+
 ### GTK 4 applications are slow
 
 ```bash
