@@ -63,6 +63,10 @@ To get info about your network interfaces:
 ifconfig
 ```
 
+> [!TIP]
+>
+> `ifconfig` is considered legacy. Arch prefers the `ip` command from `iproute2`.
+
 Instead of `ifconfig`, you can use `ip`:
 
 ```bash
@@ -495,7 +499,7 @@ sudo systemctl enable --now openvpn-client@<CONFIGURATION-NAME>.service
    ```
 
    Check that your device (i.e. `tun0`) is not `linkdown`.
-   You can also here that your system is not routing traffis through the VPN,
+   You can also here that your system is not routing traffic through the VPN,
    because the default route is either `Ethernet` or `Wifi` devices.
 
    Finally you can also check the `nmcli` connection too (but not very helpful here):
@@ -646,7 +650,7 @@ You can easily do it using `microsocks`:
    ```
 
    - `-i <IP>`: Bind the server to this specific IP address.
-     In this case you usually use`-i 0.0.0.0`: listen on all interfaces (LAN included). Your proxy will accept connections from ANY network your PC is connected to.
+     In this case you usually use `-i 0.0.0.0`: listen on all interfaces (LAN included). Your proxy will accept connections from ANY network your PC is connected to.
      - `-i 127.0.0.1`: listen only on localhost
      - `-i 192.168.x.x`: listen only on LAN interface
      - `-i 0.0.0.0`: listen on all IPv4 interfaces
@@ -832,3 +836,5 @@ Now if you want to go a step further and proxify your whole system without typin
 
 - <https://wiki.archlinux.org/title/Proxy_server>
 - <https://wiki.archlinux.org/title/NetworkManager#Proxy_settings>
+
+###
