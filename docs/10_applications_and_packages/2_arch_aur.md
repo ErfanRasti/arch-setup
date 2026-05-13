@@ -2194,3 +2194,35 @@ You can use ADB (Android Debug Bridge) to forward a proxy from your phone to you
 
 - <https://wiki.archlinux.org/title/Android_Debug_Bridge>
 - <https://github.com/ProxidBean/RProxid>
+
+## `podman`
+
+To install it:
+
+```sh
+sudo pacman -S podman podman-compose
+```
+
+I usually use `podman` instead of `docker`; because it supports rootless containers and a shim service for docker-compose.
+
+To add custom mirrors to it:
+
+```sh
+nvim ~/.config/containers/registries.conf
+```
+
+```conf
+unqualified-search-registries = ["docker.io"]
+
+[[registry]]
+prefix = "docker.io"
+location = "docker.io"
+
+[[registry.mirror]]
+location = "<YOUR_MIRROR>"
+insecure = true
+```
+
+**References:**
+
+- <https://wiki.archlinux.org/title/Podman>
