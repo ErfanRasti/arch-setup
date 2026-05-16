@@ -608,6 +608,11 @@ sudo systemctl enable --now openvpn-client@<CONFIGURATION-NAME>.service
    openvpn3 session-manage --disconnect --config client
    ```
 
+   > [!HINT]
+   >
+   > To prevent typing password each time you want to connect, you can create a file named `credentials.txt` and put it in the same directory as the `openvpn` config.
+   > Then go to your `config.ovpn` and change the `auth-user-pass` line to `auth-user-pass credentials.txt`.
+
 **References:**
 
 - <https://wiki.archlinux.org/title/OpenVPN>
