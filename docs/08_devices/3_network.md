@@ -553,8 +553,10 @@ sudo systemctl enable --now openvpn-client@<CONFIGURATION-NAME>.service
    Or you can import your configuration to use it permanently using:
 
    ```sh
-   openvpn3 config-import --config /path/to/client.ovpn --name <CONFIG-NAME>
+   openvpn3 config-import --config /path/to/client.ovpn --name <CONFIG-NAME> --persistent
    ```
+
+   - `-p` or `--persistent`: Make the configuration profile persistent through service restarts.
 
    But the imported configurations usually get removed after system reboot.
 
@@ -837,4 +839,30 @@ Now if you want to go a step further and proxify your whole system without typin
 - <https://wiki.archlinux.org/title/Proxy_server>
 - <https://wiki.archlinux.org/title/NetworkManager#Proxy_settings>
 
-###
+### Connect to VPN from a proxy
+
+There is an easy method to do such a thing:
+
+```sh
+sudo pacman -S gost
+gost -L socks5://0.0.0.0:1083?interface=tun1
+```
+
+Instead of `0.0.0.0` you can use `127.0.0.1` to force the proxy only on your device not your local network.
+Also the `interface` should be the device name of your VPN service.
+
+> [!NOTE]
+>
+> Don't replace your default route with the VPN device. More clearly don't use this:
+>
+> ```sh
+> sudo ip route replace default dev tun1
+> ```
+>
+> This will overwrite your default network device and the whole system will use the `tun1` not only the proxified applications.
+
+In this method there is a possibility that some applications like `firefox` cannot recognize the `socks` proxy.
+To tackle this issue there is a more complicated method which is using `podman` or `docker`
+to create a lightweight container and connect your VPN from inside of it. Then proxify it using `microsocks` and `0.0.0.0`
+and connect to it from outside of the container. You should also consider port sharing of the created container too.
+
