@@ -530,9 +530,9 @@ ffmpeg -i input.mp4 -vcodec libx264 -crf 28 -preset medium output.mp4
 - `-i input.mp4`: input video
 - `-vcodec libx264`: efficient H.264 encoding
 - `-crf 28`: compression level (higher = smaller file, lower quality)
-  - `18–23`: high quality
-  - `24–28`: good compression
-  - `29–35`: very small file but lower quality
+  - `18-23`: high quality
+  - `24-28`: good compression
+  - `29-35`: very small file but lower quality
 - `-preset`: in FFmpeg controls how much time the encoder spends compressing the video.
   It does not change visual quality directly. Instead it changes the compression efficiency vs encoding speed.
 

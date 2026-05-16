@@ -702,6 +702,8 @@ If you used commands like `gg`, `G`, `/search`, `:tag`, or `:edit`, Neovim recor
 - Jump back to your previous location using `<C-o>`
 - Jump forward in your jump list `<C-i>`.
 
+- Jump to line `<NUMBER>` using `:<NUMBER>` or `<NUMBER>G`.
+
 View jumps using `:jumps`.
 
 > [!HINT]
