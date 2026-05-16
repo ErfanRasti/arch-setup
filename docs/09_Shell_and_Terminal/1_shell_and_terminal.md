@@ -859,7 +859,17 @@ end
    run '~/.tmux/plugins/tpm/tpm'
    ```
 
-3. Open `tmux` and press `<prefix>+I`.
+3. Open `tmux` and press `<prefix>+I`. If it doesn't install your plugins you should run this to install them:
+
+   ```sh
+   ~/.config/tmux/plugins/tpm/bin/install_plugins
+   ```
+
+   Also you can update them all using:
+
+   ```sh
+   ~/.tmux/plugins/tpm/bin/update_plugins all
+   ```
 
 **References:**
 
