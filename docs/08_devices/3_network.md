@@ -1059,3 +1059,146 @@ RemainAfterExit=yes
 [Install]
 WantedBy=multi-user.target
 ```
+
+As an example you can use this script to toggle your `ovpn` and your IP routes:
+
+```sh
+#!/bin/bash
+
+find_non_tun_default() {
+  ip route show default | grep -v 'dev tun' | grep -oP 'dev \K[^ ]+' | head -1
+}
+
+disconnect_tun() {
+  sudo ip route delete default
+  sudo ip route replace default via 192.168.1.1 dev "$INTERFACE"
+}
+
+connect_tun() {
+  sudo ip route replace default dev tun1
+}
+
+disconnect_openvpn3() {
+  openvpn3 session-manage --disconnect --config "$CONFIGS_PATH"/config.ovpn
+}
+
+connect_openvpn3() {
+  openvpn3 session-start --config "$CONFIGS_PATH"/config.ovpn
+}
+
+bypass() {
+  GATEWAY_V4="192.168.1.1"
+  # Your IPv6 gateway from router
+  GATEWAY_V6="fe80::1"
+
+  TMP_V4=/tmp/"$COUNTRY_CODE"4.zone
+  TMP_V6=/tmp/"$COUNTRY_CODE"6.zone
+
+  # Download IPv4 ranges
+  wget -qO "$TMP_V4" http://www.ipdeny.com/ipblocks/data/countries/"$COUNTRY_CODE".zone
+
+  # Download IPv6 ranges
+  wget -qO "$TMP_V6" http://www.ipdeny.com/ipv6/ipaddresses/blocks/"$COUNTRY_CODE".zone
+
+  echo "Adding IPv4 routes..."
+
+  while read subnet; do
+    sudo ip route replace "$subnet" via "$GATEWAY_V4" dev "$INTERFACE"
+  done <"$TMP_V4"
+
+  echo "Adding IPv6 routes..."
+
+  while read -r subnet; do
+    sudo ip -6 route replace "$subnet" via "$GATEWAY_V6" dev "$INTERFACE"
+  done <"$TMP_V6"
+
+  echo "IPv4 + IPv6 routes added."
+}
+
+remove_bypass() {
+  FILE_V4=/tmp/"$COUNTRY_CODE"4.zone
+  FILE_V6=/tmp/"$COUNTRY_CODE"6.zone
+
+  while read -r subnet; do
+    sudo ip route del "$subnet" 2>/dev/null
+  done <"$FILE_V4"
+
+  echo "IPv4 routes removed."
+
+  while read -r subnet; do
+    sudo ip -6 route del "$subnet" 2>/dev/null
+  done <"$FILE_V6"
+
+  echo "IPv6 routes removed."
+
+}
+
+main() {
+
+  COUNTRY_CODE="<COUNTRY_CODE>"
+  INTERFACE="$(find_non_tun_default)"
+  CONFIGS_PATH="$HOME/path/to/config"
+
+  COMMAND="$1"
+
+  case "$COMMAND" in
+  connect)
+    echo "Starting VPN..."
+    connect_openvpn3
+
+    echo "Switching default route to tun..."
+    connect_tun
+
+    if [[ "$2" == "--bypass" ]]; then
+      echo "Adding bypass..."
+      bypass
+    fi
+
+    openvpn3 sessions-list
+    ;;
+
+  disconnect)
+
+    if [[ "$2" == "--bypass" ]]; then
+      echo "Removing bypass..."
+      remove_bypass
+    fi
+
+    echo "Restoring normal gateway..."
+    disconnect_tun
+
+    echo "Stopping VPN..."
+    disconnect_openvpn3
+
+    openvpn3 sessions-list
+    ;;
+
+  bypass)
+
+    echo "Adding bypass..."
+    bypass
+    ;;
+  remove-bypass)
+
+    echo "Removing bypass..."
+    remove_bypass
+    ;;
+
+  status)
+    openvpn3 sessions-list
+    ;;
+
+  *)
+    echo "Usage:"
+    echo "$0 connect [--bypass]"
+    echo "$0 disconnect [--bypass]"
+    echo "$0 bypass"
+    echo "$0 remove-bypass"
+    echo "$0 status"
+    exit 1
+    ;;
+  esac
+}
+
+main "$@"
+```
