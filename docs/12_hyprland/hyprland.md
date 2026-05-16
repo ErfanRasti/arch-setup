@@ -1196,6 +1196,61 @@ sudo gpasswd -a $USER input
 paru -S libinput-gestures
 ```
 
+> [!WARNING]
+>
+> Using `sudo gpasswd -a $USER input` adds your current user to `input` group.
+> This means any program run by that user can log all keyboard input, including passwords typed in other applications.
+> Malicious software could monitor or manipulate input devices.
+>
+> To check the groups of the current user use:
+>
+> ```sh
+> groups
+> ```
+>
+> or:
+>
+> ```sh
+> id
+> ```
+>
+> You can also specify the user using:
+>
+> ```sh
+> groups $USER
+> groups root
+> ```
+>
+> You can add a user to a group using:
+>
+> ```sh
+> sudo usermod -aG input $USER
+> ```
+>
+> - `-G` sets supplementary groups.
+> - `-a` means append (add without removing existing groups).
+>   If you forget -a, it will replace all supplementary groups with only `input`, which can break permissions.
+>
+> You can use this instead:
+>
+> ```sh
+> sudo gpasswd -a <USERNAME> input
+> ```
+>
+> which edits the group membership list in `/etc/group`. `-a` means add user to group.
+>
+> Remove your user from the `input` group:
+>
+> ```sh
+> sudo gpasswd -d $USER input
+> ```
+>
+> List all users in the `input` group:
+>
+> ```sh
+> getent group input
+> ```
+
 We must add the current user to the input group. Reboot if you're not already in input group.
 
 Then start it:
