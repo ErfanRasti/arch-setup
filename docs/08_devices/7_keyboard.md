@@ -42,6 +42,21 @@ sudo evtest
 
 Then select different devices and type something to figure out if it tracks your keyboard.
 
+### RGB Support
+
+There is a great app with lots of customizability which gives to the opportunity to change your keyboard RGB layout.
+It also has a GUI interface too.
+
+```sh
+sudo pacman -S openrgb
+openrgb --gui
+```
+
+**References:**
+
+- <https://www.reddit.com/r/linuxquestions/comments/16133cg/how_is_linux_compatibility_with_red_dragon/>
+- <https://openrgb.org/devices.html>
+
 ### Troubleshooting
 
 #### Sometimes the keyboard doesn't work and goes to suspend
