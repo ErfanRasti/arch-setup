@@ -30,6 +30,18 @@ localectl --no-convert set-keymap us
 - <https://wiki.archlinux.org/title/Xorg/Keyboard_configuration#Using_localectl>
 - <https://bbs.archlinux.org/viewtopic.php?id=168810>
 
+### Find your keyboard device
+
+You can check your events to figure out what device is assigned to your keyboard.
+To do this:
+
+```sh
+sudo pacman -S evtest
+sudo evtest
+```
+
+Then select different devices and type something to figure out if it tracks your keyboard.
+
 ### Troubleshooting
 
 #### Sometimes the keyboard doesn't work and goes to suspend
