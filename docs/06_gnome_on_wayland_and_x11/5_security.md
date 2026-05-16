@@ -222,6 +222,15 @@ In terms of MAC randomization the most important modes are `stable` and `random`
    - `wifi.cloned-mac-address=random`: Each Wi‑Fi connection uses a random MAC instead of your hardware MAC.
    - `ethernet.cloned-mac-address=random`: Each Ethernet connection uses a random MAC instead of your hardware MAC.
 
+   > [!NOTE]
+   >
+   > Setting `wifi.cloned-mac-address=random` makes the IP address dynamic too. So when you want to connect to the same network, another time
+   > you will get another IP address. So if you want a consistent IP address you better use `wifi.cloned-mac-address=stable`;
+   > Some routers always reassign the same IP if the old lease is still available.
+   >
+   > You can also make a consistent IP address via `NetworkManager` settings per network;
+   > but you must get lucky and and ensure no other device uses that IP.
+
 1. Restart `NetworkManager`:
 
    ```sh
