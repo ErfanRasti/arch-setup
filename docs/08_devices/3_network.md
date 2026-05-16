@@ -866,3 +866,191 @@ To tackle this issue there is a more complicated method which is using `podman` 
 to create a lightweight container and connect your VPN from inside of it. Then proxify it using `microsocks` and `0.0.0.0`
 and connect to it from outside of the container. You should also consider port sharing of the created container too.
 
+### Bypass some IPs from your VPN
+
+Consider you have `openvpn` running on `tun1` device and you use it as your default device:
+
+```sh
+sudo ip route replace default dev tun1
+ip route show default
+```
+
+Now you want some websites to bypass this VPN connection. You can easily use the following `bash` script:
+
+```sh
+#!/bin/bash
+DOMAINS=("youtube.com" "<YOUR-WEBSITE-DOMAIN>") # Add your domains here
+GATEWAY="192.168.1.1"                # Your LAN router IP
+INTERFACE="<DEFAULT-DEVICE>" # Default device which you want to pass the traffic into it
+
+for domain in "${DOMAINS[@]}"; do
+  # Resolve domain to all its IPs and add a route for each
+  dig +short "$domain" | while read ip; do
+    sudo ip route add "$ip/32" via "$GATEWAY" dev "$INTERFACE" 2>/dev/null
+  done
+done
+```
+
+If you want to bypass all the traffic of a country use this:
+
+```sh
+#!/bin/bash
+
+GATEWAY_V4="192.168.1.1"
+INTERFACE="<DEFAULT-DEVICE>"
+COUNTRY_CODE="<COUNTRY-CODE>"
+
+# Your IPv6 gateway from router
+GATEWAY_V6="fe80::1"
+
+TMP_V4=/tmp/"$COUNTRY_CODE"4.zone
+TMP_V6=/tmp/"$COUNTRY_CODE"6.zone
+
+# Download IPv4 ranges
+wget -qO "$TMP_V4" http://www.ipdeny.com/ipblocks/data/countries/"$COUNTRY_CODE".zone
+
+# Download IPv6 ranges
+wget -qO "$TMP_V6" http://www.ipdeny.com/ipv6/ipaddresses/blocks/"$COUNTRY_CODE".zone
+
+echo "Adding IPv4 routes..."
+
+while read subnet; do
+    sudo ip route replace "$subnet" via "$GATEWAY_V4" dev "$INTERFACE"
+done < "$TMP_V4"
+
+echo "Adding IPv6 routes..."
+
+while read subnet; do
+    sudo ip -6 route replace "$subnet" via "$GATEWAY_V6" dev "$INTERFACE"
+done < "$TMP_V6"
+
+echo "IPv4 + IPv6 routes added."
+```
+
+If you use `microsocks` on your system and use `0.0.0.0` IP on it,
+this script also routes other connected devices through the specified routes.
+
+> [!HINT]
+>
+> `wget -O` determines the output path to write documents to it and `-q` makes the command quiet with no output.
+
+For example this code bypass all the traffic which ends in `<COUNTRY-CODE>` servers to your default device.
+Find your country code [here](https://www.ipdeny.com/ipv6/ipaddresses/blocks/).
+
+If you want the script to run faster, you can skip empty lines:
+
+```sh
+while read -r subnet; do
+    [ -n "$subnet" ] && sudo ip route replace "$subnet" via "$GATEWAY" dev "$INTERFACE"
+done < "$TMP_V4"
+```
+
+> [!NOTE]
+>
+> `sudo ip route add ...` only works if the route does not already exist.
+> Since your script may run after every VPN reconnect at boot, or manually multiple times, add would generate errors for every existing route.
+> `sudo ip route replace ...` means: if the route does not exist, add it but if the route already exists, overwrite it.
+
+> [!IMPORTANT]
+>
+> To check if the `ipv6` is enabled or not:
+>
+> ```sh
+> cat /proc/sys/net/ipv6/conf/all/disable_ipv6 # Check if the kernel has IPv6 enabled
+> cat /proc/sys/net/ipv6/conf/default/disable_ipv6 # Check per interface
+> ```
+>
+> See if your network interfaces have IPv6 addresses:
+>
+> ```sh
+> ip -6 addr
+> ip -6 route
+> ```
+>
+> Enable it using:
+>
+> ```sh
+> sudo sysctl -w net.ipv6.conf.all.disable_ipv6=0
+> sudo sysctl -w net.ipv6.conf.default.disable_ipv6=0
+> ```
+>
+> Finally check if your router supports IPv6:
+>
+> ```sh
+> ip -6 route show default
+> ```
+>
+> and if not you can ignore the IPv6 related lines.
+
+To undo the added routes:
+
+```sh
+#!/bin/bash
+
+COUNTRY_CODE="<COUNTRY-CODE>"
+
+FILE_V4=/tmp/"$COUNTRY_CODE"4.zone
+FILE_V6=/tmp/"$COUNTRY_CODE"6.zone
+
+while read subnet; do
+    sudo ip route del "$subnet" 2>/dev/null
+done < "$FILE_V4"
+
+echo "IPv4 routes removed."
+
+while read subnet; do
+    sudo ip -6 route del "$subnet" 2>/dev/null
+done < "$FILE_V6"
+
+echo "IPv6 routes removed."
+```
+
+Then check your routes using:
+
+```sh
+ip route
+```
+
+To monitor your traffic:
+
+```sh
+sudo pacman -S traceroute
+traceroute youtube.com
+```
+
+Also you can diagnose your network interface by capturing packets directly from them:
+
+```sh
+sudo pacman -S tcpdump
+sudo tcpdump -i <DEFAULT-DEVICE> host youtube.com
+sudo tcpdump -i tun1 host youtube.com
+```
+
+You can easily create a `systemd` service from this script:
+
+```sh
+sudo nvim /usr/local/bin/route-bypass.sh
+
+# Add the script
+sudo chmod +x /usr/local/bin/route-bypass.sh
+```
+
+Then add the service:
+
+```sh
+sudo nvim /etc/systemd/system/route-bypass.service
+```
+
+```service
+[Unit]
+Description=IP bypass routes
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/route-bypass.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+```
