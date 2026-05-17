@@ -1202,3 +1202,56 @@ main() {
 
 main "$@"
 ```
+
+### Local DNS Mapping
+
+You can change your system DNS mapping using `/etc/hosts`. It maps hostnames to IP addresses before the system queries external DNS servers.
+
+> [!HINT] DNS vs IP
+>
+> A **Domain Name System (DNS)** turns domain names into IP addresses,
+> which allow browsers to get to websites and other internet resources.
+> Every device on the internet has an IP address, which other devices can use to locate the device.
+> So there is something called **DNS Server** which is responsible for looking up for the proper IP address to communicate with.
+> This specific DNS Server has an IP itself which the OS resolver communicate with it at the first place.
+> We usually use the term IPv4 for 32-bit addresses.
+>
+> For instance, the IP address of the Google DNS Server is `8.8.8.8`.
+> This server returns the IP address of the server associated with the domain and that server may internally connect to the Google database and show you the desired information.
+>
+> It can be shown like this:
+>
+> 1. OS resolver asks DNS server: What is the IP of `google.com`?
+> 2. DNS server replies: `google.com -> 142.250.x.x`
+> 3. Browser connects directly to `142.250.x.x`.
+
+When your computer tries to reach a hostname (like `example.com`), the system resolves it to an IP address. The typical lookup order is:
+
+1. Check `/etc/hosts`.
+2. If not found, query DNS servers.
+
+So entries in `/etc/hosts` can override DNS results for that machine.
+
+You can add something like these to the end of the `/etc/hosts` which overrides the results of the DNS server (If a hostname is resolved using `/etc/hosts`, the system does not query a DNS server for that lookup.).
+
+```
+<DESIRED-IP> google.com
+<DESIRED-IP> www.google.com
+<DESIRED-IP> mail.google.com
+<DESIRED-IP> gmail.com
+<DESIRED-IP> accounts.google.com
+<DESIRED-IP> colab.research.google.com
+<DESIRED-IP> ssl.gstatic.com
+<DESIRED-IP> fonts.googleapis.com
+<DESIRED-IP> lh3.googleusercontent.com
+<DESIRED-IP> fonts.gstatic.com
+<DESIRED-IP> www.gstatic.com
+<DESIRED-IP> clients1.google.com
+<DESIRED-IP> clients2.google.com
+<DESIRED-IP> clients3.google.com
+<DESIRED-IP> clients4.google.com
+<DESIRED-IP> clients5.google.com
+<DESIRED-IP> clients6.google.com
+<DESIRED-IP> ogads-pa.clients6.google.com
+<DESIRED-IP> play.google.com
+```
