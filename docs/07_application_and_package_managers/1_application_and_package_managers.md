@@ -382,6 +382,10 @@ Also you can do this to download fresh package databases:
 sudo pacman -Syy
 ```
 
+> [!NOTE]
+>
+> There is a simple method to find your proper mirror based on your country using [this website](https://archlinux.org/mirrors/).
+
 **References:**
 
 - <https://wiki.archlinux.org/title/Mirrors>

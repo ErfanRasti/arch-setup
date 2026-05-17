@@ -410,7 +410,7 @@ sudo systemctl enable --now openvpn-client@<CONFIGURATION-NAME>.service
    You also can optionally import the client configuration profile by selecting `Import a saved VPN configuration...`
    and selecting the appropriate file (It usually supports only files ending in `.ovpn`).
 
-   > [!IMPORTANAT]
+   > [!IMPORTANT]
    >
    > The selected file shouldn't have any other HTML tags except `<ca></ca>`, `<cert></cert>`, and `<key></key>`.
    > For example if there is a `<connection></connection>` in your `.ovpn` config file, you should comment it out.

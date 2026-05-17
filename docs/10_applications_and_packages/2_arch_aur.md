@@ -2212,7 +2212,7 @@ You can use ADB (Android Debug Bridge) to forward a proxy from your phone to you
 5. Run this command:
 
    ```sh
-   ./adb forward tcp:8080 tcp:8080
+   adb forward tcp:8080 tcp:8080
    ```
 
 6. Configure your Linux system to use `localhost:8080` as an HTTP proxy.
