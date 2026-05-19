@@ -839,6 +839,30 @@ Now if you want to go a step further and proxify your whole system without typin
    curl -x 127.0.0.1:8118 https://ifconfig.me
    ```
 
+> [!NOTE] `socks5` vs `socks5h`
+>
+> 1. **`socks5://` (Local DNS Resolution)**
+>    - What happens: Your computer looks up the IP address of a website (like google.com)
+>      using your local internet connection/DNS server first.
+>      Once it has the IP address, it sends that IP to the proxy and says, "Connect me to this IP."
+>    - **The Problem (DNS Leak):** Because the DNS request is made locally, your ISP or local network admin
+>      can see exactly which websites you are trying to visit, even if the actual data is later proxied.
+>    - **The Risk:** If a website is blocked via “DNS Poisoning” in your country/office, your computer will get the wrong IP (or no IP) locally, and the connection will fail before it ever reaches the proxy.
+> 2. **`socks5h://` (Remote DNS Resolution)**
+>    - What happens: Your computer does not look up the IP address. Instead, it sends the actual hostname (e.g., google.com)
+>      directly to the proxy server. The proxy server then performs the DNS lookup and handles the connection.
+>    - **The Benefit (Privacy & Bypass):** Since the hostname is sent through the proxy tunnel,
+>      your local ISP cannot see what site you are visiting.
+>      This is the only way to bypass DNS-based censorship or filtering.
+>    - **The "h":** The `h` literally stands for Hostnames.
+>
+> | Feature           | `socks5://`                     | `socks5h://`                      |
+> | :---------------- | :------------------------------ | :-------------------------------- |
+> | **DNS Lookup**    | Done by your computer           | Done by the Proxy server          |
+> | **Privacy**       | Low (DNS Leaks)                 | High (No DNS Leaks)               |
+> | **Bypass Blocks** | Often fails (if DNS is blocked) | Works (bypasses local DNS blocks) |
+> | **Speed**         | Marginally faster (sometimes)   | Standard                          |
+
 **References:**
 
 - <https://wiki.archlinux.org/title/Proxy_server>
