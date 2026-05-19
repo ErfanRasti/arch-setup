@@ -93,3 +93,4 @@ GNU stands for "GNU's Not Unix". It is a recursive acronym, meaning the acronym 
 
 - <https://wiki.archlinux.org/title/GNU>
 - <https://www.educba.com/linux-vs-gnu/>
+- https://wiki.archlinux.org/title/Talk:Arch_compared_to_other_distributions

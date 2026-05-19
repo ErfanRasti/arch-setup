@@ -239,7 +239,7 @@ Remember these commands:
 ## Manuals and Documentations
 
 ```bash
-sudo pacman -S man arch-wiki-docs arch-wiki-lite wikiman w3m
+sudo pacman -S man arch-wiki-docs arch-wiki-lite wikiman w3m tui-wikij
 ```
 
 - To find `arch-wiki-docs` `html` files, use this command to find where are the related files:
@@ -269,6 +269,8 @@ sudo pacman -S man arch-wiki-docs arch-wiki-lite wikiman w3m
   ```
 
 - `wikiman` is an offline search engine for manual pages, Arch Wiki, Gentoo Wiki and other documentation. It is completely usable from terminal.
+
+- Using `wiki-tui` you can browse Wikipedia in a TUI.
 
 **References:**
 
