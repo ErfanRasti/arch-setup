@@ -20,6 +20,22 @@ Continue with the browser and login to your GitHub account.
 Choose according to this:
 `GitHub.com > HTTPS > Y > Login with a web browser > Copy the code and continue`.
 
+### Ignore Previously Committed File
+
+Add your desired file to the `.gitignore` list. Then:
+
+If it is a file:
+
+```sh
+git rm --cached path/to/file
+```
+
+If it is a folder:
+
+```sh
+git rm -r --cached path/to/folder
+```
+
 ### Git Pull Force
 
 Take a look at the references. I go with the first method.
