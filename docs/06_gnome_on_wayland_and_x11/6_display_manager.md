@@ -52,3 +52,41 @@ This is a very light and minimal display manager.
 
 - <https://wiki.archlinux.org/title/LightDM>
 - <https://www.reddit.com/r/archlinux/comments/n5aolw/comment/gx13yzp/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button>
+
+### `ly`
+
+Ly is a lightweight TUI (ncurses-like) display manager for Linux and BSD, designed with portability in mind (e.g. it does not require systemd to run).
+
+Install it using:
+
+```sh
+sudo pacman -S ly
+```
+
+And enable it using:
+
+```sh
+sudo systemctl disable getty@tty1.service
+sudo systemctl disable gdm.service
+sudo systemctl enable --now ly@tty1.service
+```
+
+Then reboot and you have it!
+
+Edit its configuration here:
+
+```sh
+sudo nvim /etc/ly/config.ini
+```
+
+The options that I change:
+
+```ini
+animation = matrix
+battery_id = BAT0 # or BAT1
+bigclock = en
+```
+
+**References:**
+
+- <https://wiki.archlinux.org/title/Ly>
