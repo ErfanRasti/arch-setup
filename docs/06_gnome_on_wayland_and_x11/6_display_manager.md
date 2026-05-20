@@ -55,7 +55,7 @@ This is a very light and minimal display manager.
 
 ### `ly`
 
-Ly is a lightweight TUI (ncurses-like) display manager for Linux and BSD, designed with portability in mind (e.g. it does not require systemd to run).
+Ly is a lightweight TUI (ncurses-like) display manager for Linux and BSD, designed with portability in mind (e.g. it does not require `systemd` to run).
 
 Install it using:
 
@@ -85,6 +85,12 @@ The options that I change:
 animation = matrix
 battery_id = BAT0 # or BAT1
 bigclock = en
+```
+
+You can also validate your configuration using:
+
+```sh
+ly --validate-config /etc/ly/config.ini
 ```
 
 **References:**
