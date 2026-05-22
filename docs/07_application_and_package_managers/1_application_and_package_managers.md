@@ -909,6 +909,14 @@ One of the simplest methods is using`dpkg`:
    sudo cp -r package-extracted/usr/* /usr/
    ```
 
+   > [!NOTE]
+   >
+   > `cp` and `mv` commands merge folders, but if you want to control the overwrite, use `-i`. For example:
+   >
+   > ```sh
+   > sudo cp -ri package-extracted/usr/* /usr/
+   > ```
+
 ### Using `debtap`
 
 This method is more reliable and safer than the previous one.

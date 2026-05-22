@@ -766,6 +766,12 @@ rm -rf ~/.local/state/nvim
 rm -rf ~/.cache/nvim
 ```
 
+Also if you have problem with just one plugin, you can remove its related files in:
+
+```sh
+trash ~/.local/share/nvim/lazy/copilot.lua/
+```
+
 **References:**
 
 - <https://dotfyle.com/neovim/colorscheme/trending>
@@ -1007,7 +1013,7 @@ sudo pacman -S zellij
 ## Modern Linux Tools
 
 ```bash
-sudo pacman -S duf exa eza git-delta zoxide glow yazi aichat trash-cli \
+sudo pacman -S duf exa eza git-delta zoxide glow yazi trash-cli \
   tree superfile television wiremix feh cava libcanberra
 paru -S lazydocker-bin ascii-image-converter-bin gitbutler-bin fum-bin gitfetch-python
 ```
@@ -1046,7 +1052,6 @@ paru -S lazydocker-bin ascii-image-converter-bin gitbutler-bin fum-bin gitfetch-
   ascii-image-converter ~/Pictures/image.jpg -C -c --color-bg
   ```
 
-- `aichat` - AIChat is an all-in-one LLM CLI tool featuring Shell Assistant, CMD & REPL Mode, RAG, AI Tools & Agents, and More.
 - `trash-cli` - `rm` is a dangerous command. I use `trash` instead and alias `rm` to it:
 
   ```fish
