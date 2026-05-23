@@ -126,7 +126,13 @@ Now you can move your models to `~/.ollama/models`:
 ```sh
 sudo cp -r /var/lib/ollama/blobs/ ~/.ollama/models/
 sudo cp -r /var/lib/ollama/manifests/ ~/.ollama/models/
+sudo chown $(whoami):$(whoami) -R ~/.ollama/blobs
+sudo chown $(whoami):$(whoami) -R ~/.ollama/manifests
 ```
+
+> [!TIP]
+>
+> `chown` changes the owner ship of files and folder. `-R` stands for changing the ownership recursively.
 
 or use `mv` instead if you don't want the models in the system-level path anymore.
 
