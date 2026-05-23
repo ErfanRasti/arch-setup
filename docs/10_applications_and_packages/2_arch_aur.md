@@ -2252,6 +2252,41 @@ location = "<YOUR_MIRROR>"
 insecure = true
 ```
 
+or if you want `ghcr.io` add:
+
+```sh
+[[registry]]
+prefix = "ghcr.io"
+location = "ghcr.io"
+
+[[registry.mirror]]
+location = "ghcr-mirror.<YOUR_MIRROR>"
+insecure = true
+```
+
+> [!NOTE]
+>
+> `unqualified-search-registries` is ONLY for images WITHOUT a registry prefix.
+> It tells `podman` which registries to try when you use short names like:
+>
+> ```
+> podman pull nginx           # No registry prefix - will try docker.io, then possibly others
+> podman pull alpine          # No registry prefix - same thing
+> podman pull postgres:15     # No registry prefix
+> ```
+>
+> Only if you want to pull `ghcr` images without typing `ghcr.io/`:
+>
+> ```
+> unqualified-search-registries = ["docker.io", "ghcr.io"]
+> ```
+>
+> But this is not recommended because:
+>
+> - It adds overhead (tries docker.io first for every ghcr image)
+> - Can cause confusion if same image exists in both registries
+> - Most ghcr images don't exist on docker.io, so first lookup always fails
+
 **References:**
 
 - <https://wiki.archlinux.org/title/Podman>
