@@ -749,6 +749,10 @@ View jumps using `:jumps`.
 > - `B`: Move cursor back to the beginning of the previous WORD (WORD = sequence of **non‑whitespace characters**)
 > - `e`: Move cursor forward to the end of the current/next word
 > - `E`: Move cursor forward to the end of the current/next WORD
+> - `w`: Forward to start of next word
+> - `W`: Forward to start of next WORD
+> - `ge`: Backward to end of previous word
+> - `gE`: Backward to end of previous WORD
 
 ### Troubleshooting
 
