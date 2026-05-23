@@ -112,7 +112,13 @@ Also if you don't want a `conda` environment, you can use `pip` to create a virt
 
 ```sh
 python -m venv path/to/venv
-source path/to/venv
+source /path/to/venv/bin/activate
+```
+
+or on `fish` shell:
+
+```fish
+source /path/to/venv/bin/activate.fish
 ```
 
 which `path/to/venv` is the desired path to create a Python environment. I usually use `.venv` and put it inside the project folder.
