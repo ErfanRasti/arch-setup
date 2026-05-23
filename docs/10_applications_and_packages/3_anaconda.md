@@ -117,6 +117,17 @@ source path/to/venv
 
 which `path/to/venv` is the desired path to create a Python environment. I usually use `.venv` and put it inside the project folder.
 
+> [!NOTE]
+>
+> To install a package using `pip` on a custom mirror use:
+>
+> ```sh
+> pip install <PACKAGE-NAME> -i <MIRROR-URL>
+> ```
+>
+> `-i, --index-url <url>`: Base URL of the Python Package Index (default <https://pypi.org/simple>).
+> This should point to a repository compliant with PEP 503 (the simple repository API) or a local directory laid out in the same format.
+
 **References:**
 
 - <https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html>
