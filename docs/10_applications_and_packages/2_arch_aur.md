@@ -2283,9 +2283,50 @@ insecure = true
 >
 > But this is not recommended because:
 >
-> - It adds overhead (tries docker.io first for every ghcr image)
+> - It adds overhead (tries `docker.io` first for every `ghcr` image)
 > - Can cause confusion if same image exists in both registries
-> - Most ghcr images don't exist on docker.io, so first lookup always fails
+> - Most `ghcr` images don't exist on `docker.io`, so first lookup always fails
+
+Check your running containers using `podman ps` or `podman container list`.
+Also you can check all of your containers using `podman ps -a` or `podman container list -a`.
+
+Also these are some important commands for `podman` or `docker`:
+
+```sh
+# start/stop container
+podman start CONTAINER-NAME
+podman restart CONTAINER-NAME
+podman stop CONTAINER-NAME # Gracefully stops (sends SIGTERM, then SIGKILL)
+podman kill CONTAINER-NAME # Force stops the container immediately
+
+# View logs:
+podman logs CONTAINER-NAME       # Show all logs
+podman logs --tail 50 CONTAINER-NAME  # Last 50 lines
+podman logs -f CONTAINER-NAME    # Follow logs in real-time
+
+# Check container status:
+podman ps                    # Shows running containers
+podman ps -a                 # Shows all containers (including stopped)
+podman ps --filter "name=CONTAINER-NAME"  # Filter for your container
+
+# Execute commands inside running container:
+podman exec -it CONTAINER-NAME /bin/bash     # Open a shell
+podman exec CONTAINER-NAME ls /app/backend   # Run a single command
+
+# Remove the container (if needed):
+podman rm CONTAINER-NAME          # Only works if container is stopped
+podman rm -f CONTAINER-NAME       # Force remove even if running
+podman rm -v CONTAINER-NAME     # Stops + removes container + deletes anonymous volume (wipe data)
+podman rm -fv CONTAINER-NAME    # Kills + removes container + deletes anonymous volume (wipe data)
+podman rmi IMAGE # Remove images if not in use
+podman rmi -f IMAGE # Force remove image
+
+
+# Cleanup commands:
+podman system prune # Remove all stopped containers, unused networks, dangling images
+podman container prune # Remove all stopped containers
+podman volume prune # Remove all unused volumes
+```
 
 **References:**
 
