@@ -38,6 +38,26 @@ sudo systemctl start ollama.service
 > Note that `/var/lib/ollama` and `/usr/share/ollama` sync; in fact `/usr/share/ollama` is a symbolic link to `/var/lib/ollama`.
 > So you can also put your models in `/usr/share/ollama/models`.
 
+> [!TIP]
+>
+> You can find the real size of a folder or file using `du`:
+>
+> ```sh
+> sudo du -sh /var/lib/ollama
+> ```
+>
+> - `-s`, `--summarize`: display only a total for each argument
+> - `-h`, `--human-readable`: print sizes in human readable format (e.g., 1K 234M 2G)
+>
+> You can find the which processes or services are accessing a specific file or directory in Linux using `lsof`:
+>
+> ```sh
+> lsof /path/to/your/file
+> lsof +D /path/to/directory
+> ```
+>
+> - `+D`: Recursively search for all files in the specified directory and list the processes that have them open.
+
 To find your desired mode [check here](https://ollama.com/search).
 
 To install gemma and run it:

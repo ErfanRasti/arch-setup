@@ -127,6 +127,7 @@ which `path/to/venv` is the desired path to create a Python environment. I usual
 >
 > `-i, --index-url <url>`: Base URL of the Python Package Index (default <https://pypi.org/simple>).
 > This should point to a repository compliant with PEP 503 (the simple repository API) or a local directory laid out in the same format.
+> You can find this documentation under `pip install --help`.
 
 **References:**
 
