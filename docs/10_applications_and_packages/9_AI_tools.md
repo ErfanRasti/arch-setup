@@ -168,6 +168,79 @@ sudo cp -ri manifests ~/.ollama/models/
 - <https://wiki.archlinux.org/title/Ollama>
 - <https://ollama.com/library>
 
+### `open-webui`
+
+Open WebUI is an extensible, feature-rich, and user-friendly self-hosted AI platform designed to operate entirely offline. It supports Ollama and OpenAI-compatible APIs, making it a powerful, provider-agnostic solution for both local and cloud-based models.
+
+There are multiple ways of installing `open-webui` but I personally prefer `docker`/`podman` installation method:
+
+Using `pip`:
+
+```fish
+
+## Create a virtual-env for it
+mkdir -p ~/programs/open-webui-venv/
+z ~/programs/open-webui-venv/
+python -m venv .venv
+source .venv/bin/activate.fish
+
+## Install it
+pip install open-webui
+open-webui serve
+```
+
+Using `docker`/`podman`:
+
+```sh
+podman pull ghcr.io/open-webui/open-webui:main
+podman run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main
+```
+
+You can stop and start it whenever you want using:
+
+```sh
+podman stop open-webui
+podman start open-webui
+```
+
+Using `paru`:
+
+```sh
+paru -S open-webui
+```
+
+Now give it an arbitrary name, email, and password (which are used locally) and then use the application easily.
+
+You can update `open-webui` using:
+
+```sh
+# 1. Stop and remove the container (data in the volume is preserved)
+podman rm -f open-webui
+
+# 2. Pull the latest image (or replace :main with a pinned version)
+podman pull ghcr.io/open-webui/open-webui:main
+
+# 3. Recreate the container
+podman run -d -p 3000:8080 \
+  -v open-webui:/app/backend/data \
+  -e WEBUI_SECRET_KEY="your-secret-key" \
+  --name open-webui --restart always \
+  ghcr.io/open-webui/open-webui:main
+```
+
+For NVIDIA GPU support, add `--gpus all` to the `podman` run command.
+
+> [!WARNING]
+>
+> Without a persistent WEBUI_SECRET_KEY, a new key is generated each time the container is recreated, invalidating all sessions.
+> Generate one with openssl rand -hex 32 and keep it across updates. See the Environment Variable Reference for details.
+
+**References:**
+
+- <https://docs.openwebui.com/>
+- <https://github.com/open-webui/open-webui>
+- <https://github.com/open-webui/desktop>
+
 ### `aichat`
 
 AIChat is an all-in-one LLM CLI tool featuring Shell Assistant, CMD & REPL Mode, RAG, AI Tools & Agents, and More.
