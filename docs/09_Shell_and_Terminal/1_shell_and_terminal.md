@@ -73,6 +73,13 @@ git config --unset pull.rebase
 Check it using `git config --get pull.rebase`.
 Exit merge using `git merge --abort`.
 
+### Git reset
+
+| Command            | Scope                                                          | What it does                                      | Safety         |
+| ------------------ | -------------------------------------------------------------- | ------------------------------------------------- | -------------- |
+| `git restore .`    | Working directory only                                         | Discards uncommitted changes in tracked files     | Safer          |
+| `git reset --hard` | Working directory + staging area + (optionally) commit history | Discards everything including commits that are not pushed, can also move branch pointer | More dangerous |
+
 ### Git ignore pushed file
 
 If you previously pushed a file to the repo and you want to ignore it:
