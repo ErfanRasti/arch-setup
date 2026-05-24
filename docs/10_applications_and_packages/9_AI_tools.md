@@ -209,7 +209,25 @@ Using `paru`:
 paru -S open-webui
 ```
 
-Now give it an arbitrary name, email, and password (which are used locally) and then use the application easily.
+You can access it using <http://localhost:3000>. Now give it an arbitrary name, email, and password (which are used locally) and then use the application easily. Sometimes take a while to start, so be patient and check your container using `podman logs -f open-webui`.
+
+> [!IMPORTANT]
+>
+> If you're experiencing connection issues, it’s often due to the WebUI docker container not being able to reach the Ollama server at `127.0.0.1:11434` (`host.docker.internal:11434` or `host.containers.internal:11434`) inside the container.
+> Use the `--network=host` flag in your docker command to resolve this.
+> Note that the port changes from 3000 to 8080, resulting in the link: <http://localhost:8080>.
+>
+> ```sh
+> podman run -d --network=host -v open-webui:/app/backend/data -e OLLAMA_BASE_URL=http://127.0.0.1:11434 --name open-webui --restart always ghcr.io/open-webui/open-webui:main
+> ```
+>
+> If you hate port `8080` use:
+>
+> ```sh
+> podman run -d --network=host -v open-webui:/app/backend/data -e OLLAMA_BASE_URL=http://127.0.0.1:11434 -e PORT=3000 --name open-webui --restart always ghcr.io/open-webui/open-webui:main
+> ```
+>
+> Remember to change the Ollama API Connection in <http://localhost:3000/admin/settings/connections> to `http://127.0.0.1:11434`.
 
 You can update `open-webui` using:
 
@@ -237,9 +255,14 @@ For NVIDIA GPU support, add `--gpus all` to the `podman` run command.
 
 **References:**
 
+- <https://docs.openwebui.com/getting-started/quick-start/>
 - <https://docs.openwebui.com/>
+- <https://docs.openwebui.com/getting-started/updating/>
 - <https://github.com/open-webui/open-webui>
 - <https://github.com/open-webui/desktop>
+- <https://github.com/open-webui/open-webui#troubleshooting>
+- <https://docs.openwebui.com/troubleshooting/connection-error#connection-to-ollama-server>
+- <https://github.com/open-webui/open-webui/discussions/4376>
 
 ### `aichat`
 
