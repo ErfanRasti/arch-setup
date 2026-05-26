@@ -75,9 +75,9 @@ Exit merge using `git merge --abort`.
 
 ### Git reset
 
-| Command            | Scope                                                          | What it does                                      | Safety         |
-| ------------------ | -------------------------------------------------------------- | ------------------------------------------------- | -------------- |
-| `git restore .`    | Working directory only                                         | Discards uncommitted changes in tracked files     | Safer          |
+| Command            | Scope                                                          | What it does                                                                            | Safety         |
+| ------------------ | -------------------------------------------------------------- | --------------------------------------------------------------------------------------- | -------------- |
+| `git restore .`    | Working directory only                                         | Discards uncommitted changes in tracked files                                           | Safer          |
 | `git reset --hard` | Working directory + staging area + (optionally) commit history | Discards everything including commits that are not pushed, can also move branch pointer | More dangerous |
 
 ### Git ignore pushed file
@@ -1025,8 +1025,8 @@ sudo pacman -S zellij
 
 ```bash
 sudo pacman -S duf exa eza git-delta zoxide glow yazi trash-cli \
-  tree superfile television wiremix feh cava libcanberra
-paru -S lazydocker-bin ascii-image-converter-bin gitbutler-bin fum-bin gitfetch-python
+  tree superfile television wiremix feh cava libcanberra lolcat fortune-mod figlet toilet
+paru -S lazydocker-bin ascii-image-converter-bin gitbutler-bin fum-bin gitfetch-python figlet-fonts
 ```
 
 - `duf` – A modern, user-friendly alternative to `df` for checking disk usage.
@@ -1113,6 +1113,38 @@ paru -S lazydocker-bin ascii-image-converter-bin gitbutler-bin fum-bin gitfetch-
 
 - `gitfetch-python` - A neofetch-style CLI tool for GitHub, GitLab, Gitea, Forgejo, Codeberg,
   and Sourcehut statistics.
+- `lolcat` - Nice tool to colorize the output and the ASCII.
+
+  ```sh
+  printf "
+                                               
+        ████ ██████           █████      ██
+       ███████████             █████ 
+       █████████ ███████████████████ ███   ███████████
+      █████████  ███    █████████████ █████ ██████████████
+     █████████ ██████████ █████████ █████ █████ ████ █████
+   ███████████ ███    ███ █████████ █████ █████ ████ █████
+  ██████  █████████████████████ ████ █████ █████ ████ ██████
+  " | lolcat -f -s 12
+  ```
+
+  `-f` for force color even when `stdout` is not a `tty` and `-s` for rainbow seed.
+
+- `fortune` - a simple program that displays random poignant, inspirational, silly or snide phrases from a database of quotations.
+- `figlet` - A program for making large letters out of ordinary text.
+  You can use more fonts using `figlet-fonts`. You can download them manually from [here](https://github.com/xero/figlet-fonts) and paste them into `/usr/share/figlet/fonts/`.
+  You should name the font with `.flf` extension. For instance, `/usr/share/figlet/fonts/ANSISHADOW.flf`.
+  You can also install it from AUR using `paru -S figlet-fonts-extra`.
+
+  ```sh
+  figlet -t -f ANSI\ Shadow I use Arch btw. | lolcat
+  ```
+
+  - `-t` adjusts the text width into the width of the terminal.
+  - You can also use `-w <NUMBER>` to set its length to a number of characters.
+  - You can center the text using `-c`.
+
+- `toilet` - It is the other implementation of `figlet` with additional `-F <filter>` options.
 
 **References:**
 
@@ -1131,6 +1163,8 @@ paru -S lazydocker-bin ascii-image-converter-bin gitbutler-bin fum-bin gitfetch-
 - <https://github.com/derf/feh>
 - <https://wiki.archlinux.org/title/Libcanberra>
 - <https://github.com/Matars/gitfetch>
+- <https://wiki.archlinux.org/title/ASCII_art>
+- <https://www.youtube.com/watch?v=e1uqSCRodyg>
 
 ## Fish
 
@@ -1381,8 +1415,9 @@ There are some details in handling `dotfiles` using `stow`:
 If you want to add another repo as a sub-module to your `dotfiles` repository:
 
 ```sh
-git submodule add  https://github.com/<USERNAME>/nvim nvim/.config/nvim/
-git submodule add  https://github.com/<USERNAME>/tmux tmux/.config/tmux/
+git submodule add  https://github.com/<USERNAME>/nvim dotfiles/nvim/.config/nvim/
+git submodule add  https://github.com/<USERNAME>/tmux dotfiles/tmux/.config/tmux/
+git submodule add  https://github.com/<USERNAME>/wallpapers dotfiles/wallpapers/wallpapers/
 ```
 
 Use `git submodule status` to check sub-module commits.
