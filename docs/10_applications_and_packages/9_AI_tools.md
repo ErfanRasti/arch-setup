@@ -163,10 +163,19 @@ sudo cp -ri blobs ~/.ollama/models/
 sudo cp -ri manifests ~/.ollama/models/
 ```
 
+#### `opencode` integration
+
+`ollama` can easily launch `opencode` models using:
+
+```sh
+ollama launch opencode
+```
+
 **References:**
 
 - <https://wiki.archlinux.org/title/Ollama>
 - <https://ollama.com/library>
+- <https://docs.ollama.com/integrations/opencode>
 
 ### `open-webui`
 
@@ -263,6 +272,134 @@ For NVIDIA GPU support, add `--gpus all` to the `podman` run command.
 - <https://github.com/open-webui/open-webui#troubleshooting>
 - <https://docs.openwebui.com/troubleshooting/connection-error#connection-to-ollama-server>
 - <https://github.com/open-webui/open-webui/discussions/4376>
+
+### `opencode`
+
+OpenCode is an open source AI coding agent. It’s available as a terminal-based interface, desktop app, or IDE extension.
+
+Install it using:
+
+```sh
+sudo pacman -S opencode
+```
+
+To use it `cd` to your project:
+
+```sh
+cd /path/to/project
+```
+
+and run:
+
+```sh
+opencode
+```
+
+OpenCode includes free models so you can start immediately. You can also connect to your desired model using:
+
+```
+/connect
+```
+
+Initialize OpenCode for the project by running the following command:
+
+```
+/init
+```
+
+> [!NOTE]
+>
+> To perform an operation in the `opencode` TUI which changes some files or executes some commands,
+> you need to toggle out of plan mode to `Build` mode. To do this you need to press `Tab` in the TUI to switch.
+> Also sometimes it asks for permissions from you and I usually go with `Allow once`.
+
+You can also use it directly from CLI:
+
+```sh
+opencode run "Explain how closures work in JavaScript"
+```
+
+#### Precedence order
+
+Config sources are loaded in this order (later sources override earlier ones):
+
+- Remote config: (from `.well-known/opencode`) - organizational defaults
+- Global config: (`~/.config/opencode/opencode.json`) - user preferences
+- Custom config: (`OPENCODE_CONFIG` env var) - custom overrides
+- Project config: (`opencode.json` in project) - project-specific settings `.opencode` directories - agents, commands, plugins
+
+#### Use `ollama` models
+
+You can easily use `ollama` models by change your config file:
+
+```sh
+nvim ~/.config/opencode/opencode.jsonc
+```
+
+```jsonc
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama (local)",
+      "options": {
+        "baseURL": "http://localhost:11434/v1",
+      },
+      "models": {
+        "llama2": {
+          "name": "Llama 2",
+        },
+        "qwen3:14b": { "name": "Qwen3 14B" },
+      },
+    },
+  },
+}
+```
+
+Then finally switch to your local model using `/models` and selecting your desired model.
+
+#### IDE Integration
+
+To install OpenCode on VS Code and popular forks like Cursor, Windsurf, VSCodium:
+
+- Open VS Code
+- Open the integrated terminal
+- Run `opencode` - the extension installs automatically
+
+If it didn't work for you, search for "OpenCode" by SST in the Extension Marketplace and click Install.
+
+It also easily integrates with `NeoVim` through [`codecompanion.nvim`](https://github.com/olimorris/codecompanion.nvim). Ensure that in your chat buffer you select the `opencode` adapter.
+
+This is an example of its `lua` config:
+
+```lua
+{
+    "olimorris/codecompanion.nvim",
+    opts = {
+      interactions = {
+      -- Full chat conversation buffer - use the larger model
+      chat = {
+        adapter = {
+          -- name = "ollama",
+          -- model = "gemma3:1b",
+          name = "opencode",
+          model = "OpenCode Zen/Nemotron 3 Super Free",
+        },
+      },
+    },
+  },
+}
+```
+
+**References:**
+
+- <https://opencode.ai/docs/>
+- <https://opencode.ai/docs/cli/>
+- <https://opencode.ai/docs/tui/>
+- <https://opencode.ai/docs/ide/>
+- <https://opencode.ai/docs/providers/>
+- <https://opencode.ai/docs/ecosystem/>
 
 ### `aichat`
 
