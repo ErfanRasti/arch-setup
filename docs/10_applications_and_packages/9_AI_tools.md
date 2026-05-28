@@ -163,7 +163,103 @@ sudo cp -ri blobs ~/.ollama/models/
 sudo cp -ri manifests ~/.ollama/models/
 ```
 
-#### `opencode` integration
+#### Importing models
+
+Consider you have some Hugging Face models and want to import them in `ollama`.
+There are multiple possibilities related to this scenario.
+You can import GGUF models directly into the `ollama` using:
+
+```sh
+ollama run hf.co/{username}/{repository}
+```
+
+For example:
+
+```sh
+ollama run hf.co/unsloth/Qwen3.6-27B-MTP-GGUF
+```
+
+You can also select different quantizations from `Files > Use this model -> Ollama`. For example:
+
+```sh
+ollama run hf.co/unsloth/Qwen3.6-27B-MTP-GGUF:UD-Q4_K_XL
+```
+
+Usually all the models have a Chat Template. It will be selected based on the built-in `tokenizer.chat_template` metadata stored inside the GGUF file.
+If your model doesn't have one you should create it for yourself. To do it create a file and name it `Modelfile`.
+Remember to `cd` into the directory that has this file. The usually include this line:
+
+```
+FROM /path/to/safetensors/directory
+```
+
+It's better to put the `Modelfile` and `safetensors` weights in the same directory
+
+Check [Importing a Model guide](https://docs.ollama.com/import) and import your model or adapter according to the instruction.
+
+If your model doesn't have a `GGUF` file, you should generate it using [`llama.cpp`](https://wiki.archlinux.org/title/Llama.cpp):
+
+```sh
+cd MODEL-DIRECTORY
+python3 -m venv .venv
+source ./.venv/bin/activate.fish
+
+git clone https://github.com/ggml-org/llama.cpp
+cd llama.cpp
+python3 -m pip install -r requirements.txt
+```
+
+Then use `convert_hf_to_gguf.py` to convert your model:
+
+```sh
+python convert_hf_to_gguf.py ./ \
+  --outfile qwen-uncensored.gguf \
+  --outtype q8_0
+```
+
+These are the different Output Types:
+
+| Output Type       | Description & Use Case                                                                                                                                          |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **f32**           | 32-bit floating point. Full precision, largest file size (baseline for quality).                                                                                |
+| **f16**           | 16-bit floating point. Most common starting point. Halves the model size with negligible quality loss.                                                          |
+| **bf16**          | 16-bit "brain floating point." An alternative to `f16`, primarily used for models trained on TPUs.                                                              |
+| **q8_0**          | 8-bit integer quantization. A balanced starting point that offers a good trade-off between size and quality if you want to skip the separate quantization step. |
+| **tq1_0 & tq2_0** | 1-bit and 2-bit ternarization. Experimental, extremely aggressive compression methods for specific use cases.                                                   |
+| **auto**          | Automatically selects the most appropriate type based on the original model's precision (e.g., uses `bf16` if the original model is in `bfloat16`).             |
+
+Check <https://github.com/ggml-org/llama.cpp> for more info.
+
+After converting you need to create your `Modelfile`.
+
+To import a GGUF model, create a `Modelfile` containing:
+
+```
+FROM /path/to/file.gguf
+```
+
+For a GGUF adapter, create the `Modelfile` with:
+
+```
+FROM <model name>
+ADAPTER /path/to/file.gguf
+```
+
+When importing a GGUF adapter, it’s important to use the same base model as the base model that the adapter was created with. You can use:
+
+- a model from Ollama
+- a GGUF file
+- a Safetensors based model
+
+Once you have created your `Modelfile`, use the `ollama create` command to build the model.
+
+```sh
+ollama create my-model
+```
+
+Also you can use create GGUF Quants using [Hugging Face GGUF my repo website](https://huggingface.co/spaces/ggml-org/gguf-my-repo) easily.
+
+#### `opencode` Integration
 
 `ollama` can easily launch `opencode` models using:
 
@@ -176,6 +272,11 @@ ollama launch opencode
 - <https://wiki.archlinux.org/title/Ollama>
 - <https://ollama.com/library>
 - <https://docs.ollama.com/integrations/opencode>
+- <https://wiki.archlinux.org/title/Llama.cpp>
+- <https://docs.ollama.com/import>
+- <https://huggingface.co/docs/hub/ollama>
+- <https://github.com/ggml-org/llama.cpp>
+- <https://github.com/ollama/ollama/blob/main/docs/template.mdx>
 
 ### `open-webui`
 
