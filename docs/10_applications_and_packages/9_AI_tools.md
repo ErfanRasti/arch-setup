@@ -121,6 +121,11 @@ sudo systemctl disable --now ollama.service
 systemctl --user enable --now ollama.service
 ```
 
+> [!NOTE]
+>
+> If you save your models somewhere else (for example on an external hard drive),
+> you can change the `OLLAMA_MODELS` environment variable to match its path.
+
 Now you can move your models to `~/.ollama/models`:
 
 ```sh
