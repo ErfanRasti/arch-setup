@@ -761,6 +761,13 @@ View jumps using `:jumps`.
 > - `ge`: Backward to end of previous word
 > - `gE`: Backward to end of previous WORD
 
+> [!IMPORTANT]
+>
+> If you want to edit a `root` file which you should access it through `sudo`,
+> use `sudoedit` to do this. To set your default editor you can add `EDITOR=nvim`
+> to `~/.config/environment.d/envvars.conf` and then `sudoedit <FILE>` will open
+> the file using your user `nvim` configurations.
+
 ### Troubleshooting
 
 If you get some wired errors at the start of `neovim` run this:
@@ -1453,6 +1460,7 @@ git submodule add https://github.com/<USER>/tmux dotfiles/tmux/.config/tmux
 - <https://www.gnu.org/software/stow/manual/html_node/Types-And-Syntax-Of-Ignore-Lists.html>
 - <https://stackoverflow.com/questions/64231650/why-doesnt-gnu-stow-ignore-single-files-in-main-directory>
 - <https://git-scm.com/book/en/v2/Git-Tools-Submodules>
+- <https://www.reddit.com/r/dotfiles/comments/1qy9vbe/why_i_stuck_with_gnu_stow_instead_of_chezmoi_or/>
 
 ## nushell
 
