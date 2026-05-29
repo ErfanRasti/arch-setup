@@ -1384,6 +1384,31 @@ rsync -avz user@remote-ip:/path/to/remote/files /path/to/local/destination
 
 For more info about `scp` and `rsync` use `man scp` and `man rsync`, respectively.
 
+If you ever want to access a folder completely, and open your remote system files locally use:
+
+```sh
+sudo pacman -S sshfs
+```
+
+```sh
+sudo mkdir -p /mnt/remote
+sudo sshfs user@remote-ip:/remote/path /mnt/remote
+```
+
+or on home:
+
+```sh
+ mkdir -p ~/mnt/remote
+ sshfs user@remote:/remote/path ~/mnt/remote
+```
+
+To unmount:
+
+```sh
+sudo umount /mnt/remote
+umount ~/remote
+```
+
 > [!IMPORTANT]
 >
 > `~/.config/environment.d/*.conf` is not meant for SSH logins.
