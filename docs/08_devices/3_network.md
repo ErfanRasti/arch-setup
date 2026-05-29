@@ -1279,3 +1279,115 @@ You can add something like these to the end of the `/etc/hosts` which overrides 
 <DESIRED-IP> ogads-pa.clients6.google.com
 <DESIRED-IP> play.google.com
 ```
+
+### Access a Remote System via Secure Shell
+
+Consider you have a system running on your local network and you want to connet to it via SSH.
+
+#### Remote Machine Setup
+
+First you need to setup your remote machine like this:
+
+```sh
+sudo pacman -S openssh
+sudo systemctl enable --now sshd
+```
+
+Which enables `ssh` service (If you have GNOME you can do this under `GNOME Settings > System > Secure Shell > Access this device using Secure Shell (SSH)`).
+
+If you have `ufw` on your system:
+
+```sh
+# Allow SSH through UFW if not already (Recommended)
+sudo ufw allow ssh
+# or explicitly:
+sudo ufw allow 22/tcp
+```
+
+These two doesn't differ that much, you can check it under `sudo ufw status numbered`.
+The first one allows no matter `tcp` or `udp` is used but the second one is dedicated to `tcp`.
+
+Finally check it using:
+
+```sh
+# Check SSH is listening on all interfaces (not just localhost)
+sudo ss -tlnp | grep :22
+```
+
+- `-t`, `--tcp`: display only TCP sockets
+- `-l`, `--listening`: display listening sockets
+- `-n`, `--numeric`: don't resolve service names
+- `-p`, `--processes` show process using socket
+
+If `ss` shows SSH is only on `127.0.0.1:22` (`localhost`), edit /etc/ssh/sshd_config and set `ListenAddress 0.0.0.0` (or comment it out), then restart: `sudo systemctl restart sshd` (But usually there is no need for this).
+
+Also verify from the remote machine itself that it can reach itself via its LAN IP: `ssh USER@192.168.x.x`; if that fails too, it's a config issue on the remote.
+
+#### Connect to the Remote Machine
+
+Now that you've configured your remote machine, you should find the remote system's IP on your local network:
+
+```sh
+# On your current machine, find the remote IP
+sudo pacman -S nmap
+nmap -sn 192.168.1.0/24   # scan your subnet
+# or
+sudo pacman -S net-tools
+arp -a                     # list local devices
+```
+
+Which `arp -a` is more reliable.
+
+Then you can connect to your machine through:
+
+```sh
+# Check if SSH is running on the remote machine
+ssh user@remote-ip
+```
+
+or you can copy files from your remote machine here:
+
+```sh
+# Copy files from remote to local using scp
+scp -r user@remote-ip:/path/to/remote/files /path/to/local/destination
+# Or use rsync (supports resume, better for large transfers)
+rsync -avz user@remote-ip:/path/to/remote/files /path/to/local/destination
+```
+
+`scp` is `OpenSSH` secure file copy.
+
+- `-r` Recursively copy entire directories. Note that scp follows symbolic links encountered in the tree traversal.
+
+`rsync` is a fast, versatile, remote (and local) file-copying tool.
+
+| Flag | Full Name    | Description                                                                                                                                                                                                       |
+| :--- | :----------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-a` | Archive mode | A combination flag that preserves many file attributes: recursive copying, symbolic links, permissions, timestamps, owner, group, device files, and more. It's like "copy everything while keeping it identical." |
+| `-v` | Verbose      | Shows detailed output of what rsync is doing - which files are being transferred, progress information, and a summary at the end.                                                                                 |
+| `-z` | Compress     | Compresses the data during transfer (like zip, but on the fly). This reduces network bandwidth usage, especially useful for text files or slow connections.                                                       |
+
+- `rsync -avz foo:src/bar /data/tmp`
+
+  This would recursively transfer all files from the directory `src/bar` on the machine `foo` into the `/data/tmp/bar` directory on the local machine.
+  The files are transferred in archive mode, which ensures that symbolic links, devices, attributes, permissions, ownerships, etc. are preserved in the transfer.
+  Additionally, compression will be used to reduce the size of data portions of the transfer.
+
+- `rsync -avz foo:src/bar/ /data/tmp`
+
+  A trailing slash on the source changes this behavior to avoid creating an additional directory level at the destination. You can think of a trail‐
+  ing / on a source as meaning "copy the contents of this directory" as opposed to "copy the directory by name", but in both cases the attributes of
+  the containing directory are transferred to the containing directory on the destination. In other words, each of the following commands copies the
+  files in the same way, including their setting of the attributes of /dest/foo:
+
+         rsync -av /src/foo /dest
+         rsync -av /src/foo/ /dest/foo
+
+For more info about `scp` and `rsync` use `man scp` and `man rsync`, respectively.
+
+> [!IMPORTANT]
+>
+> `~/.config/environment.d/*.conf` is not meant for SSH logins.
+> `~/.config/environment.d/*.conf` files are exclusively for `systemd` user services (the processes started and managed by `systemd --user`).
+> When you log in via SSH, `sshd` starts a regular login shell. This shell is not a child process of your user's `systemd` instance.
+> Therefore, it completely ignores the `systemd` environment files, and your `EDITOR` variable never gets loaded.
+> The best practice is to add them to your shell configuration files, i.e, `~/.config/fish/config.fish` or `~/.zshrc`.

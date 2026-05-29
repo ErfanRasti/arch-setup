@@ -971,13 +971,13 @@ This method is more reliable and safer than the previous one.
 
 ## Update system packages using another system
 
-Consider you have two Arch Linux systems and you want to update packages of one of the systems using the another one,
+Consider you have two Arch Linux systems and you want to update packages of one of the systems using the other one,
 to prevent re-downloading them again.
 To do this you have two options. Setting up the second system into an `ssh` connection and connect to it from the updated system.
 Another simple method is to copy the installation files of the updated packages to a USB flash or a hard drive,
 then connect it to the unupdated system and copy it to where it should be and then update your system. To follow this instruction:
 
-1. The `pacman` packages are existed under `/var/cache/pacman/pkg/`. To use the `ssh`:
+1. The `pacman` packages are existed under `/var/cache/pacman/pkg/`. To use the `ssh` (Check [this section](../08_devices/3_network.md#access-a-remote-system-via-secure-shell) for `ssh` setup):
 
    ```sh
    rsync -avz /var/cache/pacman/pkg/ user@second-laptop:/var/cache/pacman/pkg/
