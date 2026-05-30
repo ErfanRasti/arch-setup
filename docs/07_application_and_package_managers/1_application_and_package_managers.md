@@ -1,6 +1,11 @@
 # Application and package managers
 
-**Warning:** Always read package build (`PKGBUILD`) before installing a package from AUR. There is a small chance to get malicious software. But by checking package build you can detect it. Also you should read package build during updates. `paru` always show you the package build anyway so I recommend using `paru` instead of `yay`.
+> [!WARNING]
+>
+> Always read package build (`PKGBUILD`) before installing a package from AUR.
+> There is a small chance to get malicious software. But by checking package build you can detect it.
+> Also you should read package build during updates.
+> `paru` always show you the package build anyway so I recommend using `paru` instead of `yay`.
 
 **Note:** An "orphaned package" in the context of the
 Arch User Repository (AUR) can mean two things:
@@ -103,6 +108,13 @@ pacman -Qdt
 ```
 
 Take a look at [this](https://www.youtube.com/watch?v=URCDBY3LaXc) for more info.
+
+> [!NOTE]
+>
+> To read the `PKGBUILD` after installing the package check these directories:
+>
+> - `yay`: `~/.cache/yay/<package>/PKGBUILD`
+> - `paru`: `~/.cache/paru/clone/<package>/PKGBUILD`
 
 **References:**
 
