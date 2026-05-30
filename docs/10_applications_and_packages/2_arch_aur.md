@@ -2331,3 +2331,36 @@ podman volume prune # Remove all unused volumes
 **References:**
 
 - <https://wiki.archlinux.org/title/Podman>
+
+## `bun`
+
+Bun is designed as a faster, leaner, more modern replacement for Node.js.
+
+```sh
+sudo pacman -S bun
+```
+
+**References:**
+
+- <https://bun.com/docs>
+
+## `ssh` tools
+
+Recall your SSH sessions:
+
+```sh
+curl https://raw.githubusercontent.com/byawitz/ggh/master/install/unix.sh | sh
+```
+
+Use `ggh user@ip-address` to save it.
+
+```sh
+sudo pacman -S wishlist
+```
+
+**References:**
+
+- <https://terminaltrove.com/ggh/>
+- <https://github.com/byawitz/ggh>
+- <https://github.com/charmbracelet/wishlist>
+- <https://github.com/moul/awesome-ssh#ssh-keys--authentication>
