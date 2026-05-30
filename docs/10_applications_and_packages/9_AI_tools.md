@@ -190,6 +190,14 @@ You can also select different quantizations from `Files > Use this model -> Olla
 ollama run hf.co/unsloth/Qwen3.6-27B-MTP-GGUF:UD-Q4_K_XL
 ```
 
+If you had a problem with downloading the model using `ollama`, use this instead:
+
+```sh
+wget 'https://huggingface.co/unsloth/Qwen3.6-27B-MTP-GGUF/resolve/main/Qwen3.6-27B-UD-Q4_K_XL.gguf'
+echo "FROM ./Qwen3.6-27B-UD-Q4_K_XL.gguf" > Modelfile
+ollama create qwen3:27b -f Modelfile && ollama run qwen3:27b
+```
+
 Usually all the models have a Chat Template. It will be selected based on the built-in `tokenizer.chat_template` metadata stored inside the GGUF file.
 If your model doesn't have one you should create it for yourself. To do it create a file and name it `Modelfile`.
 Remember to `cd` into the directory that has this file. The usually include this line:
