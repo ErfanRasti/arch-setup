@@ -52,6 +52,16 @@ and also for sub-modules:
 git pull --recurse-submodules
 ```
 
+Instead of all the above steps you can use:
+
+```sh
+git pull --force
+```
+
+> [!WARNING]
+>
+> The first method which uses `git reset --hard ...` will removes any local modifications that don't match the remote including commits and uncommitted changes; but `git pull --force` will preserve the uncommitted changes. Commited changes will be replaced by the upstream in both of the ways.
+
 **References:**
 
 - <https://www.geeksforgeeks.org/git/git-pull-force/>
