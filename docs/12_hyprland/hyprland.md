@@ -748,6 +748,14 @@ sudo systemctl restart systemd-logind
 
 This instruction also remapped closing the lid for me.
 
+> [!NOTE]
+>
+> Instead of creating the folder using `mkdir -p` and then `cp` to the folder, you can use `install -D`:
+>
+> ```sh
+> install -D /etc/systemd/logind.conf /etc/systemd/logind.conf.d/logind.conf
+> ```
+
 **References:**
 
 - <https://www.reddit.com/r/hyprland/comments/1dym0f1/how_to_change_what_power_button_does/>
