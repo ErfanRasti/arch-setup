@@ -100,7 +100,7 @@ RemainAfterExit=yes
 ExecStart=/usr/bin/powertop --auto-tune
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=multi-user.target sleep.target
 ```
 
 You can also add this line to the `[Service]` section in order to prevent your "Mouse" from getting disconnected upon booting, if it is already connected to your system.
@@ -109,15 +109,22 @@ You can also add this line to the `[Service]` section in order to prevent your "
 ExecStartPost=/bin/sh -c 'for f in $(grep -l "Mouse" /sys/bus/usb/devices/*/product | sed "s/product/power\\/control/"); do echo on >| "$f"; done'
 ```
 
-Or if you want prevent your keyboard from getting disconnected too:
+Or if you want to prevent your keyboard from getting disconnected too:
 
 ```conf
 ExecStartPost=/bin/sh -c 'for f in $(grep -l -E "Mouse|Keyboard" /sys/bus/usb/devices/*/product | sed "s/product/power\\/control/"); do echo on >| "$f"; done'
 ```
 
+In a more generic and modern way use use the following in order to prevent your plugged-in USB input devices from getting disconnected on boot:
+
+```conf
+ExecStartPost=/bin/sh -c 'for f in $(find /sys/bus/usb/drivers/usbhid -regex '.*\/[0-9:.-]+' -printf '%f\n' | cut -d ":" -f 1 | sort -u); do echo on >| "/sys/bus/usb/devices/$f/power/control"; done'
+```
+
 Then enable and start the service:
 
 ```bash
+sudo systemctl daemon-reload
 sudo systemctl enable powertop.service
 sudo systemctl start powertop.service
 ```
