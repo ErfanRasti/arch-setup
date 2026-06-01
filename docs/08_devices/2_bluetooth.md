@@ -390,9 +390,16 @@ sudo dmesg | grep -iE 'btusb|rtl|firmware'
    `/usr/local/lib/usb-nosuspend.sh` is the best path for this script.
    `/usr/local/lib` is a standard place for local system scripts used by services.
 
-   **Note:** Difference between `/usr/share/` and `/usr/local/share`:
-   `/usr/share` is managed by package manager but `/usr/local/share` is managed by
-   locally installed software and system administrator.
+   > [!NOTE]
+   >
+   > Difference between `/usr/share/` and `/usr/local/share`:
+   > `/usr/share` is managed by package manager
+   > but `/usr/local/share` is managed by locally installed software and system administrator.
+   > | Path | Purpose | Best for |
+   > | ---------------- | -------------------------------------------------------------------------------------- | -------------------------------------------- |
+   > | /usr/local/lib | Architecture-dependent program data (libraries, helper scripts used by other programs) | custom script is fine here |
+   > | /usr/local/share | Architecture-independent read-only data (docs, icons, man pages, etc.) | Not for executables |
+   > | /usr/share | Same as above but managed by the package manager | Don't put custom files here — pacman owns it |
 
 3. Now you should add a `systemd` service that gets triggered after `powertop` functions.
    To do it:
