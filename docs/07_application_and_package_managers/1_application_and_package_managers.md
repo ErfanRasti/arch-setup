@@ -803,6 +803,14 @@ You should change the permissions manually for each folder:
 > - <https://wiki.archlinux.org/title/File_permissions_and_attributes>
 > - <https://wiki.archlinux.org/title/Access_Control_Lists>
 
+> [!IMPORTANT]
+>
+> If you want to preserve your environment variables and shell as your current user (including shell configurations, `nvim`, `tmux`, ...):
+>
+> ```sh
+> sudo -E -s
+> ```
+
 **References:**
 
 - <https://bbs.archlinux.org/viewtopic.php?id=42314>
