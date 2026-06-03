@@ -2364,3 +2364,36 @@ sudo pacman -S wishlist
 - <https://github.com/byawitz/ggh>
 - <https://github.com/charmbracelet/wishlist>
 - <https://github.com/moul/awesome-ssh#ssh-keys--authentication>
+
+## `pass`
+
+A great password manager for Linux.
+
+```sh
+sudo pacman -S pass
+```
+
+Initialize it using:
+
+```sh
+pass init EMAIL-ADDRESS
+```
+
+Generate password using:
+
+To generate a new random password for the above example, do the following, where `n` is the desired password length as a number:
+
+```sh
+pass generate archlinux.org/wiki/username n
+```
+
+For git integration:
+
+```sh
+pass git init
+pass git remote add origin user@server:~/.password-store
+```
+
+**References:**
+
+- https://wiki.archlinux.org/title/Pass
