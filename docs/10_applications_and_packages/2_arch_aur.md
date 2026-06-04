@@ -2369,31 +2369,266 @@ sudo pacman -S wishlist
 
 A great password manager for Linux.
 
-```sh
-sudo pacman -S pass
-```
+1.  first step is to install it:
 
-Initialize it using:
+    ```sh
+    sudo pacman -S pass
+    ```
 
-```sh
-pass init EMAIL-ADDRESS
-```
+2.  Second step is to generate a `gpg` password:
 
-Generate password using:
+    ```sh
+    gpg --gen-key
+    ```
 
-To generate a new random password for the above example, do the following, where `n` is the desired password length as a number:
+    then enter a name and email for it (There is no need to match your read name and email).
+    You can list your secret passwords using:
 
-```sh
-pass generate archlinux.org/wiki/username n
-```
+    ```sh
+    gpg -K
+    # or
+    gpg --list-secret-keys
+    ```
 
-For git integration:
+    Remember the id of the key you just generated.
+    When these are generated there are keys:
+    1. Master Key:
+       - Role: This is your identity key - it proves "you are you"
+       - Purpose: Certification (C) + Signing (S)
+       - Usage: Creating/revoking subkeys, signing other people's keys, signing Git commits
+    2. Encryption Subkey
+       - Role: This actually encrypts your passwords
+       - Purpose: Encryption (E) only
+       - Usage: All pass encryption operations
 
-```sh
-pass git init
-pass git remote add origin user@server:~/.password-store
-```
+    You can see that both of them have an expiration date. Prevent them from expiring using:
+
+    ```sh
+    gpg --edit-key <gpg-key-id>
+    gpg> expire
+    gpg> 0
+    gpg> save
+    ```
+
+    Or a better method is to use:
+
+    ```sh
+    gpg --full-generate-key
+    ```
+
+    You can go with the defaults which are `ECC (sign and encrypt)` and `Curve 25519` and set no expiration date for them using the default `0` option.
+
+3.  Initialize your `pass` using the `gpg-key`:
+
+    ```sh
+    pass init <gpg-key-id>
+    pass git init
+    pass git config --global init.defaultBranch main
+    ```
+
+4.  You can insert arbitrary password by:
+
+    ```sh
+    pass insert github
+    ```
+
+    Also it generates the password using:
+
+    ```sh
+    pass generate github
+    ```
+
+    You can manager your passwords into different folders using:
+
+    ```sh
+    pass generate Sites/google.com
+
+    pass generate github/personal
+    ```
+
+    Specify password length using `n`:
+
+    ```sh
+    pass generate archlinux.org/wiki/username n
+    ```
+
+    You can find your passwords using:
+
+    ```sh
+    pass find github
+    ```
+
+    or use `pass` to show them all:
+
+    ```sh
+    pass
+    ```
+
+    I usually don't save my email address as the password name.
+    The better method is to add it as a metadata:
+
+    ```sh
+    pass edit github/personal
+    ```
+
+    Add:
+    email: YOUR-DESIRED-EMAIL
+
+    as a new line under the password.
+
+    And if you want to find the name dedicated to this metadata:
+
+    ```sh
+    pass grep YOUR-DESIRED-EMAIL
+    # OUTPUT:
+    # github/personal
+    ```
+
+    You can also show your password using:
+
+    ```sh
+    pass show github/personal
+    ```
+
+    but if you want to prevent it from showing in the STD_OUT, you can copy it directly using:
+
+    ```sh
+    pass show -c github/personal
+    ```
+
+    And check it using this command if you're using `wayland`:
+
+    ```sh
+    wl-paste
+    ```
+
+    You can remove password using:
+
+    ```sh
+    pass rm github/personal
+    ```
+
+    Everything is under the control of `git`.
+    Check your commits using:
+
+    ```sh
+    pass git log
+    ```
+
+    You can revert it (restore the deleted password) using:
+
+    ```sh
+    pass git revert HEAD
+    ```
+
+    Then exit the EDITOR, using `:q` if you're on `vim`.
+    For more info check `man pass`.
+
+5.  You can save your passwords remotely on a `GitHub` repo (No matter it is private or not, because everything is encrypted):
+
+    ```sh
+    # In general:
+    pass git remote add origin user@server:~/.password-store
+    # GITHUB:
+    pass git remote add origin git@github.com:<GITHUB-USERNAME>/<GITHUB-REPO>.git
+    # or if you used HTTPS for your GITHUB login:
+    pass git remote add origin https://github.com/<GITHUB-USERNAME>/<GITHUB-REPO>.git
+    ```
+
+    And push it using:
+
+    ```sh
+    pass git push origin main
+    ```
+
+    You also need to export your public and private keys:
+
+    ```sh
+    mkdir ~/exported-keys
+    cd ~/exported-keys
+    gpg --output public.pgp --armor --export GPG-KEY-EMAIL-ADDRESS
+    gpg --output private.pgp --armor --export-secret-key GPG-KEY-EMAIL-ADDRESS
+
+    ```
+
+6.  To load it on another machine, first clone your repository then copy your private and public keys using `ssh`:
+
+    ```sh
+    git clone git@github.com:<GITHUB-USERNAME>/<GITHUB-REPO>.git
+
+    # Copy your folder
+    scp -r user@device:exported-keys .
+
+    # Check the folder
+    cd ~/exported-keys
+    ls
+
+    # Import keys
+    gpg --import public.pgp
+    gpg --import private.pgp
+
+    # Final check
+    pass show github/personal
+    ```
+
+    Finally, you need to change the trust level of the public key to `ultimate` level in order to encrypt new passwords on your new machine.
+    To do this:
+
+    ```sh
+    gpg --edit-key GPG-KEY-EMAIL-ADDRESS
+    gpg> trust
+    gpg> 5
+    gpg> save
+    ```
+
+7.  To prevent accidentally pasting the secret key in to the terminal session, you can use one these options:
+    - Environment Variables: `export GITHUB_TOKEN=$(pass show github/api/token`
+    - Aliases: Sets access credentials as part of a command:
+      ```sh
+      alias aws="AWS_ACCESS_KEY_ID=$(pass show aws/access_id) AWS_SECRET_ACCESS_KEY=$(pass show aws/access_token) aws"
+      ```
+      Then use: `aws lambda list-functions --region=us-east-1`
+
+> [!IMPORTANT]
+>
+> Think of GPG/PGP encryption like a padlock mailbox:
+>
+> **Public Key = The Mailbox Slot (Lock)**
+>
+> - Anyone can push mail through it
+> - It's designed to be shared widely
+> - Cannot be used to take mail out of the mailbox
+>
+> **Private Key = The Mailbox Key**
+>
+> - Only you should have it
+> - Used to open and read the mail
+> - If someone gets it, all your mail is compromised
+>
+> **Why Public Key Can Be Public**
+>
+> 1. **It cannot decrypt anything:** Mathematically impossible to reverse-engineer the private key from the public key (with current technology).
+> 2. **It only enables encryption:** Think of it as a one-way function:
+>    - Public key: message → encrypted message ✅
+>    - Public key: encrypted message → message ❌
+> 3. **Designed for distribution:** The whole point is letting anyone send you encrypted data.
+>
+> | Item           | Public Key                | Private Key                 |
+> | -------------- | ------------------------- | --------------------------- |
+> | What it does   | Encrypts messages         | Decrypts messages           |
+> | Can it lock?   | ✅ Yes                    | ✅ Yes (signing)            |
+> | Can it unlock? | ❌ No                     | ✅ Yes                      |
+> | Share with?    | Everyone, servers, GitHub | Only you (and maybe family) |
+> | If stolen      | No problem                | TOTAL compromise            |
+
+> [!NOTE]
+>
+> | Command  | Purpose                                              | Scope                 | Persistence                     |
+> | -------- | ---------------------------------------------------- | --------------------- | ------------------------------- |
+> | `export` | Makes a variable available to child processes        | Environment (global)  | Affects all child shells        |
+> | `alias`  | Creates a shortcut for a command or command sequence | Shell session (local) | Does not affect child processes |
 
 **References:**
 
-- https://wiki.archlinux.org/title/Pass
+- <https://wiki.archlinux.org/title/Pass>
+- <https://www.youtube.com/watch?v=FhwsfH2TpFA>
