@@ -2590,8 +2590,7 @@ A great password manager for Linux.
       Then use: `aws lambda list-functions --region=us-east-1`
 
 8.  There are bunch of plugins that facilitates the access to `pass`:
-
-  - A `pass-import`: `pass` extension for importing data from most existing password managers.
+    - `pass-import`: `pass` extension for importing data from most existing password managers.
 
     ```sh
     # Install it
@@ -2604,20 +2603,21 @@ A great password manager for Linux.
 
     If you've faced `ValueError: Password exceeds max length of 72 characters.`,
     open the file using `nvim passwords.csv` and remove the long passwords rows.
+    - `pass-update`: A pass extension that provides an easy flow for updating passwords.
 
-  - `pass-update`: A pass extension that provides an easy flow for updating passwords.
+      ```sh
+      # Install it
+      paru -S pass-update
+      # Use it:
+      pass update Social/twitter.com
+      ```
 
-    ```sh
-    # Install it
-    paru -S pass-update
-    # Use it:
-    pass update Social/twitter.com
-    ```
+      By default, pass update prints the old password and waits for the user before generating a new one.
+      This behaviour can be changed using the provided options.
 
-    By default, pass update prints the old password and waits for the user before generating a new one. This behaviour can be changed using the provided options.
-
-  - `passff`: This extension will allow you to access your `pass` repository directly from your web browser.
-  - If you use `noctalia-shell` you can use `launcher-pass` plugin on it.
+    - `passff`: This extension will allow you to access your `pass` repository directly from your web browser.
+    - If you use `noctalia-shell` you can use `launcher-pass` plugin on it.
+    - `Android-Password-Store`: To use `pass` on android use this great tool. for the related link check the references.
 
 > [!IMPORTANT]
 >
@@ -2668,3 +2668,4 @@ A great password manager for Linux.
 - <https://github.com/passff/passff>
 - <https://codeberg.org/PassFF/passff#installation>
 - <https://github.com/noctalia-dev/noctalia-plugins/tree/main/launcher-pass>
+- <https://github.com/agrahn/Android-Password-Store>

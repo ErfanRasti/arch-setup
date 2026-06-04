@@ -181,6 +181,9 @@ Add dependencies into the default environment:
 
 ```sh
 pixi add cowpy python
+
+# or specify the version using:
+pixi add cowpy python=3.12
 ```
 
 Activate environment using:
