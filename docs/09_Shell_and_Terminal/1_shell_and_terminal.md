@@ -395,14 +395,14 @@ cp /etc/skel/.bashrc ~/
 
 ## ZSH & OhMyZsh
 
-## Installation
+### Installation
 
 ```bash
 sudo pacman -S zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
-## ZSH Plugins
+### ZSH Plugins
 
 ```bash
 sudo pacman -S zsh-autosuggestions zsh-syntax-highlighting
@@ -454,12 +454,35 @@ If you want to change it for a specific user, you can use this command:
 sudo chsh -s $(which zsh) <username>
 ```
 
+> [!NOTE]
+>
+> If you want to change the `.zshrc` path from `~` to `~/.config/zsh`:
+>
+> ```sh
+> sudo nvim /etc/zsh/zshenv
+> ```
+>
+> Add:
+>
+> ```sh
+> if [[ -z "$XDG_CONFIG_HOME" ]]
+> then
+>   export XDG_CONFIG_HOME="$HOME"/.config
+> fi
+> if [[ -d "$XDG_CONFIG_HOME/zsh" ]]
+> then
+>   export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+> fi
+>
+> ```
+
 **References:**
 
 - <https://gist.github.com/n1snt/454b879b8f0b7995740ae04c5fb5b7df>
 - <https://wiki.archlinux.org/title/Zsh#Fish-like_syntax_highlighting_and_autosuggestions>
 - <https://aur.archlinux.org/packages/zsh-fast-syntax-highlighting>
 - <https://aur.archlinux.org/packages/zsh-autocomplete>
+- <https://www.youtube.com/watch?v=1jE7rCvByHg>
 
 ## Colorize `pacman` and AUR Helpers
 
