@@ -515,6 +515,52 @@ This is an example of its `lua` config:
 - <https://opencode.ai/docs/providers/>
 - <https://opencode.ai/docs/ecosystem/>
 
+### `fabric`
+
+Great tool to use AI tools from command line.
+
+```sh
+paru -S fabric-ai
+```
+
+or install it directly:
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/danielmiessler/fabric/main/scripts/installer/install.sh | bash
+```
+
+For the second installation method you should add `~/.local/bin` to your path:
+
+```fish
+fish_add_path ~/.local/bin
+```
+
+Set it up using:
+
+```sh
+fabric-ai --setup
+```
+
+I choose `ollama` during the setup.
+
+Then use it like this:
+
+```sh
+fabric-ai "hello"
+fabric-ai -y '<video-link>' --pattern extract_ideas --yt-dlp-args='--cookies-from-browser firefox'
+fabric-ai -y '<video-link>' --pattern extract_ideas --yt-dlp-args='--cookies-from-browser firefox' | fabric --pattern create_summary --stream | fabric --pattern write_essay -s
+```
+
+There are lots of patterns you can use. Check:
+
+```sh
+ls -al ~/.config/fabric/patterns/
+```
+
+**References:**
+
+- <https://github.com/danielmiessler/fabric#installation>
+
 ### `aichat`
 
 AIChat is an all-in-one LLM CLI tool featuring Shell Assistant, CMD & REPL Mode, RAG, AI Tools & Agents, and More.
