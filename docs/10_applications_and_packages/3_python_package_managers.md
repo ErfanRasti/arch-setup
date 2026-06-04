@@ -158,3 +158,40 @@ pip list --outdated
 # Update all outdated packages
 pip list --outdated --format=freeze | cut -d= -f1 | xargs -n1 pip install -U
 ```
+
+## Pixi
+
+Pixi is a fast, modern, and reproducible package management tool for developers of all backgrounds.
+Pixi defaults to the biggest Conda package repository, conda-forge, which contains over 30,000 packages.
+
+Install it using:
+
+```sh
+sudo pacman -S pixi
+```
+
+Initialize a workspace:
+
+```sh
+pixi init hello-world
+cd hello-world
+```
+
+Add dependencies into the default environment:
+
+```sh
+pixi add cowpy python
+```
+
+Activate environment using:
+
+```sh
+pixi shell
+```
+
+It has lots of options and intended to as the most feature-rich Python package management tool. Check the docs for more information.
+
+**References:**
+
+- <https://pixi.prefix.dev/latest/>
+- <https://pixi.prefix.dev/latest/workspace/environment/#activation>

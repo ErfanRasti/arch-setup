@@ -1303,7 +1303,7 @@ fish_config theme save "fish default"
 set_color normal
 ```
 
-This will inherit the terminal colors
+This will inherit the terminal colors.
 
 ### starship
 
