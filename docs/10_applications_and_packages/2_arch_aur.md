@@ -2589,6 +2589,36 @@ A great password manager for Linux.
       ```
       Then use: `aws lambda list-functions --region=us-east-1`
 
+8.  There are bunch of plugins that facilitates the access to `pass`:
+
+  - A `pass-import`: `pass` extension for importing data from most existing password managers.
+
+    ```sh
+    # Install it
+    paru -S pass-import
+    # Import your password .csv file
+    pass import firefox passwords.csv
+    # Import to an specific folder using:
+    pass import firefox passwords.csv -p Sites
+    ```
+
+    If you've faced `ValueError: Password exceeds max length of 72 characters.`,
+    open the file using `nvim passwords.csv` and remove the long passwords rows.
+
+  - `pass-update`: A pass extension that provides an easy flow for updating passwords.
+
+    ```sh
+    # Install it
+    paru -S pass-update
+    # Use it:
+    pass update Social/twitter.com
+    ```
+
+    By default, pass update prints the old password and waits for the user before generating a new one. This behaviour can be changed using the provided options.
+
+  - `passff`: This extension will allow you to access your `pass` repository directly from your web browser.
+  - If you use `noctalia-shell` you can use `launcher-pass` plugin on it.
+
 > [!IMPORTANT]
 >
 > Think of GPG/PGP encryption like a padlock mailbox:
@@ -2632,3 +2662,9 @@ A great password manager for Linux.
 
 - <https://wiki.archlinux.org/title/Pass>
 - <https://www.youtube.com/watch?v=FhwsfH2TpFA>
+- <https://www.passwordstore.org/>
+- <https://github.com/roddhjav/pass-import>
+- <https://github.com/roddhjav/pass-update>
+- <https://github.com/passff/passff>
+- <https://codeberg.org/PassFF/passff#installation>
+- <https://github.com/noctalia-dev/noctalia-plugins/tree/main/launcher-pass>
