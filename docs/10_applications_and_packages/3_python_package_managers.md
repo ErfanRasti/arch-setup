@@ -192,7 +192,22 @@ Activate environment using:
 pixi shell
 ```
 
+Simply run `exit` to exit the `pixi`:
+
+```sh
+exit
+```
+
 It has lots of options and intended to as the most feature-rich Python package management tool. Check the docs for more information.
+
+| Feature              | Conda                        | Pip / Virtualenv                    | Pixi                                            |
+| :------------------- | :--------------------------- | :---------------------------------- | :---------------------------------------------- |
+| **Language Support** | Python, R, C++, Fortran      | Python only                         | Multi-language (Python, R, C++, etc.)           |
+| **Package Sources**  | `conda-forge`, `bioconda`    | PyPI                                | Hybrid (Conda-forge **and** PyPI)               |
+| **Reproducibility**  | Weak (no lockfile)           | `requirements.txt` (can be fragile) | Excellent (`pixi.lock` guarantees exact builds) |
+| **Speed**            | Slow (especially the solver) | Fast                                | Very Fast (uses the `uv` solver under the hood) |
+| **User Experience**  | Global `activate` command    | Different tools for envs and deps   | Project-centric, intuitive commands             |
+| **Extra Features**   | Basic                        | None                                | Built-in Tasks (like `pixi run test`)           |
 
 **References:**
 
