@@ -62,7 +62,7 @@ The point of `linux-lts` is that every time the `linux` kernel has been crashed 
    bootctl list
    ```
 
-The fallback `initramfs` is a "catch-all" version designed to work in scenarios where the original initramfs fails, such as when new hardware is added or critical modules are missing from the original image. It is used as a backup to ensure booting in case of issues with the default initramfs, such as hardware changes or misconfigured hooks.
+The fallback `initramfs` is a "catch-all" version designed to work in scenarios where the original initramfs fails, such as when new hardware is added or critical modules are missing from the original image. It is used as a backup to ensure booting in case of issues with the default `initramfs`, such as hardware changes or misconfigured hooks.
 
 Using both `linux` and `linux-lts` kernels allows for a fallback option. If an update to the mainline kernel causes issues (e.g., hardware incompatibility, bugs), the LTS kernel provides a stable alternative for booting and troubleshooting.
 
@@ -408,20 +408,46 @@ After all:
 sudo mkinitcpio -P
 ```
 
+> [!IMPORTANT]
+>
+> **Initramfs =** temporary RAM filesystem loaded at the very start of boot for essential drivers (disk, encryption, early keyboard, etc.).
+>
+> **When would you need to run `mkinitcpio`?**
+>
+> For changes made in `/etc/modprobe.d/*.conf`:
+>
+> - **Reboot is usually sufficient** — `mkinitcpio` is **not required** in most cases.
+> - To apply changes **without rebooting**:
+>
+>   ```bash
+>   sudo modprobe -r <module> && sudo modprobe <module>
+>   ```
+>
+> **When to run `mkinitcpio -P` after editing `/etc/modprobe.d/`?**
+>
+> **Run `sudo mkinitcpio -P`** only if your changes affect modules that load **early in the boot process**:
+>
+> - The module is listed in `MODULES=` array in `/etc/mkinitcpio.conf`
+> - You're blacklisting or setting options for an early-boot module (e.g. storage, graphics, keyboard, network used in `initramfs`)
+> - You need the change to be available **inside the `initramfs`**.
+>   It means that the modified module option must be applied very early during boot, before the real root filesystem is mounted.
+>
+> **In all other cases** (most runtime drivers like USB, WiFi, Bluetooth, etc.): **Not needed** — a simple reboot is enough.
+
 **References:**
 
 - <https://wiki.archlinux.org/title/Kernel_module>
 
 ## Custom kernels
 
-1. Create a folder dedicated to the source code:
+1.  Create a folder dedicated to the source code:
 
     ```bash
     mkdir ~/kernelbuild
     cd ~/kernelbuild
     ```
 
-2. Go to <https://cdn.kernel.org/pub/linux/kernel/> select your desired kernel (probably the latest release). Then download the kernel and its signature:
+2.  Go to <https://cdn.kernel.org/pub/linux/kernel/> select your desired kernel (probably the latest release). Then download the kernel and its signature:
 
     ```bash
 
@@ -432,7 +458,7 @@ sudo mkinitcpio -P
 
     `A.B.C` should be replaced with your desired version.
 
-3. Run this:
+3.  Run this:
 
     ```bash
     gpg --list-packets linux-A.B.C.tar.sign | grep -i keyid | awk '{print $NF}' | xargs gpg --recv-keys
@@ -443,7 +469,7 @@ sudo mkinitcpio -P
     - Retrieves the corresponding public key from a keyserver.
     - Allows you to later verify the file's signature with `gpg --verify`.
 
-4. Extract the `.xz` file and verify it:
+4.  Extract the `.xz` file and verify it:
 
     ```bash
     unxz linux-A.B.C.tar.xz
@@ -452,33 +478,33 @@ sudo mkinitcpio -P
 
     _Do not proceed if this does not result in output that includes the string "Good signature"._
 
-5. Unpack the kernel source and transfer the ownership of a folder with every file in it:
+5.  Unpack the kernel source and transfer the ownership of a folder with every file in it:
 
     ```bash
     tar -xvf linux-A.B.C.tar
     chown -R $USER:$USER linux-A.B.C/
     ```
 
-6. Then:
+6.  Then:
 
     ```bash
     cd linux-A.B.C/
     make mrproper
     ```
 
-7. Configure your kernel:
+7.  Configure your kernel:
     This method will create a `.config` file for the custom kernel using the default Arch kernel settings. If a stock Arch kernel is running, you can use the following command inside the custom kernel source directory:
 
     ```bash
     zcat /proc/config.gz > .config
     ```
 
-8. Now you can compile the kernel and install it:
+8.  Now you can compile the kernel and install it:
 
-        ```bash
-        make
-        make modules
-        ```
+    ```bash
+    make
+    make modules
+    ```
 
 **References:**
 
