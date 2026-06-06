@@ -8,6 +8,15 @@
    sudo mv ./docker /usr/local/bin
    ```
 
+   > [!NOTE]
+   >
+   > To see a binary file you can use:
+   >
+   > ```sh
+   > hexdump -C YOUR-BINARY-FILE > binary-sample.txt
+   > nvim binary-sample.txt
+   > ```
+
 2. Download the latest Arch package from the [Release notes](https://docs.docker.com/desktop/release-notes/).
 
    Validate the downloaded file similar to [this](./3_anaconda.md) using `python`.
@@ -28,7 +37,6 @@
    ```
 5. Select accept on startup of the applications.
 6. If you couldn't login to your docker account follow this instruction:
-
    1. Install pre-requirements:
       ```bash
       sudo pacman -S pass
