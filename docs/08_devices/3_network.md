@@ -1416,3 +1416,90 @@ umount ~/remote
 > When you log in via SSH, `sshd` starts a regular login shell. This shell is not a child process of your user's `systemd` instance.
 > Therefore, it completely ignores the `systemd` environment files, and your `EDITOR` variable never gets loaded.
 > The best practice is to add them to your shell configuration files, i.e, `~/.config/fish/config.fish` or `~/.zshrc`.
+
+### Troubleshooting
+
+#### Poor wifi quality shared WiFi and Bluetooth
+
+`rtl8723be` module WiFi and Bluetooth share the same 2.4 GHz antenna and hardware path.
+When Bluetooth is active, WiFi throughput tanks because:
+
+1. The single antenna is shared between WiFi and BT
+2. Power-saving features (`ips`, `fwlps`) cause additional latency when switching between modes
+3. Default antenna selection (ant_sel=0) isn't optimal for coexistence
+
+To fix it:
+Create `/etc/modprobe.d/rtl8723be.conf` with:
+
+```sh
+sudoedit /etc/modprobe.d/rtl8723be.conf
+```
+
+```conf
+options rtl8723be ant_sel=2 ips=0 fwlps=0
+```
+
+| Param       | Value                       | Why                                           |
+| :---------- | :-------------------------- | :-------------------------------------------- |
+| `ant_sel=2` | Force antenna diversity     | Better handles shared antenna with BT         |
+| `ips=0`     | Disable link power save     | Prevents WiFi from sleeping when BT is active |
+| `fwlps=0`   | Disable firmware power save | Same reason — reduces mode-switching latency  |
+
+Then reboot or run:
+
+```sh
+sudo modprobe -r rtl8723be && sudo modprobe rtl8723be
+```
+
+Check the parameters like this:
+
+```sh
+cat /sys/module/rtl8723be/parameters/ant_sel
+cat /sys/module/rtl8723be/parameters/ips
+cat /sys/module/rtl8723be/parameters/fwlps
+```
+
+If the problem persists after the modprobe config, try `ant_sel=1` instead of `2`.
+
+The next fix is to disable powersave for WiFi network. Create `/etc/NetworkManager/conf.d/wifi-powersave-off.conf`:
+
+```sh
+sudoedit /etc/NetworkManager/conf.d/wifi-powersave-off.conf
+```
+
+```conf
+[connection]
+wifi.powersave = 2
+```
+
+Then restart `NetworkManager`:
+
+```sh
+sudo systemctl restart NetworkManager
+```
+
+Usually `rtl8723be` device isn't related to `iwlwifi` but the problem still exists for you, use:
+
+```sh
+sudoedit /etc/modprobe.d/iwlwifi.conf
+```
+
+```conf
+options iwlwifi bt_coex_active=0
+```
+
+```sh
+sudo modprobe -r iwlwifi && sudo modprobe iwlwifi
+```
+
+Finally check the parameter:
+
+```sh
+cat /sys/module/iwlwifi/parameters/bt_coex_active
+```
+
+**References:**
+
+- <https://wiki.archlinux.org/title/Network_configuration/Wireless#rtl8723ae/rtl8723be>
+- <https://wireless.docs.kernel.org/en/latest/en/users/drivers/iwlwifi.html#wi-fi-bluetooth-coexistence>
+- <https://bbs.archlinux.org/viewtopic.php?id=208472>
