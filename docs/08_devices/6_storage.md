@@ -132,6 +132,18 @@ Finally you can use `timeshift` to restore or turn back to a previous snapshot u
 sudo timeshift --restore
 ```
 
+> [!IMPORTANT]
+>
+> If you get emergency mode after `timeshift` restore, the `/etc/fstab` is probably messed up. To fix it, run this line in emergency mode:
+>
+> ```sh
+> sudo btrfs subvolume list /
+> ```
+>
+> Then note the sub-volume IDs related to `@` and `@home` and change `subvolid` related to `/@` and `/@home` on the `/etc/fstab` according to the `btrfs subvolume list /`.
+>
+> For simplicity you can remove all the `subvolid=` from `/etc/fstab`; because it will automatically detect the sub-volumes based on `subvol=` which is the name of each sub-volume.
+
 ##### Swapfile got removed after restoring a snapshot on btrfs
 
 They are actually present in this directory:
