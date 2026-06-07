@@ -4,7 +4,7 @@
 
 One of the easy alternatives to make swap partition is zram which compresses ram files. This method uses cpu a bit to compress the RAM.
 
-```shell
+```sh
 sudo pacman -S zram-generator
 sudo nano /etc/systemd/zram-generator.conf
 ```
@@ -124,6 +124,83 @@ I usually don't prefer this method because I have good amount of RAM. I use manu
      - Second line creates `swapfile` under the `/swap` sub-volume with the determined size.
      - Third line makes the `swapfile` on.
      - The last line adds the `swapfile` to fstab to make it available at startup.
+
+     > [!IMPORTANT]
+     >
+     > When you create `btrfs` subvolume likt this, your swap subvolume is nested inside `@` (top level 256), not as a separate top-level subvolume.
+     > This is why it doesn't show in `lsblk` and why Timeshift still touches it.
+     > When swap is nested under `@` (ID 256), Timeshift snapshots of `@` include the swap subvolume's metadata location,
+     > even though the subvolume itself isn't snapshotted. This causes the physical block offset to potentially change during restore.
+     >
+     > To fix it use this instruction instead:
+     >
+     > ```sh
+     > # 1. Delete the previously created swap partition
+     > sudo swapoff /swap/swapfile
+     > sudo btrfs subvolume delete /swap
+     >
+     > # 2. Mount your Btrfs root to a temporary location
+     > sudo mkdir -p /mnt/btrfs
+     > sudo mount -t btrfs /dev/mapper/root /mnt/btrfs
+     >
+     > # 3. Delete the nested swap subvolume (Optional: instead of sudo btrfs subvolume delete /swap)
+     > sudo btrfs subvolume delete /mnt/btrfs/@/swap
+     >
+     > # 4. Create NEW top-level swap subvolume (at top level 5, same as @)
+     > sudo btrfs subvolume create /mnt/btrfs/@swap
+     >
+     > # 5. Unmount the temporary mount
+     > sudo umount /mnt/btrfs
+     >
+     > # 6. Create mount point and mount the new swap subvolume
+     > sudo mkdir -p /swap
+     > sudo mount -t btrfs -o subvol=@swap /dev/mapper/root /swap
+     >
+     > # 7. Create the swapfile inside the new top-level subvolume
+     > sudo btrfs filesystem mkswapfile --size 32g --uuid clear /swap/swapfile
+     >
+     > # 8. Secure permissions
+     > sudo chmod 0600 /swap/swapfile
+     >
+     > # 9. Add to fstab (NOTE: subvol=@swap is critical)
+     > ## Get the UUID of your btrfs partition
+     > BTRFS_UUID=$(sudo blkid -s UUID -o value /dev/mapper/root)
+     > ## Get the subvolume ID of @swap
+     > SWAP_SUBVOL_ID=$(sudo btrfs subvolume list / | grep "@swap" | awk '{print $2}')
+     >
+     > ## Add to fstab with subvolid
+     > echo "# /dev/mapper/ainstsda2 - Swap subvolume" | sudo tee -a /etc/fstab
+     > echo "UUID=$BTRFS_UUID /swap btrfs rw,noatime,nodatacow,compress=no,ssd,space_cache=v2,subvolid=$SWAP_SUBVOL_ID,subvol=/@swap 0 0" | sudo tee -a /etc/fstab
+     >
+     > # 10. Add swap entry to fstab
+     > sudo bash -c "echo # Swap partition >> /etc/fstab"
+     > sudo bash -c "echo /swap/swapfile none swap defaults,pri=60 0 0 >> /etc/fstab"
+     > ```
+     >
+     > For swap subvolume specifically:
+     >
+     > - Swapfile is read/written constantly by the kernel
+     > - Without `noatime`, every swap operation would update timestamps
+     > - Massive unnecessary write overhead on your SSD
+     >   Remove `compress=zstd` (very important for swap):
+     > - Swapfiles on Btrfs should not use compression. It can cause issues with the swap subsystem.
+     > - `nodatacow` is also recommended (it automatically disables compression and datasum).
+     >   Btrfs uses CoW by default. When the kernel writes to a swapfile, it expects direct, in-place writes (like on a raw partition).
+     >   CoW would create new copies of blocks instead of overwriting them, which breaks swap functionality and can lead to corruption or severe performance issues.
+     >
+     > To recap the flags:
+     >
+     > - `compress=no`: Explicitly turns off compression for this mount point.
+     > - `nodatacow`: Disables Copy-on-Write globally for the subvolume (added safety).
+     > - `noatime`: Reduces write cycles on your SSD.
+     >
+     > Also note that `pri=60` changes the priority of the swap partition. You can check it in `swapon --show` after `reboot`.
+     > To reload the `swap` priority without reboot:
+     >
+     > ```sh
+     > sudo systemctl daemon-reload
+     > sudo systemctl restart swap-swapfile.swap
+     > ```
 
      To see the activated `swapfile` and the percent of usage run:
 
