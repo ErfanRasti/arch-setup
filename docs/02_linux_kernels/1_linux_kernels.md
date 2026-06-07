@@ -112,7 +112,7 @@ These parameters can be added at the end of the `options` line:
    ```
 
 2. Make sure you added `quiet splash` into your boot entries.
-3. Add `plymouth` to the HOOKS array in mkinitcpio.conf:
+3. Add `plymouth` to the HOOKS array in `mkinitcpio.conf`:
 
    ```bash
    sudo nano /etc/mkinitcpio.conf
