@@ -436,6 +436,22 @@ sudo dmesg | grep -iE 'btusb|rtl|firmware'
    To check it you can restart `powertop` and check the status of `usb-nosuspend.service`;
    if it is triggered at the time of restart without any error, it is alright.
 
+   > [!IMPORTANT]
+   >
+   > **`/etc/systemd/system` (System Services)**
+   >
+   > - Runs as: root or a specified system user
+   > - Starts: at boot (before any user logs in)
+   > - Scope: available to all users on the system
+   > - Use when: Services need to run regardless of who's logged in (e.g., web servers, databases, monitoring agents)
+   >
+   > **`/etc/systemd/user` (User Services)**
+   >
+   > - Runs as: the logged-in user (your UID)
+   > - Starts: when you log in (user session starts)
+   > - Scope: only for that specific user
+   > - Use when: Services should run under your user account and stop when you log out (e.g., user-specific daemons, GUI apps, backup scripts)
+
 4. Sometimes the parameters got reset after suspension.
    To prevent it you should add a drop-in script in `systemd-suspend.service`:
 
