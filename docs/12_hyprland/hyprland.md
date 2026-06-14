@@ -175,6 +175,14 @@ Copy the name of your desired monitor (Mine was `eDP-1`); Then go back to `hyprl
 monitor=eDP-1,preferred,auto,1.25
 ```
 
+> [!NOTE]
+>
+> To enable fractional scaling on some applications use:
+>
+> ```sh
+> echo "Xft.dpi: 125" | xrdb -merge
+> ```
+
 ### XWayland
 
 In the above config you will encounter some bluriness in `XWayland` applications. To fix it add these lines to the `hyprland.conf`:
