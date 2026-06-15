@@ -57,6 +57,7 @@ flatpak install flathub de.haeckerfelix.Shortwave
 flatpak install flathub io.github.seadve.Mousai
 flatpak install flathub de.haeckerfelix.AudioSharing
 flatpak install flathub io.bassi.Amberol
+flatpak install flathub com.jeffser.Nocturne
 ```
 
 - `org.gnome.SoundRecorder`: A sound recorder application.
@@ -79,6 +80,7 @@ flatpak install flathub io.bassi.Amberol
 - `de.haeckerfelix.AudioSharing`: Share your computer audio
 - `io.bassi.Amberol`: Amberol is a music player with no delusions of grandeur. If you just want to play music available on your local system then Amberol is the music player you are looking for.
   Also the `Background Playback` option can be a little annoying. You can disable it easily under three parallel lines on the application.
+- `flathub com.jeffser.Nocturne`: Bring your music library together
 
 ### Photo
 
