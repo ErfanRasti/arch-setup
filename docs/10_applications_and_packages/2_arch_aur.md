@@ -1817,7 +1817,18 @@ Desktop sharing suffers from unmatched screen resolutions.
 
    I personally made it work using this command (I'm on Intel Core i7 8th Gen) but for other cpus you should install something else. Check archiwiki in the references.
 
-2. To make GAPPS work you should register your device. First you should find your android id:
+   > [!NOTE]
+   >
+   > For network access, if you use `ufw`:
+   >
+   > ```sh
+   > sudo ufw allow 67
+   > sudo ufw allow 53
+   > sudo ufw default allow FORWARD
+   > ```
+
+2. If you get `This device isn't Play Protect certified` error you need to enter waydroid shell and retrieve the android id.
+   It makes GAPPS work you should register your device:
 
    Enter Waydroid shell:
 
@@ -1825,7 +1836,7 @@ Desktop sharing suffers from unmatched screen resolutions.
    sudo waydroid shell
    ```
 
-   Find the Waydroid id:
+   Find the `waydroid` id:
 
    ```shell
    ANDROID_RUNTIME_ROOT=/apex/com.android.runtime ANDROID_DATA=/data ANDROID_TZDATA_ROOT=/apex/com.android.tzdata ANDROID_I18N_ROOT=/apex/com.android.i18n sqlite3 /data/data/com.google.android.gsf/databases/gservices.db "select * from main where name = \"android_id\";"
