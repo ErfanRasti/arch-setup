@@ -612,3 +612,24 @@ A great password manager for Linux.
 - <https://codeberg.org/PassFF/passff#installation>
 - <https://github.com/noctalia-dev/noctalia-plugins/tree/main/launcher-pass>
 - <https://github.com/agrahn/Android-Password-Store>
+
+### AUR Package Health Check
+
+After different attacks on the AUR, I highly recommend to use `aur-scanner` to scan your packages and make sure they are not malicious.
+To do this:
+
+```sh
+paru -S aur-scanner
+```
+
+and use:
+
+```sh
+aur-scan system --rescan
+```
+
+Then navigate between different problematic packages and try to fix them.
+
+**References:**
+
+- <https://github.com/KiefStudioMA/ks-aur-scanner>
