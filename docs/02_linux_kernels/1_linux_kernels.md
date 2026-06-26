@@ -220,6 +220,19 @@ After all of these regenerate `fstab`:
 genfstab -U /mnt >/mnt/etc/fstab
 ```
 
+> [!NOTE]
+>
+> After changing the `/etc/fstab`, to check it immediately and make sure that the added entry works fine, you can do something like this:
+> Consider you want to add `/boot` entry to your `/etc/fstab`. After changing the `fstab` run these:
+>
+> ```sh
+> sudo systemctl daemon-reload
+> sudo mount /boot
+> mount | grep /boot
+> ```
+>
+> Then you can see that the `/boot` partition is mounted properly.
+
 To reinstall your `pacman` packages:
 
 ```bash
@@ -437,6 +450,80 @@ sudo mkinitcpio -P
 **References:**
 
 - <https://wiki.archlinux.org/title/Kernel_module>
+
+## Fallback kernels
+
+Fallback kernels are used when the `mkinitcpio` on the main kernel fails.
+They are used as a backup to fallback to them whenever anything on the main kernel goes wrong.
+To use them you nedd to change:
+
+```sh
+sudo nvim /etc/mkinitcpio.d/linux.preset
+```
+
+```preset
+# mkinitcpio preset file for the 'linux' package
+
+#ALL_config="/etc/mkinitcpio.conf"
+ALL_kver="/boot/vmlinuz-linux"
+
+PRESETS=('default' 'fallback')
+
+#default_config="/etc/mkinitcpio.conf"
+default_image="/boot/initramfs-linux.img"
+#default_uki="/efi/EFI/Linux/arch-linux.efi"
+#default_options="--splash /usr/share/systemd/bootctl/splash-arch.bmp"
+
+#fallback_config="/etc/mkinitcpio.conf"
+fallback_image="/boot/initramfs-linux-fallback.img"
+#fallback_uki="/efi/EFI/Linux/arch-linux-fallback.efi"
+fallback_options="-S autodetect"
+```
+
+I explain each line from line one to the end:
+
+- `#ALL_config="/etc/mkinitcpio.conf"`: This would set a global configuration file for ALL presets. Since it's commented, each preset uses its own config (defaulting to `/etc/mkinitcpio.conf`).
+- `ALL_kver="/boot/vmlinuz-linux"`: This sets the kernel image path for ALL presets. This is the actual Linux kernel binary.
+- `PRESETS=('default' 'fallback')`: This defines which presets will be generated. Currently, both default and fallback are enabled.
+- `#default_config="/etc/mkinitcpio.conf"`: This would override the config file for the default preset. Since it's commented, it uses the global default (which is `/etc/mkinitcpio.conf`).
+- `default_image="/boot/initramfs-linux.img"`: This sets the output path for the default initramfs image. This is the main initramfs used for normal boot.
+- `#default_uki="/efi/EFI/Linux/arch-linux.efi"`: This would generate a Unified Kernel Image (UKI) - a single EFI executable containing the kernel, initramfs, and microcode. Useful for UEFI secure boot setups.
+- `#default_options="--splash /usr/share/systemd/bootctl/splash-arch.bmp"`: If uncommented, this would add a splash screen image to the UKI (only relevant if default_uki is enabled).
+- `#fallback_config="/etc/mkinitcpio.conf"`: Same as above but for the fallback preset.
+- `fallback_image="/boot/initramfs-linux-fallback.img"`: This sets the output path for the fallback initramfs image. This is a backup initramfs with more generic drivers (no autodetect).
+- `#fallback_uki="/efi/EFI/Linux/arch-linux-fallback.efi"`: Would generate a fallback UKI if uncommented.
+- `fallback_options="-S autodetect"`: This adds options specifically for the fallback preset. The -S autodetect option removes the autodetect hook from the build process. Without autodetect, the initramfs includes drivers for ALL storage controllers, filesystems, and hardware, making it more compatible but larger and slower to boot.
+
+To disable the fallback:
+
+```
+# mkinitcpio preset file for the 'linux' package
+
+#ALL_config="/etc/mkinitcpio.conf"
+ALL_kver="/boot/vmlinuz-linux"
+#ALL_kerneldest="/boot/vmlinuz-linux"
+
+PRESETS=('default')
+#PRESETS=('default' 'fallback')
+
+#default_config="/etc/mkinitcpio.conf"
+default_image="/boot/initramfs-linux.img"
+#default_uki="/efi/EFI/Linux/arch-linux.efi"
+#default_options="--splash /usr/share/systemd/bootctl/splash-arch.bmp"
+
+#fallback_config="/etc/mkinitcpio.conf"
+#fallback_image="/boot/initramfs-linux-fallback.img"
+#fallback_uki="/efi/EFI/Linux/arch-linux-fallback.efi"
+#fallback_options="-S autodetect"
+```
+
+You can also delete the fallback image:
+
+```sh
+sudo rm /boot/initramfs-linux-fallback.img
+```
+
+You can do the same for `linux-lts` or any other kernel too.
 
 ## Custom kernels
 
