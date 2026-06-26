@@ -41,7 +41,9 @@ total LBAs written and you can find it on `sudo smartctl -A /dev/sda`.
 | **`tbw_rated`**                    | Manufacturer-rated endurance (in TBW)    | Drive datasheet                        | `400` TBW                                                          | Replace with spec for your capacity/model (e.g., 250 GB = 100, 500 GB = 200, 2 TB = 500) |
 | **`awk` field number ($4 or $10)** | Column position in `smartctl -A` output  | Depends on smartctl version & drive    | Works for WD Blue output shown                                     | Adjust if output format differs (e.g., RAW VALUE column shifts)                          |
 
-> **Note:** Always confirm SMART attribute IDs and sector size for your specific SSD model.
+> [!NOTE]
+>
+> Always confirm SMART attribute IDs and sector size for your specific SSD model.
 > The two calculation methods are identical in logic but rely on these hardware-specific parameters.
 
 To check the left space on your disk or drive use this command:
@@ -143,6 +145,8 @@ sudo timeshift --restore
 > Then note the sub-volume IDs related to `@` and `@home` and change `subvolid` related to `/@` and `/@home` on the `/etc/fstab` according to the `btrfs subvolume list /`.
 >
 > For simplicity you can remove all the `subvolid=` from `/etc/fstab`; because it will automatically detect the sub-volumes based on `subvol=` which is the name of each sub-volume.
+>
+> Also if you end up in emergency mode after restore, remember to hold the `/etc/fstab` as minimal as possible (include `/`, `/home`, `/var/log`, `/var/cache/pacman/pkg`, `/swap`, and `/boot`), although `/boot` is optional too and you can emit it too.
 
 ##### Swapfile got removed after restoring a snapshot on btrfs
 

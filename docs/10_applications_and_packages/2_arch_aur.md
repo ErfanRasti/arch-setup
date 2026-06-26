@@ -2375,3 +2375,49 @@ sudo pacman -S wishlist
 - <https://github.com/byawitz/ggh>
 - <https://github.com/charmbracelet/wishlist>
 - <https://github.com/moul/awesome-ssh#ssh-keys--authentication>
+
+## KDE Plasma
+
+KDE is a great and popular desktop environment. You can install the `plasma` or `plasma-meta` package for it. Meta-packages are rigid but automatic (get everything); groups are flexible but manual (pick and choose). You can remove a package under a `plasma` group but to remove a package under `plasma-meta` you should uninstall the whole `meta-package` itself. Also note that `plasma` is more complete and have all the `plasma` tools.
+
+I go with:
+
+```sh
+sudo pacman -S plasma
+```
+
+For apps package:
+
+```sh
+sudo pacman -S kde-applications
+```
+
+Usually installing KDE, changes the gnome themes and icons.
+To reset them:
+
+```sh
+gsettings set org.gnome.desktop.interface font-name 'Adwaita Sans 11'
+gsettings set org.gnome.desktop.interface document-font-name 'Adwaita Sans 12'
+gsettings set org.gnome.desktop.interface monospace-font-name 'Adwaita Mono 11'
+gsettings set org.gnome.desktop.interface icon-theme 'Adwaita'
+gsettings set org.gnome.desktop.interface cursor-theme Bibata-Modern-Classic
+gsettings set org.gnome.desktop.interface text-scaling-factor 1.25
+gsettings set org.gnome.desktop.wm.preferences button-layout :minimize,maximize,close
+```
+
+To prevent `plasma` from changing the `gtk` files, you can make them immutable (it locks the file completely, it prevents all changes to a file — including root and the file owner — regardless of permissions. Even `chmod`, `rm`, or writes cannot touch it until `chattr -i` removes the flag.):
+
+```sh
+chattr +i ~/.config/gtk-3.0/settings.ini ~/.config/gtk-4.0/settings.ini
+```
+
+Also some apps like `google-chrome` use different password managing strategy in `plasma` than `gnome`. To use your login info and cookies for both `gnome` and `plasma` you should add a flag to your `google-chrome`:
+
+```sh
+google-chrome-stable --password-store=basic
+```
+
+**References:**
+
+- https://wiki.archlinux.org/title/KDE
+- https://wiki.archlinux.org/title/Meta_package_and_package_group

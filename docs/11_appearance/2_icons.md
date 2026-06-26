@@ -149,6 +149,8 @@ paru -S flat-remix
 
 #### Application icon appearing in the corner of window
 
+This usually happens after installing `kde-plasma` along with `gnome`.
+
 ```bash
 gsettings set org.gnome.desktop.wm.preferences button-layout :minimize,maximize,close
 ```
