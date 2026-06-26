@@ -91,10 +91,10 @@ For me it wasn't activated.
    For me:
 
    ```bash
-   sbctl sign -s /boot/vmlinuz-linux
-   sbctl sign -s /boot/vmlinuz-linux-lts
-   sbctl sign -s /boot/EFI/BOOT/BOOTX64.EFI
-   sbctl sign -s /boot/EFI/systemd/systemd-bootx64.efi
+   sudo sbctl sign -s /boot/vmlinuz-linux
+   sudo sbctl sign -s /boot/vmlinuz-linux-lts
+   sudo sbctl sign -s /boot/EFI/BOOT/BOOTX64.EFI
+   sudo sbctl sign -s /boot/EFI/systemd/systemd-bootx64.efi
    ```
 
    I have two kernels so I should sign `vmlinuz-linux-lts` kernel too.

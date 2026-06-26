@@ -28,6 +28,17 @@ sudo pacman -S bluez bluez-utils blueman
 
 `blueman` is very useful to manage Bluetooth devices. It gives some information about battery of connected devices.
 
+> [!HINT]
+>
+> To reset Bluetooth and remove all the connected devices:
+>
+> ```sh
+> sudo rm -r /var/lib/bluetooth
+> sudo systemctl restart bluetooth
+> ```
+>
+> Also to reset the bluetooth module (and all the other hardware modules), turn off your system, then hold the power button for more than 30 seconds. Then if will reset any power redundancy in the chips and capacitors and now you can turn on your reset system.
+
 ### Auto-connect
 
 To auto-connect Bluetooth devices after `suspend` mode or after turning on the bluetooth again I use this `AUR` package:
