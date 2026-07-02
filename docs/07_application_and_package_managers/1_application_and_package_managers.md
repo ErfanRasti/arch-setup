@@ -831,8 +831,8 @@ Nix is a nice package manager based on declarative programming. I used the follo
 
 ```bash
 sudo pacman -S nix
-sudo systemctl enable nix-daemon
-sudo systemctl start nix-daemon
+sudo systemctl enable nix-daemon.service
+sudo systemctl start nix-daemon.service
 sudo groupadd nix-users
 sudo gpasswd -a $USER nix-users
 nix-channel --add https://nixos.org/channels/nixpkgs-unstable

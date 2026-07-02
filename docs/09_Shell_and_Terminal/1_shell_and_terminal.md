@@ -800,6 +800,28 @@ View jumps using `:jumps`.
 > use `sudoedit` to do this. To set your default editor you can add `EDITOR=nvim`
 > to `~/.config/environment.d/envvars.conf` and then `sudoedit <FILE>` will open
 > the file using your user `nvim` configurations.
+> You can also set it in the `root` by:
+>
+> ```sh
+> sudo nvim /etc/environment
+> ```
+>
+> and add:
+>
+> ```sh
+> # Set Editor
+> EDITOR=nvim
+> VISUAL=nvim
+> ```
+>
+> - `EDITOR`: The line-based editor (old-school, terminal-only)
+> - `VISUAL`: The full-screen editor (modern, visual interface)
+>
+> In practice today, they're usually set to the same thing, and most programs check VISUAL first, then fall back to EDITOR.
+>
+> Also there is a variable called `SUDO_EDITOR` too;
+> This is the most specific variable, designed to override all other editor settings for `sudoedit` and `sudo -e`.
+> If you only want to change the editor for commands run with `sudo`, this is the one to set.
 
 ### Troubleshooting
 
