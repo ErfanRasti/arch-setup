@@ -20,6 +20,24 @@ Continue with the browser and login to your GitHub account.
 Choose according to this:
 `GitHub.com > HTTPS > Y > Login with a web browser > Copy the code and continue`.
 
+> [!WARNING]
+>
+> Sometimes `git` cannot detect `gh` because the `gh` path is hardcoded into the credentials and you get the following message when you push something to your repo:
+>
+> ```
+> /usr/bin/gh auth git-credential get: line 1: /usr/bin/gh: No such file or directory
+> Username for 'https://github.com': 
+> ```
+> To fix this:
+> ```sh
+> git config --global --replace-all credential.https://github.com.helper "!gh auth git-credential"
+> git config --global --replace-all credential.https://gist.github.com.helper "!gh auth git-credential"
+> ```
+> and you can check these using:
+> ```sh
+> git config --global --show-origin --list | grep credential
+> ```
+
 ### Ignore Previously Committed File
 
 Add your desired file to the `.gitignore` list. Then:
@@ -1088,7 +1106,7 @@ sudo pacman -S zellij
 ```bash
 sudo pacman -S duf exa eza git-delta zoxide glow yazi trash-cli \
   tree superfile television wiremix feh cava libcanberra lolcat fortune-mod figlet toilet
-paru -S lazydocker-bin ascii-image-converter-bin gitbutler-bin fum-bin gitfetch-python figlet-fonts
+paru -S lazydocker-bin ascii-image-converter-bin gitbutler-bin fum-bin gitfetch-python figlet-fonts-extra
 ```
 
 - `duf` – A modern, user-friendly alternative to `df` for checking disk usage.
@@ -1194,7 +1212,7 @@ paru -S lazydocker-bin ascii-image-converter-bin gitbutler-bin fum-bin gitfetch-
 
 - `fortune` - a simple program that displays random poignant, inspirational, silly or snide phrases from a database of quotations.
 - `figlet` - A program for making large letters out of ordinary text.
-  You can use more fonts using `figlet-fonts`. You can download them manually from [here](https://github.com/xero/figlet-fonts) and paste them into `/usr/share/figlet/fonts/`.
+  You can use more fonts using `figlet-fonts-extra`. You can download them manually from [here](https://github.com/xero/figlet-fonts) and paste them into `/usr/share/figlet/fonts/`.
   You should name the font with `.flf` extension. For instance, `/usr/share/figlet/fonts/ANSISHADOW.flf`.
   You can also install it from AUR using `paru -S figlet-fonts-extra`.
 

@@ -231,7 +231,7 @@ Remember these commands:
 - `lspci`: List all PCI devices.
 - `lsusb`: List all USB devices.
 - `lscpu`: List CPU information.
-- `lsblk`: List block devices (like hard drives).
+- `lsblk`: List block devices (like hard drives). You can also show the format and type of partition using `lsblk -o NAME,PTTYPE`.
 - `lsdev`: List devices.
 - `lshw`: List hardware.
 - `lsof`: List open files.
