@@ -1865,11 +1865,28 @@ Desktop sharing suffers from unmatched screen resolutions.
    sed --in-place --separate '/Actions=app_settings/a NoDisplay=true' ~/.local/share/applications/waydroid.*.desktop
    ```
 
+> [!NOTE]
+>
+> If you want a working camera  on `waydroid`:
+>
+> ```sh
+> sudo systemctl stop waydroid-container
+> sudo waydroid init -f \
+>       -c https://waydroid-atv.github.io/ota/a16-qpr2/system \
+>        -v https://waydroid-atv.github.io/ota/a16-qpr2/vendor \
+>       -r lineage \
+>       -s GAPPS
+> sudo systemctl start waydroid-container
+> sudo waydroid session start
+> ```
+
+
 **References:**
 
 - <https://wiki.archlinux.org/title/Waydroid>
 - <https://docs.waydro.id/faq/google-play-certification>
 - <https://www.reddit.com/r/waydroid/comments/1977994/how_to_hide_waydroid_shorcut_app_on_fedora_or_any/>
+- <https://wiki.nixos.org/wiki/Waydroid>
 
 ## hardinfo
 

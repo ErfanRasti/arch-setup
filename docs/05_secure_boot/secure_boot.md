@@ -31,7 +31,9 @@ For me it wasn't activated.
 
    Save and exit by pressing `f10` key (yours can be different).
 
-   **Hint:** If you cannot reset to setup mode due to some error messages like _Secure Variable Update is locked down Try again after System reboot_ you should downgrade or upgrade your BIOS to fix it. In my case BIOS get sensitive due to rapid changing the keys. I shutdown my computer for some minutes. After some minutes it get fixed by itself (probably due to capacitors discharge). Another faster workaround is to disconnect the battery from the motherboard and reconnect it after a couple of seconds. Also some systems have some timeouts and you cannot change the secure boot keys consecutively.
+
+   > [!HINT]
+   > If you cannot reset to setup mode due to some error messages like _Secure Variable Update is locked down Try again after System reboot_ you should downgrade or upgrade your BIOS to fix it. In my case BIOS get sensitive due to rapid changing the keys. I shutdown my computer for some minutes. After some minutes it get fixed by itself (probably due to capacitors discharge). Another faster workaround is to disconnect the battery from the motherboard and reconnect it after a couple of seconds. Also some systems have some timeouts and you cannot change the secure boot keys consecutively.
 
 2. Install `sbctl` using `pacman`:
 
