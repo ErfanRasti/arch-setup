@@ -173,6 +173,14 @@ sudo nix-collect-garbage -d && nix-collect-garbage -d
 Also to check your generations run:
 ```sh
 nixos-rebuild list-generations
+home-manager generations
+```
+
+To reset the generation number run:
+
+```sh
+sudo rm /nix/var/nix/profiles/system*
+sudo nixos-rebuild boot --flake path:$HOME/dotfiles/dotfiles/nixos-config/.config/nixos-config/
 ```
 
 
