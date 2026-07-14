@@ -231,7 +231,7 @@ The change `Icon`:
 Icon=/usr/share/icons/matlab/matlab.svg
 ```
 
-You can also remove redundant icons related to `matlab`:
+You can also remove redundant icons related to `matlab` to prevent desktop entry misplacing:
 
 ```bash
 cd ~/.local/share/applications
