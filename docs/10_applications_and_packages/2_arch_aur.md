@@ -458,8 +458,28 @@ sudo pacman -S krita vlc vlc-plugins-all mpv dragon
 
 If you want `vlc` to follow the global theming, go to `Tools > Preferences > Interface > Force window style` and set it to `qt5ct-style`.
 
-`dragon` s a multimedia player where the focus is on simplicity, instead of features.
+`dragon` is a multimedia player where the focus is on simplicity, instead of features.
 
+`mpv` is a great and simple video player. You can use it even on terminal:
+
+```sh
+mpv --vo=kitty movie.mp4
+```
+For more info about video outputs use `mpv --vo=help`.
+Also if you want to use integrated GPU instead of dedicated one add:
+
+```sh
+nvim ~/.config/mpv/mpv.conf
+```
+
+```conf
+vo=wlshm
+```
+
+You can change the speed of the video using `[` and `]` and for doubling the speed use `{` and `}`.
+You can increase the volume by pressing `0` or `*` and decrease by pressing `9` or `/`.
+
+### Video Editing
 For video editing I recommend `kdenlive`:
 
 ```bash
