@@ -36,7 +36,7 @@ To install it alongside a working Linux system:
    sudo mount -o subvol=@var,compress=zstd:3,noatime /dev/mapper/root /mnt/var
    sudo mount -o subvol=@log,compress=zstd:3,noatime /dev/mapper/root /mnt/var/log
    sudo mount -o subvol=@swap,compress=zstd:3,noatime /dev/mapper/root /mnt/swap
-   sudo mount --mkdir /dev/nvme1n1p1 /mnt/boot
+   sudo mount --mkdir /dev/nvme<DESIRED-NUMBER> /mnt/boot
    ```
 
 3. Generate NixOS configs:
@@ -56,6 +56,13 @@ To install it alongside a working Linux system:
    ```
 
    Use `--no-root-passwd` to omit `root` password. This creates NixOS boot entries in `/boot/loader/entries/nixos-*`.
+
+   You can also use a custom `dotfiles` for it but be sure that copy the auto-generated `hardware-configuration.nix` file to the desired path:
+
+   ```sh
+   sudo nixos-install --flake path:$HOME/dotfiles/dotfiles/nixos-config/.config/nixos-config/#<HOSTNAME> --root /mnt
+   ```
+
    After reboot you can also sign these entries using:
 
    ```sh
@@ -87,8 +94,14 @@ To install it alongside a working Linux system:
    sudo mount -t btrfs -o subvol=@log /dev/mapper/root /mnt/var/log
    sudo mount -t btrfs -o subvol=@home /dev/mapper/root /mnt/home
    sudo mount -t btrfs -o subvol=@swap /dev/mapper/root /mnt/swap
+   sudo mount /dev/sda1 /mnt/boot
+   ```
 
+   ```sh
    sudo nixos-enter
+
+   # Enter your specific user
+   su USERNAME
    ```
 
    Then:

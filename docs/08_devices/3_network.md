@@ -867,6 +867,7 @@ Now if you want to go a step further and proxify your whole system without typin
 
 - <https://wiki.archlinux.org/title/Proxy_server>
 - <https://wiki.archlinux.org/title/NetworkManager#Proxy_settings>
+- <https://medium.com/@SaeedDev94/use-socks-proxy-as-vpn-in-linux-d31b1cce44e0>
 
 ### Connect to VPN from a proxy
 
