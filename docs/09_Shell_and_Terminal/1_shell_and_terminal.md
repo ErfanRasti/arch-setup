@@ -26,14 +26,18 @@ Choose according to this:
 >
 > ```
 > /usr/bin/gh auth git-credential get: line 1: /usr/bin/gh: No such file or directory
-> Username for 'https://github.com': 
+> Username for 'https://github.com':
 > ```
+>
 > To fix this:
+>
 > ```sh
 > git config --global --replace-all credential.https://github.com.helper "!gh auth git-credential"
 > git config --global --replace-all credential.https://gist.github.com.helper "!gh auth git-credential"
 > ```
+>
 > and you can check these using:
+>
 > ```sh
 > git config --global --show-origin --list | grep credential
 > ```
@@ -1100,6 +1104,14 @@ sudo pacman -S zellij
 **References:**
 
 - <https://github.com/zellij-org/zellij>
+
+## herdr
+
+Great agent multiplexer:
+
+```sh
+paru -S herdr-bin
+```
 
 ## Modern Linux Tools
 

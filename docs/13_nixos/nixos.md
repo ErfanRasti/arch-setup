@@ -232,6 +232,102 @@ sudo rm /nix/var/nix/profiles/system*
 sudo nixos-rebuild boot --flake path:$HOME/dotfiles/dotfiles/nixos-config/.config/nixos-config/
 ```
 
+## Update and build using a remote system
+
+If you have another system with a better preferences, you can build the system there using the nix packages on that system and just copy the built files on your local system. First of all make sure to activate `ssh` on the remote system:
+
+```nix
+# Enable sshd using
+services.openssh = {
+  enable = true;
+  openFirewall = true;
+};
+```
+
+Try `ssh` to your system:
+
+```sh
+ssh USER@HOSTNAME
+```
+
+Then, you will prevent re-downloading every package too:
+
+```sh
+sudo nixos-rebuild switch --flake path:$HOME/dotfiles/dotfiles/nixos-config/.config/nixos-config/ --build-host USER@HOSTNAME
+```
+
+For home-manager you need `nh` (yet another `nix` helper) to use `--build-host` flag. You can install it by adding it to your `packages.nix`:
+
+```nix
+  programs.nh = {
+    enable = true;
+    clean.enable = true; # optional: better automatic GC
+    clean.extraArgs = "--keep-since 4d --keep 3";
+    flake = "path:$HOME/dotfiles/dotfiles/nixos-config/.config/nixos-config"; # optional: sets NH_FLAKE
+  };
+```
+
+You may need to reboot after installing `nh` to get `NH_FLAKE` variable.
+
+Then you need can use `nh` instead of `nixos-rebuild` and `home-manager`:
+
+```sh
+nh os switch --build-host USER@HOSTNAME
+```
+
+But for the `home` build, you need to copy your local SSH public key to the remote machine so you can log in without a password (`nh` doesn't handle the `ssh` password on its own for now). To do it:
+
+First create a key set (public and private) if you don't have any already:
+
+```sh
+# The default is also ed25519
+ssh-keygen -f ~/.ssh/id
+
+# Explicit cryptographic algorithm
+# -t = "type" - specifies the key type to generate
+# -a = "amount" - sets the number of KDF (Key Derivation Function) rounds
+#     64 = the iteration count for the key derivation function
+#     Default is typically 16 or 32; 64 is more secure but slightly slower
+ssh-keygen -t ed25519 -a 64  -f ~/.ssh/id_ed25519
+```
+
+Then copy the public keys id to the remote:
+
+```sh
+ssh-copy-id USER@HOSTNAME
+```
+
+Now you can use `ssh` without entering the password. So this will work for you:
+
+```sh
+nh home switch --build-host USER@HOSTNAME
+```
+
+If you've decided to remove the `ssh` fingerprint:
+
+```sh
+ssh-keygen -R HOSTNAME
+```
+
+You can also manually remove the lines using `nvim ~/.ssh/known_hosts`.
+
+and if you want to remove the local SSH public key from the remote machine:
+
+```sh
+ssh USER@HOSTNAME
+nvim ~/.ssh/authorized_keys
+```
+
+Find the line that matches your public key (it usually starts with `ssh-rsa`, `ssh-ed25519`, etc.) and delete that entire line.
+
+You can also check your public keys using:
+
+```sh
+ssh-keygen -l -f ~/.ssh/*.pub
+```
+
+`nh` is a great tool with lots of options and I highly recommend it as a substitution for `nixos-rebuild` and `home-manager`.
+
 **References:**
 
 - <https://github.com/nix-community/home-manager>

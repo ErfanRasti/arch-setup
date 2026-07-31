@@ -95,7 +95,7 @@ In this section I try to explain how can we put a repo on `AUR` package.
    ```
 
    Choose a proper password and done.
-   Then copy the content of `/.ssh/aur.pub` to `https://aur.archlinux.org/account/<USERNAME>/edit` and paste it to SSH Public Key section. The key is like this:
+   Then copy the content of `~/.ssh/aur.pub` to `https://aur.archlinux.org/account/<USERNAME>/edit` and paste it to SSH Public Key section. The key is like this:
 
    ```
    ssh-ed25519 DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
