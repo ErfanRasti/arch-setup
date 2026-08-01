@@ -328,6 +328,87 @@ ssh-keygen -l -f ~/.ssh/*.pub
 
 `nh` is a great tool with lots of options and I highly recommend it as a substitution for `nixos-rebuild` and `home-manager`.
 
+## MATLAB installation
+
+For matlab installation you need some `nix-ld` libraries:
+
+```nix
+  # To check the current nix-ld modules: l /run/current-system/sw/share/nix-ld/lib/
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      ## Put here any library that is required when running a package
+      # libraries to run conda
+      stdenv.cc.cc
+      zlib
+      openssl
+      curl
+      glib
+      libx11
+      libxrender
+      libice
+      libsm
+      libudev0-shim
+
+      # MATLAB installation libraries
+      pam
+      alsa-lib
+      atk
+      at-spi2-atk
+      at-spi2-core
+      cups
+      libdrm
+      gdk-pixbuf
+      gtk2
+      nspr
+      nss
+      libGL
+      libgbm
+      libxrandr
+      libXcomposite
+      libXdamage
+      libXfixes
+      libudev0-shim
+
+      ## Uncomment if you want to use the libraries provided by default in the steam distribution
+      ## but this is quite far from being exhaustive
+      ## https://github.com/NixOS/nixpkgs/issues/354513
+      # (pkgs.runCommand "steamrun-lib" {} "mkdir $out; ln -s ${pkgs.steam-run.fhsenv}/usr/lib64 $out/lib")
+    ];
+  };
+```
+
+Then you can use it. Usually for a better performance with no error on `wayland` You need these:
+
+```sh
+ nvim ~/matlab/bin/matlab
+```
+
+Add:
+
+```sh
+export _JAVA_AWT_WM_NONREPARENTING=1
+```
+
+and:
+
+```sh
+nvim ~/matlab/bin/glnxa64/java.opts
+```
+
+```sh
+-Djogl.disable.openglarbcontext=1
+```
+
+Remove redundant icons:
+
+```sh
+cd ~/.local/share/applications
+trash mw-matlabconnector.desktop mw-matlab.desktop mw-simulink.desktop
+```
+
+Then check [this](../10_applications_and_packages/4_matlab.md#hidpi-scaling).
+
 **References:**
 
 - <https://github.com/nix-community/home-manager>
