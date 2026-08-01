@@ -259,7 +259,7 @@ If everything is so small run the following command in `matlab` to scale everyth
 >> s.matlab.desktop.DisplayScaleFactor.PersonalValue = 2
 ```
 
-You can change `2` to any number you desire. The settings take effect after `matlab` is restarted.
+You can change `2` to any number you desire (you can use fractional numbers like `1.5` too because `wayland` supports fractional scaling now). The settings take effect after `matlab` is restarted.
 It's better to set `DisplayScaleFactor` of `matlab` equal to the fractional scale of your window manager,
 to get a better look with less aliasing.
 
@@ -268,6 +268,8 @@ Also activate anti-aliasing to smooth desktop fonts in the below path:
 ```
 Open Home Tab > Preferences (Gear Icon) > MATLAB > Fonts > Use antiliasing to smooth desktop fonts (require MATLAB restart)
 ```
+
+You can also use bold fonts for better readability. To do that change the Desktop code font to something like `CaskaydiaCove NF` with `Bold` style and untick the `Use system font` on `Desktop text font` and choose something like `Adwaita Sans` with `Bold` style.
 
 **References:**
 
