@@ -326,7 +326,28 @@ You can also check your public keys using:
 ssh-keygen -l -f ~/.ssh/*.pub
 ```
 
-`nh` is a great tool with lots of options and I highly recommend it as a substitution for `nixos-rebuild` and `home-manager`.
+`nh` is a great tool with lots of options and I highly recommend it as a substitution for `nixos-rebuild` and `home-manager`. These are some common applications of it:
+
+```sh
+nh os switch
+nh home siwtch
+
+nh os boot
+nh os switch --build-host USER@HOSTNAME
+nh home switch --build-host USER@HOSTNAME
+
+nh clean all
+nh search PACKAGE-NAME
+nh os switch --no-nom # Don't use nix-output-monitor for the build process
+nh os switch --log-format bar
+```
+
+Different `--log-format`:
+
+- `raw`: This is likely the most minimal format, outputting unprocessed log messages without extra formatting or progress indicators.
+- `internal-json`: This format outputs logs as structured JSON objects. It is designed for programmatic parsing, making it useful if you need to process the logs with other tools.
+- `bar`: This format uses a simple progress bar to display the status of the build or operation, minimizing the display of detailed log messages to keep the output clean.
+- `bar-with-logs`: This format is similar to bar but also includes the full text of build logs, providing both a visual progress indicator and detailed information.
 
 ## MATLAB installation
 
